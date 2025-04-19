@@ -21,14 +21,5 @@ import { CursorComponent } from "./components/cursor/cursor.component";
 })
 export class AppComponent{
   title = 'portfolio';
-  showCursor = true;
 
-  ngOnInit() {
-    document.addEventListener('mousemove', (e) => {
-      const cursor = document.getElementById('custom-cursor');
-      if (cursor) {
-        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      }
-    });
-  }
 }

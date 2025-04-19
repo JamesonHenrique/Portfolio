@@ -1,7 +1,9 @@
-import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, Renderer2, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-cursor',
+  standalone: true,
   imports: [],
   template: `
     <div
@@ -26,15 +28,22 @@ import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angu
 export class CursorComponent {
   @ViewChild('cursorElement', { static: true }) cursorElement!: ElementRef;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit() {
-    this.renderer.setStyle(document.body, 'cursor', 'none');
+    if (isPlatformBrowser(this.platformId)) {
+      this.renderer.setStyle(document.body, 'cursor', 'none');
+    }
   }
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(e: MouseEvent) {
-    this.moveCursor(e);
+    if (isPlatformBrowser(this.platformId)) {
+      this.moveCursor(e);
+    }
   }
 
   private moveCursor(e: MouseEvent) {
@@ -50,11 +59,13 @@ export class CursorComponent {
 
   @HostListener('document:mouseover', ['$event.target'])
   onHover(target: HTMLElement) {
-    const interactiveElements = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'];
-    if (interactiveElements.includes(target.tagName)) {
-      this.renderer.addClass(this.cursorElement.nativeElement, 'scale-150');
-    } else {
-      this.renderer.removeClass(this.cursorElement.nativeElement, 'scale-150');
+    if (isPlatformBrowser(this.platformId)) {
+      const interactiveElements = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'];
+      if (interactiveElements.includes(target.tagName)) {
+        this.renderer.addClass(this.cursorElement.nativeElement, 'scale-150');
+      } else {
+        this.renderer.removeClass(this.cursorElement.nativeElement, 'scale-150');
+      }
     }
   }
 }
