@@ -28,7 +28,7 @@ Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilid
 ---
 
 
-<div class="center">  
+<div align="center">
 ## 🛠 **Tecnologias Utilizadas**  
 
 | Categoria       | Tecnologias |  
