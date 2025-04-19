@@ -27,6 +27,8 @@ Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilid
 
 ---
 
+
+<div class="center">  
 ## 🛠 **Tecnologias Utilizadas**  
 
 | Categoria       | Tecnologias |  
@@ -35,7 +37,7 @@ Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilid
 | **Estilização** | Tailwind CSS, SCSS |  
 | **Animações**  | GSAP, Particle.js |  
 | **Bundler**    | Vite (opcional) |  
-
+</div>  
 ---
 
 ## 🚀 **Como Executar Localmente**  
