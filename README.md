@@ -38,8 +38,6 @@ npm install
 # Iniciar servidor de desenvolvimento
 ng serve
 ```
-📦 Scripts Disponíveis
-| Comando | Descrição | |---------|-----------| | npm start | Inicia servidor de desenvolvimento | | npm run build | Compila para produção | | npm test | Executa testes unitários | | npm run serve:ssr | Inicia renderização no servidor |
 
 🌟 Destaques do Projeto
 Arquitetura modular com Angular
