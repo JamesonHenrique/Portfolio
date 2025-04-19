@@ -1,0 +1,19 @@
+:host {
+  border-top: 1px solid rgba(76, 29, 149, 0.3);
+
+  .hexagon-logo {
+    background: linear-gradient(to bottom right, #4c1d95, #7e22ce);
+
+    div {
+      background: black;
+    }
+  }
+
+  a {
+    transition: color 0.3s;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
