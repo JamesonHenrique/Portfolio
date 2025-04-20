@@ -35,8 +35,7 @@ Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilid
 |----------------|------------|  
 | **Framework**  | Angular 19+ |  
 | **Estilização** | Tailwind CSS, SCSS |  
-| **Animações**  | GSAP, Particle.js |  
-| **Bundler**    | Vite (opcional) |  
+| **Animações**  | Animate.CSS, Particle.js |  
 </div>  
 ---
 
