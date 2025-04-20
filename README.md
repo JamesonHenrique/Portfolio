@@ -106,7 +106,7 @@ MIT License © 2024 - [Jameson Henrique](https://github.com/JamesonHenrique)
 🎨 **Preview:**  
 *(Incluir GIF ou screenshot do projeto)*  
 
-![Preview](https://via.placeholder.com/800x500/2D3748/FFFFFF?text=Portfolio+Preview) *(exemplo)*  
+![Preview](portfolio/public/portfolio.png) *(exemplo)*  
 
 --- 
 
