@@ -1,8 +1,10 @@
 .skill-card {
   position: relative;
+  width: 100%;
+  height: 450px;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: -1px;
     background: linear-gradient(to right, #4c1d95, #7e22ce);
@@ -21,7 +23,7 @@
   position: relative;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -4px;
     left: 0;
@@ -37,3 +39,217 @@
     border-radius: 2px;
   }
 }
+/* Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+@keyframes letterPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-5px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes lineExpand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes progressGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--final-width);
+  }
+}
+
+/* Animation Classes */
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.title-animated {
+  .letter-animated {
+    display: inline-block;
+    opacity: 0;
+    animation: letterPop 0.6s ease-out forwards;
+  }
+
+  .line-expand {
+    transform-origin: left center;
+    animation: lineExpand 1s ease-out forwards;
+    animation-delay: 1s;
+  }
+}
+
+.skills-animated {
+  .title-line {
+    animation: lineExpand 1s ease-out forwards;
+    animation-delay: 0s;
+  }
+  .title-text {
+    animation: titlePop 0.8s ease-out forwards;
+  }
+  @keyframes titlePop {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+    70% {
+      transform: scale(1.05) translateY(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  .skill-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .tools-card {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .skill-title {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+
+  .icon-float {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards, float 4s ease-in-out infinite;
+    animation-delay: 0.4s;
+  }
+
+  .icon-float-delay {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards, float 4s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  .skill-item {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        animation-delay: 0.2s + ($i * 0.1s);
+      }
+    }
+  }
+
+  .skill-progress {
+    animation: progressGrow 1.5s ease-out forwards;
+    animation-delay: 1s;
+  }
+
+  .tools-title {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: 0.7s;
+  }
+
+  .tool-item {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        animation-delay: 0.8s + ($i * 0.1s);
+      }
+    }
+  }
+}
+
+/* Hover Effects */
+.skill-icon {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.7));
+  }
+}
+
+.tool-icon {
+  transition: all 0.3s ease;
+
+  &:hover {
+    filter: grayscale(0%) drop-shadow(0 0 8px rgba(168, 85, 247, 0.5));
+  }
+}
+@keyframes letter-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+.letter-animated {
+  display: inline-block;
+  animation: letter-bounce 0.6s ease-out forwards;
+}
+@keyframes lineExpand {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+

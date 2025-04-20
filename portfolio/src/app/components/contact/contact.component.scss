@@ -114,3 +114,104 @@
     ); /* hover:from-white to-purple-200 */
     color: #4c1d95; /* hover:text-purple-900 */
   }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) }
+    50% { transform: translateY(-20px) }
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(360deg) }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px) }
+    to { opacity: 1; transform: translateY(0) }
+  }
+
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-20px) }
+    to { opacity: 1; transform: translateX(0) }
+  }
+
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(20px) }
+    to { opacity: 1; transform: translateX(0) }
+  }
+
+  @keyframes titlePop {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px) }
+    70% { transform: scale(1.05) translateY(-5px) }
+    100% { opacity: 1; transform: scale(1) translateY(0) }
+  }
+
+  @keyframes lineExpand {
+    from { transform: scaleX(0); opacity: 0 }
+    to { transform: scaleX(1); opacity: 1 }
+  }
+
+  @keyframes highlightPulse {
+    0%, 100% { width: 0; left: 50% }
+    50% { width: 100%; left: 0 }
+  }
+
+  /* Animation Classes */
+  .animate-section {
+    .shape-blob {
+      animation: float 15s ease-in-out infinite;
+    }
+
+    .shape-starburst {
+      animation: spin-slow 60s linear infinite;
+    }
+
+    .shape-hexagon {
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .title-text {
+      animation: titlePop 0.8s ease-out forwards;
+    }
+
+    .title-line {
+      animation: lineExpand 1s ease-out forwards;
+      animation-delay: 0s;
+    }
+
+    .contact-info-card {
+      animation: fadeInLeft 0.8s ease-out forwards;
+    }
+
+    .contact-item {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .social-title {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+
+    .social-links a {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .form-container {
+      animation: fadeInRight 0.8s ease-out forwards;
+    }
+
+    .animate-field {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .animate-button {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+  }
+  .font-major {
+    font-size: 1rem;
+  }

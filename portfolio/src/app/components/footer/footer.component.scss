@@ -17,3 +17,126 @@
     }
   }
 }
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-10px) }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1) }
+  50% { transform: scale(1.05) }
+}
+
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 5px rgba(168, 85, 247, 0.3) }
+  50% { text-shadow: 0 0 15px rgba(168, 85, 247, 0.7) }
+}
+
+@keyframes linkHover {
+  from { width: 0; left: 50% }
+  to { width: 100%; left: 0 }
+}
+
+/* Animation Classes */
+.animate-footer {
+  .shape-blob {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .shape-starburst {
+    animation: spin-slow 40s linear infinite;
+  }
+
+  .logo-container {
+    animation: fadeInUp 0.8s ease-out forwards, pulse 4s ease-in-out infinite;
+    animation-delay: 0.2s;
+  }
+
+  .logo-inner {
+    transition: all 0.5s ease;
+
+    &:hover {
+      transform: rotate(15deg);
+      background: linear-gradient(to bottom right, #111827, #1f2937);
+
+      .logo-text {
+        color: #a855f7;
+        text-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+      }
+    }
+  }
+
+  .quote-text {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.4s;
+
+   
+  }
+
+  .nav-links {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.6s;
+  }
+
+  .copyright-text {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.8s;
+  }
+}
+
+/* Nav Link Styles */
+.nav-link {
+  position: relative;
+  color: #c084fc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+  overflow: hidden;
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    &::before {
+      width: 100%;
+    }
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+
+    a {
+      flex: 1 0 30%;
+      text-align: center;
+    }
+  }
+}

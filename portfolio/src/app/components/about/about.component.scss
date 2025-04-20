@@ -8,7 +8,6 @@
   }
 }
 
-/* Estatísticas */
 .grid-cols-2 {
   .shape-hexagon, .shape-parallelogram {
     background: linear-gradient(to bottom, #4c1d95, #7e22ce);
@@ -18,3 +17,250 @@
     }
   }
 }
+/* Keyframes */
+@keyframes blob-morph {
+  0%, 100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40% }
+  50% { border-radius: 30% 60% 70% 40%/50% 60% 30% 60% }
+}
+
+@keyframes shadow-pulse {
+  0%, 100% { opacity: 0.7; transform: translate(1px, 3px) scale(0.98) }
+  50% { opacity: 0.4; transform: translate(3px, 5px) scale(0.95) }
+}
+
+@keyframes gradient-rotate {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+@keyframes letter-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1 }
+  50% { transform: translateY(-15px) }
+  0% { opacity: 0; transform: translateY(30px) }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(20px) }
+  to { opacity: 1; transform: translateX(0) }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.8) }
+  to { opacity: 1; transform: translateY(0) scale(1) }
+}
+
+@keyframes photo-reveal {
+  from { opacity: 0; transform: scale(0.8) rotate(-5deg) }
+  to { opacity: 1; transform: scale(1) rotate(0deg) }
+}
+
+.animate-blob {
+  animation: blob-morph 10s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 40s linear infinite;
+}
+
+.animate-shadow-pulse {
+  animation: shadow-pulse 8s ease-in-out infinite;
+}
+
+.animate-gradient-rotate {
+  background-size: 200% 200%;
+  animation: gradient-rotate 15s ease infinite;
+}
+
+.photo-reveal {
+  animation: photo-reveal 1s ease-out forwards;
+}
+
+.title-reveal {
+  overflow: hidden;
+}
+
+.letter-animated {
+  display: inline-block;
+  animation: letter-bounce 0.6s ease-out forwards;
+}
+
+.paragraph-animated {
+  opacity: 0;
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.stat-animated {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.name-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.name-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  animation: underline-grow 1s forwards;
+  animation-delay: 1s;
+}
+
+.tech-bounce {
+  display: inline-block;
+  animation: tech-bounce 1s infinite;
+  animation-delay: 1.5s;
+}
+
+.underline-effect {
+  position: relative;
+}
+
+.underline-effect::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  animation: underline-grow 1s forwards;
+  animation-delay: 2s;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-20px) }
+}
+
+@keyframes tech-bounce {
+  0%, 100% { transform: scale(1) }
+  50% { transform: scale(1.1) }
+}
+
+@keyframes underline-grow {
+  from { width: 0 }
+  to { width: 100% }
+}
+/* Keyframes para as novas animações */
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    box-shadow: 0 0 0 rgba(168, 85, 247, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 10px 30px -15px rgba(168, 85, 247, 0.3);
+  }
+}
+
+@keyframes timelineItemEntrance {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(168, 85, 247, 0.9);
+  }
+}
+
+/* Classes de animação */
+.animate-card {
+  opacity: 0;
+  animation: cardEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-timeline-item {
+  opacity: 0;
+  animation: timelineItemEntrance 0.6s ease-out forwards;
+}
+
+.timeline {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -2px;
+    width: 2px;
+    background: linear-gradient(to bottom,
+      transparent,
+      rgba(168, 85, 247, 0.5),
+      transparent);
+  }
+}
+
+.timeline-dot {
+  transition: all 0.3s ease;
+  z-index: 2;
+
+  &:hover {
+    animation: dotPulse 1.5s infinite;
+  }
+}
+
+.glow-text {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right,
+      transparent,
+      rgba(168, 85, 247, 0.8),
+      transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+
+  &:hover {
+    animation: glowPulse 2s infinite;
+  }
+}
+

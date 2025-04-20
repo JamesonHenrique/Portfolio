@@ -17,7 +17,7 @@ export class HeroComponent {
     { char: 'S', color: 'white' },
     { char: 'O', color: 'purple-100' },
     { char: 'N', color: 'purple-200' },
-    { char: ' ', color: 'transparent' }, // Espaço entre nome e sobrenome
+    { char: ' ', color: 'transparent' },
     { char: 'H', color: 'purple-300' },
     { char: 'E', color: 'purple-400' },
     { char: 'N', color: 'purple-500' },
@@ -27,4 +27,15 @@ export class HeroComponent {
     { char: 'U', color: 'purple-900' },
     { char: 'E', color: 'purple-950' }
   ];
+  baixarCurriculo() {
+    const link = document.createElement('a');
+
+    link.href = 'jamesonhenrique-resume.pdf';
+
+    link.download = 'Jameson_Henrique_Curriculo.pdf';
+
+    link.click();
+
+    link.remove();
+}
 }
