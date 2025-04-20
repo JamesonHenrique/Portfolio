@@ -1,177 +1,103 @@
-
 <section
-id="projetos"
-class="min-h-screen py-20 px-4 relative bg-black overflow-hidden"
+  id="projetos"
+  class="min-h-screen py-20 px-4 relative bg-black overflow-hidden"
+  [class.animate-section]="isVisible"
 >
-<div
-  class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/5 to-transparent"
-></div>
+  <div
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/5 to-transparent"
+  ></div>
 
-<div
-  class="absolute w-80 h-80 shape-blob bg-purple-900/10 -left-40 top-1/3 animate-float"
-></div>
-<div
-  class="absolute w-64 h-64 shape-starburst bg-purple-800/10 right-20 bottom-20 animate-spin"
-  style="animation-duration: 50s"
-></div>
+  <div
+    class="absolute w-80 h-80 shape-blob bg-purple-900/10 -left-40 top-1/3"
+  ></div>
+  <div
+    class="absolute w-64 h-64 shape-starburst bg-purple-800/10 right-20 bottom-20"
+  ></div>
 
-<div class="container mx-auto relative z-10">
-  <div class="text-center mb-16">
-    <h2
-      class="text-4xl md:text-6xl font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 mb-4"
-    >
-      PROJETOS
-    </h2>
-    <div
-      class="w-32 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto"
-    ></div>
-  </div>
-
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <div class="project-card group">
-      <div
-        class="project-card-inner bg-gradient-to-br from-stone-950 bg-black"
+  <div class="container mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2
+        class="text-4xl md:text-6xl font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 mb-4 title-text"
       >
-        <div class="project-image">
-          <img
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-            alt="Projeto Nexus"
-            class="project-img"
-          />
-          <div class="project-title">NEXUS</div>
-        </div>
+        PROJETOS
+      </h2>
+      <div
+        class="w-32 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto title-line"
+      ></div>
+    </div>
 
-        <div class="project-content">
-          <h3 class="project-name">Plataforma de Integração</h3>
-          <p class="project-description">
-            Sistema completo com Spring Boot e Angular para gerenciamento
-            de dados em tempo real entre múltiplas plataformas.
-          </p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        *ngFor="let project of projects; let i = index"
+        class="project-card group h-full"
+        [style.animation-delay]="i * 0.1 + 's'"
+      >
+      <div class="project-card-inner bg-gradient-to-br from-stone-950 bg-black h-full flex flex-col">
 
-          <div class="project-techs">
-            <span class="tech-tag">Spring Boot</span>
-            <span class="tech-tag">Angular</span>
-            <span class="tech-tag">WebSockets</span>
+          <div class="project-image">
+            <img
+              [src]="project.image"
+              [alt]="project.name"
+              class="project-img"
+            />
+            <div class="project-title">{{ project.title }}</div>
+            <div class="project-overlay">
+              <div class="project-links">
+                <a (click)="redirectTo(project.url)" class="project-link">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="project-footer">
-          <button class="project-button">
-            <span>Ver Detalhes</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
+          <div class="project-content flex-grow">
+            <h3 class="project-name">{{ project.name }}</h3>
+            <p class="project-description">{{ project.description }}</p>
+
+            <div class="project-techs">
+              <span *ngFor="let tech of project.techs" class="tech-tag">{{
+                tech
+              }}</span>
+            </div>
+          </div>
+
+          <div class="project-footer ">
+            <button (click)="redirectTo(project.url)" class="project-button">
+              <span>Ver Projeto</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="project-card group">
-      <div
-        class="project-card-inner bg-gradient-to-br from-stone-950 bg-black"
-      >
-        <div class="project-image">
-          <img
-            src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-            alt="Projeto Cryptix"
-            class="project-img"
-          />
-          <div class="project-title">CRYPTIX</div>
-        </div>
-
-        <div class="project-content">
-          <h3 class="project-name">Sistema de Criptografia</h3>
-          <p class="project-description">
-            Aplicativo seguro de troca de mensagens com criptografia de
-            ponta a ponta e autenticação biométrica.
-          </p>
-
-          <div class="project-techs">
-            <span class="tech-tag">Java</span>
-            <span class="tech-tag">AES-256</span>
-            <span class="tech-tag">Biometria</span>
-          </div>
-        </div>
-
-        <div class="project-footer">
-          <button class="project-button">
-            <span>Ver Detalhes</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card group">
-      <div
-        class="project-card-inner bg-gradient-to-br from-stone-950 bg-black"
-      >
-        <div class="project-image">
-          <img
-            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80"
-            alt="Projeto Quantum"
-            class="project-img"
-          />
-          <div class="project-title">QUANTUM</div>
-        </div>
-
-        <div class="project-content">
-          <h3 class="project-name">Dashboard Analytics</h3>
-          <p class="project-description">
-            Plataforma de análise de dados com visualizações interativas e
-            relatórios em tempo real para tomada de decisão.
-          </p>
-
-          <div class="project-techs">
-            <span class="tech-tag">Angular</span>
-            <span class="tech-tag">D3.js</span>
-            <span class="tech-tag">Spring Boot</span>
-          </div>
-        </div>
-
-        <div class="project-footer">
-          <button class="project-button">
-            <span>Ver Detalhes</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
+    <div class="text-center mt-16 flex align-items-center justify-center">
+      <button class="see-more-button" (click)="redirectTo('https://github.com/JamesonHenrique')">VER MAIS PROJETOS</button>
     </div>
   </div>
-
-  <div class="text-center mt-16 flex align-items-center justify-center">
-    <button class="see-more-button">VER MAIS PROJETOS</button>
-  </div>
-</div>
 </section>
