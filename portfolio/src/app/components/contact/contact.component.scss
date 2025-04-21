@@ -215,3 +215,8 @@
   .font-major {
     font-size: 1rem;
   }
+  @media (max-width: 440px) {
+    .font-major {
+      font-size: 0.8rem;
+    }
+  }
