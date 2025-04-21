@@ -12,7 +12,7 @@
 ## ✨ **Visão Geral**  
 Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilidades e experiência de forma moderna e interativa.  
 
-🔗 **Live Demo**: https://jamesonhenrique.dev](https://jamesonhenrique-portfolio.vercel.app/
+🔗 **Live Demo**: https://jamesonhenrique-portfolio.vercel.app/
 
 ---
 
