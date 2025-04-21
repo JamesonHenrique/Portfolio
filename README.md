@@ -12,7 +12,7 @@
 ## ✨ **Visão Geral**  
 Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilidades e experiência de forma moderna e interativa.  
 
-🔗 **Live Demo**: https://jamesonhenrique-portfolio.vercel.app/
+🔗 **Acesse o Portfolio**: https://jamesonhenrique-portfolio.vercel.app/
 
 ---
 
@@ -23,7 +23,6 @@ Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilid
 ✨ **Animações Dinâmicas** – Partículas interativas e efeitos suaves  
 🖱️ **Cursor Personalizado** – Experiência de navegação única  
 📱 **Seções Organizadas** – Apresentação, Sobre, Habilidades, Projetos e Contato  
-⚡ **Otimizado para Performance** – Carregamento rápido e SEO-friendly  
 
 ---
 
@@ -44,28 +43,6 @@ Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilid
 ### **Pré-requisitos**  
 - Node.js v18+  
 - npm / yarn / pnpm  
-
-### **Passo a Passo**  
-
-```bash
-# 1. Clone o repositório
-git clone https://github.com/JamesonHenrique/Portfolio.git
-cd Portfolio/portfolio
-
-# 2. Instale as dependências
-npm install
-
-# 3. Inicie o servidor de desenvolvimento
-npm run start
-
-# Ou, para build de produção:
-npm run build
-```
-
-📌 **Acesse:** `http://localhost:4200`  
-
----
-
 
 ## 🌟 **Destaques Técnicos**  
 
