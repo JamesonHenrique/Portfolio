@@ -38,12 +38,6 @@ Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilid
 </div>  
 ---
 
-## 🚀 **Como Executar Localmente**  
-
-### **Pré-requisitos**  
-- Node.js v18+  
-- npm / yarn / pnpm  
-
 ## 🌟 **Destaques Técnicos**  
 
 🔹 **Scroll Suave** – Navegação fluida entre seções  
