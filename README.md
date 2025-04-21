@@ -36,6 +36,7 @@ Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilid
 | **Estilização** | Tailwind CSS, SCSS |  
 | **Animações**  | Animate.CSS, Particle.js |  
 </div>  
+
 ---
 
 ## 🌟 **Destaques Técnicos**  
