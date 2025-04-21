@@ -58,7 +58,7 @@ Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilid
 
 ## 📜 **Licença**  
 
-MIT License © 2024 - [Jameson Henrique](https://github.com/JamesonHenrique)  
+MIT License © 2025 - [Jameson Henrique](https://github.com/JamesonHenrique)  
 
 ---
 
