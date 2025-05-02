@@ -14,7 +14,7 @@ export class ProjectsComponent {
     {
       title: 'NEWGRAM',
       name: 'Rede Social Moderna',
-      description: 'Plataforma de compartilhamento de fotos e stories, com feed personalizado, sistema de seguidores, stories  e salvamento de posts em coleções.',
+      description: 'Plataforma de compartilhamento de fotos e stories, com feed personalizado, sistema de seguidores, sistema de favoritos e criação de posts e destaques.',
       techs: [
         'Spring Boot',
         'Angular',
