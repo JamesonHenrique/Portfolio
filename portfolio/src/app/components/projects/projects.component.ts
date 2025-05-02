@@ -12,13 +12,32 @@ export class ProjectsComponent {
   isVisible = false;
   projects = [
     {
+      title: 'NEWGRAM',
+      name: 'Rede Social Moderna',
+      description: 'Plataforma de compartilhamento de fotos e stories, com feed personalizado, sistema de seguidores, stories  e salvamento de posts em coleções.',
+      techs: [
+        'Spring Boot',
+        'Angular',
+        'TailwindCSS',
+        'PostgreSQL',
+        'JWT',
+        'S3(AWS)',
+        'Docker',
+        'Flyway',
+      ],
+      image: 'newgram_print.png',
+      url: 'https://github.com/JamesonHenrique/Newgram',
+
+    },
+    {
       title: 'ALGAMONEY',
       name: 'Sistema de Gestão Financeira Pessoal',
       description: 'Plataforma full stack de gerenciamento financeiro pessoal com dashboard, relatórios e controle de receitas e despesas.',
-      techs: ['Spring Boot', 'Angular', 'Tailwind','Chart.js','PostgreSQL','TailwindCSS','JasperReports','JWT'],
+      techs: ['Spring Boot', 'Angular','Chart.js','PostgreSQL','TailwindCSS','JasperReports','JWT'],
       image: 'algamoney_print.png',
       url: 'https://github.com/JamesonHenrique/Algamoney'
     },
+
     {
       title: 'WAVECHAT',
       name: 'Chat em Tempo Real com WebSocket',
