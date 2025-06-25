@@ -43,7 +43,7 @@
             <div class="project-title">{{ project.title }}</div>
             <div class="project-overlay">
               <div class="project-links">
-                <a (click)="redirectTo(project.url)" class="project-link">
+                <a *ngIf="project.url != 'URL Indisponivel'" (click)="redirectTo(project.url)" class="project-link">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-6 w-6"
@@ -76,7 +76,7 @@
           </div>
 
           <div class="project-footer ">
-            <button (click)="redirectTo(project.url)" class="project-button">
+            <button *ngIf="project.url != 'URL Indisponivel'" (click)="redirectTo(project.url)" class="project-button">
               <span>Ver Projeto</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@
     </div>
 
     <div class="text-center mt-16 flex align-items-center justify-center">
-      <button class="see-more-button" (click)="redirectTo('https://github.com/JamesonHenrique?tab=repositories')">VER MAIS PROJETOS</button>
+      <button  class="see-more-button" (click)="redirectTo('https://github.com/JamesonHenrique?tab=repositories')">VER MAIS PROJETOS</button>
     </div>
   </div>
 </section>
