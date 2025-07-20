@@ -30,9 +30,9 @@ export class HeroComponent {
   baixarCurriculo() {
     const link = document.createElement('a');
 
-    link.href = 'jamesonhenrique-resume.pdf';
+    link.href = 'JAMESON_HENRIQUE_CV.pdf';
 
-    link.download = 'Jameson_Henrique_Curriculo.pdf';
+    link.download = 'JAMESON_HENRIQUE_CV.pdf';
 
     link.click();
 
