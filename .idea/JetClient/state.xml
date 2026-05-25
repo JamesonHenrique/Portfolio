@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JetClientState">
+    <option name="draftsState">
+      <draftsState>
+        <option name="requests">
+          <list>
+            <requestState>
+              <option name="id" value="55dad572-60c7-4ac8-ba33-7d9ee43fdae5" />
+              <option name="method" value="POST" />
+              <option name="name" value="Draft" />
+              <option name="url" value="https://n8n-tyfj.onrender.com/webhook-test/telegram-webhook" />
+            </requestState>
+          </list>
+        </option>
+      </draftsState>
+    </option>
+    <option name="id" value="1bf9c99a-3a07-422f-a8d1-b5c2dc598e62" />
+    <option name="version" value="6" />
+  </component>
+</project>
