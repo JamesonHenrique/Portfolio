@@ -20,10 +20,12 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1')?.getAttribute('aria-label')).toBe('Jameson Henrique');
   });
 
-  it('should render the automation section', () => {
+  it('should render every section linked from the navigation', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('#automacao')).not.toBeNull();
+    for (const id of ['inicio', 'sobre', 'skills', 'projetos', 'contato']) {
+      expect(compiled.querySelector('#' + id)).withContext(id).not.toBeNull();
+    }
   });
 });

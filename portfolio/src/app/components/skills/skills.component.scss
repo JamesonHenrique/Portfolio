@@ -131,6 +131,17 @@
     animation-delay: 0.3s;
   }
 
+  .skill-item {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i}) {
+        animation-delay: 0.3s + ($i * 0.08s);
+      }
+    }
+  }
+
   .tools-title {
     opacity: 0;
     animation: fadeInUp 0.5s ease-out forwards;
@@ -170,13 +181,22 @@
 }
 
 
+.skill-icon {
+  transition: transform 0.3s ease, filter 0.3s ease;
+
+  &:hover {
+    transform: scale(1.12) rotate(4deg);
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.7));
+  }
+}
+
 .skill-chip {
-  padding: 0.4rem 0.9rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 9999px;
   border: 1px solid rgba(168, 85, 247, 0.4);
   background: rgba(88, 28, 135, 0.2);
   color: #e9d5ff;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   transition: background 0.2s ease, transform 0.2s ease;
 
   &:hover {

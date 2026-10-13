@@ -29,14 +29,31 @@
           <div
             class="relative bg-gradient-to-br from-stone-950 bg-black rounded-xl p-6 sm:p-8 border border-purple-900/50 h-full"
           >
-            <h3 class="text-base sm:text-lg font-press text-purple-300 skill-title leading-relaxed mb-6">
+            <h3 class="text-base sm:text-xl font-press text-purple-300 skill-title text-center leading-relaxed mb-8">
               {{ group.title }}
             </h3>
-            <ul class="flex flex-wrap gap-3">
-              @for (item of group.items; track item) {
-                <li class="skill-chip">{{ item }}</li>
+            <ul class="grid grid-cols-3 sm:grid-cols-4 gap-x-4 gap-y-6">
+              @for (skill of group.skills; track skill.name) {
+                <li class="flex flex-col items-center gap-3 text-center skill-item">
+                  <img
+                    [src]="'icons/' + skill.icon + '.svg'"
+                    alt=""
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                    class="w-12 h-12 object-contain skill-icon"
+                  />
+                  <span class="text-xs sm:text-sm text-purple-200">{{ skill.name }}</span>
+                </li>
               }
             </ul>
+            @if (group.extras) {
+              <ul class="flex flex-wrap justify-center gap-2 mt-8 pt-6 border-t border-purple-900/40">
+                @for (extra of group.extras; track extra) {
+                  <li class="skill-chip">{{ extra }}</li>
+                }
+              </ul>
+            }
           </div>
         </div>
       }

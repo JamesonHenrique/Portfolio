@@ -11,13 +11,11 @@ Desenvolvedor de **automação (RPA) e full stack**. Este é o código do meu si
 | Seção | Conteúdo |
 |---|---|
 | Sobre | Formação e experiência, com o mesmo texto do currículo |
-| Automação em produção | Casos reais no formato problema → o que fiz → resultado (Make, n8n, APIs REST, webhooks, Gemini) |
-| Stack | Ferramentas agrupadas como no currículo, mais os sistemas que já integrei |
+| Stack | Ferramentas com ícones (automação e IA, backend, frontend, infra), mais os sistemas que já integrei |
 | Projetos | OportunizaVaga, Painel de Máquinas, Newgram e outros projetos full stack |
 | Contato | Formulário (FormSubmit via AJAX, com honeypot), e-mail, telefone e redes |
 
 <p>
-  <img src="docs/preview-automacao.webp" alt="Seção Automação em produção" width="68%">
   <img src="docs/preview-mobile.webp" alt="Página inicial no celular" width="28%">
 </p>
 
@@ -26,6 +24,7 @@ Desenvolvedor de **automação (RPA) e full stack**. Este é o código do meu si
 - **Angular 19** (componentes standalone, control flow `@if`/`@for`)
 - **Tailwind CSS** e SCSS
 - **animate.css** e **particles.js**, com menos partículas no celular e desligadas quando o sistema pede menos movimento (`prefers-reduced-motion`)
+- Ícones de tecnologias servidos do próprio site (`public/icons`, de Devicon e Simple Icons)
 - Animações de entrada disparadas por `IntersectionObserver`, sem listeners de scroll
 - Deploy automático na **Vercel** a partir da branch `main`
 
@@ -43,7 +42,6 @@ npx ng test --watch=false --browsers=ChromeHeadless
 
 | O quê | Arquivo |
 |---|---|
-| Casos de automação | `portfolio/src/app/components/automation/automation.component.ts` |
 | Projetos | `portfolio/src/app/components/projects/projects.component.ts` |
 | Stack | `portfolio/src/app/components/skills/skills.component.ts` |
 | Sobre e carreira | `portfolio/src/app/components/about/about.component.html` |

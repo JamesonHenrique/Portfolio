@@ -1,9 +1,17 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { onFirstView } from '../../utils/in-view';
 
+interface Skill {
+  name: string;
+  /** SVG in /public/icons (self-hosted: Devicon and Simple Icons, pinned versions). */
+  icon: string;
+}
+
 interface SkillGroup {
   title: string;
-  items: string[];
+  skills: Skill[];
+  /** Concepts without a logo, shown as chips under the icons. */
+  extras?: string[];
 }
 
 @Component({
@@ -19,23 +27,51 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
 
   constructor(private cdr: ChangeDetectorRef) {}
 
-  // Same groups as the "Habilidades" block of the CV.
+  // Same tools as the "Habilidades" block of the CV.
   groups: SkillGroup[] = [
     {
-      title: 'AUTOMAÇÃO E INTEGRAÇÃO',
-      items: ['Make', 'n8n', 'APIs REST', 'Webhooks', 'JSON', 'OAuth2', 'Tratamento de erro', 'Paginação', 'Idempotência']
+      title: 'AUTOMAÇÃO E IA',
+      skills: [
+        { name: 'Make', icon: 'make' },
+        { name: 'n8n', icon: 'n8n' },
+        { name: 'Python', icon: 'python' },
+        { name: 'Gemini', icon: 'gemini' },
+        { name: 'Google Workspace', icon: 'googleworkspace' }
+      ],
+      extras: ['APIs REST', 'Webhooks', 'OAuth2', 'Idempotência', 'Paginação', 'Prompt com saída estruturada']
     },
     {
-      title: 'DESENVOLVIMENTO',
-      items: ['Java', 'Spring Boot', 'Spring Security', 'Spring AI', 'Angular', 'TypeScript', 'JavaScript', 'Python', 'RxJS', 'Tailwind CSS']
+      title: 'BACKEND',
+      skills: [
+        { name: 'Java', icon: 'java' },
+        { name: 'Spring Boot', icon: 'spring' },
+        { name: 'PostgreSQL', icon: 'postgresql' },
+        { name: 'MySQL', icon: 'mysql' },
+        { name: 'MongoDB', icon: 'mongodb' },
+        { name: 'Keycloak', icon: 'keycloak' },
+        { name: 'JUnit', icon: 'junit' }
+      ],
+      extras: ['Spring Security', 'Spring AI', 'Flyway', 'Mockito']
     },
     {
-      title: 'DADOS, INFRA E QUALIDADE',
-      items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Flyway', 'Docker', 'GitHub Actions', 'Linux', 'AWS (S3)', 'Keycloak', 'JUnit', 'Mockito']
+      title: 'FRONTEND',
+      skills: [
+        { name: 'Angular', icon: 'angular' },
+        { name: 'TypeScript', icon: 'typescript' },
+        { name: 'JavaScript', icon: 'javascript' },
+        { name: 'RxJS', icon: 'rxjs' },
+        { name: 'Tailwind CSS', icon: 'tailwind' }
+      ]
     },
     {
-      title: 'IA APLICADA',
-      items: ['Gemini API', 'Engenharia de prompt com saída estruturada', 'Agentes com LLM']
+      title: 'INFRA E FERRAMENTAS',
+      skills: [
+        { name: 'Docker', icon: 'docker' },
+        { name: 'Git', icon: 'git' },
+        { name: 'GitHub Actions', icon: 'githubactions' },
+        { name: 'Linux', icon: 'linux' },
+        { name: 'AWS (S3)', icon: 'aws' }
+      ]
     }
   ];
 
