@@ -7,8 +7,8 @@ import { isPlatformBrowser } from '@angular/common';
   imports: [],
   template: `
     <div
-      class="fixed w-6 h-6 rounded-full bg-purple-500 mix-blend-difference pointer-events-none z-50 animate-pulse transition-opacity"
-      [class.opacity-0]="!active"
+      class="fixed w-6 h-6 rounded-full bg-purple-500 mix-blend-difference pointer-events-none z-50 animate-pulse"
+      [class.invisible]="!active"
       [class.hidden]="!enabled"
       #cursorElement
     ></div>

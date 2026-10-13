@@ -43,24 +43,24 @@ export class AutomationComponent implements AfterViewInit, OnDestroy {
     },
     {
       title: 'Auditoria de segurança das automações',
-      problem: 'As automações em produção nunca tinham passado por uma revisão de segurança e qualidade.',
+      problem: 'Era preciso conhecer os riscos de segurança e qualidade das automações que já rodavam em produção.',
       solution: 'Auditei os cenários e encontrei credenciais expostas, risco de ações duplicadas (cadastro e mensagem ao cliente em dobro) e falhas de paginação.',
-      result: 'Tudo virou um backlog de correção priorizado por risco.',
+      result: 'Consolidei tudo num backlog de correção priorizado.',
       stack: ['Make', 'APIs REST', 'Idempotência', 'Paginação']
     },
     {
       title: 'Migração do Make para o n8n',
-      problem: 'O departamento precisava decidir se valia migrar para o n8n self-hosted, sem dados de uso reais.',
-      solution: 'Medi o uso real das duas contas do grupo (≈7.300 execuções/mês), recomendei a arquitetura e escrevi ferramentas em Python que auditam os cenários e os convertem para o n8n.',
+      problem: 'O departamento avaliava migrar as automações do Make para o n8n self-hosted.',
+      solution: 'Conduzi o estudo de viabilidade: medi o uso real das duas contas do grupo (≈7.300 execuções/mês), recomendei a arquitetura e desenvolvi ferramentas em Python que auditam as automações e as convertem para o n8n.',
       result: 'A migração entrou no planejamento do departamento.',
       stack: ['n8n', 'Make', 'Python']
     },
     {
       title: 'IA na triagem de documentos judiciais',
-      problem: 'Os planos de ação jurídicos gerados por IA tinham dados inconsistentes e apresentação fraca.',
-      solution: 'Reescrevi as instruções que geram o plano em cinco áreas (concurso público, servidor público, saúde, improbidade e geral), com saída estruturada.',
-      result: 'Melhor qualidade dos dados e da apresentação do documento entregue.',
-      stack: ['Gemini API', 'Engenharia de prompt']
+      problem: 'O plano de ação jurídico gerado com IA (Gemini) precisava de dados melhores e de uma apresentação melhor.',
+      solution: 'Reescrevi as instruções que geram o plano em cinco áreas: concurso público, servidor público, saúde, improbidade e geral.',
+      result: 'Melhorou a qualidade dos dados e a apresentação do documento.',
+      stack: ['Gemini API']
     }
   ];
 
