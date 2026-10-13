@@ -10,14 +10,14 @@ export class ParticlesComponent implements OnInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.loadParticles();
-    }
+    if (!isPlatformBrowser(this.platformId)) return;
+    // Respect users who asked the OS for less motion: no canvas animation at all.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    this.loadParticles();
   }
 
   private loadParticles() {
     if (typeof (window as any).particlesJS !== 'function') {
-      console.log('Carregando particles.js...');
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
       script.onload = () => this.initializeParticles();
@@ -28,9 +28,12 @@ export class ParticlesComponent implements OnInit {
   }
 
   private initializeParticles() {
+    // Small screens are usually phones: fewer particles and no connecting lines,
+    // which are the expensive part (O(n²) distance checks every frame).
+    const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
     (window as any).particlesJS("particles-js", {
       particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
+        number: { value: isSmallScreen ? 20 : 45, density: { enable: true, value_area: 800 } },
         color: { value: "#a855f7" },
         shape: {
           type: ["circle", "triangle", "polygon"],
@@ -48,7 +51,7 @@ export class ParticlesComponent implements OnInit {
           anim: { enable: false, speed: 40, size_min: 0.1, sync: false },
         },
         line_linked: {
-          enable: true,
+          enable: !isSmallScreen,
           distance: 150,
           color: "#7e22ce",
           opacity: 0.2,
@@ -56,7 +59,7 @@ export class ParticlesComponent implements OnInit {
         },
         move: {
           enable: true,
-          speed: 2,
+          speed: 1.2,
           direction: "none",
           random: true,
           straight: false,
@@ -68,8 +71,8 @@ export class ParticlesComponent implements OnInit {
       interactivity: {
         detect_on: "canvas",
         events: {
-          onhover: { enable: true, mode: "grab" },
-          onclick: { enable: true, mode: "push" },
+          onhover: { enable: !isSmallScreen, mode: "grab" },
+          onclick: { enable: false, mode: "push" },
           resize: true,
         },
         modes: {
@@ -80,7 +83,7 @@ export class ParticlesComponent implements OnInit {
           remove: { particles_nb: 2 },
         },
       },
-      retina_detect: true,
+      retina_detect: false,
     });
   }
 }

@@ -1,7 +1,7 @@
 .skill-card {
   position: relative;
   width: 100%;
-  height: 450px;
+  height: 100%;
 
   &::before {
     content: "";
@@ -19,26 +19,6 @@
   }
 }
 
-.skill-progress {
-  position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: rgba(76, 29, 149, 0.3);
-    border-radius: 2px;
-  }
-
-  div {
-    height: 100%;
-    background: linear-gradient(to right, #8b5cf6, #7c3aed);
-    border-radius: 2px;
-  }
-}
 /* Keyframes */
 @keyframes fadeInUp {
   from {
@@ -91,15 +71,6 @@
   }
   to {
     transform: scaleX(1);
-  }
-}
-
-@keyframes progressGrow {
-  from {
-    width: 0;
-  }
-  to {
-    width: var(--final-width);
   }
 }
 
@@ -160,69 +131,14 @@
     animation-delay: 0.3s;
   }
 
-  .icon-float {
-    opacity: 0;
-    animation: fadeInUp 0.5s ease-out forwards, float 4s ease-in-out infinite;
-    animation-delay: 0.4s;
-  }
-
-  .icon-float-delay {
-    opacity: 0;
-    animation: fadeInUp 0.5s ease-out forwards, float 4s ease-in-out infinite;
-    animation-delay: 0.5s;
-  }
-
-  .skill-item {
-    opacity: 0;
-    animation: fadeInUp 0.5s ease-out forwards;
-
-    @for $i from 1 through 8 {
-      &:nth-child(#{$i}) {
-        animation-delay: 0.2s + ($i * 0.1s);
-      }
-    }
-  }
-
-  .skill-progress {
-    animation: progressGrow 1.5s ease-out forwards;
-    animation-delay: 1s;
-  }
-
   .tools-title {
     opacity: 0;
     animation: fadeInUp 0.5s ease-out forwards;
     animation-delay: 0.7s;
   }
 
-  .tool-item {
-    opacity: 0;
-    animation: fadeInUp 0.5s ease-out forwards;
-
-    @for $i from 1 through 4 {
-      &:nth-child(#{$i}) {
-        animation-delay: 0.8s + ($i * 0.1s);
-      }
-    }
-  }
 }
 
-/* Hover Effects */
-.skill-icon {
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: scale(1.1) rotate(5deg);
-    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.7));
-  }
-}
-
-.tool-icon {
-  transition: all 0.3s ease;
-
-  &:hover {
-    filter: grayscale(0%) drop-shadow(0 0 8px rgba(168, 85, 247, 0.5));
-  }
-}
 @keyframes letter-bounce {
   0%,
   100% {
@@ -253,3 +169,18 @@
   }
 }
 
+
+.skill-chip {
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  background: rgba(88, 28, 135, 0.2);
+  color: #e9d5ff;
+  font-size: 0.875rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: rgba(168, 85, 247, 0.35);
+    transform: translateY(-2px);
+  }
+}

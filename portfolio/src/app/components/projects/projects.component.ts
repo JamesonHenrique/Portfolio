@@ -1,95 +1,89 @@
-import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { onFirstView } from '../../utils/in-view';
+
+interface Project {
+  title: string;
+  name: string;
+  description: string;
+  techs: string[];
+  /** Screenshot in /public. Projects without one render a text cover instead. */
+  image?: string;
+  /** Public repository. Client projects have no public code. */
+  url?: string;
+  note?: string;
+}
 
 @Component({
   selector: 'app-projects',
-  imports: [CommonModule
-  ],
+  imports: [],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements AfterViewInit, OnDestroy {
+  @ViewChild('projectsSection') projectsSection!: ElementRef<HTMLElement>;
   isVisible = false;
-  projects = [
-     {
-          title: 'Painel de máquinas',
-          name: 'Freelancer',
-          description: 'Um painel de monitoramento em tempo real para acompanhar o status de máquinas, permitindo a alteração dos estados de cada equipamento.',
-          techs: [
-            'Java','Typescript',
-            'Spring Boot',
-            'Angular',
-            'TailwindCSS',
-            'MongoDB',
-          ],
-          image: 'painel-de-maquinas_print.png',
-          url: 'URL Indisponivel',
+  private stopObserving = () => {};
 
-        },
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  projects: Project[] = [
+    {
+      title: 'OPORTUNIZAVAGA',
+      name: 'Agente open-source de candidatura a vagas',
+      description:
+        'Busca, filtra e se candidata a vagas em portais brasileiros usando modelos de IA gratuitos e um navegador real, com custo zero de operação. Roda sem supervisão: reinicia sozinho, guarda o histórico fora da IA, troca entre seis provedores de IA quando um atinge o limite e nunca inventa dado do candidato.',
+      techs: ['Python', 'Shell', 'Node.js', 'Chrome (CDP)', 'LLMs', 'GitHub Actions', 'Docker'],
+      url: 'https://github.com/JamesonHenrique/OportunizaVaga'
+    },
+    {
+      title: 'PAINEL DE MÁQUINAS',
+      name: 'Monitoramento de equipamentos em tempo real',
+      description:
+        'Sistema completo (backend e frontend) em uso pelo cliente no chão de fábrica. Substituiu a conferência manual: a equipe vê em tempo real quais máquinas estão paradas, em operação, em manutenção ou sem operador.',
+      techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'MongoDB', 'RxJS', 'Tailwind CSS'],
+      image: 'painel-de-maquinas_print.webp',
+      note: 'Projeto freelance: código do cliente, não público.'
+    },
     {
       title: 'NEWGRAM',
-      name: 'Rede Social Moderna',
-      description: 'Plataforma de compartilhamento de fotos e stories, com feed personalizado, sistema de seguidores, sistema de favoritos e criação de posts e destaques.',
-      techs: ['Java','Typescript',
-        'Spring Boot',
-        'Angular',
-        'TailwindCSS',
-        'PostgreSQL',
-        'JWT',
-        'S3(AWS)',
-        'Docker',
-        'Flyway',
-      ],
-      image: 'newgram_print.png',
-      url: 'https://github.com/JamesonHenrique/Newgram',
-
+      name: 'Rede social full stack',
+      description:
+        'Compartilhamento de fotos e stories com feed com descoberta, seguidores, favoritos e destaques. Autenticação JWT e upload de imagens no S3.',
+      techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'PostgreSQL', 'JWT', 'AWS S3', 'Docker', 'Flyway', 'Tailwind CSS'],
+      image: 'newgram_print.webp',
+      url: 'https://github.com/JamesonHenrique/Newgram'
     },
     {
       title: 'ALGAMONEY',
-      name: 'Sistema de Gestão Financeira Pessoal',
-      description: 'Plataforma full stack de gerenciamento financeiro pessoal com dashboard, relatórios e controle de receitas e despesas.',
-      techs: ['Java','Typescript','Spring Boot', 'Angular','Chart.js','PostgreSQL','TailwindCSS','JasperReports','JWT'],
-      image: 'algamoney_print.png',
+      name: 'Gestão financeira pessoal',
+      description: 'Controle de receitas e despesas com dashboard e relatórios.',
+      techs: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'JWT', 'JasperReports', 'Chart.js'],
+      image: 'algamoney_print.webp',
       url: 'https://github.com/JamesonHenrique/Algamoney'
     },
-
     {
       title: 'WAVECHAT',
-      name: 'Chat em Tempo Real com WebSocket',
-      description: 'Aplicação de chat em tempo real com implementação de WebSocket para comunicação instantânea entre usuários.',
-      techs: ['Java','Typescript', 'Spring Boot', 'Angular', 'WebSocket','PostgreSQL', 'Keycloak','Bootstrap','Docker'],
-      image: 'wavechat_print.png',
+      name: 'Chat em tempo real',
+      description: 'Mensagens instantâneas via WebSocket, com autenticação pelo Keycloak.',
+      techs: ['Java', 'Spring Boot', 'Angular', 'WebSocket', 'PostgreSQL', 'Keycloak', 'Docker'],
+      image: 'wavechat_print.webp',
       url: 'https://github.com/JamesonHenrique/WaveChat'
     },
     {
       title: 'BOOKLORE',
-      name: 'Gerenciador de Biblioteca Pessoal',
-      description: 'Plataforma full-stack para gerenciamento de coleções de livros com autenticação via e-mail e sistema de empréstimos.',
-      techs: ['Java','Typescript','Spring Boot', 'Angular Boot',  'PostgreSQL', 'Docker', 'JWT', 'DaisyUI'],
-      image: 'booklore_print.png',
-      url: 'https://github.com/JamesonHenrique/Booklore'
+      name: 'Biblioteca pessoal',
+      description: 'Coleção de livros com autenticação por e-mail e sistema de empréstimos.',
+      techs: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'JWT', 'Docker'],
+      image: 'booklore_print.webp',
+      url: 'https://github.com/JamesonHenrique/BookLore'
     }
   ];
-  redirectTo(url: string) {
-    window.open(url, '_blank');
+
+  ngAfterViewInit() {
+    this.stopObserving = onFirstView(this.projectsSection.nativeElement, this.cdr, () => (this.isVisible = true));
   }
 
-  ngOnInit() {
-    this.checkVisibility();
-  }
-
-  @HostListener('window:scroll')
-  checkVisibility() {
-    if (this.isVisible) return;
-
-    const projectsSection = document.getElementById('projetos');
-    if (!projectsSection) return;
-
-    const rect = projectsSection.getBoundingClientRect();
-    const isVisible = (rect.top <= window.innerHeight * 0.7) && (rect.bottom >= 0);
-
-    if (isVisible) {
-      this.isVisible = true;
-    }
+  ngOnDestroy() {
+    this.stopObserving();
   }
 }

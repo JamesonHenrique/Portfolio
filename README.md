@@ -1,82 +1,58 @@
-# 🚀 Portfólio Pessoal | Jameson Henrique  
+# Portfólio | Jameson Henrique
 
-<div align="center">
-  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular">
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
-  <img src="https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white" alt="SCSS">
-</div>
+Desenvolvedor de **automação (RPA) e full stack**. Este é o código do meu site pessoal.
 
----
+**No ar:** https://jamesonhenrique-portfolio.vercel.app/
 
-## ✨ **Visão Geral**  
-Portfólio profissional desenvolvido com **Angular**, exibindo projetos, habilidades e experiência de forma moderna e interativa.  
+![Página inicial no desktop](docs/preview-desktop.webp)
 
-🔗 **Acesse o Portfolio**: https://jamesonhenrique-portfolio.vercel.app/
+## O que tem no site
 
----
+| Seção | Conteúdo |
+|---|---|
+| Sobre | Formação e experiência, com o mesmo texto do currículo |
+| Automação em produção | Casos reais no formato problema → o que fiz → resultado (Make, n8n, APIs REST, webhooks, Gemini) |
+| Stack | Ferramentas agrupadas como no currículo, mais os sistemas que já integrei |
+| Projetos | OportunizaVaga, Painel de Máquinas, Newgram e outros projetos full stack |
+| Contato | Formulário (FormSubmit via AJAX, com honeypot), e-mail, telefone e redes |
 
-## 🎯 **Recursos Principais**  
+<p>
+  <img src="docs/preview-automacao.webp" alt="Seção Automação em produção" width="68%">
+  <img src="docs/preview-mobile.webp" alt="Página inicial no celular" width="28%">
+</p>
 
-✅ **Design Responsivo** – Adaptável a qualquer dispositivo  
-🎨 **UI Moderna** – Estilo minimalista com Tailwind CSS  
-✨ **Animações Dinâmicas** – Partículas interativas e efeitos suaves  
-🖱️ **Cursor Personalizado** – Experiência de navegação única  
-📱 **Seções Organizadas** – Apresentação, Sobre, Habilidades, Projetos e Contato  
+## Stack do site
 
----
+- **Angular 19** (componentes standalone, control flow `@if`/`@for`)
+- **Tailwind CSS** e SCSS
+- **animate.css** e **particles.js**, com menos partículas no celular e desligadas quando o sistema pede menos movimento (`prefers-reduced-motion`)
+- Animações de entrada disparadas por `IntersectionObserver`, sem listeners de scroll
+- Deploy automático na **Vercel** a partir da branch `main`
 
+## Rodando localmente
 
-<div align="center">
-## 🛠 **Tecnologias Utilizadas**  
+```bash
+cd portfolio
+npm ci
+npm start                 # http://localhost:4200
+npm run build             # gera dist/jh-portfolio/browser
+npx ng test --watch=false --browsers=ChromeHeadless
+```
 
-| Categoria       | Tecnologias |  
-|----------------|------------|  
-| **Framework**  | Angular 19+ |  
-| **Estilização** | Tailwind CSS, SCSS |  
-| **Animações**  | Animate.CSS, Particle.js |  
-</div>  
+## Onde editar o conteúdo
 
----
+| O quê | Arquivo |
+|---|---|
+| Casos de automação | `portfolio/src/app/components/automation/automation.component.ts` |
+| Projetos | `portfolio/src/app/components/projects/projects.component.ts` |
+| Stack | `portfolio/src/app/components/skills/skills.component.ts` |
+| Sobre e carreira | `portfolio/src/app/components/about/about.component.html` |
+| Currículo em PDF | `portfolio/public/JAMESON_HENRIQUE_CV.pdf` |
 
-## 🌟 **Destaques Técnicos**  
+Os textos seguem o currículo. Ao mudar um, atualize o outro.
 
-🔹 **Scroll Suave** – Navegação fluida entre seções  
+## Contato
 
----
-
-## 🤝 **Como Contribuir**  
-
-1. **Faça um Fork** do projeto  
-2. **Crie uma Branch** (`git checkout -b feature/nova-secao`)  
-3. **Commit suas Mudanças** (`git commit -m "Adiciona seção de projetos"`)  
-4. **Push para a Branch** (`git push origin feature/nova-secao`)  
-5. **Abra um Pull Request**  
-
-📌 **Issues e Sugestões:** [GitHub Issues](https://github.com/JamesonHenrique/Portfolio/issues)  
-
----
-
-## 📜 **Licença**  
-
-MIT License © 2025 - [Jameson Henrique](https://github.com/JamesonHenrique)  
-
----
-
-<div align="center">
-  <p>✨ Feito com ♥ e Angular ✨</p>
-</div>  
-
----
-
-🔗 **Links Úteis:**  
-[Documentação Angular](https://angular.io/docs) | [Tailwind CSS](https://tailwindcss.com/docs)  
-
----
-
-🎨 **Preview:**  
-![Preview](portfolio/public/portfolio.png) 
-
---- 
-
-📧 **Contato:** [jamesonhenrique14@gmail.com](mailto:jamesonhenrique14@gmail.com) 
+- E-mail: jameson.henrique.dev@gmail.com
+- LinkedIn: [linkedin.com/in/jamesonhenrique](https://www.linkedin.com/in/jamesonhenrique/)
+- GitHub: [github.com/JamesonHenrique](https://github.com/JamesonHenrique)

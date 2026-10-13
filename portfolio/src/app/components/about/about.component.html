@@ -1,7 +1,6 @@
 <section
   id="sobre"
   class="min-h-screen py-20 px-4 relative overflow-hidden"
-  (window:scroll)="checkScroll()"
   #aboutSection
 >
   <div
@@ -110,7 +109,7 @@
 
       <div class="paragraph-group">
         <p class="text-lg mb-6" [class.paragraph-animated]="isVisible">
-          Sou Jameson Henrique, desenvolvedor Full Stack que hoje aplica
+          Sou Jameson Henrique, desenvolvedor de automação e full stack. Aplico
           engenharia de software à
           <span class="text-purple-300 font-bold name-highlight"
             >automação e integração de sistemas</span
@@ -144,17 +143,16 @@
           [class.paragraph-animated]="isVisible"
           [style.animation-delay]="'0.6s'"
         >
-          Foco em
+          Meu foco é
           <span class="text-purple-300 underline-effect"
-            >soluções estratégicas</span
-          >
-          que unem robustez técnica — depuração de integração no nível do
-          payload, header e contrato de dados — a resultados de negócio
-          mensuráveis.
+            >automação que não quebra sozinha</span
+          >, visibilidade para quem opera e cuidado com o dado do cliente,
+          com depuração de integração no nível do payload, do header e do
+          contrato de dados.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-12 mt-12">
+      <div class="grid md:grid-cols-2 lg:grid-cols-1 gap-12 mt-12">
         <div
           class="relative group"
           [class.animate-card]="isVisible"
@@ -166,7 +164,7 @@
           <div
             class="relative bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-900/30 h-full"
           >
-            <h3 class="text-3xl font-press text-purple-300 mb-8 glow-text">
+            <h3 class="text-2xl font-press text-purple-300 mb-8 glow-text">
               EDUCAÇÃO
             </h3>
 
@@ -207,7 +205,7 @@
           <div
             class="relative bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-900/30 h-full"
           >
-            <h3 class="text-3xl font-press text-purple-300 mb-8 glow-text">
+            <h3 class="text-2xl font-press text-purple-300 mb-8 glow-text">
               CARREIRA
             </h3>
 
@@ -222,12 +220,12 @@
                 <div
                   class="absolute w-4 h-4 shape-parallelogram bg-purple-500 -left-[28px] top-1"
                 ></div>
-                <h4 class="font-press text-purple-200 mb-2">Desenvolvedor de Automação (RPA) — LegalOps</h4>
+                <h4 class="font-press text-purple-200 mb-2">Estagiário em Desenvolvimento de Automação (RPA) — LegalOps</h4>
                 <div class="text-sm text-purple-400 mb-2">Duarte e Almeida Advogados (08/2026 - Atual)</div>
                 <p class="text-purple-300 text-sm">
-                  Mantenho e depuro fluxos em produção que orquestram o ciclo comercial e jurídico do escritório,
-                  integrando mais de 13 sistemas por API REST e webhooks com:
-                  <span class="text-purple-400">Make, ADVBOX, Coda, Octadesk, ZapSign, Google Workspace e Gemini</span>.
+                  Mantenho e depuro os fluxos em produção que levam o cliente do primeiro contato ao contrato
+                  assinado e cadastrado no sistema jurídico, integrando por API REST e webhooks:
+                  <span class="text-purple-400">Make, n8n, ADVBOX, Coda, Octadesk, ZapSign, Google Workspace e Gemini</span>.
                 </p>
               </div>
 
@@ -239,12 +237,13 @@
                 <div
                   class="absolute w-4 h-4 shape-parallelogram bg-purple-500 -left-[28px] top-1"
                 ></div>
-                <h4 class="font-press text-purple-200 mb-2">Desenvolvedor Freelancer</h4>
-                <div class="text-sm text-purple-400 mb-2">Painel de Máquinas(06/2025 - 07/2025)</div>
+                <h4 class="font-press text-purple-200 mb-2">Desenvolvedor Full Stack — Freelancer</h4>
+                <div class="text-sm text-purple-400 mb-2">Painel de Máquinas (06/2025 - 07/2025)</div>
                 <p class="text-purple-300 text-sm">
-                  Desenvolvi um sistema de monitoramento de máquinas em tempo real com:
-                  <span class="text-purple-400">Java, Spring Boot, Angular, MongoDB</span>.
-                  Solução reduziu em 40% o tempo de verificação das máquinas.
+                  Desenvolvi sozinho o sistema completo, em uso pelo cliente no chão de fábrica. Substituiu a
+                  conferência manual: a equipe vê em tempo real quais máquinas estão paradas, em operação,
+                  em manutenção ou sem operador. Feito com
+                  <span class="text-purple-400">Java, Spring Boot, Angular e MongoDB</span>.
                 </p>
               </div>
             </div>
