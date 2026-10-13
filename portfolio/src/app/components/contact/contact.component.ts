@@ -1,49 +1,53 @@
-import { Component, HostListener } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { onFirstView } from '../../utils/in-view';
+
+// FormSubmit AJAX endpoint: answers with JSON instead of redirecting the visitor away.
+// The first submission sends an activation e-mail to this address; until it is confirmed,
+// messages are not delivered.
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/jameson.henrique.dev@gmail.com';
 
 @Component({
   selector: 'app-contact',
-  imports: [FormsModule],
+  imports: [],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
-export class ContactComponent {
+export class ContactComponent implements AfterViewInit, OnDestroy {
+  @ViewChild('contactSection') contactSection!: ElementRef<HTMLElement>;
   isVisible = false;
-  formData = {
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  };
-  redirectTo(url: string) {
-    window.open(url, '_blank');
+  status: 'idle' | 'sending' | 'sent' | 'error' = 'idle';
+  private stopObserving = () => {};
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngAfterViewInit() {
+    this.stopObserving = onFirstView(this.contactSection.nativeElement, this.cdr, () => (this.isVisible = true));
   }
 
-  ngOnInit() {
-    this.checkVisibility();
+  ngOnDestroy() {
+    this.stopObserving();
   }
 
-  @HostListener('window:scroll')
-  checkVisibility() {
-    if (this.isVisible) return;
+  async onSubmit(event: Event) {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    if (!form.reportValidity()) return;
 
-    const contactSection = document.getElementById('contato');
-    if (!contactSection) return;
-
-    const rect = contactSection.getBoundingClientRect();
-    const isVisible = (rect.top <= window.innerHeight * 0.7) && (rect.bottom >= 0);
-
-    if (isVisible) {
-      this.isVisible = true;
+    this.status = 'sending';
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form)
+      });
+      const body = await response.json().catch(() => ({}));
+      // FormSubmit returns success as the string "true" (or "false" with a message).
+      if (!response.ok || String(body.success) !== 'true') throw new Error(body.message ?? response.statusText);
+      this.status = 'sent';
+      form.reset();
+    } catch {
+      this.status = 'error';
     }
-  }
-
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-
-      console.log('Formulário válido, enviando...', this.formData);
-
-
-    }
+    this.cdr.detectChanges();
   }
 }

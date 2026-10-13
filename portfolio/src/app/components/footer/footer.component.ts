@@ -1,4 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { onFirstView } from '../../utils/in-view';
 
 @Component({
   selector: 'app-footer',
@@ -6,26 +7,19 @@ import { Component, HostListener } from '@angular/core';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
-export class FooterComponent {
+export class FooterComponent implements AfterViewInit, OnDestroy {
+  @ViewChild('footerEl') footerEl!: ElementRef<HTMLElement>;
   isVisible = false;
   currentYear = new Date().getFullYear();
+  private stopObserving = () => {};
 
-  ngOnInit() {
-    this.checkVisibility();
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngAfterViewInit() {
+    this.stopObserving = onFirstView(this.footerEl.nativeElement, this.cdr, () => (this.isVisible = true));
   }
 
-  @HostListener('window:scroll')
-  checkVisibility() {
-    if (this.isVisible) return;
-
-    const footer = document.querySelector('footer');
-    if (!footer) return;
-
-    const rect = footer.getBoundingClientRect();
-    const isVisible = (rect.top <= window.innerHeight * 0.9);
-
-    if (isVisible) {
-      this.isVisible = true;
-    }
+  ngOnDestroy() {
+    this.stopObserving();
   }
 }

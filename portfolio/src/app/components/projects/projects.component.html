@@ -2,6 +2,7 @@
   id="projetos"
   class="min-h-screen py-20 px-4 relative bg-black overflow-hidden"
   [class.animate-section]="isVisible"
+  #projectsSection
 >
   <div
     class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/5 to-transparent"
@@ -27,77 +28,72 @@
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div
-        *ngFor="let project of projects; let i = index"
-        class="project-card group h-full"
-        [style.animation-delay]="i * 0.1 + 's'"
-      >
-      <div class="project-card-inner bg-gradient-to-br from-stone-950 bg-black h-full flex flex-col">
+      @for (project of projects; track project.title; let i = $index) {
+        <article
+          class="project-card group h-full"
+          [style.animation-delay]="i * 0.1 + 's'"
+        >
+          <div class="project-card-inner bg-gradient-to-br from-stone-950 bg-black h-full flex flex-col">
+            <div class="project-image">
+              @if (project.image) {
+                <img
+                  [src]="project.image"
+                  [alt]="'Tela do ' + project.title"
+                  class="project-img"
+                  width="1200"
+                  height="580"
+                  loading="lazy"
+                  decoding="async"
+                />
+              } @else {
+                <div class="project-cover" aria-hidden="true">
+                  <span class="project-cover-prompt">$ ./oportunizavaga</span>
+                  <span>buscar → filtrar → candidatar</span>
+                </div>
+              }
+              <div class="project-title">{{ project.title }}</div>
+            </div>
 
-          <div class="project-image">
-            <img
-              [src]="project.image"
-              [alt]="project.name"
-              class="project-img"
-            />
-            <div class="project-title">{{ project.title }}</div>
-            <div class="project-overlay">
-              <div class="project-links">
-                <a *ngIf="project.url != 'URL Indisponivel'" (click)="redirectTo(project.url)" class="project-link">
+            <div class="project-content flex-grow">
+              <h3 class="project-name">{{ project.name }}</h3>
+              <p class="project-description">{{ project.description }}</p>
+
+              <ul class="project-techs" aria-label="Tecnologias">
+                @for (tech of project.techs; track tech) {
+                  <li class="tech-tag">{{ tech }}</li>
+                }
+              </ul>
+            </div>
+
+            <div class="project-footer">
+              @if (project.url) {
+                <a [href]="project.url" target="_blank" rel="noopener noreferrer" class="project-button">
+                  <span>Ver código</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      fill-rule="evenodd"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
                     />
                   </svg>
                 </a>
-
-              </div>
+              } @else if (project.note) {
+                <p class="project-note">{{ project.note }}</p>
+              }
             </div>
           </div>
-
-          <div class="project-content flex-grow">
-            <h3 class="project-name">{{ project.name }}</h3>
-            <p class="project-description">{{ project.description }}</p>
-
-            <div class="project-techs">
-              <span *ngFor="let tech of project.techs" class="tech-tag">{{
-                tech
-              }}</span>
-            </div>
-          </div>
-
-          <div class="project-footer ">
-            <button *ngIf="project.url != 'URL Indisponivel'" (click)="redirectTo(project.url)" class="project-button">
-              <span>Ver Projeto</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+        </article>
+      }
     </div>
 
     <div class="text-center mt-16 flex align-items-center justify-center">
-      <button  class="see-more-button" (click)="redirectTo('https://github.com/JamesonHenrique?tab=repositories')">VER MAIS PROJETOS</button>
+      <a class="see-more-button" href="https://github.com/JamesonHenrique?tab=repositories" target="_blank" rel="noopener noreferrer">VER MAIS PROJETOS</a>
     </div>
   </div>
 </section>

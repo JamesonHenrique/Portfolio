@@ -1,0 +1,7 @@
+# IDE settings (JetBrains/VS Code). Never commit: may contain request history with private URLs.
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

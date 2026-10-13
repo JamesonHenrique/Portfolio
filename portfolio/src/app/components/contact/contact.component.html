@@ -2,6 +2,7 @@
   id="contato"
   class="min-h-screen py-20 px-4 relative bg-gradient-to-b from-purple-900/10 to-black overflow-hidden"
   [class.animate-section]="isVisible"
+  #contactSection
 >
   <div
     class="absolute w-96 h-96 shape-blob bg-purple-900/10 -right-60 bottom-0"
@@ -33,12 +34,11 @@
           <h3
             class="text-2xl font-press mb-6 text-purple-300 contact-info-title"
           >
-            VAMOS CRIAR ALGO INCRÍVEL JUNTOS
+            VAMOS CONVERSAR SOBRE O SEU PROCESSO
           </h3>
           <p class="text-lg mb-8 text-purple-200 contact-info-text">
-            Estou disponível para oportunidades de trabalho freelance e
-            colaborações. Entre em contato e vamos transformar suas ideias em
-            realidade digital!
+            Aberto a vagas de automação (RPA) e desenvolvimento full stack, e a
+            projetos freelance de integração e automação de processos.
           </p>
 
           <div class="space-y-6">
@@ -67,10 +67,10 @@
               <div class="ml-6">
                 <div class="text-xs text-purple-400">EMAIL</div>
                 <a
-                href="mailto:jamesonhenrique14@gmail.com"
+                href="mailto:jameson.henrique.dev@gmail.com"
                 class="text-lg max-[440px]:text-[11px] font-major text-purple-200 hover:text-white transition-colors"
               >
-                jamesonhenrique14&#64;gmail.com
+                jameson.henrique.dev&#64;gmail.com
               </a>
               </div>
             </div>
@@ -100,7 +100,7 @@
               <div class="ml-6">
                 <div class="text-xs text-purple-400">TELEFONE</div>
                 <a
-                  href="tel:+5584988870917"
+                  href="tel:+5584988224405"
                   class="text-lg font-major text-purple-200 hover:text-white transition-colors"
                   >+55 (84) 98822-4405</a
                 >
@@ -150,7 +150,7 @@
             </h4>
             <div class="flex space-x-4 social-links">
               <a
-              (click)="redirectTo('https://github.com/JamesonHenrique')"
+              href="https://github.com/JamesonHenrique" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
                 class="social-icon bg-gradient-to-br from-purple-900 to-purple-700 hover:from-white hover:to-purple-300"
               >
                 <svg
@@ -167,9 +167,7 @@
                 </svg>
               </a>
               <a
-              (click)="
-              redirectTo('https://www.linkedin.com/in/JamesonHenrique/')
-            "
+              href="https://www.linkedin.com/in/jamesonhenrique/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
 
                 class="social-icon bg-gradient-to-br from-purple-800 to-purple-600 hover:from-white hover:to-purple-300"
               >
@@ -192,9 +190,10 @@
       </div>
 
       <div class="lg:w-1/2 form-container">
-        <form action="https://formsubmit.co/jamesonhenrique14@gmail.com" method="POST" target="_blank" ngNoForm>
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_redirect" value="https://seusite.com/obrigado.html" />
+        <form (submit)="onSubmit($event)" ngNoForm>
+          <!-- Honeypot: humans never see this field; FormSubmit drops submissions that fill it. -->
+          <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="hidden" name="_template" value="table" />
           <div
             class="form-group"
             [class.animate-field]="isVisible"
@@ -274,11 +273,12 @@
 
           <button
             type="submit"
-            class="submit-button mt-8"
+            [disabled]="status === 'sending'"
+            class="submit-button mt-8 disabled:opacity-60"
             [class.animate-button]="isVisible"
             style="animation-delay: 0.5s"
           >
-            <span>ENVIAR MENSAGEM</span>
+            <span>{{ status === 'sending' ? 'ENVIANDO...' : 'ENVIAR MENSAGEM' }}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5 ml-2"
@@ -292,6 +292,17 @@
               />
             </svg>
           </button>
+
+          <p class="mt-6 text-sm" role="status" aria-live="polite">
+            @if (status === 'sent') {
+              <span class="text-green-300">Mensagem enviada. Respondo pelo e-mail que você informou.</span>
+            } @else if (status === 'error') {
+              <span class="text-red-300">
+                Não consegui enviar agora. Escreva direto para
+                <a href="mailto:jameson.henrique.dev@gmail.com" class="underline">jameson.henrique.dev&#64;gmail.com</a>.
+              </span>
+            }
+          </p>
         </form>
       </div>
     </div>

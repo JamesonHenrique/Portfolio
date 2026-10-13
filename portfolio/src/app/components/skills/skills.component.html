@@ -1,6 +1,6 @@
 <section
   id="skills"
-  class="min-h-screen py-20 px-4 relative bg-black overflow-hidden"
+  class="py-20 px-4 relative bg-black overflow-hidden"
   #skillsSection
 >
   <div
@@ -13,7 +13,7 @@
       <h2
         class="text-4xl max-[440px]:text-3xl md:text-6xl font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 mb-4 title-text"
       >
-       HABILIDADES
+        STACK
       </h2>
       <div
         class="w-32 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto title-line"
@@ -21,114 +21,39 @@
     </div>
 
     <div class="grid md:grid-cols-2 gap-8" [class.skills-animated]="isVisible">
-      <div class="relative group skill-card" [style.animation-delay]="'0.2s'">
-        <div
-          class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-xl blur opacity-75 group-hover:opacity-100 transition-all duration-500"
-        ></div>
-        <div
-          class="relative bg-gradient-to-br from-stone-950 bg-black rounded-xl p-8 border border-purple-900/50 h-full"
-        >
-          <div class="flex items-center justify-between mb-8">
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-              class="w-12 h-12 object-contain opacity-80 icon-float"
-            />
-            <h3 class="text-2xl font-press text-purple-300 skill-title">
-              BACKEND
+      @for (group of groups; track group.title; let i = $index) {
+        <div class="relative group skill-card" [style.animation-delay]="0.2 + i * 0.15 + 's'">
+          <div
+            class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-xl blur opacity-50 group-hover:opacity-90 transition-all duration-500"
+          ></div>
+          <div
+            class="relative bg-gradient-to-br from-stone-950 bg-black rounded-xl p-6 sm:p-8 border border-purple-900/50 h-full"
+          >
+            <h3 class="text-base sm:text-lg font-press text-purple-300 skill-title leading-relaxed mb-6">
+              {{ group.title }}
             </h3>
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-              class="w-12 h-12 object-contain opacity-80 icon-float-delay"
-            />
-          </div>
-
-          <div class="grid grid-cols-2 gap-6">
-            <div
-              *ngFor="let skill of backendSkills"
-              class="flex flex-col items-center gap-3 skill-item"
-            >
-              <div class="relative w-14 h-14">
-                <img
-                  [src]="skill.icon"
-                  class="w-full h-full object-contain z-10 relative hover:scale-110 transition-transform skill-icon"
-                />
-
-              </div>
-              <span class="text-sm font-major text-purple-300">{{
-                skill.name.toLowerCase()
-              }}</span>
-            </div>
+            <ul class="flex flex-wrap gap-3">
+              @for (item of group.items; track item) {
+                <li class="skill-chip">{{ item }}</li>
+              }
+            </ul>
           </div>
         </div>
-      </div>
-
-      <div class="relative group skill-card" [style.animation-delay]="'0.4s'">
-        <div
-          class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-xl blur opacity-75 group-hover:opacity-100 transition-all duration-500"
-        ></div>
-        <div
-          class="relative bg-gradient-to-br from-stone-950 bg-black rounded-xl p-8 border border-purple-800/50 h-full"
-        >
-          <div class="flex items-center justify-between mb-8">
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-              class="w-12 h-12 object-contain opacity-80 icon-float"
-            />
-            <h3 class="text-2xl font-press text-purple-200 skill-title">
-              FRONTEND
-            </h3>
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-              class="w-12 h-12 object-contain opacity-80 icon-float-delay"
-            />
-          </div>
-
-          <div class="grid grid-cols-2 gap-6">
-            <div
-              *ngFor="let skill of frontendSkills"
-              class="flex flex-col items-center gap-3 skill-item"
-            >
-              <div class="relative w-14 h-14">
-                <img
-                  [src]="skill.icon"
-                  class="w-full h-full object-contain z-10 relative hover:scale-110 transition-transform skill-icon"
-                />
-
-              </div>
-              <span class="text-sm font-major text-purple-300">{{
-                skill.name.toLowerCase()
-              }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      }
 
       <div class="md:col-span-2">
         <div
-          class="bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-800/30 tools-card"
-          [style.animation-delay]="'0.6s'"
+          class="bg-black/50 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-purple-800/30 tools-card"
+          [style.animation-delay]="'0.8s'"
         >
-          <h3
-            class="text-2xl font-press text-center text-purple-200 mb-6 tools-title"
-          >
-            OUTRAS FERRAMENTAS
+          <h3 class="text-base sm:text-lg font-press text-center text-purple-200 mb-6 tools-title leading-relaxed">
+            SISTEMAS QUE JÁ INTEGREI
           </h3>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-            <div
-              *ngFor="let tool of tools"
-              class="flex flex-col items-center gap-3 group tool-item"
-            >
-              <img
-                [src]="tool.icon"
-                class="w-14 h-14 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all tool-icon"
-                style="filter: grayscale(30%)"
-              />
-              <span
-                class="text-xs font-major text-purple-400 group-hover:text-purple-200"
-                >{{ tool.name.toLowerCase() }}</span
-              >
-            </div>
-          </div>
+          <ul class="flex flex-wrap justify-center gap-3">
+            @for (system of integratedSystems; track system) {
+              <li class="skill-chip">{{ system }}</li>
+            }
+          </ul>
         </div>
       </div>
     </div>
