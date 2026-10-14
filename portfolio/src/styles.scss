@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'animate.css';
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Press+Start+2P&family=Syne+Mono&display=swap');
+// Self-hosted fonts (latin subset): no request to Google at runtime.
+@import '@fontsource/press-start-2p/latin-400.css';
+@import '@fontsource/major-mono-display/latin-400.css';
+@import '@fontsource/syne-mono/latin-400.css';
 
 .glow-text {
   text-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
@@ -87,6 +89,56 @@
     29% 26%,
     34% 3%
   );
+}
+
+/* Shared entrance animations (replace animate.css, same values: 1s, both, 100% travel, 1s/2s delays). */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes enter-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.anim-enter-up {
+  animation: enter-up 1s both;
+}
+
+.anim-enter-down {
+  animation: enter-down 1s both;
+}
+
+.anim-delay-1 {
+  animation-delay: 1s;
+}
+
+.anim-delay-2 {
+  animation-delay: 2s;
 }
 
 a:focus-visible,

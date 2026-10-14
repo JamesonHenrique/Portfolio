@@ -91,6 +91,23 @@ test('below-the-fold sections animate when scrolled into view', async ({ page })
   await expect(page.locator('#projetos.animate-section')).toBeAttached();
   await expect(page.locator('#contato.animate-section')).toBeAttached();
   await expect(page.locator('#skills img')).toHaveCount(22);
+
+  // Entrance animations start at opacity 0; make sure each animated group actually ends visible.
+  await page.waitForTimeout(2500);
+  for (const selector of [
+    '#sobre .paragraph-animated',
+    '#skills .skill-card',
+    '#skills .skill-item',
+    '#projetos .project-card',
+    '#contato .form-group',
+    'footer'
+  ]) {
+    const opacity = await page
+      .locator(selector)
+      .first()
+      .evaluate((el) => getComputedStyle(el).opacity);
+    expect(opacity, selector).toBe('1');
+  }
 });
 
 test('navigation dot on a project page goes back to the home section', async ({ page, isMobile }) => {
@@ -162,7 +179,7 @@ test('contact form shows the fallback message when sending fails', async ({ page
   await expect(page.locator('#contato [role=status]')).toContainText('jameson.henrique.dev@gmail.com');
 });
 
-test('custom cursor follows a real mouse and stays off on touch', async ({ browser }) => {
+test('custom cursor follows a real mouse, grows over links and stays off on touch', async ({ browser }) => {
   const desktop = await browser.newPage();
   await desktop.addInitScript(() => {
     const original = window.matchMedia.bind(window);
@@ -170,16 +187,20 @@ test('custom cursor follows a real mouse and stays off on touch', async ({ brows
       q.includes('pointer: fine') ? ({ ...original(q), matches: true, media: q } as MediaQueryList) : original(q);
   });
   await desktop.goto('/');
-  const ball = desktop.locator('app-cursor div');
-  await expect(ball).toHaveClass(/invisible/);
+  const ball = desktop.locator('app-cursor .cursor-ball');
+  await expect(ball).toHaveClass(/cursor-hidden/);
   await desktop.mouse.move(400, 300);
-  await expect(ball).not.toHaveClass(/invisible/);
+  await expect(ball).not.toHaveClass(/cursor-hidden/);
   await expect(ball).toHaveAttribute('style', /translate\(388px, 288px\)/);
+
+  const link = desktop.locator('a.lang-switch');
+  await link.hover();
+  await expect(desktop.locator('app-cursor .cursor-dot')).toHaveClass(/cursor-dot-hover/);
   await desktop.close();
 
   const phone = await browser.newPage({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
   await phone.goto('/');
-  await expect(phone.locator('app-cursor div')).toHaveClass(/hidden/);
+  await expect(phone.locator('app-cursor .cursor-ball')).toHaveClass(/hidden/);
   await phone.close();
 });
 

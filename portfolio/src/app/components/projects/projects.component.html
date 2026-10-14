@@ -28,6 +28,8 @@
             <div class="project-image">
               <img
                 [src]="project.image"
+                [attr.srcset]="srcset(project.image)"
+                sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
                 [alt]="c().projects.screenshotOf + ' ' + project.title"
                 class="project-img"
                 width="1200"
@@ -56,7 +58,7 @@
 
             <div class="project-footer flex flex-wrap gap-3">
               @if (project.page) {
-                <a [routerLink]="project.page" class="project-button project-button-primary">
+                <a [href]="project.page" class="project-button project-button-primary">
                   <span>{{ c().projects.details }}</span>
                 </a>
               }
