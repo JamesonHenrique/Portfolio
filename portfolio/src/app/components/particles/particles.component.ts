@@ -30,8 +30,16 @@ export class ParticlesComponent {
     const destroyRef = inject(DestroyRef);
     afterNextRender(() => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const stop = this.start(this.canvas().nativeElement);
-      destroyRef.onDestroy(stop);
+      // Decorative: start once the browser is idle, so it never adds to the startup task.
+      let stop: (() => void) | undefined;
+      const begin = () => (stop = this.start(this.canvas().nativeElement));
+      const idle = 'requestIdleCallback' in window ? window.requestIdleCallback(begin, { timeout: 2000 }) : undefined;
+      const timer = idle === undefined ? window.setTimeout(begin, 800) : undefined;
+      destroyRef.onDestroy(() => {
+        if (idle !== undefined) window.cancelIdleCallback(idle);
+        if (timer !== undefined) window.clearTimeout(timer);
+        stop?.();
+      });
     });
   }
 
