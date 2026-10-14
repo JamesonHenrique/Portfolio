@@ -1,5 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 
+const NOOP = (): void => undefined;
+
 /**
  * Calls `callback` once, the first time `element` enters the viewport, then re-renders the
  * component. Replaces per-component `window:scroll` listeners. zone.js does not patch
@@ -18,12 +20,12 @@ export function onFirstView(
   // Build-time prerender (no window): keep the initial "hidden" state, so the static HTML matches
   // what the browser starts with and hydration does not flash the sections.
   if (typeof window === 'undefined') {
-    return () => {};
+    return NOOP;
   }
 
   if (typeof IntersectionObserver === 'undefined') {
     fire();
-    return () => {};
+    return NOOP;
   }
 
   const observer = new IntersectionObserver(

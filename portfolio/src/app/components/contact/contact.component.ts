@@ -14,20 +14,20 @@ const FORM_ENDPOINT = 'https://formsubmit.co/ajax/jameson.henrique.dev@gmail.com
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent implements AfterViewInit, OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
+
   @ViewChild('contactSection') contactSection!: ElementRef<HTMLElement>;
   isVisible = false;
   readonly c = inject(I18nService).content;
   status: 'idle' | 'sending' | 'sent' | 'error' = 'idle';
-  private stopObserving = () => {};
-
-  constructor(private cdr: ChangeDetectorRef) {}
+  private stopObserving?: () => void;
 
   ngAfterViewInit() {
     this.stopObserving = onFirstView(this.contactSection.nativeElement, this.cdr, () => (this.isVisible = true));
   }
 
   ngOnDestroy() {
-    this.stopObserving();
+    this.stopObserving?.();
   }
 
   async onSubmit(event: Event) {

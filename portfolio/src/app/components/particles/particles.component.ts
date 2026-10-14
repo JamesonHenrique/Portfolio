@@ -1,5 +1,12 @@
-import { Component, OnDestroy, OnInit, Inject, NgZone, PLATFORM_ID } from '@angular/core';
+import { Component, OnDestroy, OnInit, NgZone, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+
+// Global set by the self-hosted particles.js script.
+declare global {
+  interface Window {
+    particlesJS?: (id: string, config: unknown) => void;
+  }
+}
 
 @Component({
   selector: 'app-particles',
@@ -7,12 +14,10 @@ import { isPlatformBrowser } from '@angular/common';
   template: `<div id="particles-js" class="fixed inset-0 z-0"></div>`,
 })
 export class ParticlesComponent implements OnInit, OnDestroy {
-  private destroyed = false;
+  private platformId = inject<object>(PLATFORM_ID);
+  private zone = inject(NgZone);
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private zone: NgZone
-  ) {}
+  private destroyed = false;
 
   ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -24,7 +29,7 @@ export class ParticlesComponent implements OnInit, OnDestroy {
   }
 
   private loadParticles() {
-    if (typeof (window as any).particlesJS !== 'function') {
+    if (typeof window.particlesJS !== 'function') {
       const script = document.createElement('script');
       // Self-hosted copy of particles.js 2.0.0 (public/vendor): no third-party CDN at runtime.
       script.src = 'vendor/particles-2.0.0.min.js';
@@ -45,7 +50,7 @@ export class ParticlesComponent implements OnInit, OnDestroy {
     // Small screens are usually phones: fewer particles and no connecting lines,
     // which are the expensive part (O(n²) distance checks every frame).
     const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
-    (window as any).particlesJS("particles-js", {
+    window.particlesJS("particles-js", {
       particles: {
         number: { value: isSmallScreen ? 20 : 45, density: { enable: true, value_area: 800 } },
         color: { value: "#a855f7" },
