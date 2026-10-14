@@ -7,6 +7,36 @@
 @import '@fontsource/major-mono-display/latin-400.css';
 @import '@fontsource/syne-mono/latin-400.css';
 
+/* ---------------------------------------------------------------------------
+   Design tokens: one source for color, shape, depth and motion across sections.
+   --------------------------------------------------------------------------- */
+:root {
+  --c-bg: #000;
+  --c-surface: rgba(14, 7, 26, 0.72);
+  --c-surface-strong: rgba(24, 10, 44, 0.85);
+  --c-border: rgba(147, 51, 234, 0.28);
+  --c-border-strong: rgba(192, 132, 252, 0.6);
+  --c-accent: #a855f7;
+  --c-accent-strong: #9333ea;
+  --c-accent-soft: #c084fc;
+  --c-text: #f3e8ff;
+  --c-muted: rgba(233, 213, 255, 0.72);
+  --c-ok: #4ade80;
+
+  --radius-sm: 6px;
+  --radius: 14px;
+  --notch: 7px;
+
+  --shadow-glow: 0 18px 50px -24px rgba(168, 85, 247, 0.7);
+  --shadow-glow-strong: 0 0 28px rgba(168, 85, 247, 0.45);
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 0.18s;
+  --dur: 0.35s;
+
+  --section-y: clamp(4.5rem, 9vw, 7.5rem);
+}
+
 .glow-text {
   text-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
 }
@@ -299,4 +329,187 @@ a[href^='#'] {
 
 ::-webkit-scrollbar-thumb:active {
   animation: scrollbarGlow 1.5s infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   Shared components (sections, titles, cards, chips, buttons)
+   --------------------------------------------------------------------------- */
+
+/* Pixel-style chamfered corners: the shape language of the site (buttons, chips, badges). */
+.shape-notch {
+  clip-path: polygon(
+    var(--notch) 0,
+    calc(100% - var(--notch)) 0,
+    100% var(--notch),
+    100% calc(100% - var(--notch)),
+    calc(100% - var(--notch)) 100%,
+    var(--notch) 100%,
+    0 calc(100% - var(--notch)),
+    0 var(--notch)
+  );
+}
+
+.section {
+  position: relative;
+  padding: var(--section-y) 1rem;
+}
+
+.section-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(1.6rem, 4.2vw, 3rem);
+  line-height: 1.35;
+  text-align: center;
+  background: linear-gradient(90deg, #e9d5ff, var(--c-accent-soft) 45%, var(--c-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.35));
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 7rem;
+  height: 3px;
+  margin: 1.25rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+}
+
+.section-lead {
+  max-width: 42rem;
+  margin: 1.5rem auto 0;
+  text-align: center;
+  color: var(--c-muted);
+}
+
+.card {
+  position: relative;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(6px);
+  transition:
+    border-color var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+}
+
+.card-hover:hover {
+  border-color: var(--c-border-strong);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+.card-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+  line-height: 1.6;
+  color: #e9d5ff;
+  letter-spacing: 0.02em;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--c-border);
+  border-radius: 9999px;
+  background: rgba(88, 28, 135, 0.18);
+  color: #e9d5ff;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  transition:
+    background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+
+.chip:hover {
+  background: rgba(147, 51, 234, 0.3);
+  border-color: var(--c-border-strong);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.6rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: #fff;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    filter var(--dur-fast) ease,
+    background var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--c-accent), var(--c-accent-strong) 55%, #6b21a8);
+  box-shadow: var(--shadow-glow-strong);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.15);
+}
+
+.btn-ghost {
+  background: rgba(88, 28, 135, 0.25);
+  box-shadow: inset 0 0 0 1px var(--c-border-strong);
+  color: #e9d5ff;
+}
+
+.btn-ghost:hover {
+  background: rgba(147, 51, 234, 0.35);
+}
+
+/* Small buttons use the narrower body font so a row of actions fits in a card. */
+.btn-sm {
+  padding: 0.55rem 0.7rem;
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  gap: 0.4rem;
+}
+
+.btn svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
+@media (min-width: 640px) {
+  .btn {
+    font-size: 0.8rem;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+  }
+}
+
+/* Section dots (right edge). Smaller and flush to the edge on phones so they never cover content. */
+.nav-dot {
+  box-shadow: 0 0 12px 2px rgba(168, 85, 247, 0.6);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) ease;
+}
+
+.nav-dot:hover,
+.nav-dot:focus-visible {
+  background-color: #fff;
+  transform: scale(1.3);
 }

@@ -204,6 +204,27 @@ test('custom cursor follows a real mouse, grows over links and stays off on touc
   await phone.close();
 });
 
+test('background particles draw on the canvas (desktop) and stay off with reduced motion', async ({ browser }) => {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await page.goto('/');
+  await page.waitForTimeout(800);
+  const painted = await page.locator('app-particles canvas').evaluate((c: HTMLCanvasElement) => {
+    const data = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data;
+    let count = 0;
+    for (let i = 3; i < data.length; i += 4) if (data[i] > 0) count++;
+    return count;
+  });
+  expect(painted).toBeGreaterThan(50);
+  await page.close();
+
+  const calm = await browser.newPage({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
+  await calm.goto('/');
+  await calm.waitForTimeout(500);
+  const size = await calm.locator('app-particles canvas').evaluate((c: HTMLCanvasElement) => c.width * c.height);
+  expect(size).toBe(300 * 150); // untouched default canvas: nothing was set up
+  await calm.close();
+});
+
 test('security headers and SEO files are served', async ({ request }) => {
   const home = await request.get('/');
   expect(home.headers()['content-security-policy']).toContain("frame-ancestors 'none'");

@@ -1,71 +1,47 @@
-<section id="skills" class="py-20 px-4 relative bg-black overflow-hidden" #skillsSection>
-  <div
-    class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/10 to-transparent"
-    [class.animate-pulse-slow]="isVisible"
-  ></div>
+<section id="skills" class="section overflow-hidden" #skillsSection>
+  <div class="skills-glow" aria-hidden="true"></div>
 
-  <div class="container mx-auto relative z-10">
-    <div class="text-center mb-16" [class.skills-animated]="isVisible">
-      <h2
-        class="text-4xl max-[440px]:text-3xl md:text-6xl font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 mb-4 title-text"
-      >
-        {{ c().skills.title }}
-      </h2>
-      <div class="w-32 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto title-line"></div>
-    </div>
+  <div class="container mx-auto max-w-6xl relative" [class.skills-animated]="isVisible">
+    <h2 class="section-title title-text">{{ c().skills.title }}</h2>
 
-    <div class="grid md:grid-cols-2 gap-8" [class.skills-animated]="isVisible">
+    <div class="mt-14 grid md:grid-cols-2 gap-6">
       @for (group of groups; track group.title.pt; let i = $index) {
-        <div class="relative group skill-card" [style.animation-delay]="0.2 + i * 0.15 + 's'">
-          <div
-            class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-xl blur opacity-50 group-hover:opacity-90 transition-all duration-500"
-          ></div>
-          <div
-            class="relative bg-gradient-to-br from-stone-950 bg-black rounded-xl p-6 sm:p-8 border border-purple-900/50 h-full"
-          >
-            <h3 class="text-base sm:text-xl font-press text-purple-300 skill-title text-center leading-relaxed mb-8">
-              {{ group.title[c().lang] }}
-            </h3>
-            <ul class="grid grid-cols-3 sm:grid-cols-4 gap-x-4 gap-y-6">
-              @for (skill of group.skills; track skill.name) {
-                <li class="flex flex-col items-center gap-3 text-center skill-item">
+        <div class="card card-hover skill-card p-6 sm:p-8" [style.animation-delay]="0.15 + i * 0.12 + 's'">
+          <h3 class="card-title text-center mb-8">{{ group.title[c().lang] }}</h3>
+          <ul class="grid grid-cols-3 sm:grid-cols-4 gap-x-3 gap-y-7">
+            @for (skill of group.skills; track skill.name) {
+              <li class="flex flex-col items-center gap-3 text-center skill-item">
+                <span class="skill-icon-wrap">
                   <img
                     [src]="'icons/' + skill.icon + '.svg'"
                     alt=""
-                    width="48"
-                    height="48"
+                    width="40"
+                    height="40"
                     loading="lazy"
-                    class="w-12 h-12 object-contain skill-icon"
+                    class="w-10 h-10 object-contain skill-icon"
                   />
-                  <span class="text-xs sm:text-sm text-purple-200">{{ skill.name }}</span>
-                </li>
+                </span>
+                <span class="text-xs sm:text-sm text-purple-100">{{ skill.name }}</span>
+              </li>
+            }
+          </ul>
+          @if (group.extras) {
+            <ul class="flex flex-wrap justify-center gap-2 mt-8 pt-6 border-t border-purple-900/40">
+              @for (extra of group.extras[c().lang]; track extra) {
+                <li class="chip">{{ extra }}</li>
               }
             </ul>
-            @if (group.extras) {
-              <ul class="flex flex-wrap justify-center gap-2 mt-8 pt-6 border-t border-purple-900/40">
-                @for (extra of group.extras[c().lang]; track extra) {
-                  <li class="skill-chip">{{ extra }}</li>
-                }
-              </ul>
-            }
-          </div>
+          }
         </div>
       }
 
-      <div class="md:col-span-2">
-        <div
-          class="bg-black/50 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-purple-800/30 tools-card"
-          [style.animation-delay]="'0.8s'"
-        >
-          <h3 class="text-base sm:text-lg font-press text-center text-purple-200 mb-6 tools-title leading-relaxed">
-            {{ c().skills.systemsTitle }}
-          </h3>
-          <ul class="flex flex-wrap justify-center gap-3">
-            @for (system of integratedSystems; track system) {
-              <li class="skill-chip">{{ system }}</li>
-            }
-          </ul>
-        </div>
+      <div class="md:col-span-2 card tools-card p-6 sm:p-8" [style.animation-delay]="'0.7s'">
+        <h3 class="card-title text-center mb-6">{{ c().skills.systemsTitle }}</h3>
+        <ul class="flex flex-wrap justify-center gap-2 sm:gap-3">
+          @for (system of integratedSystems; track system) {
+            <li class="chip">{{ system }}</li>
+          }
+        </ul>
       </div>
     </div>
   </div>

@@ -70,19 +70,8 @@
 
 /* Animation Classes */
 .animate-footer {
-  .shape-blob {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .shape-starburst {
-    animation: spin-slow 40s linear infinite;
-  }
-
   .logo-container {
-    animation:
-      rise-in 0.8s ease-out forwards,
-      soft-pulse 4s ease-in-out infinite;
-    animation-delay: 0.2s;
+    animation: rise-in 0.8s ease-out 0.2s both;
   }
 
   .logo-inner {

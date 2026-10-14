@@ -24,14 +24,28 @@ Desenvolvedor de **automação (RPA) e full stack**. Este é o código do meu si
 
 ## Stack do site
 
-- **Angular 19** (componentes standalone, control flow `@if`/`@for`)
-- **Pré-renderização no build** (SSG): o `index.html` já sai com todo o texto, para o Google e para previews de link
-- **Tailwind CSS** e SCSS
-- **animate.css** e **particles.js**, com menos partículas no celular e desligadas quando o sistema pede menos movimento (`prefers-reduced-motion`)
-- Ícones de tecnologias servidos do próprio site (`public/icons`, de Devicon e Simple Icons)
-- Animações de entrada disparadas por `IntersectionObserver`, sem listeners de scroll
-- SEO: `robots.txt`, `sitemap.xml`, canonical, Open Graph com `og-image.jpg` e JSON-LD (`Person`)
-- Deploy automático na **Vercel** a partir da branch `main` (`portfolio/vercel.json` define cache longo para os arquivos com hash)
+- **Angular 22**: componentes standalone, signals, `OnPush` e **sem zone.js** (detecção de mudanças zoneless)
+- **Tailwind CSS 3** e SCSS, com tokens de design em variáveis CSS (`src/styles.scss`)
+- **TypeScript 6**, **ESLint** (angular-eslint) e **Prettier**
+- **Karma/Jasmine** (unitários) e **Playwright** (e2e em desktop e mobile)
+- **GitHub Actions**: lint, formatação, testes, build, e2e e gitleaks a cada push
+- Deploy na **Vercel** a partir da `main`
+
+## Arquitetura e decisões
+
+| Decisão | Por quê |
+|---|---|
+| **Pré-renderização (SSG)** das 6 páginas | O HTML já chega com todo o texto: Google, LinkedIn e WhatsApp leem sem executar JavaScript |
+| **i18n próprio** (`content/pt.ts` e `content/en.ts` com um tipo comum) | Sem build por idioma; se faltar uma tradução, o build falha |
+| **SEO por rota** (`SeoService`) | Cada página tem title, description, canonical e hreflang próprios, inclusive no HTML pré-renderizado |
+| **Hidratação incremental** (`@defer (hydrate on viewport; hydrate on interaction)`) | O HTML das seções abaixo da dobra continua na página, mas o JavaScript delas só carrega quando aparecem; um clique antes disso hidrata e é repetido |
+| **Zoneless + OnPush** | Remove o zone.js (34 kB e o custo de patch no carregamento) |
+| **Sem bibliotecas de efeito** | Partículas em canvas próprio e animações em CSS (antes: particles.js de 2015 e animate.css); CSS caiu de 103 para 27 kB |
+| **Fontes no próprio domínio** (`@fontsource`) | Sem requisição ao Google; a CSP aceita fontes só de `'self'` |
+| **Cabeçalhos de segurança** (`portfolio/vercel.json`) | CSP, HSTS, `nosniff`, `X-Frame-Options`; cache de 1 ano para arquivos com hash |
+| **Cursor e partículas fora do Angular** | Eventos de mouse e animação em listeners nativos: não disparam detecção de mudanças |
+
+Medições e investigações de desempenho (A/B intercalado, perfil de CPU com source maps) estão no histórico de commits `perf:`.
 
 ## Rodando localmente
 
@@ -39,8 +53,10 @@ Desenvolvedor de **automação (RPA) e full stack**. Este é o código do meu si
 cd portfolio
 npm ci
 npm start                 # http://localhost:4200
-npm run build             # gera dist/jh-portfolio/browser
-npx ng test --watch=false --browsers=ChromeHeadless
+npm run build             # pré-renderiza em dist/jh-portfolio/browser
+npm run test:ci           # testes unitários (Chrome headless)
+npm run e2e               # e2e com Playwright (rode o build antes)
+npm run lint && npm run format:check
 ```
 
 ## Onde editar o conteúdo
