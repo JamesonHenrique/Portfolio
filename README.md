@@ -1,5 +1,7 @@
 # Portfólio | Jameson Henrique
 
+[![CI](https://github.com/JamesonHenrique/Portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/JamesonHenrique/Portfolio/actions/workflows/ci.yml)
+
 Desenvolvedor de **automação (RPA) e full stack**. Este é o código do meu site pessoal.
 
 **No ar:** https://jamesonhenrique-portfolio.vercel.app/

@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "e2e": "playwright test",
-    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "format": "prettier --write \"src/**/*.{ts,html,scss}\" \"e2e/**/*.{ts,mjs}\" \"*.{json,ts,js}\"",
     "format:check": "prettier --check \"src/**/*.{ts,html,scss}\" \"e2e/**/*.{ts,mjs}\" \"*.{json,ts,js}\""

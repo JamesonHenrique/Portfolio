@@ -5,7 +5,7 @@ export default defineConfig({
   testDir: './e2e',
   timeout: 30_000,
   fullyParallel: true,
-  reporter: process.env['CI'] ? 'github' : 'list',
+  reporter: process.env['CI'] ? [['github'], ['html', { open: 'never' }]] : 'list',
   use: {
     baseURL: 'http://127.0.0.1:4600',
     // Locally use the installed Chrome (temporary profile); CI installs Playwright's Chromium.
