@@ -9,20 +9,14 @@ export class SmoothScrollDirective {
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
-    const target = event.target as HTMLAnchorElement;
+    const target = (event.target as HTMLElement).closest('a');
+    const href = target?.getAttribute('href');
+    if (!href?.startsWith('#') || href.length < 2) return;
 
-    if (target.tagName.toLowerCase() === 'a' && target.getAttribute('href')?.startsWith('#')) {
-      event.preventDefault();
-      const targetId = target.getAttribute('href');
-
-      if (targetId) {
-        const element = this.document.querySelector(targetId);
-        if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-      }
-    }
+    // Only take over when the anchor exists on this page; otherwise let the browser/router handle it.
+    const element = this.document.querySelector(href);
+    if (!element) return;
+    event.preventDefault();
+    element.scrollIntoView({ behavior: 'smooth' });
   }
 }

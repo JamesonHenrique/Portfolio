@@ -1,3 +1,4 @@
+import { provideRouter } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ParticlesComponent } from './particles.component';
@@ -8,7 +9,8 @@ describe('ParticlesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ParticlesComponent]
+      imports: [ParticlesComponent],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 

@@ -19,7 +19,7 @@
       <h2
         class="text-4xl max-[440px]:text-3xl md:text-6xl font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 mb-4 title-text"
       >
-        VAMOS CONVERSAR
+        {{ c().contact.title }}
       </h2>
       <div
         class="w-32 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto title-line"
@@ -34,11 +34,10 @@
           <h3
             class="text-2xl font-press mb-6 text-purple-300 contact-info-title"
           >
-            VAMOS CONVERSAR SOBRE O SEU PROCESSO
+            {{ c().contact.cardTitle }}
           </h3>
           <p class="text-lg mb-8 text-purple-200 contact-info-text">
-            Aberto a vagas de automação (RPA) e desenvolvimento full stack, e a
-            projetos freelance de integração e automação de processos.
+            {{ c().contact.text }}
           </p>
 
           <div class="space-y-6">
@@ -65,7 +64,7 @@
                 </svg>
               </div>
               <div class="ml-6">
-                <div class="text-xs text-purple-400">EMAIL</div>
+                <div class="text-xs text-purple-400">{{ c().contact.email }}</div>
                 <a
                 href="mailto:jameson.henrique.dev@gmail.com"
                 class="text-lg max-[440px]:text-[11px] font-major text-purple-200 hover:text-white transition-colors"
@@ -98,7 +97,7 @@
                 </svg>
               </div>
               <div class="ml-6">
-                <div class="text-xs text-purple-400">TELEFONE</div>
+                <div class="text-xs text-purple-400">{{ c().contact.phone }}</div>
                 <a
                   href="tel:+5584988224405"
                   class="text-lg font-major text-purple-200 hover:text-white transition-colors"
@@ -136,9 +135,9 @@
                 </svg>
               </div>
               <div class="ml-6">
-                <div class="text-xs text-purple-400">LOCALIZAÇÃO</div>
+                <div class="text-xs text-purple-400">{{ c().contact.location }}</div>
                 <div class="text-lg font-major text-purple-200">
-                  Rio Grande do Norte, Brasil
+                  {{ c().contact.locationValue }}
                 </div>
               </div>
             </div>
@@ -146,7 +145,7 @@
 
           <div class="mt-12">
             <h4 class="text-xl font-press mb-6 text-purple-300 social-title">
-              CONECTE-SE COMIGO
+              {{ c().contact.social }}
             </h4>
             <div class="flex space-x-4 social-links">
               <a
@@ -199,13 +198,13 @@
             [class.animate-field]="isVisible"
             style="animation-delay: 0.1s"
           >
-            <label for="name" class="form-label">Seu Nome</label>
+            <label for="name" class="form-label">{{ c().contact.form.name }}</label>
             <div class="form-input-container">
               <input
                 type="text"
                 id="name"
                 class="form-input"
-                placeholder="Como posso te chamar?"
+                [placeholder]="c().contact.form.namePlaceholder"
                 name="name"
                 required
               />
@@ -218,13 +217,13 @@
             [class.animate-field]="isVisible"
             style="animation-delay: 0.2s"
           >
-            <label for="email" class="form-label">Seu Email</label>
+            <label for="email" class="form-label">{{ c().contact.form.email }}</label>
             <div class="form-input-container">
               <input
                 type="email"
                 id="email"
                 class="form-input"
-                placeholder="Seu melhor email"
+                [placeholder]="c().contact.form.emailPlaceholder"
                 name="email"
                 required
               />
@@ -237,13 +236,13 @@
             [class.animate-field]="isVisible"
             style="animation-delay: 0.3s"
           >
-            <label for="subject" class="form-label">Assunto</label>
+            <label for="subject" class="form-label">{{ c().contact.form.subject }}</label>
             <div class="form-input-container">
               <input
                 type="text"
                 id="subject"
                 class="form-input"
-                placeholder="Sobre o que vamos conversar?"
+                [placeholder]="c().contact.form.subjectPlaceholder"
                 name="_subject"
 
                 required
@@ -257,13 +256,13 @@
             [class.animate-field]="isVisible"
             style="animation-delay: 0.4s"
           >
-            <label for="message" class="form-label">Sua Mensagem</label>
+            <label for="message" class="form-label">{{ c().contact.form.message }}</label>
             <div class="form-input-container">
               <textarea
                 id="message"
                 rows="5"
                 class="form-input"
-                placeholder="Conte-me sobre seu projeto..."
+                [placeholder]="c().contact.form.messagePlaceholder"
                 name="message"
                 required
               ></textarea>
@@ -278,7 +277,7 @@
             [class.animate-button]="isVisible"
             style="animation-delay: 0.5s"
           >
-            <span>{{ status === 'sending' ? 'ENVIANDO...' : 'ENVIAR MENSAGEM' }}</span>
+            <span>{{ status === 'sending' ? c().contact.form.sending : c().contact.form.send }}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5 ml-2"
@@ -295,10 +294,10 @@
 
           <p class="mt-6 text-sm" role="status" aria-live="polite">
             @if (status === 'sent') {
-              <span class="text-green-300">Mensagem enviada. Respondo pelo e-mail que você informou.</span>
+              <span class="text-green-300">{{ c().contact.form.sent }}</span>
             } @else if (status === 'error') {
               <span class="text-red-300">
-                Não consegui enviar agora. Escreva direto para
+                {{ c().contact.form.error }}
                 <a href="mailto:jameson.henrique.dev@gmail.com" class="underline">jameson.henrique.dev&#64;gmail.com</a>.
               </span>
             }

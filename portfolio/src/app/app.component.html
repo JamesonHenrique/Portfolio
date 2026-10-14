@@ -1,4 +1,4 @@
-<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+<a href="#conteudo" class="skip-link">{{ i18n.content().skipLink }}</a>
 <div
   smoothScroll
   class="bg-black text-white font-syne  overflow-x-hidden bg-grid overflow-y-auto "
@@ -8,11 +8,7 @@
   <app-navigation></app-navigation>
 
   <main id="conteudo">
-    <app-hero></app-hero>
-    <app-about></app-about>
-    <app-skills></app-skills>
-    <app-projects></app-projects>
-    <app-contact></app-contact>
+    <router-outlet></router-outlet>
   </main>
 
   <app-footer></app-footer>

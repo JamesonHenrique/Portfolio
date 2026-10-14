@@ -1,3 +1,4 @@
+import { provideRouter } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CursorComponent } from './cursor.component';
@@ -8,7 +9,8 @@ describe('CursorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CursorComponent]
+      imports: [CursorComponent],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 

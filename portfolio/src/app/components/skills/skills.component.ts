@@ -1,5 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
 import { onFirstView } from '../../utils/in-view';
+import { I18nService } from '../../services/i18n.service';
+import { Lang } from '../../content/types';
 
 interface Skill {
   name: string;
@@ -8,10 +10,10 @@ interface Skill {
 }
 
 interface SkillGroup {
-  title: string;
+  title: Record<Lang, string>;
   skills: Skill[];
   /** Concepts without a logo, shown as chips under the icons. */
-  extras?: string[];
+  extras?: Record<Lang, string[]>;
 }
 
 @Component({
@@ -23,6 +25,7 @@ interface SkillGroup {
 export class SkillsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('skillsSection') skillsSection!: ElementRef<HTMLElement>;
   isVisible = false;
+  readonly c = inject(I18nService).content;
   private stopObserving = () => {};
 
   constructor(private cdr: ChangeDetectorRef) {}
@@ -30,7 +33,7 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
   // Same tools as the "Habilidades" block of the CV.
   groups: SkillGroup[] = [
     {
-      title: 'AUTOMAÇÃO E IA',
+      title: { pt: 'AUTOMAÇÃO E IA', en: 'AUTOMATION & AI' },
       skills: [
         { name: 'Make', icon: 'make' },
         { name: 'n8n', icon: 'n8n' },
@@ -38,10 +41,13 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
         { name: 'Gemini', icon: 'gemini' },
         { name: 'Google Workspace', icon: 'googleworkspace' }
       ],
-      extras: ['APIs REST', 'Webhooks', 'OAuth2', 'Idempotência', 'Paginação', 'Prompt com saída estruturada']
+      extras: {
+        pt: ['APIs REST', 'Webhooks', 'OAuth2', 'Idempotência', 'Paginação', 'Prompt com saída estruturada'],
+        en: ['REST APIs', 'Webhooks', 'OAuth2', 'Idempotency', 'Pagination', 'Structured-output prompting']
+      }
     },
     {
-      title: 'BACKEND',
+      title: { pt: 'BACKEND', en: 'BACKEND' },
       skills: [
         { name: 'Java', icon: 'java' },
         { name: 'Spring Boot', icon: 'spring' },
@@ -51,10 +57,10 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
         { name: 'Keycloak', icon: 'keycloak' },
         { name: 'JUnit', icon: 'junit' }
       ],
-      extras: ['Spring Security', 'Spring AI', 'Flyway', 'Mockito']
+      extras: { pt: ['Spring Security', 'Spring AI', 'Flyway', 'Mockito'], en: ['Spring Security', 'Spring AI', 'Flyway', 'Mockito'] }
     },
     {
-      title: 'FRONTEND',
+      title: { pt: 'FRONTEND', en: 'FRONTEND' },
       skills: [
         { name: 'Angular', icon: 'angular' },
         { name: 'TypeScript', icon: 'typescript' },
@@ -64,7 +70,7 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
       ]
     },
     {
-      title: 'INFRA E FERRAMENTAS',
+      title: { pt: 'INFRA E FERRAMENTAS', en: 'INFRA & TOOLS' },
       skills: [
         { name: 'Docker', icon: 'docker' },
         { name: 'Git', icon: 'git' },

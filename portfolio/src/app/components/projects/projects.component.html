@@ -20,7 +20,7 @@
       <h2
         class="text-4xl max-[440px]:text-3xl md:text-6xl font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 mb-4 title-text"
       >
-        PROJETOS
+        {{ c().projects.title }}
       </h2>
       <div
         class="w-32 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto title-line"
@@ -28,7 +28,7 @@
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      @for (project of projects; track project.title; let i = $index) {
+      @for (project of c().projects.cards; track project.title; let i = $index) {
         <article
           class="project-card group h-full"
           [style.animation-delay]="i * 0.1 + 's'"
@@ -37,7 +37,7 @@
             <div class="project-image">
               <img
                 [src]="project.image"
-                [alt]="'Tela do ' + project.title"
+                [alt]="c().projects.screenshotOf + ' ' + project.title"
                 class="project-img"
                 width="1200"
                 height="580"
@@ -51,10 +51,10 @@
               <h3 class="project-name">{{ project.name }}</h3>
               <p class="project-description">{{ project.description }}</p>
               @if (project.decision) {
-                <p class="project-decision"><span>Decisão técnica:</span> {{ project.decision }}</p>
+                <p class="project-decision"><span>{{ c().projects.decisionLabel }}</span> {{ project.decision }}</p>
               }
 
-              <ul class="project-techs" aria-label="Tecnologias">
+              <ul class="project-techs" [attr.aria-label]="c().projects.techsAria">
                 @for (tech of project.techs; track tech) {
                   <li class="tech-tag">{{ tech }}</li>
                 }
@@ -62,14 +62,19 @@
             </div>
 
             <div class="project-footer flex flex-wrap gap-3">
+              @if (project.page) {
+                <a [routerLink]="project.page" class="project-button project-button-primary">
+                  <span>{{ c().projects.details }}</span>
+                </a>
+              }
               @if (project.demo) {
-                <a [href]="project.demo" target="_blank" rel="noopener noreferrer" class="project-button project-button-primary">
-                  <span>Ver demo</span>
+                <a [href]="project.demo" target="_blank" rel="noopener noreferrer" class="project-button">
+                  <span>{{ c().projects.demo }}</span>
                 </a>
               }
               @if (project.url) {
                 <a [href]="project.url" target="_blank" rel="noopener noreferrer" class="project-button">
-                  <span>Ver código</span>
+                  <span>{{ c().projects.code }}</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-5 w-5"
@@ -94,7 +99,7 @@
     </div>
 
     <div class="text-center mt-16 flex items-center justify-center">
-      <a class="see-more-button" href="https://github.com/JamesonHenrique?tab=repositories" target="_blank" rel="noopener noreferrer">VER MAIS PROJETOS</a>
+      <a class="see-more-button" href="https://github.com/JamesonHenrique?tab=repositories" target="_blank" rel="noopener noreferrer">{{ c().projects.more }}</a>
     </div>
   </div>
 </section>
