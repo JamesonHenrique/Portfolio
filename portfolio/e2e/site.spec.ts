@@ -5,9 +5,21 @@ const ORIGIN = 'https://jamesonhenrique-portfolio.vercel.app';
 const ROUTES = [
   { path: '/', lang: 'pt-BR', h1: 'Jameson Henrique', pt: '/', en: '/en' },
   { path: '/en', lang: 'en', h1: 'Jameson Henrique', pt: '/', en: '/en' },
-  { path: '/projetos/oportunizavaga', lang: 'pt-BR', h1: 'OportunizaVaga', pt: '/projetos/oportunizavaga', en: '/en/projects/oportunizavaga' },
+  {
+    path: '/projetos/oportunizavaga',
+    lang: 'pt-BR',
+    h1: 'OportunizaVaga',
+    pt: '/projetos/oportunizavaga',
+    en: '/en/projects/oportunizavaga'
+  },
   { path: '/projetos/newgram', lang: 'pt-BR', h1: 'Newgram', pt: '/projetos/newgram', en: '/en/projects/newgram' },
-  { path: '/en/projects/oportunizavaga', lang: 'en', h1: 'OportunizaVaga', pt: '/projetos/oportunizavaga', en: '/en/projects/oportunizavaga' },
+  {
+    path: '/en/projects/oportunizavaga',
+    lang: 'en',
+    h1: 'OportunizaVaga',
+    pt: '/projetos/oportunizavaga',
+    en: '/en/projects/oportunizavaga'
+  },
   { path: '/en/projects/newgram', lang: 'en', h1: 'Newgram', pt: '/projetos/newgram', en: '/en/projects/newgram' }
 ];
 
@@ -47,7 +59,9 @@ for (const route of ROUTES) {
     await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute('href', ORIGIN + route.en);
 
     await scrollThrough(page);
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
     expect(overflow, 'horizontal scroll').toBeLessThanOrEqual(0);
     expect(errors, errors.join('\n')).toEqual([]);
   });
@@ -85,7 +99,9 @@ test('navigation dot on a project page goes back to the home section', async ({ 
   await page.waitForLoadState('networkidle');
   await page.locator('nav a[aria-label="Sobre"]').click();
   await expect(page).toHaveURL(/\/#sobre$/);
-  await expect.poll(() => page.evaluate(() => Math.round(document.getElementById('sobre')!.getBoundingClientRect().top))).toBeLessThan(200);
+  await expect
+    .poll(() => page.evaluate(() => Math.round(document.getElementById('sobre')!.getBoundingClientRect().top)))
+    .toBeLessThan(200);
 });
 
 test('language switch goes to the English home and back', async ({ page }) => {
@@ -115,7 +131,12 @@ test('contact form sends through FormSubmit under the CSP', async ({ page }) => 
   // Intercepted: no real e-mail is sent. Reaching this handler proves the CSP allowed the request.
   await page.route('https://formsubmit.co/**', async (route) => {
     sent = route.request().postData();
-    await route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"success":"true"}' });
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: '{"success":"true"}'
+    });
   });
   await page.goto('/');
   await scrollThrough(page);
@@ -145,7 +166,8 @@ test('custom cursor follows a real mouse and stays off on touch', async ({ brows
   const desktop = await browser.newPage();
   await desktop.addInitScript(() => {
     const original = window.matchMedia.bind(window);
-    window.matchMedia = (q: string) => (q.includes('pointer: fine') ? ({ ...original(q), matches: true, media: q } as MediaQueryList) : original(q));
+    window.matchMedia = (q: string) =>
+      q.includes('pointer: fine') ? ({ ...original(q), matches: true, media: q } as MediaQueryList) : original(q);
   });
   await desktop.goto('/');
   const ball = desktop.locator('app-cursor div');

@@ -55,7 +55,15 @@ export interface SiteContent {
   switchAria: string;
   meta: { title: string; description: string };
   skipLink: string;
-  nav: { aria: string; inicio: string; sobre: string; skills: string; projetos: string; contato: string; rodape: string };
+  nav: {
+    aria: string;
+    inicio: string;
+    sobre: string;
+    skills: string;
+    projetos: string;
+    contato: string;
+    rodape: string;
+  };
   hero: {
     availability: string;
     badge: string;
@@ -94,11 +102,18 @@ export interface SiteContent {
     locationValue: string;
     social: string;
     form: {
-      name: string; namePlaceholder: string;
-      email: string; emailPlaceholder: string;
-      subject: string; subjectPlaceholder: string;
-      message: string; messagePlaceholder: string;
-      send: string; sending: string; sent: string; error: string;
+      name: string;
+      namePlaceholder: string;
+      email: string;
+      emailPlaceholder: string;
+      subject: string;
+      subjectPlaceholder: string;
+      message: string;
+      messagePlaceholder: string;
+      send: string;
+      sending: string;
+      sent: string;
+      error: string;
     };
   };
   footer: { quote: string; rights: string };

@@ -1,223 +1,259 @@
-  /* Ícones de contato */
-  .contact-icon {
-    width: 3rem; /* w-12 */
-    height: 3rem; /* h-12 */
-    border-radius: 0.5rem; /* rounded-lg */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition-property: all;
-    transition-duration: 300ms;
-  }
+/* Ícones de contato */
+.contact-icon {
+  width: 3rem; /* w-12 */
+  height: 3rem; /* h-12 */
+  border-radius: 0.5rem; /* rounded-lg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-property: all;
+  transition-duration: 300ms;
+}
 
-  /* Ícones sociais */
-  .social-icon {
-    width: 3rem; /* w-12 */
-    height: 3rem; /* h-12 */
-    border-radius: 0.5rem; /* rounded-lg */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition-property: all;
-    transition-duration: 300ms;
-  }
+/* Ícones sociais */
+.social-icon {
+  width: 3rem; /* w-12 */
+  height: 3rem; /* h-12 */
+  border-radius: 0.5rem; /* rounded-lg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-property: all;
+  transition-duration: 300ms;
+}
 
-  .social-icon-svg {
-    width: 1.5rem; /* w-6 */
-    height: 1.5rem; /* h-6 */
-    transition-property: all;
-    transition-duration: 300ms;
-  }
+.social-icon-svg {
+  width: 1.5rem; /* w-6 */
+  height: 1.5rem; /* h-6 */
+  transition-property: all;
+  transition-duration: 300ms;
+}
 
-  .social-icon:hover .social-icon-svg {
-    color: #4c1d95; /* text-purple-900 */
-  }
+.social-icon:hover .social-icon-svg {
+  color: #4c1d95; /* text-purple-900 */
+}
 
-  /* Formulário */
-  .form-group {
-    position: relative;
-  }
+/* Formulário */
+.form-group {
+  position: relative;
+}
 
-  .form-label {
-    display: block;
-    font-size: 0.875rem; /* text-sm */
-    font-family: "Major Mono Display", monospace; /* font-major */
-    text-transform: lowercase;
-    color: #d8b4fe; /* text-purple-300 */
-    margin-bottom: 0.5rem; /* mb-2 */
-  }
+.form-label {
+  display: block;
+  font-size: 0.875rem; /* text-sm */
+  font-family: 'Major Mono Display', monospace; /* font-major */
+  text-transform: lowercase;
+  color: #d8b4fe; /* text-purple-300 */
+  margin-bottom: 0.5rem; /* mb-2 */
+}
 
-  .form-input-container {
-    position: relative;
-  }
+.form-input-container {
+  position: relative;
+}
 
-  .form-input {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* bg-black/50 */
-    border: 1px solid rgba(76, 29, 149, 0.5); /* border-purple-900/50 */
-    border-radius: 0.5rem; /* rounded-lg */
-    padding-top: 0.75rem; /* py-3 */
-    padding-bottom: 0.75rem;
-    padding-left: 1rem; /* px-4 */
-    padding-right: 1rem;
-    color: white;
-    backdrop-filter: blur(5px);
-    outline: none;
-    transition: all 0.3s;
-  }
+.form-input {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* bg-black/50 */
+  border: 1px solid rgba(76, 29, 149, 0.5); /* border-purple-900/50 */
+  border-radius: 0.5rem; /* rounded-lg */
+  padding-top: 0.75rem; /* py-3 */
+  padding-bottom: 0.75rem;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
+  color: white;
+  backdrop-filter: blur(5px);
+  outline: none;
+  transition: all 0.3s;
+}
 
-  .form-input:focus {
-    border-color: #a855f7; /* focus:border-purple-500 */
-  }
+.form-input:focus {
+  border-color: #a855f7; /* focus:border-purple-500 */
+}
 
-  .form-input-highlight {
-    position: absolute;
-    inset: 0;
-    border-radius: 0.5rem; /* rounded-lg */
-    border: 1px solid transparent;
-    pointer-events: none;
-    background: linear-gradient(
-      90deg,
-      rgba(168, 85, 247, 0.3),
-      rgba(168, 85, 247, 0.1)
-    );
+.form-input-highlight {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid transparent;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.form-input:focus ~ .form-input-highlight {
+  opacity: 1;
+}
+
+/* Botão de envio */
+.submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem; /* px-8 py-3 */
+  background-image: linear-gradient(to bottom right, #4c1d95, #9333ea); /* from-purple-900 to-purple-600 */
+  color: white;
+  font-family: 'Press Start 2P', cursive; /* font-press */
+  border-radius: 0.5rem; /* rounded-lg */
+  transition: all 0.5s ease;
+  box-shadow: 0 0 25px 5px rgba(168, 85, 247, 0.4);
+}
+
+.submit-button:hover {
+  background-image: linear-gradient(to bottom right, white, #e9d5ff); /* hover:from-white to-purple-200 */
+  color: #4c1d95; /* hover:text-purple-900 */
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  .form-input:focus ~ .form-input-highlight {
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes titlePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  70% {
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes lineExpand {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
     opacity: 1;
   }
+}
 
-  /* Botão de envio */
-  .submit-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 2rem; /* px-8 py-3 */
-    background-image: linear-gradient(
-      to bottom right,
-      #4c1d95,
-      #9333ea
-    ); /* from-purple-900 to-purple-600 */
-    color: white;
-    font-family: "Press Start 2P", cursive; /* font-press */
-    border-radius: 0.5rem; /* rounded-lg */
-    transition: all 0.5s ease;
-    box-shadow: 0 0 25px 5px rgba(168, 85, 247, 0.4);
+@keyframes highlightPulse {
+  0%,
+  100% {
+    width: 0;
+    left: 50%;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+}
+
+/* Animation Classes */
+.animate-section {
+  .shape-blob {
+    animation: float 15s ease-in-out infinite;
   }
 
-  .submit-button:hover {
-    background-image: linear-gradient(
-      to bottom right,
-      white,
-      #e9d5ff
-    ); /* hover:from-white to-purple-200 */
-    color: #4c1d95; /* hover:text-purple-900 */
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0) }
-    50% { transform: translateY(-20px) }
+  .shape-starburst {
+    animation: spin-slow 60s linear infinite;
   }
 
-  @keyframes spin-slow {
-    from { transform: rotate(0deg) }
-    to { transform: rotate(360deg) }
+  .shape-hexagon {
+    animation: float 12s ease-in-out infinite;
   }
 
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px) }
-    to { opacity: 1; transform: translateY(0) }
+  .title-text {
+    animation: titlePop 0.8s ease-out forwards;
   }
 
-  @keyframes fadeInLeft {
-    from { opacity: 0; transform: translateX(-20px) }
-    to { opacity: 1; transform: translateX(0) }
+  .title-line {
+    animation: lineExpand 1s ease-out forwards;
+    animation-delay: 0s;
   }
 
-  @keyframes fadeInRight {
-    from { opacity: 0; transform: translateX(20px) }
-    to { opacity: 1; transform: translateX(0) }
+  .contact-info-card {
+    animation: fadeInLeft 0.8s ease-out forwards;
   }
 
-  @keyframes titlePop {
-    0% { opacity: 0; transform: scale(0.8) translateY(20px) }
-    70% { transform: scale(1.05) translateY(-5px) }
-    100% { opacity: 1; transform: scale(1) translateY(0) }
+  .contact-item {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
   }
 
-  @keyframes lineExpand {
-    from { transform: scaleX(0); opacity: 0 }
-    to { transform: scaleX(1); opacity: 1 }
+  .social-title {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.4s;
   }
 
-  @keyframes highlightPulse {
-    0%, 100% { width: 0; left: 50% }
-    50% { width: 100%; left: 0 }
+  .social-links a {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
   }
 
-  /* Animation Classes */
-  .animate-section {
-    .shape-blob {
-      animation: float 15s ease-in-out infinite;
-    }
-
-    .shape-starburst {
-      animation: spin-slow 60s linear infinite;
-    }
-
-    .shape-hexagon {
-      animation: float 12s ease-in-out infinite;
-    }
-
-    .title-text {
-      animation: titlePop 0.8s ease-out forwards;
-    }
-
-    .title-line {
-      animation: lineExpand 1s ease-out forwards;
-      animation-delay: 0s;
-    }
-
-    .contact-info-card {
-      animation: fadeInLeft 0.8s ease-out forwards;
-    }
-
-    .contact-item {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    .social-title {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out forwards;
-      animation-delay: 0.4s;
-    }
-
-    .social-links a {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    .form-container {
-      animation: fadeInRight 0.8s ease-out forwards;
-    }
-
-    .animate-field {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    .animate-button {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
+  .form-container {
+    animation: fadeInRight 0.8s ease-out forwards;
   }
+
+  .animate-field {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-button {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+}
+.font-major {
+  font-size: 1rem;
+}
+@media (max-width: 440px) {
   .font-major {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
-  @media (max-width: 440px) {
-    .font-major {
-      font-size: 0.8rem;
-    }
-  }
+}

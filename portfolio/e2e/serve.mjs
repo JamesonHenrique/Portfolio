@@ -9,10 +9,20 @@ const port = Number(process.env.PORT ?? 4600);
 const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));
 const globalHeaders = vercel.headers.find((h) => h.source === '/(.*)')?.headers ?? [];
 const types = {
-  '.html': 'text/html; charset=utf-8', '.js': 'application/javascript', '.css': 'text/css',
-  '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
-  '.webp': 'image/webp', '.ico': 'image/x-icon', '.xml': 'application/xml', '.txt': 'text/plain',
-  '.webmanifest': 'application/manifest+json', '.pdf': 'application/pdf', '.woff2': 'font/woff2'
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'application/javascript',
+  '.css': 'text/css',
+  '.json': 'application/json',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.ico': 'image/x-icon',
+  '.xml': 'application/xml',
+  '.txt': 'text/plain',
+  '.webmanifest': 'application/manifest+json',
+  '.pdf': 'application/pdf',
+  '.woff2': 'font/woff2'
 };
 
 function resolve(urlPath) {

@@ -57,7 +57,10 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
         { name: 'Keycloak', icon: 'keycloak' },
         { name: 'JUnit', icon: 'junit' }
       ],
-      extras: { pt: ['Spring Security', 'Spring AI', 'Flyway', 'Mockito'], en: ['Spring Security', 'Spring AI', 'Flyway', 'Mockito'] }
+      extras: {
+        pt: ['Spring Security', 'Spring AI', 'Flyway', 'Mockito'],
+        en: ['Spring Security', 'Spring AI', 'Flyway', 'Mockito']
+      }
     },
     {
       title: { pt: 'FRONTEND', en: 'FRONTEND' },
@@ -82,7 +85,14 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
   ];
 
   integratedSystems = [
-    'ADVBOX', 'Coda', 'Octadesk (WhatsApp)', 'ZapSign', 'Banco Inter (API PJ)', 'Google Workspace', 'API4Com', 'Typebot'
+    'ADVBOX',
+    'Coda',
+    'Octadesk (WhatsApp)',
+    'ZapSign',
+    'Banco Inter (API PJ)',
+    'Google Workspace',
+    'API4Com',
+    'Typebot'
   ];
 
   ngAfterViewInit() {

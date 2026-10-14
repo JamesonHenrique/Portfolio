@@ -11,8 +11,7 @@ describe('SkillsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SkillsComponent],
       providers: [provideRouter([])]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SkillsComponent);
     component = fixture.componentInstance;

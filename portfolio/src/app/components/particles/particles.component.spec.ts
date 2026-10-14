@@ -11,8 +11,7 @@ describe('ParticlesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ParticlesComponent],
       providers: [provideRouter([])]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ParticlesComponent);
     component = fixture.componentInstance;

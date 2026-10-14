@@ -1,4 +1,3 @@
-
 import { Injectable, inject, DOCUMENT } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { SITE_ORIGIN } from '../content/types';

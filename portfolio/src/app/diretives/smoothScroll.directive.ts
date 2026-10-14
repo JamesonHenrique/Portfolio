@@ -1,12 +1,10 @@
 import { Directive, HostListener, DOCUMENT, inject } from '@angular/core';
 
-
 @Directive({
   selector: '[appSmoothScroll]'
 })
 export class SmoothScrollDirective {
   private document = inject<Document>(DOCUMENT);
-
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {

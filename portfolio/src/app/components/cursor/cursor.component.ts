@@ -13,18 +13,20 @@ import { isPlatformBrowser } from '@angular/common';
       #cursorElement
     ></div>
   `,
-  styles: [`
-    :host {
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-    }
-  `],
+  styles: [
+    `
+      :host {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+    `
+  ],
   styleUrl: './cursor.component.scss'
 })
 export class CursorComponent implements OnInit {
@@ -58,11 +60,7 @@ export class CursorComponent implements OnInit {
     const x = e.clientX - 12;
     const y = e.clientY - 12;
 
-    this.renderer.setStyle(
-      this.cursorElement.nativeElement,
-      'transform',
-      `translate(${x}px, ${y}px)`
-    );
+    this.renderer.setStyle(this.cursorElement.nativeElement, 'transform', `translate(${x}px, ${y}px)`);
   }
 
   @HostListener('document:mouseover', ['$event.target'])

@@ -4,7 +4,7 @@
   height: 100%;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: -1px;
     background: linear-gradient(to right, #4c1d95, #7e22ce);
@@ -147,7 +147,6 @@
     animation: fadeInUp 0.5s ease-out forwards;
     animation-delay: 0.7s;
   }
-
 }
 
 @keyframes letter-bounce {
@@ -180,9 +179,10 @@
   }
 }
 
-
 .skill-icon {
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 
   &:hover {
     transform: scale(1.12) rotate(4deg);
@@ -197,7 +197,9 @@
   background: rgba(88, 28, 135, 0.2);
   color: #e9d5ff;
   font-size: 0.75rem;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 
   &:hover {
     background: rgba(168, 85, 247, 0.35);
