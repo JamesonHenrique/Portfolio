@@ -2,7 +2,9 @@
   <a [routerLink]="c.home" fragment="projetos" class="back-link">{{ c.projectPage.back }}</a>
 
   <header class="mt-10 mb-10">
-    <h1 class="text-3xl sm:text-5xl font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 leading-relaxed">
+    <h1
+      class="text-3xl sm:text-5xl font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 leading-relaxed"
+    >
       {{ page.title }}
     </h1>
     <p class="text-xl text-purple-200 mt-4">{{ page.name }}</p>
@@ -44,7 +46,9 @@
 
   <div class="mt-12 flex flex-wrap gap-4">
     @if (page.demo) {
-      <a [href]="page.demo" target="_blank" rel="noopener noreferrer" class="action action-primary">{{ c.projectPage.demo }}</a>
+      <a [href]="page.demo" target="_blank" rel="noopener noreferrer" class="action action-primary">{{
+        c.projectPage.demo
+      }}</a>
     }
     <a [href]="page.url" target="_blank" rel="noopener noreferrer" class="action">{{ c.projectPage.code }}</a>
   </div>

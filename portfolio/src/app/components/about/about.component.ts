@@ -1,4 +1,13 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, computed, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
+  computed,
+  inject
+} from '@angular/core';
 import { I18nService } from '../../services/i18n.service';
 import { onFirstView } from '../../utils/in-view';
 

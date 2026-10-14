@@ -16,7 +16,15 @@ export const PT: SiteContent = {
       'Jameson Henrique, desenvolvedor de automação (RPA) e full stack. Automações em produção com Make, APIs REST e webhooks; sistemas com Java, Spring Boot e Angular.'
   },
   skipLink: 'Pular para o conteúdo',
-  nav: { aria: 'Seções', inicio: 'Início', sobre: 'Sobre', skills: 'Stack', projetos: 'Projetos', contato: 'Contato', rodape: 'Rodapé' },
+  nav: {
+    aria: 'Seções',
+    inicio: 'Início',
+    sobre: 'Sobre',
+    skills: 'Stack',
+    projetos: 'Projetos',
+    contato: 'Contato',
+    rodape: 'Rodapé'
+  },
   hero: {
     availability: 'Disponível para vagas de automação (RPA) e full stack',
     badge: 'automação (rpa) & full stack',
@@ -64,7 +72,9 @@ export const PT: SiteContent = {
       [
         { text: 'Meu foco é ' },
         { text: 'automação que não quebra sozinha', hl: 'underline' },
-        { text: ', visibilidade para quem opera e cuidado com o dado do cliente, com depuração de integração no nível do payload, do header e do contrato de dados.' }
+        {
+          text: ', visibilidade para quem opera e cuidado com o dado do cliente, com depuração de integração no nível do payload, do header e do contrato de dados.'
+        }
       ]
     ],
     educationTitle: 'FORMAÇÃO',
@@ -155,10 +165,22 @@ export const PT: SiteContent = {
         name: 'Rede social full stack',
         description:
           'Compartilhamento de fotos e stories com feed com descoberta, seguidores, favoritos e destaques. Autenticação JWT e upload de imagens no S3.',
-        techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'PostgreSQL', 'JWT', 'AWS S3', 'Docker', 'Flyway', 'Tailwind CSS'],
+        techs: [
+          'Java',
+          'Spring Boot',
+          'Angular',
+          'TypeScript',
+          'PostgreSQL',
+          'JWT',
+          'AWS S3',
+          'Docker',
+          'Flyway',
+          'Tailwind CSS'
+        ],
         image: 'newgram_print.webp',
         page: '/projetos/newgram',
-        decision: 'Mídia no AWS S3 entregue por presigned URLs com expiração configurável; schema versionado com Flyway.',
+        decision:
+          'Mídia no AWS S3 entregue por presigned URLs com expiração configurável; schema versionado com Flyway.',
         url: 'https://github.com/JamesonHenrique/Newgram',
         demo: 'https://newgram-nine.vercel.app/'
       },
@@ -290,7 +312,18 @@ export const PT: SiteContent = {
           ]
         }
       ],
-      techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'PostgreSQL', 'JWT', 'AWS S3', 'Docker', 'Flyway', 'Tailwind CSS'],
+      techs: [
+        'Java',
+        'Spring Boot',
+        'Angular',
+        'TypeScript',
+        'PostgreSQL',
+        'JWT',
+        'AWS S3',
+        'Docker',
+        'Flyway',
+        'Tailwind CSS'
+      ],
       url: 'https://github.com/JamesonHenrique/Newgram',
       demo: 'https://newgram-nine.vercel.app/'
     }

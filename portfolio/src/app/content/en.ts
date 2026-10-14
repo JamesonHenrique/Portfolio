@@ -15,7 +15,15 @@ export const EN: SiteContent = {
       'Jameson Henrique, automation (RPA) and full stack developer. Production automations with Make, REST APIs and webhooks; systems with Java, Spring Boot and Angular.'
   },
   skipLink: 'Skip to content',
-  nav: { aria: 'Sections', inicio: 'Home', sobre: 'About', skills: 'Stack', projetos: 'Projects', contato: 'Contact', rodape: 'Footer' },
+  nav: {
+    aria: 'Sections',
+    inicio: 'Home',
+    sobre: 'About',
+    skills: 'Stack',
+    projetos: 'Projects',
+    contato: 'Contact',
+    rodape: 'Footer'
+  },
   hero: {
     availability: 'Open to automation (RPA) and full stack roles',
     badge: 'automation (rpa) & full stack',
@@ -54,7 +62,7 @@ export const EN: SiteContent = {
         { text: ' with the daily work of orchestrating business-critical processes.' }
       ],
       [
-        { text: "I work in the LegalOps team of a law firm, keeping production workflows running that connect " },
+        { text: 'I work in the LegalOps team of a law firm, keeping production workflows running that connect ' },
         { text: 'back-end and REST APIs', hl: 'tech' },
         { text: ' to ' },
         { text: 'webhooks and third-party services', hl: 'tech' },
@@ -63,7 +71,9 @@ export const EN: SiteContent = {
       [
         { text: 'My focus is ' },
         { text: "automation that doesn't break on its own", hl: 'underline' },
-        { text: ', visibility for the people who operate it and care with client data, debugging integrations down to the payload, the headers and the data contract.' }
+        {
+          text: ', visibility for the people who operate it and care with client data, debugging integrations down to the payload, the headers and the data contract.'
+        }
       ]
     ],
     educationTitle: 'EDUCATION',
@@ -154,10 +164,22 @@ export const EN: SiteContent = {
         name: 'Full stack social network',
         description:
           'Photo and story sharing with a discovery feed, followers, saved collections and highlights. JWT authentication and image upload to S3.',
-        techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'PostgreSQL', 'JWT', 'AWS S3', 'Docker', 'Flyway', 'Tailwind CSS'],
+        techs: [
+          'Java',
+          'Spring Boot',
+          'Angular',
+          'TypeScript',
+          'PostgreSQL',
+          'JWT',
+          'AWS S3',
+          'Docker',
+          'Flyway',
+          'Tailwind CSS'
+        ],
         image: 'newgram_print.webp',
         page: '/en/projects/newgram',
-        decision: 'Media on AWS S3 served through presigned URLs with configurable expiration; schema versioned with Flyway.',
+        decision:
+          'Media on AWS S3 served through presigned URLs with configurable expiration; schema versioned with Flyway.',
         url: 'https://github.com/JamesonHenrique/Newgram',
         demo: 'https://newgram-nine.vercel.app/'
       },
@@ -289,7 +311,18 @@ export const EN: SiteContent = {
           ]
         }
       ],
-      techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'PostgreSQL', 'JWT', 'AWS S3', 'Docker', 'Flyway', 'Tailwind CSS'],
+      techs: [
+        'Java',
+        'Spring Boot',
+        'Angular',
+        'TypeScript',
+        'PostgreSQL',
+        'JWT',
+        'AWS S3',
+        'Docker',
+        'Flyway',
+        'Tailwind CSS'
+      ],
       url: 'https://github.com/JamesonHenrique/Newgram',
       demo: 'https://newgram-nine.vercel.app/'
     }

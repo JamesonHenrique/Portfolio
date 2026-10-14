@@ -11,8 +11,7 @@ describe('CursorComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CursorComponent],
       providers: [provideRouter([])]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CursorComponent);
     component = fixture.componentInstance;

@@ -27,8 +27,12 @@ describe('SeoService', () => {
     update('/en/projects/newgram', 'en');
     expect(doc.title).toBe('Título /en/projects/newgram');
     expect(doc.documentElement.lang).toBe('en');
-    expect(doc.querySelector('meta[name="description"]')?.getAttribute('content')).toBe('Descrição /en/projects/newgram');
-    expect(doc.querySelector('meta[property="og:url"]')?.getAttribute('content')).toBe(SITE_ORIGIN + '/en/projects/newgram');
+    expect(doc.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(
+      'Descrição /en/projects/newgram'
+    );
+    expect(doc.querySelector('meta[property="og:url"]')?.getAttribute('content')).toBe(
+      SITE_ORIGIN + '/en/projects/newgram'
+    );
   });
 
   it('keeps a single canonical and one link per hreflang across updates', () => {
@@ -38,9 +42,13 @@ describe('SeoService', () => {
     expect(canonicals.length).toBe(1);
     expect(canonicals[0].getAttribute('href')).toBe(SITE_ORIGIN + '/en/projects/newgram');
     for (const lang of ['pt-BR', 'en', 'x-default']) {
-      expect(doc.querySelectorAll(`link[rel="alternate"][hreflang="${lang}"]`).length).withContext(lang).toBe(1);
+      expect(doc.querySelectorAll(`link[rel="alternate"][hreflang="${lang}"]`).length)
+        .withContext(lang)
+        .toBe(1);
     }
-    expect(doc.querySelector('link[hreflang="x-default"]')?.getAttribute('href')).toBe(SITE_ORIGIN + '/projetos/newgram');
+    expect(doc.querySelector('link[hreflang="x-default"]')?.getAttribute('href')).toBe(
+      SITE_ORIGIN + '/projetos/newgram'
+    );
   });
 
   it('uses the bare origin with a trailing slash for the home canonical', () => {

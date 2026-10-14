@@ -1,8 +1,4 @@
-<section
-  id="sobre"
-  class="min-h-screen py-20 px-4 relative overflow-hidden"
-  #aboutSection
->
+<section id="sobre" class="min-h-screen py-20 px-4 relative overflow-hidden" #aboutSection>
   <div
     class="absolute w-96 h-96 shape-blob bg-purple-900 opacity-10 -right-60 -top-40"
     [class.animate-blob]="isVisible"
@@ -20,22 +16,14 @@
           class="absolute inset-0 shape-hexagon overflow-hidden z-0 blur-md opacity-70 translate-y-3 translate-x-1"
           [class.animate-shadow-pulse]="isVisible"
         >
-          <img
-            src="about-me.jpg"
-            alt="" aria-hidden="true"
-            class="w-full h-full object-cover brightness-50"
-          />
+          <img src="about-me.jpg" alt="" aria-hidden="true" class="w-full h-full object-cover brightness-50" />
         </div>
 
         <div
           class="relative z-10 w-full h-full shape-hexagon overflow-hidden transform hover:scale-105 transition-all duration-500"
           [class.photo-reveal]="isVisible"
         >
-          <img
-            src="about-me.jpg"
-            [alt]="c().about.photoAlt"
-            class="w-full h-full object-cover"
-          />
+          <img src="about-me.jpg" [alt]="c().about.photoAlt" class="w-full h-full object-cover" />
         </div>
 
         <div
@@ -64,35 +52,41 @@
           [class.title-reveal]="isVisible"
           [attr.aria-label]="c().about.title"
         >
-          @for (letter of titleLetters(); track $index) {<span aria-hidden="true" [class.letter-animated]="isVisible" [style.animation-delay]="0.1 * ($index + 1) + 's'">{{ letter === ' ' ? '\u00a0' : letter }}</span>}
+          @for (letter of titleLetters(); track $index) {
+            <span
+              aria-hidden="true"
+              [class.letter-animated]="isVisible"
+              [style.animation-delay]="0.1 * ($index + 1) + 's'"
+              >{{ letter === ' ' ? '\u00a0' : letter }}</span
+            >
+          }
         </h2>
       </div>
 
       <div class="paragraph-group">
         @for (paragraph of c().about.paragraphs; track $index) {
-          <p class="text-lg mb-6" [class.paragraph-animated]="isVisible" [style.animation-delay]="0.3 * $index + 's'">@for (seg of paragraph; track $index) {<span
-            [class.text-purple-300]="seg.hl"
-            [class.font-bold]="seg.hl === 'strong'"
-            [class.name-highlight]="seg.hl === 'strong'"
-            [class.tech-bounce]="seg.hl === 'tech'"
-            [class.underline-effect]="seg.hl === 'underline'"
-          >{{ seg.text }}</span>}</p>
+          <p class="text-lg mb-6" [class.paragraph-animated]="isVisible" [style.animation-delay]="0.3 * $index + 's'">
+            @for (seg of paragraph; track $index) {
+              <span
+                [class.text-purple-300]="seg.hl"
+                [class.font-bold]="seg.hl === 'strong'"
+                [class.name-highlight]="seg.hl === 'strong'"
+                [class.tech-bounce]="seg.hl === 'tech'"
+                [class.underline-effect]="seg.hl === 'underline'"
+                >{{ seg.text }}</span
+              >
+            }
+          </p>
         }
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-1 gap-12 mt-12">
         @for (card of cards(); track card.title; let ci = $index) {
-          <div
-            class="relative group"
-            [class.animate-card]="isVisible"
-            [style.animation-delay]="0.7 + ci * 0.3 + 's'"
-          >
+          <div class="relative group" [class.animate-card]="isVisible" [style.animation-delay]="0.7 + ci * 0.3 + 's'">
             <div
               class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-xl blur opacity-25 group-hover:opacity-50 transition-all duration-500"
             ></div>
-            <div
-              class="relative bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-900/30 h-full"
-            >
+            <div class="relative bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-900/30 h-full">
               <h3 class="text-2xl font-press text-purple-300 mb-8 glow-text">
                 {{ card.title }}
               </h3>
@@ -115,7 +109,11 @@
                       <div class="text-sm text-purple-400 mb-2">{{ item.sub }}</div>
                     }
                     @if (item.text) {
-                      <p class="text-purple-300 text-sm">@for (seg of item.text; track $index) {<span [class.text-purple-400]="seg.hl">{{ seg.text }}</span>}</p>
+                      <p class="text-purple-300 text-sm">
+                        @for (seg of item.text; track $index) {
+                          <span [class.text-purple-400]="seg.hl">{{ seg.text }}</span>
+                        }
+                      </p>
                     }
                     @if (item.list) {
                       <ul class="text-purple-300 text-sm space-y-1">

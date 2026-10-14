@@ -7,11 +7,7 @@ const NOOP = (): void => undefined;
  * component. Replaces per-component `window:scroll` listeners. zone.js does not patch
  * IntersectionObserver, so the change detection run here is required. Returns a cleanup function.
  */
-export function onFirstView(
-  element: Element,
-  cdr: ChangeDetectorRef,
-  callback: () => void
-): () => void {
+export function onFirstView(element: Element, cdr: ChangeDetectorRef, callback: () => void): () => void {
   const fire = () => {
     callback();
     cdr.detectChanges();

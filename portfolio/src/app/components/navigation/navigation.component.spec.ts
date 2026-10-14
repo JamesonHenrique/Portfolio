@@ -11,8 +11,7 @@ describe('NavigationComponent', () => {
     await TestBed.configureTestingModule({
       imports: [NavigationComponent],
       providers: [provideRouter([])]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NavigationComponent);
     component = fixture.componentInstance;

@@ -8,7 +8,11 @@
       [fragment]="dot.id"
       [attr.aria-label]="c().nav[dot.label]"
       [attr.title]="c().nav[dot.label]"
-      [class]="'w-4 h-4 ' + dot.shape + ' hover:bg-white transition-all duration-300 shadow-[0_0_15px_2px_rgba(168,85,247,0.7)]'"
+      [class]="
+        'w-4 h-4 ' +
+        dot.shape +
+        ' hover:bg-white transition-all duration-300 shadow-[0_0_15px_2px_rgba(168,85,247,0.7)]'
+      "
     ></a>
   }
 </nav>

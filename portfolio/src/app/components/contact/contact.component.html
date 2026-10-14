@@ -4,15 +4,9 @@
   [class.animate-section]="isVisible"
   #contactSection
 >
-  <div
-    class="absolute w-96 h-96 shape-blob bg-purple-900/10 -right-60 bottom-0"
-  ></div>
-  <div
-    class="absolute w-64 h-64 shape-starburst bg-purple-800/10 left-20 top-1/4"
-  ></div>
-  <div
-    class="absolute w-48 h-48 shape-hexagon bg-purple-700/10 left-1/4 bottom-1/4"
-  ></div>
+  <div class="absolute w-96 h-96 shape-blob bg-purple-900/10 -right-60 bottom-0"></div>
+  <div class="absolute w-64 h-64 shape-starburst bg-purple-800/10 left-20 top-1/4"></div>
+  <div class="absolute w-48 h-48 shape-hexagon bg-purple-700/10 left-1/4 bottom-1/4"></div>
 
   <div class="container mx-auto relative z-10">
     <div class="text-center mb-16">
@@ -21,19 +15,13 @@
       >
         {{ c().contact.title }}
       </h2>
-      <div
-        class="w-32 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto title-line"
-      ></div>
+      <div class="w-32 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto title-line"></div>
     </div>
 
     <div class="flex flex-col lg:flex-row gap-12">
       <div class="lg:w-1/2 contact-info-card">
-        <div
-          class="bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-900/30 h-full"
-        >
-          <h3
-            class="text-2xl font-press mb-6 text-purple-300 contact-info-title"
-          >
+        <div class="bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-900/30 h-full">
+          <h3 class="text-2xl font-press mb-6 text-purple-300 contact-info-title">
             {{ c().contact.cardTitle }}
           </h3>
           <p class="text-lg mb-8 text-purple-200 contact-info-text">
@@ -41,10 +29,7 @@
           </p>
 
           <div class="space-y-6">
-            <div
-              class="flex items-center group contact-item"
-              style="animation-delay: 0.1s"
-            >
+            <div class="flex items-center group contact-item" style="animation-delay: 0.1s">
               <div
                 class="contact-icon bg-gradient-to-br from-purple-900 to-purple-700 group-hover:from-white group-hover:to-purple-300"
               >
@@ -66,18 +51,15 @@
               <div class="ml-6">
                 <div class="text-xs text-purple-400">{{ c().contact.email }}</div>
                 <a
-                href="mailto:jameson.henrique.dev@gmail.com"
-                class="text-lg max-[440px]:text-[11px] font-major text-purple-200 hover:text-white transition-colors"
-              >
-                jameson.henrique.dev&#64;gmail.com
-              </a>
+                  href="mailto:jameson.henrique.dev@gmail.com"
+                  class="text-lg max-[440px]:text-[11px] font-major text-purple-200 hover:text-white transition-colors"
+                >
+                  jameson.henrique.dev&#64;gmail.com
+                </a>
               </div>
             </div>
 
-            <div
-              class="flex items-center group contact-item"
-              style="animation-delay: 0.2s"
-            >
+            <div class="flex items-center group contact-item" style="animation-delay: 0.2s">
               <div
                 class="contact-icon bg-gradient-to-br from-purple-800 to-purple-600 group-hover:from-white group-hover:to-purple-300"
               >
@@ -106,10 +88,7 @@
               </div>
             </div>
 
-            <div
-              class="flex items-center group contact-item"
-              style="animation-delay: 0.3s"
-            >
+            <div class="flex items-center group contact-item" style="animation-delay: 0.3s">
               <div
                 class="contact-icon bg-gradient-to-br from-purple-700 to-purple-500 group-hover:from-white group-hover:to-purple-300"
               >
@@ -149,7 +128,10 @@
             </h4>
             <div class="flex space-x-4 social-links">
               <a
-              href="https://github.com/JamesonHenrique" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+                href="https://github.com/JamesonHenrique"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
                 class="social-icon bg-gradient-to-br from-purple-900 to-purple-700 hover:from-white hover:to-purple-300"
               >
                 <svg
@@ -166,8 +148,10 @@
                 </svg>
               </a>
               <a
-              href="https://www.linkedin.com/in/jamesonhenrique/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-
+                href="https://www.linkedin.com/in/jamesonhenrique/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
                 class="social-icon bg-gradient-to-br from-purple-800 to-purple-600 hover:from-white hover:to-purple-300"
               >
                 <svg
@@ -193,11 +177,7 @@
           <!-- Honeypot: humans never see this field; FormSubmit drops submissions that fill it. -->
           <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <input type="hidden" name="_template" value="table" />
-          <div
-            class="form-group"
-            [class.animate-field]="isVisible"
-            style="animation-delay: 0.1s"
-          >
+          <div class="form-group" [class.animate-field]="isVisible" style="animation-delay: 0.1s">
             <label for="name" class="form-label">{{ c().contact.form.name }}</label>
             <div class="form-input-container">
               <input
@@ -212,11 +192,7 @@
             </div>
           </div>
 
-          <div
-            class="form-group"
-            [class.animate-field]="isVisible"
-            style="animation-delay: 0.2s"
-          >
+          <div class="form-group" [class.animate-field]="isVisible" style="animation-delay: 0.2s">
             <label for="email" class="form-label">{{ c().contact.form.email }}</label>
             <div class="form-input-container">
               <input
@@ -231,11 +207,7 @@
             </div>
           </div>
 
-          <div
-            class="form-group"
-            [class.animate-field]="isVisible"
-            style="animation-delay: 0.3s"
-          >
+          <div class="form-group" [class.animate-field]="isVisible" style="animation-delay: 0.3s">
             <label for="subject" class="form-label">{{ c().contact.form.subject }}</label>
             <div class="form-input-container">
               <input
@@ -244,18 +216,13 @@
                 class="form-input"
                 [placeholder]="c().contact.form.subjectPlaceholder"
                 name="_subject"
-
                 required
               />
               <div class="form-input-highlight"></div>
             </div>
           </div>
 
-          <div
-            class="form-group"
-            [class.animate-field]="isVisible"
-            style="animation-delay: 0.4s"
-          >
+          <div class="form-group" [class.animate-field]="isVisible" style="animation-delay: 0.4s">
             <label for="message" class="form-label">{{ c().contact.form.message }}</label>
             <div class="form-input-container">
               <textarea
@@ -278,12 +245,7 @@
             style="animation-delay: 0.5s"
           >
             <span>{{ status === 'sending' ? c().contact.form.sending : c().contact.form.send }}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 ml-2"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
               <path
                 fill-rule="evenodd"
                 d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
@@ -298,7 +260,8 @@
             } @else if (status === 'error') {
               <span class="text-red-300">
                 {{ c().contact.form.error }}
-                <a href="mailto:jameson.henrique.dev@gmail.com" class="underline">jameson.henrique.dev&#64;gmail.com</a>.
+                <a href="mailto:jameson.henrique.dev@gmail.com" class="underline">jameson.henrique.dev&#64;gmail.com</a
+                >.
               </span>
             }
           </p>

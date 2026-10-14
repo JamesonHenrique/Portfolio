@@ -35,7 +35,9 @@ describe('ContactComponent', () => {
   });
 
   it('shows the direct e-mail when FormSubmit rejects the message', async () => {
-    spyOn(window, 'fetch').and.resolveTo(new Response('{"success":"false","message":"needs activation"}', { status: 200 }));
+    spyOn(window, 'fetch').and.resolveTo(
+      new Response('{"success":"false","message":"needs activation"}', { status: 200 })
+    );
     await fillAndSubmit();
     expect(el.querySelector('[role=status]')?.textContent).toContain('jameson.henrique.dev@gmail.com');
   });

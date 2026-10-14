@@ -11,8 +11,7 @@ describe('HeroComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HeroComponent],
       providers: [provideRouter([])]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HeroComponent);
     component = fixture.componentInstance;

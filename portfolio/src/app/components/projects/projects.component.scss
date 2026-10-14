@@ -1,38 +1,78 @@
 /* Keyframes */
 @keyframes float {
-  0%, 100% { transform: translateY(0) }
-  50% { transform: translateY(-20px) }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg) }
-  to { transform: rotate(360deg) }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.05 }
-  50% { opacity: 0.1 }
+  0%,
+  100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.1;
+  }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px) }
-  to { opacity: 1; transform: translateY(0) }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes titlePop {
-  0% { opacity: 0; transform: scale(0.8) translateY(20px) }
-  70% { transform: scale(1.05) translateY(-5px) }
-  100% { opacity: 1; transform: scale(1) translateY(0) }
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  70% {
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 @keyframes lineExpand {
-  from { transform: scaleX(0); opacity: 0 }
-  to { transform: scaleX(1); opacity: 1 }
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 
 @keyframes projectCardIn {
-  0% { opacity: 0; transform: scale(0.95) translateY(30px) }
-  100% { opacity: 1; transform: scale(1) translateY(0) }
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 /* Animation Classes */
@@ -70,7 +110,6 @@
 .project-card {
   perspective: 1000px;
   transform-style: preserve-3d;
- 
 
   &-inner {
     position: relative;
@@ -119,12 +158,11 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: white;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     transition: all 0.5s ease;
     font-family: 'Press Start 2P', cursive;
     text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
   }
-
 }
 
 .project-content {
@@ -224,7 +262,7 @@
   padding: 0.75rem 2rem; /* px-8 py-3 */
   background-image: linear-gradient(to bottom right, #4c1d95, #7e22ce);
   color: white;
-  font-family: "Press Start 2P", cursive;
+  font-family: 'Press Start 2P', cursive;
   border-radius: 0.5rem; /* rounded-lg */
   transition: all 0.5s ease;
   box-shadow: 0 0 25px 5px rgba(168, 85, 247, 0.4);
@@ -235,7 +273,6 @@
   position: relative;
   overflow: hidden;
 
-
   &:hover {
     background-image: linear-gradient(to bottom right, white, #e9d5ff);
     color: #4c1d95;
@@ -244,6 +281,4 @@
       transform: translateX(0);
     }
   }
-
-
 }

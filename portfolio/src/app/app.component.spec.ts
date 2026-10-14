@@ -29,7 +29,9 @@ describe('AppComponent', () => {
   it('should render every home section in Portuguese at /', async () => {
     const el = await renderAll(await RouterTestingHarness.create('/'));
     for (const id of ['inicio', 'sobre', 'skills', 'projetos', 'contato']) {
-      expect(el.querySelector('#' + id)).withContext(id).not.toBeNull();
+      expect(el.querySelector('#' + id))
+        .withContext(id)
+        .not.toBeNull();
     }
     expect(el.querySelector('h1')?.getAttribute('aria-label')).toBe('Jameson Henrique');
     expect(el.querySelector('#sobre h2')?.getAttribute('aria-label')).toBe('SOBRE MIM');
