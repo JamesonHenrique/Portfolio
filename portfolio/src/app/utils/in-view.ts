@@ -15,6 +15,12 @@ export function onFirstView(
     cdr.detectChanges();
   };
 
+  // Build-time prerender (no window): keep the initial "hidden" state, so the static HTML matches
+  // what the browser starts with and hydration does not flash the sections.
+  if (typeof window === 'undefined') {
+    return () => {};
+  }
+
   if (typeof IntersectionObserver === 'undefined') {
     fire();
     return () => {};

@@ -22,11 +22,13 @@ Desenvolvedor de **automação (RPA) e full stack**. Este é o código do meu si
 ## Stack do site
 
 - **Angular 19** (componentes standalone, control flow `@if`/`@for`)
+- **Pré-renderização no build** (SSG): o `index.html` já sai com todo o texto, para o Google e para previews de link
 - **Tailwind CSS** e SCSS
 - **animate.css** e **particles.js**, com menos partículas no celular e desligadas quando o sistema pede menos movimento (`prefers-reduced-motion`)
 - Ícones de tecnologias servidos do próprio site (`public/icons`, de Devicon e Simple Icons)
 - Animações de entrada disparadas por `IntersectionObserver`, sem listeners de scroll
-- Deploy automático na **Vercel** a partir da branch `main`
+- SEO: `robots.txt`, `sitemap.xml`, canonical, Open Graph com `og-image.jpg` e JSON-LD (`Person`)
+- Deploy automático na **Vercel** a partir da branch `main` (`portfolio/vercel.json` define cache longo para os arquivos com hash)
 
 ## Rodando localmente
 

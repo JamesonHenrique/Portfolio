@@ -113,7 +113,6 @@
 }
 
 .tech-bounce {
-  display: inline-block;
   animation: tech-bounce 2s infinite;
   animation-delay: 1.5s;
 }
@@ -144,9 +143,10 @@
   50% { transform: translateY(-20px) }
 }
 
+// Glow instead of scale: scaling an inline word covered the spaces around it at the peak.
 @keyframes tech-bounce {
-  0%, 100% { transform: scale(1) }
-  50% { transform: scale(1.1) }
+  0%, 100% { text-shadow: none }
+  50% { text-shadow: 0 0 10px rgba(192, 132, 252, 0.9) }
 }
 
 @keyframes underline-grow {

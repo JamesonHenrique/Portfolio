@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnDestroy, OnInit, Inject, NgZone, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -6,20 +6,28 @@ import { isPlatformBrowser } from '@angular/common';
   standalone: true,
   template: `<div id="particles-js" class="fixed inset-0 z-0"></div>`,
 })
-export class ParticlesComponent implements OnInit {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+export class ParticlesComponent implements OnInit, OnDestroy {
+  private destroyed = false;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private zone: NgZone
+  ) {}
 
   ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) return;
     // Respect users who asked the OS for less motion: no canvas animation at all.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    this.loadParticles();
+    // The animation loop calls requestAnimationFrame every frame; inside the Angular zone each
+    // frame would trigger change detection and the app would never become stable.
+    this.zone.runOutsideAngular(() => this.loadParticles());
   }
 
   private loadParticles() {
     if (typeof (window as any).particlesJS !== 'function') {
       const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+      // Self-hosted copy of particles.js 2.0.0 (public/vendor): no third-party CDN at runtime.
+      script.src = 'vendor/particles-2.0.0.min.js';
       script.onload = () => this.initializeParticles();
       document.head.appendChild(script);
     } else {
@@ -27,7 +35,13 @@ export class ParticlesComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.destroyed = true;
+  }
+
   private initializeParticles() {
+    // The script loads asynchronously; the container may be gone by then (e.g. component destroyed).
+    if (this.destroyed || !document.getElementById('particles-js')) return;
     // Small screens are usually phones: fewer particles and no connecting lines,
     // which are the expensive part (O(n²) distance checks every frame).
     const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
