@@ -125,23 +125,6 @@
     text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
   }
 
-  .project-cover {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1.5rem;
-    font-family: 'Syne Mono', monospace;
-    color: #d8b4fe;
-    background:
-      radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.35), transparent 60%),
-      #0c0a14;
-  }
-
-  .project-cover-prompt {
-    color: #a3e635;
-  }
 }
 
 .project-content {
@@ -185,6 +168,24 @@
 
 .project-footer {
   padding: 0 1.5rem 1.5rem;
+}
+
+.project-decision {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(233, 213, 255, 0.85);
+  margin: -0.75rem 0 1.25rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(168, 85, 247, 0.6);
+
+  span {
+    color: #c084fc;
+  }
+}
+
+.project-button.project-button-primary {
+  background: rgba(168, 85, 247, 0.35);
+  color: #fff;
 }
 
 .project-note {
