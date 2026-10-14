@@ -46,11 +46,12 @@ export class ParticlesComponent implements OnInit, OnDestroy {
 
   private initializeParticles() {
     // The script loads asynchronously; the container may be gone by then (e.g. component destroyed).
-    if (this.destroyed || !document.getElementById('particles-js')) return;
+    const particlesJS = window.particlesJS;
+    if (this.destroyed || !particlesJS || !document.getElementById('particles-js')) return;
     // Small screens are usually phones: fewer particles and no connecting lines,
     // which are the expensive part (O(n²) distance checks every frame).
     const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
-    window.particlesJS("particles-js", {
+    particlesJS("particles-js", {
       particles: {
         number: { value: isSmallScreen ? 20 : 45, density: { enable: true, value_area: 800 } },
         color: { value: "#a855f7" },
