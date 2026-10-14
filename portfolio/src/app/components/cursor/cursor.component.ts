@@ -1,82 +1,54 @@
-import { Component, OnInit, ElementRef, HostListener, PLATFORM_ID, Renderer2, ViewChild, inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, DestroyRef, ElementRef, afterNextRender, inject, signal, viewChild } from '@angular/core';
 
+const INTERACTIVE = 'a, button, input, textarea, select, label';
+
+/**
+ * Custom cursor ball (mouse devices only). Pointer events are handled with plain DOM listeners, outside
+ * Angular's change detection: the ball is moved by writing `transform` directly, and Angular state only
+ * changes when the ball appears, disappears or toggles its hover size.
+ */
 @Component({
   selector: 'app-cursor',
-  standalone: true,
-  imports: [],
   template: `
-    <div
-      class="fixed w-6 h-6 rounded-full bg-purple-500 mix-blend-difference pointer-events-none z-50 animate-pulse"
-      [class.invisible]="!active"
-      [class.hidden]="!enabled"
-      #cursorElement
-    ></div>
+    <div #ball class="cursor-ball" [class.cursor-hidden]="!active()" [class.hidden]="!enabled()" aria-hidden="true">
+      <div class="cursor-dot" [class.cursor-dot-hover]="hovering()"></div>
+    </div>
   `,
-  styles: [
-    `
-      :host {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999;
-      }
-    `
-  ],
   styleUrl: './cursor.component.scss'
 })
-export class CursorComponent implements OnInit {
-  private renderer = inject(Renderer2);
-  private platformId = inject<object>(PLATFORM_ID);
+export class CursorComponent {
+  private readonly ball = viewChild.required<ElementRef<HTMLElement>>('ball');
+  readonly enabled = signal(false);
+  readonly active = signal(false);
+  readonly hovering = signal(false);
 
-  @ViewChild('cursorElement', { static: true }) cursorElement!: ElementRef;
-  // Only devices with a real mouse get the custom cursor; touch screens keep the native behavior.
-  enabled = false;
-  // Hidden until the first mouse move, so it never sits parked at the top-left corner.
-  active = false;
+  constructor() {
+    const destroyRef = inject(DestroyRef);
+    afterNextRender(() => {
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      this.enabled.set(true);
+      document.body.style.cursor = 'none';
 
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.enabled = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-      if (this.enabled) {
-        this.renderer.setStyle(document.body, 'cursor', 'none');
-      }
-    }
-  }
+      const ball = this.ball().nativeElement;
+      const move = (e: MouseEvent) => {
+        ball.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
+        if (!this.active()) this.active.set(true);
+      };
+      const over = (e: MouseEvent) => {
+        const hovering = e.target instanceof Element && !!e.target.closest(INTERACTIVE);
+        if (hovering !== this.hovering()) this.hovering.set(hovering);
+      };
+      const leave = () => this.active.set(false);
 
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(e: MouseEvent) {
-    if (this.enabled) {
-      this.active = true;
-      this.moveCursor(e);
-    }
-  }
-
-  private moveCursor(e: MouseEvent) {
-    const x = e.clientX - 12;
-    const y = e.clientY - 12;
-
-    this.renderer.setStyle(this.cursorElement.nativeElement, 'transform', `translate(${x}px, ${y}px)`);
-  }
-
-  @HostListener('document:mouseover', ['$event.target'])
-  onHover(target: EventTarget | null) {
-    if (this.enabled && target instanceof HTMLElement) {
-      const interactiveElements = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'];
-      if (interactiveElements.includes(target.tagName)) {
-        this.renderer.addClass(this.cursorElement.nativeElement, 'scale-150');
-      } else {
-        this.renderer.removeClass(this.cursorElement.nativeElement, 'scale-150');
-      }
-    }
-  }
-
-  @HostListener('document:mouseleave')
-  onLeave() {
-    this.active = false;
+      document.addEventListener('mousemove', move, { passive: true });
+      document.addEventListener('mouseover', over, { passive: true });
+      document.documentElement.addEventListener('mouseleave', leave);
+      destroyRef.onDestroy(() => {
+        document.removeEventListener('mousemove', move);
+        document.removeEventListener('mouseover', over);
+        document.documentElement.removeEventListener('mouseleave', leave);
+        document.body.style.cursor = '';
+      });
+    });
   }
 }
