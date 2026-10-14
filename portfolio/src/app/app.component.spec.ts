@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { DeferBlockBehavior, DeferBlockState, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { AppComponent } from './app.component';
@@ -8,9 +8,18 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [provideRouter(routes)]
+      providers: [provideRouter(routes)],
+      deferBlockBehavior: DeferBlockBehavior.Manual
     }).compileComponents();
   });
+
+  // Below-the-fold sections are @defer blocks (incremental hydration); render them explicitly.
+  async function renderAll(harness: RouterTestingHarness) {
+    for (const block of await harness.fixture.getDeferBlocks()) {
+      await block.render(DeferBlockState.Complete);
+    }
+    return harness.routeNativeElement as HTMLElement;
+  }
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -18,8 +27,7 @@ describe('AppComponent', () => {
   });
 
   it('should render every home section in Portuguese at /', async () => {
-    const harness = await RouterTestingHarness.create('/');
-    const el = harness.routeNativeElement as HTMLElement;
+    const el = await renderAll(await RouterTestingHarness.create('/'));
     for (const id of ['inicio', 'sobre', 'skills', 'projetos', 'contato']) {
       expect(el.querySelector('#' + id)).withContext(id).not.toBeNull();
     }
@@ -28,8 +36,7 @@ describe('AppComponent', () => {
   });
 
   it('should render the English home at /en', async () => {
-    const harness = await RouterTestingHarness.create('/en');
-    const el = harness.routeNativeElement as HTMLElement;
+    const el = await renderAll(await RouterTestingHarness.create('/en'));
     expect(el.textContent).toContain('Automation Development Intern (RPA)');
     expect(el.querySelector('#sobre h2')?.getAttribute('aria-label')).toBe('ABOUT ME');
   });
