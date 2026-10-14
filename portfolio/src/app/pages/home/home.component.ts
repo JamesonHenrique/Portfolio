@@ -17,16 +17,16 @@ import { SeoService } from '../../services/seo.service';
     <!-- Below the fold: the prerendered HTML stays in the page (SEO), but each section's JS is
          loaded and hydrated only when it scrolls into view, so startup does not hydrate everything.
          "on immediate" covers client-side navigation (e.g. coming back from a project page). -->
-    @defer (on immediate; hydrate on viewport) {
+    @defer (on immediate; hydrate on viewport; hydrate on interaction) {
       <app-about></app-about>
     }
-    @defer (on immediate; hydrate on viewport) {
+    @defer (on immediate; hydrate on viewport; hydrate on interaction) {
       <app-skills></app-skills>
     }
-    @defer (on immediate; hydrate on viewport) {
+    @defer (on immediate; hydrate on viewport; hydrate on interaction) {
       <app-projects></app-projects>
     }
-    @defer (on immediate; hydrate on viewport) {
+    @defer (on immediate; hydrate on viewport; hydrate on interaction) {
       <app-contact></app-contact>
     }
   `
