@@ -35,28 +35,24 @@
         >
           <div class="project-card-inner bg-gradient-to-br from-stone-950 bg-black h-full flex flex-col">
             <div class="project-image">
-              @if (project.image) {
-                <img
-                  [src]="project.image"
-                  [alt]="'Tela do ' + project.title"
-                  class="project-img"
-                  width="1200"
-                  height="580"
-                  loading="lazy"
-                  decoding="async"
-                />
-              } @else {
-                <div class="project-cover" aria-hidden="true">
-                  <span class="project-cover-prompt">$ ./bot/loop.sh</span>
-                  <span>buscar → filtrar → candidatar</span>
-                </div>
-              }
+              <img
+                [src]="project.image"
+                [alt]="'Tela do ' + project.title"
+                class="project-img"
+                width="1200"
+                height="580"
+                loading="lazy"
+                decoding="async"
+              />
               <div class="project-title">{{ project.title }}</div>
             </div>
 
             <div class="project-content flex-grow">
               <h3 class="project-name">{{ project.name }}</h3>
               <p class="project-description">{{ project.description }}</p>
+              @if (project.decision) {
+                <p class="project-decision"><span>Decisão técnica:</span> {{ project.decision }}</p>
+              }
 
               <ul class="project-techs" aria-label="Tecnologias">
                 @for (tech of project.techs; track tech) {
@@ -65,7 +61,12 @@
               </ul>
             </div>
 
-            <div class="project-footer">
+            <div class="project-footer flex flex-wrap gap-3">
+              @if (project.demo) {
+                <a [href]="project.demo" target="_blank" rel="noopener noreferrer" class="project-button project-button-primary">
+                  <span>Ver demo</span>
+                </a>
+              }
               @if (project.url) {
                 <a [href]="project.url" target="_blank" rel="noopener noreferrer" class="project-button">
                   <span>Ver código</span>

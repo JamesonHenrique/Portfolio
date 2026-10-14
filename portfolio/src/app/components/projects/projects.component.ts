@@ -6,10 +6,14 @@ interface Project {
   name: string;
   description: string;
   techs: string[];
-  /** Screenshot in /public. Projects without one render a text cover instead. */
-  image?: string;
+  /** Screenshot in /public. */
+  image: string;
   /** Public repository. Client projects have no public code. */
   url?: string;
+  /** Live demo. */
+  demo?: string;
+  /** One technical decision, taken from the project's own docs. */
+  decision?: string;
   note?: string;
 }
 
@@ -33,7 +37,11 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
       description:
         'Busca, filtra e se candidata a vagas em portais brasileiros usando modelos de IA gratuitos e um navegador real, com custo zero de operação. Roda sem supervisão: reinicia sozinho, guarda o histórico fora da IA, troca entre seis provedores de IA quando um atinge o limite e nunca inventa dado do candidato.',
       techs: ['Python', 'Shell', 'Node.js', 'Chrome (CDP)', 'LLMs', 'GitHub Actions', 'Docker'],
-      url: 'https://github.com/JamesonHenrique/OportunizaVaga'
+      image: 'oportunizavaga_print.webp',
+      decision:
+        'Um supervisor idempotente roda a cada 5 minutos e religa o loop e o Chrome se caírem; o estado fica em JSON durável, fora da IA.',
+      url: 'https://github.com/JamesonHenrique/OportunizaVaga',
+      demo: 'https://oportunizavaga-demo.vercel.app'
     },
     {
       title: 'PAINEL DE MÁQUINAS',
@@ -51,7 +59,9 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
         'Compartilhamento de fotos e stories com feed com descoberta, seguidores, favoritos e destaques. Autenticação JWT e upload de imagens no S3.',
       techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'PostgreSQL', 'JWT', 'AWS S3', 'Docker', 'Flyway', 'Tailwind CSS'],
       image: 'newgram_print.webp',
-      url: 'https://github.com/JamesonHenrique/Newgram'
+      decision: 'Mídia no AWS S3 entregue por presigned URLs com expiração configurável; schema versionado com Flyway.',
+      url: 'https://github.com/JamesonHenrique/Newgram',
+      demo: 'https://newgram-nine.vercel.app/'
     },
     {
       title: 'ALGAMONEY',
