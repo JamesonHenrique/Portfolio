@@ -1,5 +1,5 @@
-import { Directive, HostListener, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Directive, HostListener, Inject, DOCUMENT } from '@angular/core';
+
 
 @Directive({
   selector: '[smoothScroll]'

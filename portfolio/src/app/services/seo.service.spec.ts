@@ -1,4 +1,5 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/core';
+
 import { TestBed } from '@angular/core/testing';
 import { SITE_ORIGIN } from '../content/types';
 import { SeoService } from './seo.service';
