@@ -23,7 +23,7 @@ describe('ContactComponent', () => {
     set('subject', 'Assunto');
     set('message', 'Mensagem');
     const form = el.querySelector('form')!;
-    return fixture.componentInstance.onSubmit({ preventDefault() {}, target: form } as unknown as Event);
+    return fixture.componentInstance.onSubmit({ preventDefault: () => undefined, target: form } as unknown as Event);
   }
 
   it('posts to the FormSubmit AJAX endpoint and shows the success message', async () => {
@@ -50,7 +50,7 @@ describe('ContactComponent', () => {
     const fetchSpy = spyOn(window, 'fetch');
     const form = el.querySelector('form')!;
     spyOn(form, 'reportValidity').and.returnValue(false);
-    await fixture.componentInstance.onSubmit({ preventDefault() {}, target: form } as unknown as Event);
+    await fixture.componentInstance.onSubmit({ preventDefault: () => undefined, target: form } as unknown as Event);
     expect(fetchSpy).not.toHaveBeenCalled();
   });
 });

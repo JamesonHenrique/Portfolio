@@ -10,11 +10,11 @@ import { I18nService } from '../../services/i18n.service';
   styleUrl: './projects.component.scss'
 })
 export class ProjectsComponent implements AfterViewInit, OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
+
   @ViewChild('projectsSection') projectsSection!: ElementRef<HTMLElement>;
   isVisible = false;
-  private stopObserving = () => {};
-
-  constructor(private cdr: ChangeDetectorRef) {}
+  private stopObserving?: () => void;
 
   readonly c = inject(I18nService).content;
 
@@ -23,6 +23,6 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.stopObserving();
+    this.stopObserving?.();
   }
 }

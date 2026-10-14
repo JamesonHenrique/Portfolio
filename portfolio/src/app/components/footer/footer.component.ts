@@ -10,6 +10,8 @@ import { I18nService } from '../../services/i18n.service';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent implements AfterViewInit, OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
+
   @ViewChild('footerEl') footerEl!: ElementRef<HTMLElement>;
   isVisible = false;
   currentYear = new Date().getFullYear();
@@ -21,15 +23,13 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
     { id: 'projetos', label: 'projetos' },
     { id: 'contato', label: 'contato' }
   ] as const;
-  private stopObserving = () => {};
-
-  constructor(private cdr: ChangeDetectorRef) {}
+  private stopObserving?: () => void;
 
   ngAfterViewInit() {
     this.stopObserving = onFirstView(this.footerEl.nativeElement, this.cdr, () => (this.isVisible = true));
   }
 
   ngOnDestroy() {
-    this.stopObserving();
+    this.stopObserving?.();
   }
 }

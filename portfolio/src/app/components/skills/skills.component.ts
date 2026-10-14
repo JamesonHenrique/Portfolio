@@ -23,12 +23,12 @@ interface SkillGroup {
   styleUrl: './skills.component.scss'
 })
 export class SkillsComponent implements AfterViewInit, OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
+
   @ViewChild('skillsSection') skillsSection!: ElementRef<HTMLElement>;
   isVisible = false;
   readonly c = inject(I18nService).content;
-  private stopObserving = () => {};
-
-  constructor(private cdr: ChangeDetectorRef) {}
+  private stopObserving?: () => void;
 
   // Same tools as the "Habilidades" block of the CV.
   groups: SkillGroup[] = [
@@ -90,6 +90,6 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.stopObserving();
+    this.stopObserving?.();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener, PLATFORM_ID, Renderer2, ViewChild, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -27,17 +27,15 @@ import { isPlatformBrowser } from '@angular/common';
   `],
   styleUrl: './cursor.component.scss'
 })
-export class CursorComponent {
+export class CursorComponent implements OnInit {
+  private renderer = inject(Renderer2);
+  private platformId = inject<object>(PLATFORM_ID);
+
   @ViewChild('cursorElement', { static: true }) cursorElement!: ElementRef;
   // Only devices with a real mouse get the custom cursor; touch screens keep the native behavior.
   enabled = false;
   // Hidden until the first mouse move, so it never sits parked at the top-left corner.
   active = false;
-
-  constructor(
-    private renderer: Renderer2,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {

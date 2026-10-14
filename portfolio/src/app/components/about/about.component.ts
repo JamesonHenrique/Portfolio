@@ -9,6 +9,8 @@ import { onFirstView } from '../../utils/in-view';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements AfterViewInit, OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
+
   @ViewChild('aboutSection') aboutSection!: ElementRef<HTMLElement>;
   isVisible = false;
   readonly c = inject(I18nService).content;
@@ -17,15 +19,13 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
     { title: this.c().about.educationTitle, items: this.c().about.education },
     { title: this.c().about.careerTitle, items: this.c().about.career }
   ]);
-  private stopObserving = () => {};
-
-  constructor(private cdr: ChangeDetectorRef) {}
+  private stopObserving?: () => void;
 
   ngAfterViewInit() {
     this.stopObserving = onFirstView(this.aboutSection.nativeElement, this.cdr, () => (this.isVisible = true));
   }
 
   ngOnDestroy() {
-    this.stopObserving();
+    this.stopObserving?.();
   }
 }
