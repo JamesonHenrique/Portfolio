@@ -68,8 +68,8 @@ export class CursorComponent {
   }
 
   @HostListener('document:mouseover', ['$event.target'])
-  onHover(target: HTMLElement) {
-    if (this.enabled) {
+  onHover(target: EventTarget | null) {
+    if (this.enabled && target instanceof HTMLElement) {
       const interactiveElements = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'];
       if (interactiveElements.includes(target.tagName)) {
         this.renderer.addClass(this.cursorElement.nativeElement, 'scale-150');
