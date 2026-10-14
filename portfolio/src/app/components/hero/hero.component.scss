@@ -67,3 +67,29 @@
     transform: translateX(0);
   }
 }
+.availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(74, 222, 128, 0.45);
+  border-radius: 9999px;
+  background: rgba(20, 83, 45, 0.35);
+  color: #bbf7d0;
+  font-size: 0.85rem;
+}
+
+.availability-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  animation: availability-ping 2s ease-out infinite;
+}
+
+@keyframes availability-ping {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+  100% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+}
