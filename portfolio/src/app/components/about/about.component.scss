@@ -1,152 +1,100 @@
-.shape-hexagon {
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* Decorative background blob: dim and static. */
+.about-shape {
+  position: absolute;
+  background: #3b0764;
+  opacity: 0.12;
+  pointer-events: none;
+}
 
-  &:hover {
-    transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 0 25px rgba(139, 92, 246, 0.6);
+/* Photo: hexagon frame, top-aligned and sticky next to the text on large screens. */
+.about-photo-col {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .about-photo-col {
+    position: sticky;
+    top: 6rem;
   }
 }
 
-.grid-cols-2 {
-  .shape-hexagon,
-  .shape-parallelogram {
-    background: linear-gradient(to bottom, #4c1d95, #7e22ce);
-
-    > div {
-      background: black;
-    }
-  }
-}
-/* Keyframes */
-@keyframes blob-morph {
-  0%,
-  100% {
-    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
-  }
-  50% {
-    border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
-  }
+.about-photo {
+  position: relative;
+  width: min(18rem, 72vw);
+  aspect-ratio: 1;
 }
 
-@keyframes shadow-pulse {
-  0%,
-  100% {
-    opacity: 0.7;
-    transform: translate(1px, 3px) scale(0.98);
-  }
-  50% {
-    opacity: 0.4;
-    transform: translate(3px, 5px) scale(0.95);
-  }
+.about-photo-frame {
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(135deg, var(--c-accent-soft), #6b21a8);
+  filter: drop-shadow(0 0 22px rgba(168, 85, 247, 0.45));
 }
 
-@keyframes gradient-rotate {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.about-photo-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur) var(--ease-out);
 }
 
-@keyframes letter-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+.about-photo:hover .about-photo-img {
+  transform: scale(1.03);
 }
 
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.photo-reveal {
+  animation: photo-reveal 0.9s var(--ease-out) both;
 }
 
 @keyframes photo-reveal {
   from {
     opacity: 0;
-    transform: scale(0.8) rotate(-5deg);
+    transform: scale(0.85) rotate(-4deg);
   }
   to {
     opacity: 1;
-    transform: scale(1) rotate(0deg);
+    transform: none;
   }
 }
 
-.animate-blob {
-  animation: blob-morph 10s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin 40s linear infinite;
-}
-
-.animate-shadow-pulse {
-  animation: shadow-pulse 8s ease-in-out infinite;
-}
-
-.animate-gradient-rotate {
-  background-size: 200% 200%;
-  animation: gradient-rotate 15s ease infinite;
-}
-
-.photo-reveal {
-  animation: photo-reveal 1s ease-out forwards;
-}
-
 .title-reveal {
-  overflow: hidden;
+  animation: rise-in 0.7s var(--ease-out) both;
 }
 
-.letter-animated {
-  display: inline-block;
-  animation: letter-bounce 0.6s ease-out forwards;
+/* Text */
+.about-paragraph {
+  font-size: 1.075rem;
+  line-height: 1.85;
+  color: rgba(243, 232, 255, 0.92);
+  margin-bottom: 1.4rem;
 }
 
 .paragraph-animated {
   opacity: 0;
-  animation: fadeInRight 0.8s ease-out forwards;
+  animation: fade-in-right 0.7s var(--ease-out) forwards;
 }
 
-.stat-animated {
-  opacity: 0;
-  animation: fadeInUp 0.6s ease-out forwards;
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.name-highlight {
+.name-highlight,
+.underline-effect {
   position: relative;
   display: inline-block;
 }
 
-.name-highlight::after {
+.name-highlight::after,
+.underline-effect::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -158,168 +106,99 @@
   animation-delay: 1s;
 }
 
-.tech-bounce {
-  animation: tech-bounce 2s infinite;
-  animation-delay: 1.5s;
-}
-
-.underline-effect {
-  position: relative;
-}
-
 .underline-effect::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: currentColor;
-  animation: underline-grow 1s forwards;
-  animation-delay: 2s;
+  animation-delay: 1.6s;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
+@keyframes underline-grow {
   to {
-    transform: rotate(360deg);
+    width: 100%;
   }
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+/* Glows a few times to draw the eye, then rests (no endless motion next to body text). */
+.tech-bounce {
+  animation: tech-glow 2s ease-in-out 1.5s 3;
 }
 
-// Glow instead of scale: scaling an inline word covered the spaces around it at the peak.
-@keyframes tech-bounce {
-  0%,
-  100% {
-    text-shadow: none;
-  }
+@keyframes tech-glow {
   50% {
     text-shadow: 0 0 10px rgba(192, 132, 252, 0.9);
   }
 }
 
-@keyframes underline-grow {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-/* Keyframes para as novas animações */
-@keyframes cardEntrance {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-    box-shadow: 0 0 0 rgba(168, 85, 247, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    box-shadow: 0 10px 30px -15px rgba(168, 85, 247, 0.3);
-  }
-}
-
-@keyframes timelineItemEntrance {
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes dotPulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  }
-}
-
-@keyframes glowPulse {
-  0%,
-  100% {
-    text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
-  }
-  50% {
-    text-shadow: 0 0 15px rgba(168, 85, 247, 0.9);
-  }
-}
-
-/* Classes de animação */
+/* Cards and timeline */
 .animate-card {
   opacity: 0;
-  animation: cardEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: card-entrance 0.7s var(--ease-out) forwards;
 }
 
-.animate-timeline-item {
-  opacity: 0;
-  animation: timelineItemEntrance 0.6s ease-out forwards;
+@keyframes card-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .timeline {
   position: relative;
+  display: grid;
+  gap: 1.75rem;
+  padding-left: 1.75rem;
+  border-left: 2px solid rgba(147, 51, 234, 0.35);
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -2px;
-    width: 2px;
-    background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.5), transparent);
+.timeline-item {
+  position: relative;
+}
+
+.animate-timeline-item {
+  opacity: 0;
+  animation: timeline-in 0.55s var(--ease-out) forwards;
+}
+
+@keyframes timeline-in {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
 .timeline-dot {
-  transition: all 0.3s ease;
-  z-index: 2;
-
-  &:hover {
-    animation: dotPulse 1.5s infinite;
-  }
+  position: absolute;
+  left: calc(-1.75rem - 8px);
+  top: 0.2rem;
+  width: 14px;
+  height: 14px;
+  background: var(--c-accent);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+  --notch: 3px;
 }
 
-.glow-text {
-  position: relative;
-  display: inline-block;
+.timeline-heading {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #f3e8ff;
+  margin-bottom: 0.4rem;
+}
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.8), transparent);
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.3s ease;
-  }
+.timeline-sub {
+  font-size: 0.85rem;
+  color: var(--c-accent-soft);
+  margin-bottom: 0.5rem;
+}
 
-  &:hover::after {
-    transform: scaleX(1);
-  }
-
-  &:hover {
-    animation: glowPulse 2s infinite;
-  }
+.timeline-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--c-muted);
 }

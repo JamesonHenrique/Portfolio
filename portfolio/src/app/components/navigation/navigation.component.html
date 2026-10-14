@@ -1,6 +1,6 @@
 <nav
   [attr.aria-label]="c().nav.aria"
-  class="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 flex flex-col space-y-4"
+  class="fixed right-1 sm:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 sm:gap-4"
 >
   @for (dot of dots; track dot.id) {
     <a
@@ -8,11 +8,7 @@
       [fragment]="dot.id"
       [attr.aria-label]="c().nav[dot.label]"
       [attr.title]="c().nav[dot.label]"
-      [class]="
-        'w-4 h-4 ' +
-        dot.shape +
-        ' hover:bg-white transition-all duration-300 shadow-[0_0_15px_2px_rgba(168,85,247,0.7)]'
-      "
+      [class]="'nav-dot block w-2.5 h-2.5 sm:w-4 sm:h-4 ' + dot.shape"
     ></a>
   }
 </nav>

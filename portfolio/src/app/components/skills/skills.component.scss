@@ -1,198 +1,59 @@
-.skill-card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background: linear-gradient(to right, #4c1d95, #7e22ce);
-    border-radius: 0.75rem;
-    z-index: -1;
-    opacity: 0.75;
-    transition: opacity 0.3s;
-  }
-
-  &:hover::before {
-    opacity: 1;
-  }
+.skills-glow {
+  position: absolute;
+  inset: 10% 0 auto;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(88, 28, 135, 0.18), transparent 70%);
+  pointer-events: none;
 }
 
-/* Keyframes */
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes pulse-slow {
-  0%,
-  100% {
-    opacity: 0.1;
-  }
-  50% {
-    opacity: 0.15;
-  }
-}
-
-@keyframes letterPop {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) translateY(10px);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1) translateY(-5px);
-  }
-  100% {
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes lineExpand {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-/* Animation Classes */
-.animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
-}
-
-.title-animated {
-  .letter-animated {
-    display: inline-block;
-    opacity: 0;
-    animation: letterPop 0.6s ease-out forwards;
-  }
-
-  .line-expand {
-    transform-origin: left center;
-    animation: lineExpand 1s ease-out forwards;
-    animation-delay: 1s;
-  }
+/* Entrance animations, triggered when the section scrolls into view. */
+.skill-card,
+.tools-card,
+.skill-item,
+.title-text {
+  opacity: 0;
 }
 
 .skills-animated {
-  .title-line {
-    animation: lineExpand 1s ease-out forwards;
-    animation-delay: 0s;
-  }
   .title-text {
-    animation: titlePop 0.8s ease-out forwards;
-  }
-  @keyframes titlePop {
-    0% {
-      opacity: 0;
-      transform: scale(0.8) translateY(20px);
-    }
-    70% {
-      transform: scale(1.05) translateY(-5px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-  .skill-card {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: rise-in 0.8s ease-out forwards;
+    animation: rise-in 0.7s var(--ease-out) forwards;
   }
 
+  .skill-card,
   .tools-card {
-    opacity: 0;
-    animation: rise-in 0.8s ease-out forwards;
-  }
-
-  .skill-title {
-    opacity: 0;
-    animation: rise-in 0.5s ease-out forwards;
-    animation-delay: 0.3s;
+    animation: rise-in 0.7s var(--ease-out) forwards;
   }
 
   .skill-item {
-    opacity: 0;
-    animation: rise-in 0.5s ease-out forwards;
+    animation: rise-in 0.45s var(--ease-out) forwards;
 
     @for $i from 1 through 7 {
       &:nth-child(#{$i}) {
-        animation-delay: 0.3s + ($i * 0.08s);
+        animation-delay: 0.25s + ($i * 0.06s);
       }
     }
   }
-
-  .tools-title {
-    opacity: 0;
-    animation: rise-in 0.5s ease-out forwards;
-    animation-delay: 0.7s;
-  }
 }
 
-@keyframes letter-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+/* Icon tile: subtle plate behind each logo so light and dark logos read the same. */
+.skill-icon-wrap {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 12px;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.16), transparent 70%);
+  transition: transform var(--dur) var(--ease-out);
 }
 
-.letter-animated {
-  display: inline-block;
-  animation: letter-bounce 0.6s ease-out forwards;
-}
-@keyframes lineExpand {
-  from {
-    transform: scaleX(0);
-    opacity: 0;
-  }
-  to {
-    transform: scaleX(1);
-    opacity: 1;
-  }
+.skill-item:hover .skill-icon-wrap {
+  transform: translateY(-3px) scale(1.08);
 }
 
 .skill-icon {
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease;
-
-  &:hover {
-    transform: scale(1.12) rotate(4deg);
-    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.7));
-  }
+  transition: filter var(--dur) ease;
 }
 
-.skill-chip {
-  padding: 0.3rem 0.8rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(168, 85, 247, 0.4);
-  background: rgba(88, 28, 135, 0.2);
-  color: #e9d5ff;
-  font-size: 0.75rem;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-
-  &:hover {
-    background: rgba(168, 85, 247, 0.35);
-    transform: translateY(-2px);
-  }
+.skill-item:hover .skill-icon {
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.7));
 }
