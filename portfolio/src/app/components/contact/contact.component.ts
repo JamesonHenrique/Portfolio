@@ -1,5 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
 import { onFirstView } from '../../utils/in-view';
+import { I18nService } from '../../services/i18n.service';
 
 // FormSubmit AJAX endpoint: answers with JSON instead of redirecting the visitor away.
 // The first submission sends an activation e-mail to this address; until it is confirmed,
@@ -15,6 +16,7 @@ const FORM_ENDPOINT = 'https://formsubmit.co/ajax/jameson.henrique.dev@gmail.com
 export class ContactComponent implements AfterViewInit, OnDestroy {
   @ViewChild('contactSection') contactSection!: ElementRef<HTMLElement>;
   isVisible = false;
+  readonly c = inject(I18nService).content;
   status: 'idle' | 'sending' | 'sent' | 'error' = 'idle';
   private stopObserving = () => {};
 

@@ -12,7 +12,8 @@ Desenvolvedor de **automação (RPA) e full stack**. Este é o código do meu si
 |---|---|
 | Sobre | Formação e experiência, com o mesmo texto do currículo |
 | Stack | Ferramentas com ícones (automação e IA, backend, frontend, infra), mais os sistemas que já integrei |
-| Projetos | OportunizaVaga, Painel de Máquinas, Newgram e outros projetos full stack |
+| Projetos | OportunizaVaga, Painel de Máquinas, Newgram e outros; OportunizaVaga e Newgram têm página própria |
+| Inglês | Versão completa em `/en`, com hreflang entre os idiomas |
 | Contato | Formulário (FormSubmit via AJAX, com honeypot), e-mail, telefone e redes |
 
 <p>
@@ -44,10 +45,13 @@ npx ng test --watch=false --browsers=ChromeHeadless
 
 | O quê | Arquivo |
 |---|---|
-| Projetos | `portfolio/src/app/components/projects/projects.component.ts` |
-| Stack | `portfolio/src/app/components/skills/skills.component.ts` |
-| Sobre e carreira | `portfolio/src/app/components/about/about.component.html` |
+| Todos os textos em português (hero, sobre, projetos, contato, páginas de projeto) | `portfolio/src/app/content/pt.ts` |
+| Tradução em inglês (mesma estrutura; o build falha se faltar algo) | `portfolio/src/app/content/en.ts` |
+| Ícones e grupos da Stack | `portfolio/src/app/components/skills/skills.component.ts` |
+| Rotas (`/`, `/en`, páginas de projeto) | `portfolio/src/app/app.routes.ts` |
 | Currículo em PDF | `portfolio/public/JAMESON_HENRIQUE_CV.pdf` |
+
+Ao trocar de domínio, atualize `SITE_ORIGIN` em `content/types.ts`, as URLs absolutas de `src/index.html`, `public/robots.txt` e `public/sitemap.xml`.
 
 Os textos seguem o currículo. Ao mudar um, atualize o outro.
 

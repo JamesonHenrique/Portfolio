@@ -11,19 +11,18 @@
     </div>
 
     <p class="text-purple-300 mb-6 text-lg max-w-2xl mx-auto quote-text">
-      "Não é a linguagem de programação que define o programador, mas sim sua lógica."
+      {{ c().footer.quote }}
     </p>
 
     <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-8 nav-links">
-      <a href="#inicio" class="nav-link" [attr.data-text]="'Home'">Home</a>
-      <a href="#sobre" class="nav-link" [attr.data-text]="'Sobre'">Sobre</a>
-      <a href="#skills" class="nav-link" [attr.data-text]="'Stack'">Stack</a>
-      <a href="#projetos" class="nav-link" [attr.data-text]="'Projetos'">Projetos</a>
-      <a href="#contato" class="nav-link" [attr.data-text]="'Contato'">Contato</a>
+      @for (link of links; track link.id) {
+        <a [routerLink]="c().home" [fragment]="link.id" class="nav-link" [attr.data-text]="c().nav[link.label]">{{ c().nav[link.label] }}</a>
+      }
+      <a [routerLink]="c().otherHome" class="nav-link" [attr.data-text]="c().switchLabel" [attr.aria-label]="c().switchAria" [attr.hreflang]="c().lang === 'pt' ? 'en' : 'pt-BR'">{{ c().switchLabel }}</a>
     </div>
 
     <div class="text-sm text-purple-500 copyright-text">
-      © {{currentYear}} Jameson Henrique. Todos os direitos reservados.
+      © {{currentYear}} Jameson Henrique. {{ c().footer.rights }}
     </div>
   </div>
 </footer>

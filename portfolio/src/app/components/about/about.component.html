@@ -22,7 +22,7 @@
         >
           <img
             src="about-me.jpg"
-            alt="Sombra"
+            alt="" aria-hidden="true"
             class="w-full h-full object-cover brightness-50"
           />
         </div>
@@ -33,7 +33,7 @@
         >
           <img
             src="about-me.jpg"
-            alt="Jameson Henrique"
+            [alt]="c().about.photoAlt"
             class="w-full h-full object-cover"
           />
         </div>
@@ -62,223 +62,74 @@
         <h2
           class="text-4xl max-[440px]:text-3xl font-press text-purple-300 glow-white inline-block shape-parallelogram bg-black bg-opacity-80 py-3 px-6"
           [class.title-reveal]="isVisible"
+          [attr.aria-label]="c().about.title"
         >
-          <span
-            [class.letter-animated]="isVisible"
-            style="animation-delay: 0.1s"
-            >S</span
-          >
-          <span
-            [class.letter-animated]="isVisible"
-            style="animation-delay: 0.2s"
-            >O</span
-          >
-          <span
-            [class.letter-animated]="isVisible"
-            style="animation-delay: 0.3s"
-            >B</span
-          >
-          <span
-            [class.letter-animated]="isVisible"
-            style="animation-delay: 0.4s"
-            >R</span
-          >
-          <span
-            [class.letter-animated]="isVisible"
-            style="animation-delay: 0.5s"
-            >E</span
-          >
-          <span>&nbsp;</span>
-          <span
-            [class.letter-animated]="isVisible"
-            style="animation-delay: 0.6s"
-            >M</span
-          >
-          <span
-            [class.letter-animated]="isVisible"
-            style="animation-delay: 0.7s"
-            >I</span
-          >
-          <span
-            [class.letter-animated]="isVisible"
-            style="animation-delay: 0.8s"
-            >M</span
-          >
+          @for (letter of titleLetters(); track $index) {<span aria-hidden="true" [class.letter-animated]="isVisible" [style.animation-delay]="0.1 * ($index + 1) + 's'">{{ letter === ' ' ? '\u00a0' : letter }}</span>}
         </h2>
       </div>
 
       <div class="paragraph-group">
-        <p class="text-lg mb-6" [class.paragraph-animated]="isVisible">
-          Sou Jameson Henrique, desenvolvedor de automação e full stack. Aplico
-          engenharia de software à
-          <span class="text-purple-300 font-bold name-highlight"
-            >automação e integração de sistemas</span
-          >, unindo uma base sólida em
-          <span class="text-purple-300 font-bold name-highlight"
-            >(Spring Boot)</span
-          >
-          e
-          <span class="text-purple-300 font-bold name-highlight"
-            >(Angular)</span
-          >
-          ao dia a dia de orquestrar processos críticos de negócio.
-        </p>
-
-        <p
-          class="text-lg mb-6"
-          [class.paragraph-animated]="isVisible"
-          [style.animation-delay]="'0.3s'"
-        >
-          Atuo no setor de LegalOps de um escritório de advocacia, mantendo em
-          produção fluxos que conectam
-          <span class="text-purple-300 tech-bounce">back-end e APIs REST</span>
-          a
-          <span class="text-purple-300 tech-bounce"
-            >webhooks e serviços de terceiros</span
-          >, do lead à assinatura de contrato e ao cadastro processual.
-        </p>
-
-        <p
-          class="text-lg mb-8"
-          [class.paragraph-animated]="isVisible"
-          [style.animation-delay]="'0.6s'"
-        >
-          Meu foco é
-          <span class="text-purple-300 underline-effect"
-            >automação que não quebra sozinha</span
-          >, visibilidade para quem opera e cuidado com o dado do cliente,
-          com depuração de integração no nível do payload, do header e do
-          contrato de dados.
-        </p>
+        @for (paragraph of c().about.paragraphs; track $index) {
+          <p class="text-lg mb-6" [class.paragraph-animated]="isVisible" [style.animation-delay]="0.3 * $index + 's'">@for (seg of paragraph; track $index) {<span
+            [class.text-purple-300]="seg.hl"
+            [class.font-bold]="seg.hl === 'strong'"
+            [class.name-highlight]="seg.hl === 'strong'"
+            [class.tech-bounce]="seg.hl === 'tech'"
+            [class.underline-effect]="seg.hl === 'underline'"
+          >{{ seg.text }}</span>}</p>
+        }
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-1 gap-12 mt-12">
-        <div
-          class="relative group"
-          [class.animate-card]="isVisible"
-          style="animation-delay: 0.7s"
-        >
+        @for (card of cards(); track card.title; let ci = $index) {
           <div
-            class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-xl blur opacity-25 group-hover:opacity-50 transition-all duration-500"
-          ></div>
-          <div
-            class="relative bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-900/30 h-full"
+            class="relative group"
+            [class.animate-card]="isVisible"
+            [style.animation-delay]="0.7 + ci * 0.3 + 's'"
           >
-            <h3 class="text-2xl font-press text-purple-300 mb-8 glow-text">
-              FORMAÇÃO
-            </h3>
-
             <div
-              class="relative pl-8 border-l-2 border-purple-900/50 space-y-8 timeline"
+              class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-xl blur opacity-25 group-hover:opacity-50 transition-all duration-500"
+            ></div>
+            <div
+              class="relative bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-900/30 h-full"
             >
-              <div
-                class="relative timeline-item"
-                [class.animate-timeline-item]="isVisible"
-                style="animation-delay: 0.8s"
-              >
-                <div
-                  class="absolute w-4 h-4 shape-starburst bg-purple-500 -left-[28px] top-1 timeline-dot"
-                ></div>
-                <h4 class="font-press text-purple-200 mb-2">
-                  Bacharelado em Tecnologia da Informação
-                </h4>
-                <div class="text-sm text-purple-400 mb-2">
-                  Universidade Federal do Rio Grande do Norte - 2026-2030 (Em andamento)
-                </div>
-                <p class="text-purple-300 text-sm">
-                  Formação superior voltada para o desenvolvimento de soluções tecnológicas,
-                  gestão de infraestrutura de TI e engenharia de software.
-                </p>
-              </div>
+              <h3 class="text-2xl font-press text-purple-300 mb-8 glow-text">
+                {{ card.title }}
+              </h3>
 
-              <div
-                class="relative timeline-item"
-                [class.animate-timeline-item]="isVisible"
-                style="animation-delay: 0.9s"
-              >
-                <div
-                  class="absolute w-4 h-4 shape-starburst bg-purple-500 -left-[28px] top-1 timeline-dot"
-                ></div>
-                <h4 class="font-press text-purple-200 mb-2">Certificações</h4>
-                <ul class="text-purple-300 text-sm space-y-1">
-                  <li>Spring 6 &amp; Spring Boot 3 for Beginners (Udemy)</li>
-                  <li>Angular e Spring Boot (loiane.training)</li>
-                  <li>Angular (loiane.training)</li>
-                </ul>
-              </div>
-
-              <div
-                class="relative timeline-item"
-                [class.animate-timeline-item]="isVisible"
-                style="animation-delay: 1s"
-              >
-                <div
-                  class="absolute w-4 h-4 shape-starburst bg-purple-500 -left-[28px] top-1 timeline-dot"
-                ></div>
-                <h4 class="font-press text-purple-200 mb-2">Idiomas</h4>
-                <p class="text-purple-300 text-sm">
-                  Português (nativo) · Inglês (intermediário, B1) · Espanhol (básico, A2)
-                </p>
+              <div class="relative pl-8 border-l-2 border-purple-900/50 space-y-8 timeline">
+                @for (item of card.items; track item.heading) {
+                  <div
+                    class="relative timeline-item"
+                    [class.animate-timeline-item]="isVisible"
+                    [style.animation-delay]="0.8 + ci * 0.3 + $index * 0.1 + 's'"
+                  >
+                    <div
+                      class="absolute w-4 h-4 bg-purple-500 -left-[28px] top-1"
+                      [class.shape-starburst]="ci === 0"
+                      [class.timeline-dot]="ci === 0"
+                      [class.shape-parallelogram]="ci === 1"
+                    ></div>
+                    <h4 class="font-press text-purple-200 mb-2">{{ item.heading }}</h4>
+                    @if (item.sub) {
+                      <div class="text-sm text-purple-400 mb-2">{{ item.sub }}</div>
+                    }
+                    @if (item.text) {
+                      <p class="text-purple-300 text-sm">@for (seg of item.text; track $index) {<span [class.text-purple-400]="seg.hl">{{ seg.text }}</span>}</p>
+                    }
+                    @if (item.list) {
+                      <ul class="text-purple-300 text-sm space-y-1">
+                        @for (entry of item.list; track entry) {
+                          <li>{{ entry }}</li>
+                        }
+                      </ul>
+                    }
+                  </div>
+                }
               </div>
             </div>
           </div>
-        </div>
-
-        <div
-          class="relative group"
-          [class.animate-card]="isVisible"
-          style="animation-delay: 1s"
-        >
-          <div
-            class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-xl blur opacity-25 group-hover:opacity-50 transition-all duration-500"
-          ></div>
-          <div
-            class="relative bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-purple-900/30 h-full"
-          >
-            <h3 class="text-2xl font-press text-purple-300 mb-8 glow-text">
-              CARREIRA
-            </h3>
-
-            <div
-              class="relative pl-8 border-l-2 border-purple-900/50 space-y-8 timeline"
-            >
-              <div
-                class="relative timeline-item"
-                [class.animate-timeline-item]="isVisible"
-                style="animation-delay: 1.1s"
-              >
-                <div
-                  class="absolute w-4 h-4 shape-parallelogram bg-purple-500 -left-[28px] top-1"
-                ></div>
-                <h4 class="font-press text-purple-200 mb-2">Estagiário em Desenvolvimento de Automação (RPA) — LegalOps</h4>
-                <div class="text-sm text-purple-400 mb-2">Duarte e Almeida Advogados (08/2026 - Atual)</div>
-                <p class="text-purple-300 text-sm">
-                  Mantenho e depuro os fluxos em produção que levam o cliente do primeiro contato ao contrato
-                  assinado e cadastrado no sistema jurídico, integrando por API REST e webhooks:
-                  <span class="text-purple-400">Make, n8n, ADVBOX, Coda, Octadesk, ZapSign, Google Workspace e Gemini</span>.
-                </p>
-              </div>
-
-              <div
-                class="relative timeline-item"
-                [class.animate-timeline-item]="isVisible"
-                style="animation-delay: 1.2s"
-              >
-                <div
-                  class="absolute w-4 h-4 shape-parallelogram bg-purple-500 -left-[28px] top-1"
-                ></div>
-                <h4 class="font-press text-purple-200 mb-2">Desenvolvedor Full Stack — Freelancer</h4>
-                <div class="text-sm text-purple-400 mb-2">Painel de Máquinas (06/2025 - 07/2025)</div>
-                <p class="text-purple-300 text-sm">
-                  Desenvolvi sozinho o sistema completo, em uso pelo cliente no chão de fábrica. Substituiu a
-                  conferência manual: a equipe vê em tempo real quais máquinas estão paradas, em operação,
-                  em manutenção ou sem operador. Feito com
-                  <span class="text-purple-400">Java, Spring Boot, Angular e MongoDB</span>.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </div>

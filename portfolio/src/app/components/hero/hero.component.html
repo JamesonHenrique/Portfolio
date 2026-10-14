@@ -4,10 +4,18 @@
   <div class="absolute w-72 h-72 shape-starburst bg-purple-700 opacity-20 left-1/4 top-3/4 animate-float" style="animation-duration: 9s"></div>
 
   <div class="text-center z-10 w-full max-w-6xl">
-    <p class="availability animate__animated animate__fadeInDown">
-      <span class="availability-dot" aria-hidden="true"></span>
-      Disponível para vagas de automação (RPA) e full stack
-    </p>
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-8 animate__animated animate__fadeInDown">
+      <p class="availability">
+        <span class="availability-dot" aria-hidden="true"></span>
+        {{ c().hero.availability }}
+      </p>
+      <a
+        [routerLink]="c().otherHome"
+        class="lang-switch"
+        [attr.aria-label]="c().switchAria"
+        [attr.hreflang]="c().lang === 'pt' ? 'en' : 'pt-BR'"
+      >{{ c().switchLabel }}</a>
+    </div>
 
     <div class="mb-6">
       <h1 class="text-4xl sm:text-6xl md:text-7xl 2xl:text-8xl font-press glow-purple" aria-label="Jameson Henrique">
@@ -42,28 +50,22 @@
 
     <div class="inline-block shape-parallelogram bg-gradient-to-r from-purple-900 to-purple-600 p-1 mb-8 animate__animated animate__fadeInUp animate__delay-1s">
       <p class="text-sm sm:text-xl md:text-2xl font-major shape-parallelogram bg-black py-2 sm:py-3 px-5 sm:px-10 text-purple-200">
-        automação (rpa) &amp; full stack
+        {{ c().hero.badge }}
       </p>
     </div>
 
     <div class="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 line-reveal">
-      <div class="line">Automações em produção com
-        <span class="text-purple-400 font-bold">Make</span>,
-        <span class="text-purple-400 font-bold">APIs REST</span> e
-        <span class="text-purple-400 font-bold">webhooks</span>.
-      </div>
-      <div class="line">Sistemas com
-        <span class="text-purple-400 font-bold">Spring Boot</span> e
-        <span class="text-purple-400 font-bold">Angular</span>.
-      </div>
+      @for (line of c().hero.lines; track $index) {
+        <div class="line">@for (seg of line; track $index) {<span [class.text-purple-400]="seg.hl" [class.font-bold]="seg.hl">{{ seg.text }}</span>}</div>
+      }
     </div>
 
     <div class="flex flex-wrap justify-center gap-2 sm:gap-4 animate__animated animate__fadeInUp animate__delay-2s">
       <a href="#projetos" class="shape-hexagon bg-gradient-to-br from-purple-600 to-purple-900 text-white py-3 sm:py-4 px-6 sm:px-8 font-press text-xs sm:text-sm hover:from-white hover:to-purple-200 hover:text-purple-900 hover:scale-110 transition-all duration-500 shadow-[0_0_25px_5px_rgba(168,85,247,0.4)]">
-        VER PROJETOS
+        {{ c().hero.projectsButton }}
       </a>
-      <a href="JAMESON_HENRIQUE_CV.pdf" download="JAMESON_HENRIQUE_CV.pdf" class="shape-quadrado bg-gradient-to-br from-purple-600 to-purple-900 text-white py-3 sm:py-4 px-6 sm:px-8 font-press text-xs sm:text-sm hover:from-white hover:to-purple-200 hover:text-purple-900 hover:scale-110 transition-all duration-500 shadow-[0_0_25px_5px_rgba(168,85,247,0.4)]">
-        CURRÍCULO
+      <a href="/JAMESON_HENRIQUE_CV.pdf" download="JAMESON_HENRIQUE_CV.pdf" class="shape-quadrado bg-gradient-to-br from-purple-600 to-purple-900 text-white py-3 sm:py-4 px-6 sm:px-8 font-press text-xs sm:text-sm hover:from-white hover:to-purple-200 hover:text-purple-900 hover:scale-110 transition-all duration-500 shadow-[0_0_25px_5px_rgba(168,85,247,0.4)]">
+        {{ c().hero.cvButton }}
       </a>
     </div>
   </div>

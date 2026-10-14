@@ -1,21 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
-import { HeroComponent } from './components/hero/hero.component';
-import { SkillsComponent } from './components/skills/skills.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { NavigationComponent } from "./components/navigation/navigation.component";
-import { AboutComponent } from "./components/about/about.component";
 import { SmoothScrollDirective } from './diretives/smoothScroll.directive';
 import { ParticlesComponent } from './components/particles/particles.component';
 import { CursorComponent } from "./components/cursor/cursor.component";
+import { I18nService } from './services/i18n.service';
 
 @Component({
   selector: 'app-root',
-  imports: [FooterComponent, HeroComponent, SkillsComponent, ProjectsComponent, ContactComponent, NavigationComponent, AboutComponent, SmoothScrollDirective, ParticlesComponent, CursorComponent],
+  imports: [RouterOutlet, FooterComponent, NavigationComponent, SmoothScrollDirective, ParticlesComponent, CursorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'portfolio';
+  readonly i18n = inject(I18nService);
 }

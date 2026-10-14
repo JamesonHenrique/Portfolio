@@ -13,7 +13,7 @@
       <h2
         class="text-4xl max-[440px]:text-3xl md:text-6xl font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 mb-4 title-text"
       >
-        STACK
+        {{ c().skills.title }}
       </h2>
       <div
         class="w-32 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto title-line"
@@ -21,7 +21,7 @@
     </div>
 
     <div class="grid md:grid-cols-2 gap-8" [class.skills-animated]="isVisible">
-      @for (group of groups; track group.title; let i = $index) {
+      @for (group of groups; track group.title.pt; let i = $index) {
         <div class="relative group skill-card" [style.animation-delay]="0.2 + i * 0.15 + 's'">
           <div
             class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-xl blur opacity-50 group-hover:opacity-90 transition-all duration-500"
@@ -30,7 +30,7 @@
             class="relative bg-gradient-to-br from-stone-950 bg-black rounded-xl p-6 sm:p-8 border border-purple-900/50 h-full"
           >
             <h3 class="text-base sm:text-xl font-press text-purple-300 skill-title text-center leading-relaxed mb-8">
-              {{ group.title }}
+              {{ group.title[c().lang] }}
             </h3>
             <ul class="grid grid-cols-3 sm:grid-cols-4 gap-x-4 gap-y-6">
               @for (skill of group.skills; track skill.name) {
@@ -49,7 +49,7 @@
             </ul>
             @if (group.extras) {
               <ul class="flex flex-wrap justify-center gap-2 mt-8 pt-6 border-t border-purple-900/40">
-                @for (extra of group.extras; track extra) {
+                @for (extra of group.extras[c().lang]; track extra) {
                   <li class="skill-chip">{{ extra }}</li>
                 }
               </ul>
@@ -64,7 +64,7 @@
           [style.animation-delay]="'0.8s'"
         >
           <h3 class="text-base sm:text-lg font-press text-center text-purple-200 mb-6 tools-title leading-relaxed">
-            SISTEMAS QUE JÁ INTEGREI
+            {{ c().skills.systemsTitle }}
           </h3>
           <ul class="flex flex-wrap justify-center gap-3">
             @for (system of integratedSystems; track system) {
