@@ -6,7 +6,7 @@
 Desenvolvedor full stack (Java/Spring Boot e Angular) atuando com automação e integração de sistemas, estudante de Tecnologia da Informação no IMD/UFRN. No Duarte e Almeida Advogados (ago/2026 a out/2026), mantive em produção as integrações por APIs REST e webhooks que levam o cliente do primeiro contato ao contrato assinado e cadastrado no sistema jurídico, e migrei 30 dessas automações do Make para o n8n, prontas para o corte para produção. Antes, construí sozinho um painel de monitoramento em Spring Boot e Angular em uso por um cliente. Trabalho com tratamento de erro, idempotência, segurança de credenciais e investigação de causa raiz.
 
 ## EXPERIÊNCIA PROFISSIONAL
-### Estagiário em Desenvolvimento de Automação (RPA) — Duarte e Almeida Advogados · ago/2026 – out/2026
+### Estagiário em Desenvolvimento de Automações e Integrações — Duarte e Almeida Advogados · ago/2026 – out/2026
 _ LegalOps · Departamento de Tecnologia · atende o escritório, a PrecInvest (antecipação de precatórios) e a Deahub
 - Desenvolvi e mantive integrações via APIs REST e webhooks entre CRM, sistema jurídico, assinatura eletrônica, WhatsApp, Google Workspace e IA, que levam o cliente do primeiro contato ao contrato assinado e cadastrado sem digitação manual.
 - Migrei do Make para o n8n Cloud **30 automações ativas** (19 do escritório e 11 da PrecInvest), escolhidas após inventariar e auditar os 57 cenários existentes (~7.300 execuções/mês). Cobrem assinatura de contrato, PIX (Banco Inter), atendimento por WhatsApp com agente de IA e CRM. Workflows validados e prontos para o corte, que depende de credenciais e de teste real autorizado.

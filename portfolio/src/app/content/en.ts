@@ -10,9 +10,9 @@ export const EN: SiteContent = {
   switchLabel: 'PT',
   switchAria: 'Ler em português',
   meta: {
-    title: 'Jameson Henrique | Automation (RPA) & Full Stack Developer',
+    title: 'Jameson Henrique | Automation, Integrations & Full Stack',
     description:
-      'Jameson Henrique, automation (RPA) and full stack developer. Production automations with Make, REST APIs and webhooks; systems with Java, Spring Boot and Angular.'
+      'Jameson Henrique, automation and integrations developer and full stack. Production process automation with Make, n8n, REST APIs and webhooks; systems with Java, Spring Boot and Angular.'
   },
   skipLink: 'Skip to content',
   nav: {
@@ -25,8 +25,8 @@ export const EN: SiteContent = {
     rodape: 'Footer'
   },
   hero: {
-    availability: 'Open to automation (RPA) and full stack roles',
-    badge: 'automation (rpa) & full stack',
+    availability: 'Open to automation, integrations and full stack roles',
+    badge: 'automation & integrations & full stack',
     lines: [
       [
         { text: 'Production automations with ' },
@@ -105,7 +105,7 @@ export const EN: SiteContent = {
     careerTitle: 'EXPERIENCE',
     career: [
       {
-        heading: 'Automation Development Intern (RPA) — LegalOps',
+        heading: 'Automation & Integrations Development Intern — LegalOps',
         sub: 'Duarte e Almeida Advogados (08/2026 - 10/2026)',
         text: [
           {
@@ -214,7 +214,7 @@ export const EN: SiteContent = {
   contact: {
     title: "LET'S TALK",
     cardTitle: "LET'S TALK ABOUT YOUR PROCESS",
-    text: 'Open to automation (RPA) and full stack development roles, and to freelance projects in integration and process automation.',
+    text: 'Open to automation, integrations and full stack development roles, and to freelance projects in systems integration and process automation.',
     email: 'EMAIL',
     phone: 'PHONE',
     location: 'LOCATION',

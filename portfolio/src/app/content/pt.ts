@@ -11,9 +11,9 @@ export const PT: SiteContent = {
   switchLabel: 'EN',
   switchAria: 'Read in English',
   meta: {
-    title: 'Jameson Henrique | Automação (RPA) e Full Stack',
+    title: 'Jameson Henrique | Automações, Integrações e Full Stack',
     description:
-      'Jameson Henrique, desenvolvedor de automação (RPA) e full stack. Automações em produção com Make, APIs REST e webhooks; sistemas com Java, Spring Boot e Angular.'
+      'Jameson Henrique, desenvolvedor de automações e integrações e full stack. Automação de processos em produção com Make, n8n, APIs REST e webhooks; sistemas com Java, Spring Boot e Angular.'
   },
   skipLink: 'Pular para o conteúdo',
   nav: {
@@ -26,8 +26,8 @@ export const PT: SiteContent = {
     rodape: 'Rodapé'
   },
   hero: {
-    availability: 'Disponível para vagas de automação (RPA) e full stack',
-    badge: 'automação (rpa) & full stack',
+    availability: 'Disponível para vagas de automação, integrações e full stack',
+    badge: 'automação & integrações & full stack',
     lines: [
       [
         { text: 'Automações em produção com ' },
@@ -106,7 +106,7 @@ export const PT: SiteContent = {
     careerTitle: 'CARREIRA',
     career: [
       {
-        heading: 'Estagiário em Desenvolvimento de Automação (RPA) — LegalOps',
+        heading: 'Estagiário em Desenvolvimento de Automações e Integrações — LegalOps',
         sub: 'Duarte e Almeida Advogados (08/2026 - 10/2026)',
         text: [
           {
@@ -215,7 +215,7 @@ export const PT: SiteContent = {
   contact: {
     title: 'VAMOS CONVERSAR',
     cardTitle: 'VAMOS CONVERSAR SOBRE O SEU PROCESSO',
-    text: 'Aberto a vagas de automação (RPA) e desenvolvimento full stack, e a projetos freelance de integração e automação de processos.',
+    text: 'Aberto a vagas de automação, integrações e desenvolvimento full stack, e a projetos freelance de integração de sistemas e automação de processos.',
     email: 'EMAIL',
     phone: 'TELEFONE',
     location: 'LOCALIZAÇÃO',

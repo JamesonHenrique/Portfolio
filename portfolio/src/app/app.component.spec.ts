@@ -39,7 +39,7 @@ describe('AppComponent', () => {
 
   it('should render the English home at /en', async () => {
     const el = await renderAll(await RouterTestingHarness.create('/en'));
-    expect(el.textContent).toContain('Automation Development Intern (RPA)');
+    expect(el.textContent).toContain('Automation & Integrations Development Intern');
     expect(el.querySelector('#sobre h2')?.getAttribute('aria-label')).toBe('ABOUT ME');
   });
 
