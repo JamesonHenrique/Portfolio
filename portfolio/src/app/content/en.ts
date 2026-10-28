@@ -62,7 +62,7 @@ export const EN: SiteContent = {
         { text: ' with the daily work of orchestrating business-critical processes.' }
       ],
       [
-        { text: 'I work in the LegalOps team of a law firm, keeping production workflows running that connect ' },
+        { text: 'I worked in the LegalOps team of a law firm (Aug/2026 to Oct/2026), keeping production workflows running that connect ' },
         { text: 'back-end and REST APIs', hl: 'tech' },
         { text: ' to ' },
         { text: 'webhooks and third-party services', hl: 'tech' },
@@ -104,10 +104,10 @@ export const EN: SiteContent = {
     career: [
       {
         heading: 'Automation Development Intern (RPA) — LegalOps',
-        sub: 'Duarte e Almeida Advogados (08/2026 - Present)',
+        sub: 'Duarte e Almeida Advogados (08/2026 - 10/2026)',
         text: [
           {
-            text: 'I maintain and debug the production workflows that take a client from first contact to a signed contract registered in the legal case system, integrating via REST APIs and webhooks: '
+            text: 'I maintained and debugged the production workflows that take a client from first contact to a signed contract registered in the legal case system, integrating via REST APIs and webhooks: '
           },
           { text: 'Make, n8n, ADVBOX, Coda, Octadesk, ZapSign, Google Workspace and Gemini', hl: 'plain' },
           { text: '.' }

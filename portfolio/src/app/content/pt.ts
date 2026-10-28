@@ -63,7 +63,7 @@ export const PT: SiteContent = {
         { text: ' ao dia a dia de orquestrar processos críticos de negócio.' }
       ],
       [
-        { text: 'Atuo no setor de LegalOps de um escritório de advocacia, mantendo em produção fluxos que conectam ' },
+        { text: 'Atuei no setor de LegalOps de um escritório de advocacia (ago/2026 a out/2026), mantendo em produção fluxos que conectam ' },
         { text: 'back-end e APIs REST', hl: 'tech' },
         { text: ' a ' },
         { text: 'webhooks e serviços de terceiros', hl: 'tech' },
@@ -105,10 +105,10 @@ export const PT: SiteContent = {
     career: [
       {
         heading: 'Estagiário em Desenvolvimento de Automação (RPA) — LegalOps',
-        sub: 'Duarte e Almeida Advogados (08/2026 - Atual)',
+        sub: 'Duarte e Almeida Advogados (08/2026 - 10/2026)',
         text: [
           {
-            text: 'Mantenho e depuro os fluxos em produção que levam o cliente do primeiro contato ao contrato assinado e cadastrado no sistema jurídico, integrando por API REST e webhooks: '
+            text: 'Mantive e depurei os fluxos em produção que levam o cliente do primeiro contato ao contrato assinado e cadastrado no sistema jurídico, integrando por API REST e webhooks: '
           },
           { text: 'Make, n8n, ADVBOX, Coda, Octadesk, ZapSign, Google Workspace e Gemini', hl: 'plain' },
           { text: '.' }
