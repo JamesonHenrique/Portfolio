@@ -62,7 +62,9 @@ export const EN: SiteContent = {
         { text: ' with the daily work of orchestrating business-critical processes.' }
       ],
       [
-        { text: 'I worked in the LegalOps team of a law firm (Aug/2026 to Oct/2026), keeping production workflows running that connect ' },
+        {
+          text: 'I worked in the LegalOps team of a law firm (Aug/2026 to Oct/2026), keeping production workflows running that connect '
+        },
         { text: 'back-end and REST APIs', hl: 'tech' },
         { text: ' to ' },
         { text: 'webhooks and third-party services', hl: 'tech' },

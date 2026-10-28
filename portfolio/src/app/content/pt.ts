@@ -63,7 +63,9 @@ export const PT: SiteContent = {
         { text: ' ao dia a dia de orquestrar processos críticos de negócio.' }
       ],
       [
-        { text: 'Atuei no setor de LegalOps de um escritório de advocacia (ago/2026 a out/2026), mantendo em produção fluxos que conectam ' },
+        {
+          text: 'Atuei no setor de LegalOps de um escritório de advocacia (ago/2026 a out/2026), mantendo em produção fluxos que conectam '
+        },
         { text: 'back-end e APIs REST', hl: 'tech' },
         { text: ' a ' },
         { text: 'webhooks e serviços de terceiros', hl: 'tech' },
