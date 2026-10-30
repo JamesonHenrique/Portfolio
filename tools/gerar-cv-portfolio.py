@@ -134,7 +134,7 @@ def construir(md, saida, pt):
                             topMargin=MARGEM_T, bottomMargin=MARGEM_B,
                             title="Jameson Henrique Cruz Sabino — Currículo",
                             author="Jameson Henrique Cruz Sabino",
-                            subject="Desenvolvedor Full Stack Java e Automação")
+                            subject="Desenvolvedor de Software Júnior — Java, Spring Boot e Angular")
     doc.build(montar(ler(md), pt))
 
 

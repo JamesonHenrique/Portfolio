@@ -10,9 +10,9 @@ export const EN: SiteContent = {
   switchLabel: 'PT',
   switchAria: 'Ler em português',
   meta: {
-    title: 'Jameson Henrique | Automation, Integrations & Full Stack',
+    title: 'Jameson Henrique | Junior Java, Spring Boot & Angular Developer',
     description:
-      'Jameson Henrique, automation and integrations developer and full stack. Production process automation with Make, n8n, REST APIs and webhooks; systems with Java, Spring Boot and Angular.'
+      'BTI student at UFRN and junior developer focused on Java, Spring Boot, Angular and TypeScript. Previous experience with automation, integrations, REST APIs and webhooks.'
   },
   skipLink: 'Skip to content',
   nav: {
@@ -25,24 +25,14 @@ export const EN: SiteContent = {
     rodape: 'Footer'
   },
   hero: {
-    availability: 'Open to automation, integrations and full stack roles',
-    badge: 'automation & integrations & full stack',
+    availability: 'Open to junior development and integrations roles',
+    badge: 'junior development · Java · Angular',
     lines: [
+      [{ text: 'API development with ' }, { text: 'Java and Spring Boot', hl: 'strong' }, { text: '.' }],
       [
-        { text: 'Production automations with ' },
-        { text: 'Make', hl: 'strong' },
-        { text: ', ' },
-        { text: 'REST APIs', hl: 'strong' },
-        { text: ' and ' },
-        { text: 'webhooks', hl: 'strong' },
-        { text: '.' }
-      ],
-      [
-        { text: 'Systems built with ' },
-        { text: 'Spring Boot', hl: 'strong' },
-        { text: ' and ' },
-        { text: 'Angular', hl: 'strong' },
-        { text: '.' }
+        { text: 'Interfaces with ' },
+        { text: 'Angular and TypeScript', hl: 'strong' },
+        { text: '; previous experience with automation and integrations.' }
       ]
     ],
     projectsButton: 'SEE PROJECTS',
@@ -53,17 +43,15 @@ export const EN: SiteContent = {
     photoAlt: 'Jameson Henrique',
     paragraphs: [
       [
-        { text: "I'm Jameson Henrique, an automation and full stack developer. I apply software engineering to " },
-        { text: 'process automation and systems integration', hl: 'strong' },
-        { text: ', combining a solid foundation in ' },
-        { text: '(Spring Boot)', hl: 'strong' },
-        { text: ' and ' },
-        { text: '(Angular)', hl: 'strong' },
-        { text: ' with the daily work of orchestrating business-critical processes.' }
+        {
+          text: "I'm an Information Technology bachelor's student at IMD/UFRN and a junior software developer focused on "
+        },
+        { text: 'Java/Spring Boot and Angular/TypeScript', hl: 'strong' },
+        { text: '. I also have previous professional experience in systems automation and integration.' }
       ],
       [
         {
-          text: 'I worked in the LegalOps team of a law firm (Aug/2026 to Oct/2026), keeping production workflows running that connect '
+          text: 'During my LegalOps internship (Aug/2026 to Oct/2026), I maintained production REST and webhook integrations and converted and validated 30 workflows for migration to n8n; production cutover depended on credentials and an authorized live test. The workflows connected '
         },
         { text: 'back-end and REST APIs', hl: 'tech' },
         { text: ' to ' },
@@ -143,7 +131,7 @@ export const EN: SiteContent = {
         title: 'OPORTUNIZAVAGA',
         name: 'Open-source job application agent',
         description:
-          'Searches, filters and applies to jobs on Brazilian job boards using free AI models and a real browser, at zero running cost. Runs unattended: restarts itself, keeps history outside the AI, switches between six AI providers when one hits its limit, and never makes up candidate data.',
+          'An open-source project that searches, filters and automates job applications on Brazilian job boards using AI and a real browser. It keeps state outside the model and uses configurable filters; its documentation recommends checking each portal’s terms and discourages mass applications.',
         techs: ['Python', 'Shell', 'Node.js', 'Chrome (CDP)', 'LLMs', 'GitHub Actions', 'Docker'],
         image: 'oportunizavaga_print.webp',
         page: '/en/projects/oportunizavaga',
@@ -246,19 +234,19 @@ export const EN: SiteContent = {
       title: 'OportunizaVaga',
       name: 'Open-source job application agent',
       metaDescription:
-        'OportunizaVaga: open-source agent that searches, filters and applies to jobs on Brazilian job boards with free AI models and a real browser. A project by Jameson Henrique.',
+        'OportunizaVaga: open-source job search and application automation with AI and a real browser, configurable filters and responsible-use documentation. A project by Jameson Henrique.',
       image: 'oportunizavaga_print.webp',
       imageAlt: 'OportunizaVaga monitor in the demo with fictitious data: applications sent and cadence by source',
       intro: [
-        'An agent that searches, filters and applies to jobs on Brazilian job boards using free AI models and a real browser, at zero running cost. It can be configured for any field and seniority level.',
-        'It was designed to run unattended: it restarts itself if it crashes, keeps history outside the AI, automatically switches between six AI providers when one hits its usage limit, and never makes up candidate data.'
+        'An open-source project that searches, filters and automates job applications on Brazilian job boards using AI and a real browser. Scope and filters come from local configuration; the model does not make up candidate data.',
+        'The README warns that automation may violate job-board terms and recommends checking each portal’s rules before enabling it. The project documents usage limits and discourages mass applications.'
       ],
       sections: [
         {
           heading: 'How it works',
           items: [
             'A cron job every 5 minutes calls an idempotent supervisor, which starts the loop and Chrome (via CDP) if either of them is down.',
-            'Each round visits 1 site from a circular rotation (Indeed, LinkedIn, Gupy, Programathor, GeekHunter…) and sleeps 20 minutes between rounds, backing off when there are no new jobs.',
+            'Each round visits one configured site and waits between rounds, backing off when there are no new jobs; check a portal’s terms before enabling automation there.',
             "State is kept in JSON files per profile, never in the AI model's session.",
             'Candidate data comes from a dedicated file; anything missing becomes a block with the exact reason instead of being made up.',
             'An optional monitor on Vercel shows the funnel and operations, with aggregated telemetry by default.'
@@ -268,7 +256,7 @@ export const EN: SiteContent = {
           heading: 'Technical decisions',
           items: [
             'An idempotent supervisor instead of a single long-running process: any failure is recovered on the next cron run.',
-            'A cascade of free models (Zen, OpenRouter, NVIDIA, Groq, Cerebras, HF): when one hits its usage limit it moves to the next, and returns to the preferred one automatically.',
+            'A configurable provider cascade: when one reaches its usage limit, it tries the next and returns to the preferred provider automatically.',
             'A single instance enforced by a file lock, so two rounds never fight over the same browser.'
           ]
         },

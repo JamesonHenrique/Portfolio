@@ -127,7 +127,7 @@ test('language switch goes to the English home and back', async ({ page }) => {
   await page.locator('a.lang-switch').click();
   await expect(page).toHaveURL(/\/en$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page).toHaveTitle(/Automation, Integrations/);
+  await expect(page).toHaveTitle(/Junior Java, Spring Boot/);
   await page.locator('a.lang-switch').click();
   await expect(page).toHaveURL(/\/$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');

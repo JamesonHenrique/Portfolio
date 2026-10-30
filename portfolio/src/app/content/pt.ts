@@ -11,9 +11,9 @@ export const PT: SiteContent = {
   switchLabel: 'EN',
   switchAria: 'Read in English',
   meta: {
-    title: 'Jameson Henrique | Automações, Integrações e Full Stack',
+    title: 'Jameson Henrique | Desenvolvedor Júnior Java, Spring Boot e Angular',
     description:
-      'Jameson Henrique, desenvolvedor de automações e integrações e full stack. Automação de processos em produção com Make, n8n, APIs REST e webhooks; sistemas com Java, Spring Boot e Angular.'
+      'Estudante de BTI na UFRN e desenvolvedor júnior com foco em Java, Spring Boot, Angular e TypeScript. Experiência anterior em automações, integrações, APIs REST e webhooks.'
   },
   skipLink: 'Pular para o conteúdo',
   nav: {
@@ -26,24 +26,14 @@ export const PT: SiteContent = {
     rodape: 'Rodapé'
   },
   hero: {
-    availability: 'Disponível para vagas de automação, integrações e full stack',
-    badge: 'automação & integrações & full stack',
+    availability: 'Disponível para oportunidades júnior em desenvolvimento e integração',
+    badge: 'desenvolvimento júnior · Java · Angular',
     lines: [
+      [{ text: 'Desenvolvimento de APIs com ' }, { text: 'Java e Spring Boot', hl: 'strong' }, { text: '.' }],
       [
-        { text: 'Automações em produção com ' },
-        { text: 'Make', hl: 'strong' },
-        { text: ', ' },
-        { text: 'APIs REST', hl: 'strong' },
-        { text: ' e ' },
-        { text: 'webhooks', hl: 'strong' },
-        { text: '.' }
-      ],
-      [
-        { text: 'Sistemas com ' },
-        { text: 'Spring Boot', hl: 'strong' },
-        { text: ' e ' },
-        { text: 'Angular', hl: 'strong' },
-        { text: '.' }
+        { text: 'Interfaces com ' },
+        { text: 'Angular e TypeScript', hl: 'strong' },
+        { text: '; experiência também com automação e integrações.' }
       ]
     ],
     projectsButton: 'VER PROJETOS',
@@ -54,17 +44,15 @@ export const PT: SiteContent = {
     photoAlt: 'Jameson Henrique',
     paragraphs: [
       [
-        { text: 'Sou Jameson Henrique, desenvolvedor de automação e full stack. Aplico engenharia de software à ' },
-        { text: 'automação e integração de sistemas', hl: 'strong' },
-        { text: ', unindo uma base sólida em ' },
-        { text: '(Spring Boot)', hl: 'strong' },
-        { text: ' e ' },
-        { text: '(Angular)', hl: 'strong' },
-        { text: ' ao dia a dia de orquestrar processos críticos de negócio.' }
+        {
+          text: 'Sou estudante de Bacharelado em Tecnologia da Informação no IMD/UFRN e desenvolvedor de software júnior, com foco em '
+        },
+        { text: 'Java/Spring Boot e Angular/TypeScript', hl: 'strong' },
+        { text: '. Também tenho experiência profissional anterior em automação e integração de sistemas.' }
       ],
       [
         {
-          text: 'Atuei no setor de LegalOps de um escritório de advocacia (ago/2026 a out/2026), mantendo em produção fluxos que conectam '
+          text: 'No estágio em LegalOps (ago/2026 a out/2026), mantive em produção integrações REST e webhooks e converti e validei 30 automações para migração ao n8n; a entrada em produção dependia de credenciais e de teste real autorizado. Os fluxos conectavam '
         },
         { text: 'back-end e APIs REST', hl: 'tech' },
         { text: ' a ' },
@@ -144,7 +132,7 @@ export const PT: SiteContent = {
         title: 'OPORTUNIZAVAGA',
         name: 'Agente open-source de candidatura a vagas',
         description:
-          'Busca, filtra e se candidata a vagas em portais brasileiros usando modelos de IA gratuitos e um navegador real, com custo zero de operação. Roda sem supervisão: reinicia sozinho, guarda o histórico fora da IA, troca entre seis provedores de IA quando um atinge o limite e nunca inventa dado do candidato.',
+          'Projeto open-source que busca, filtra e automatiza candidaturas em portais brasileiros usando modelos de IA e um navegador real. Mantém o estado fora do modelo, usa filtros configuráveis e tem testes e CI; a documentação recomenda verificar os termos de cada portal e desaconselha candidaturas em massa.',
         techs: ['Python', 'Shell', 'Node.js', 'Chrome (CDP)', 'LLMs', 'GitHub Actions', 'Docker'],
         image: 'oportunizavaga_print.webp',
         page: '/projetos/oportunizavaga',
@@ -247,19 +235,19 @@ export const PT: SiteContent = {
       title: 'OportunizaVaga',
       name: 'Agente open-source de candidatura a vagas',
       metaDescription:
-        'OportunizaVaga: agente open-source que busca, filtra e se candidata a vagas em portais brasileiros com modelos de IA gratuitos e um navegador real. Projeto de Jameson Henrique.',
+        'OportunizaVaga: projeto open-source de automação de busca e candidaturas em portais brasileiros com IA e navegador real, com filtros configuráveis e documentação de uso responsável. Projeto de Jameson Henrique.',
       image: 'oportunizavaga_print.webp',
       imageAlt: 'Monitor do OportunizaVaga na demo com dados fictícios: candidaturas enviadas e cadência por fonte',
       intro: [
-        'Agente que busca, filtra e se candidata a vagas em portais brasileiros usando modelos de IA gratuitos e um navegador real, com custo zero de operação. É configurável para qualquer área e nível.',
-        'Foi projetado para rodar sem supervisão: reinicia sozinho se cair, guarda o histórico fora da IA, troca automaticamente entre seis provedores de IA quando um atinge o limite de uso e nunca inventa dado do candidato.'
+        'Projeto open-source que busca, filtra e automatiza candidaturas em portais brasileiros usando IA e navegador real. O escopo e os filtros vêm de uma configuração local; os dados do candidato não são inventados pelo modelo.',
+        'O README alerta que a automação pode violar os termos dos portais e recomenda conferir as regras antes de habilitar cada site. O projeto documenta limites de uso e desaconselha candidaturas em massa.'
       ],
       sections: [
         {
           heading: 'Como funciona',
           items: [
             'Um cron a cada 5 minutos chama um supervisor idempotente, que sobe o loop e o Chrome (via CDP) se algum deles tiver caído.',
-            'Cada rodada visita 1 site de um rodízio circular (Indeed, LinkedIn, Gupy, Programathor, GeekHunter…) e dorme 20 minutos entre rodadas, com backoff quando não há vaga nova.',
+            'Cada rodada visita um site do rodízio configurado e respeita intervalo entre rodadas, com backoff quando não há vaga nova; confira os termos de uso do portal antes de habilitar a automação.',
             'O estado fica em arquivos JSON por perfil, nunca na sessão do modelo de IA.',
             'Os dados do candidato vêm de um arquivo próprio; o que falta vira um bloqueio com o motivo exato, em vez de ser inventado.',
             'Um monitor opcional na Vercel mostra o funil e a operação, com telemetria agregada por padrão.'
@@ -269,7 +257,7 @@ export const PT: SiteContent = {
           heading: 'Decisões técnicas',
           items: [
             'Supervisor idempotente em vez de processo único: qualquer falha é recuperada na próxima execução do cron.',
-            'Cascata de modelos gratuitos (Zen, OpenRouter, NVIDIA, Groq, Cerebras, HF): ao bater no limite de uso de um, passa para o próximo e volta ao preferido automaticamente.',
+            'Cascata configurável de provedores de IA: quando um atinge limite de uso, tenta o próximo e retorna ao preferido automaticamente.',
             'Instância única garantida por lock de arquivo, para duas rodadas nunca disputarem o mesmo navegador.'
           ]
         },

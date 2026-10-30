@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/JamesonHenrique/Portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/JamesonHenrique/Portfolio/actions/workflows/ci.yml)
 
-Desenvolvedor de **automação (RPA) e full stack**. Este é o código do meu site pessoal.
+Estudante de BTI na UFRN e desenvolvedor júnior com foco em **Java/Spring Boot e Angular/TypeScript**. Tenho experiência anterior em automação e integração de sistemas. Este é o código do meu site pessoal.
 
 **No ar:** https://jamesonhenrique-portfolio.vercel.app/
 
