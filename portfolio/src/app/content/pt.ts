@@ -52,7 +52,7 @@ export const PT: SiteContent = {
       ],
       [
         {
-          text: 'No estágio em LegalOps (ago/2026 a out/2026), mantive em produção integrações REST e webhooks e converti e validei 30 automações para migração ao n8n; a entrada em produção dependia de credenciais e de teste real autorizado. Os fluxos conectavam '
+          text: 'No estágio em LegalOps (ago/2026 a out/2026), mantive em produção integrações REST e webhooks e converti 30 automações para o n8n Cloud; todas foram testadas e validadas. O corte para produção ficou pendente de credenciais e autorização. Os fluxos conectavam '
         },
         { text: 'back-end e APIs REST', hl: 'tech' },
         { text: ' a ' },

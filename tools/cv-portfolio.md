@@ -3,13 +3,13 @@
 > Natal/RN • (84) 98822-4405 • jameson.henrique.dev@gmail.com • linkedin.com/in/jamesonhenrique • github.com/JamesonHenrique
 
 ## RESUMO PROFISSIONAL
-Estudante de Bacharelado em Tecnologia da Informação no IMD/UFRN, com foco em desenvolvimento júnior usando Java/Spring Boot e Angular/TypeScript. No estágio em LegalOps (ago/2026 a out/2026), mantive integrações REST e webhooks em produção e converti e validei 30 automações para migração ao n8n; a entrada em produção dependia de credenciais e de teste real autorizado. Como freelancer, desenvolvi sozinho um painel Spring Boot/Angular usado por um cliente. Tenho experiência com tratamento de erros, idempotência e segurança de credenciais.
+Estudante de Bacharelado em Tecnologia da Informação no IMD/UFRN, com foco em desenvolvimento júnior usando Java/Spring Boot e Angular/TypeScript. No estágio em LegalOps (ago/2026 a out/2026), mantive integrações REST e webhooks em produção e converti 30 automações para o n8n Cloud; todas foram testadas e validadas. O corte para produção ficou pendente de credenciais e autorização. Como freelancer, desenvolvi sozinho um painel Spring Boot/Angular usado por um cliente. Tenho experiência com tratamento de erros, idempotência e segurança de credenciais.
 
 ## EXPERIÊNCIA PROFISSIONAL
 ### Estagiário em Desenvolvimento de Automações e Integrações — Duarte e Almeida Advogados · ago/2026 – out/2026
 _ LegalOps · Departamento de Tecnologia · atende o escritório, a PrecInvest (antecipação de precatórios) e a Deahub
 - Desenvolvi e mantive integrações via APIs REST e webhooks entre CRM, sistema jurídico, assinatura eletrônica, WhatsApp, Google Workspace e IA, que levam o cliente do primeiro contato ao contrato assinado e cadastrado sem digitação manual.
-- Converti e validei no n8n Cloud **30 automações** (19 do escritório e 11 da PrecInvest), escolhidas após inventariar 57 cenários (~7.300 execuções/mês). A entrada em produção dependia de credenciais e de teste real autorizado.
+- Converti para o n8n Cloud e testei **30 automações** (19 do escritório e 11 da PrecInvest), escolhidas após inventariar 57 cenários (~7.300 execuções/mês); todas foram validadas. O corte para produção ficou pendente de credenciais e autorização.
 - Substituí segredos embutidos nos workflows por credenciais dedicadas no n8n; projetei travas de idempotência para PIX, contratos e ligações e um Error Workflow central com dados pessoais mascarados.
 - Corrigi falhas de validação, consultas REST, processamento em lote e paginação em fluxos de contrato, pagamentos e extratos; as correções no fluxo de assinatura reduziram cerca de **5 retrabalhos manuais por semana**.
 - Desenvolvi em Python e Node.js ferramentas para inventário, conversão, validação via MCP e upload idempotente; testes automatizados validaram **197 Code nodes** sem falhas de sintaxe.

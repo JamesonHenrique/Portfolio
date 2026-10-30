@@ -51,7 +51,7 @@ export const EN: SiteContent = {
       ],
       [
         {
-          text: 'During my LegalOps internship (Aug/2026 to Oct/2026), I maintained production REST and webhook integrations and converted and validated 30 workflows for migration to n8n; production cutover depended on credentials and an authorized live test. The workflows connected '
+          text: 'During my LegalOps internship (Aug/2026 to Oct/2026), I maintained production REST and webhook integrations and converted 30 workflows to n8n Cloud; all 30 were tested and validated. The production cutover remained pending the required credentials and authorization. The workflows connected '
         },
         { text: 'back-end and REST APIs', hl: 'tech' },
         { text: ' to ' },
