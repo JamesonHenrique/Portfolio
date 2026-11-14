@@ -6,14 +6,15 @@
 ### Desenvolvedor Full Stack e Responsável por Tecnologia — Wolfacilitates C&M · out/2026 – atual
 _ Remoto · início em 13/10/2026
 - Planejo e desenvolvo aplicações web, landing pages e sistemas internos para as necessidades da empresa.
-- Participo da estruturação de um CRM próprio e da definição de arquitetura, tecnologias, APIs e integrações.
-- Avalio infraestrutura e custos e planejo testes, segurança, implantação e monitoramento.
+- Participo da estruturação de um CRM próprio e da definição de arquitetura e tecnologias.
+- Planejo APIs e integrações entre sistemas e avalio infraestrutura digital e custos.
+- Planejo testes, segurança, versionamento, implantação e monitoramento das soluções.
 
 ### Estagiário em Desenvolvimento de Automações e Integrações — Duarte e Almeida Advogados · ago/2026 – out/2026
 _ LegalOps · Departamento de Tecnologia
 - Mantive integrações em produção no Make entre atendimento, CRM, assinatura eletrônica e sistema jurídico, usando APIs REST e webhooks.
 - Converti e validei **30 automações** do Make para n8n Cloud.
-- Participei da construção assistida por IA de uma auditoria diária de tarefas jurídicas, desde os requisitos até a execução e validação das versões.
+- Participei da construção de uma auditoria diária de tarefas jurídicas, levantando requisitos e validando versões.
 - Refinei com a direção e a Controladoria as regras que distinguem peças em revisão de pendências de protocolo.
 - Investiguei falhas no atendimento com IA e acompanhei a revisão de instruções e contratos de dados entre sistemas.
 - Analisei falhas em fluxos de assinatura e pós-venda, compartilhando retornos de execução com as áreas envolvidas.
@@ -21,16 +22,17 @@ _ LegalOps · Departamento de Tecnologia
 ^ Make · n8n · APIs REST · Webhooks · JSON · Google Workspace · CRM · IA aplicada
 
 ### Desenvolvedor Full Stack (Freelancer) — Painel de Máquinas · jun/2025 – jul/2025
-- Desenvolvi painel web em uso no chão de fábrica, com backend e frontend para acompanhar máquinas paradas, em operação, em manutenção ou sem operador.
+- Desenvolvi o backend e o frontend de um painel web para monitoramento de equipamentos.
+- Organizei a visualização de máquinas por estado, em um sistema usado pelo cliente no chão de fábrica.
 ^ Java · Spring Boot · Angular · TypeScript · MongoDB
 
 ## PROJETOS
 ### Newgram — rede social full stack · github.com/JamesonHenrique/Newgram
 - API Spring Boot e frontend Angular; autenticação JWT com testes de refresh, upload para AWS S3 e banco PostgreSQL com Flyway.
 ### OportunizaVaga · github.com/JamesonHenrique/OportunizaVaga
-- Busca e organização de oportunidades com filtros, persistência e navegador; evolução assistida por IA do gerador de currículos.
+- Ferramenta de busca e organização de oportunidades, com filtros, persistência, integração com navegador e gerador de currículos.
 ### HelpMyDesk — aplicativo pessoal de suporte técnico
-- Defini escopo e acompanhei testes de aplicativo de diagnóstico desktop em Rust, Tauri e Angular, com desenvolvimento assistido por IA.
+- Defini escopo e acompanhei testes de aplicativo de diagnóstico desktop em Rust, Tauri e Angular.
 
 ## COMPETÊNCIAS TÉCNICAS
 * **Linguagens:** Java, TypeScript, JavaScript, Python, SQL
