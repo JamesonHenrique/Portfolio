@@ -11,7 +11,7 @@ _ Remoto · início em 13/10/2026
 
 ### Estagiário em Desenvolvimento de Automações e Integrações — Duarte e Almeida Advogados · ago/2026 – out/2026
 - Mantive integrações em produção via APIs REST e webhooks entre atendimento, assinatura e sistema jurídico.
-- Converti e validei **30 automações** do Make para n8n Cloud; o corte para produção ficou pendente de credenciais e autorização.
+- Converti e validei **30 automações** do Make para n8n Cloud.
 - Especifiquei e validei com apoio de IA uma auditoria diária, refinando regras de protocolo e revisão com a direção e a Controladoria.
 - Investiguei consulta que retornou **100 de 828 tarefas**, conferi nove páginas e acompanhei erro 429; analisei também incompatibilidade entre JSON e texto.
 ^ Make · n8n · APIs REST · Webhooks · JSON · Python · Node.js
