@@ -41,92 +41,16 @@ export const PT: SiteContent = {
   },
   about: {
     title: 'SOBRE MIM',
-    photoAlt: 'Jameson Henrique',
-    paragraphs: [
-      [
-        {
-          text: 'Sou estudante de Bacharelado em Tecnologia da Informação no IMD/UFRN e desenvolvedor de software júnior, com foco em '
-        },
-        { text: 'Java/Spring Boot e Angular/TypeScript', hl: 'strong' },
-        {
-          text: '. Atuo como Desenvolvedor Full Stack e Responsável por Tecnologia na Wolfacilitates C&M desde outubro de 2026, em trabalho remoto, participando do planejamento e da evolução das soluções digitais da empresa.'
-        }
-      ],
-      [
-        {
-          text: 'No estágio em LegalOps (ago/2026 a out/2026), mantive em produção integrações REST e webhooks e converti 30 automações para o n8n Cloud; todas foram testadas e validadas. O corte para produção ficou pendente de credenciais e autorização. Os fluxos conectavam '
-        },
-        { text: 'back-end e APIs REST', hl: 'tech' },
-        { text: ' a ' },
-        { text: 'webhooks e serviços de terceiros', hl: 'tech' },
-        { text: ', do lead à assinatura de contrato e ao cadastro processual.' }
-      ],
-      [
-        { text: 'Meu foco é ' },
-        { text: 'automação que não quebra sozinha', hl: 'underline' },
-        {
-          text: ', visibilidade para quem opera e cuidado com o dado do cliente, com depuração de integração no nível do payload, do header e do contrato de dados.'
-        }
-      ]
-    ],
-    educationTitle: 'FORMAÇÃO',
-    education: [
-      {
-        heading: 'Bacharelado em Tecnologia da Informação',
-        sub: 'Universidade Federal do Rio Grande do Norte - 2026-2030 (Em andamento)',
-        text: [
-          {
-            text: 'Formação superior voltada para o desenvolvimento de soluções tecnológicas, gestão de infraestrutura de TI e engenharia de software.'
-          }
-        ]
-      },
-      {
-        heading: 'Certificações',
-        list: [
-          'Spring 6 & Spring Boot 3 for Beginners (Udemy)',
-          'Angular e Spring Boot (loiane.training)',
-          'Angular (loiane.training)'
-        ]
-      },
-      {
-        heading: 'Idiomas',
-        text: [{ text: 'Português (nativo) · Inglês (intermediário, B1) · Espanhol (básico, A2)' }]
-      }
-    ],
-    careerTitle: 'CARREIRA',
-    career: [
-      {
-        heading: 'Desenvolvedor Full Stack e Responsável por Tecnologia',
-        sub: 'Wolfacilitates C&M (13/10/2026 - atual) · Remoto',
-        text: [
-          {
-            text: 'Planejamento, desenvolvimento e evolução de aplicações web, landing pages e sistemas internos; estruturação de CRM próprio, definição de arquitetura e integrações, análise de infraestrutura e custos e planejamento de qualidade e segurança.'
-          }
-        ]
-      },
-      {
-        heading: 'Estagiário em Desenvolvimento de Automações e Integrações — LegalOps',
-        sub: 'Duarte e Almeida Advogados (08/2026 - 10/2026)',
-        text: [
-          {
-            text: 'Mantive e depurei os fluxos em produção que levam o cliente do primeiro contato ao contrato assinado e cadastrado no sistema jurídico, integrando por API REST e webhooks: '
-          },
-          { text: 'Make, n8n, ADVBOX, Coda, Octadesk, ZapSign, Google Workspace e Gemini', hl: 'plain' },
-          { text: '.' }
-        ]
-      },
-      {
-        heading: 'Desenvolvedor Full Stack — Freelancer',
-        sub: 'Painel de Máquinas (06/2025 - 07/2025)',
-        text: [
-          {
-            text: 'Desenvolvi sozinho o sistema completo, em uso pelo cliente no chão de fábrica. Substituiu a conferência manual: a equipe vê em tempo real quais máquinas estão paradas, em operação, em manutenção ou sem operador. Feito com '
-          },
-          { text: 'Java, Spring Boot, Angular e MongoDB', hl: 'plain' },
-          { text: '.' }
-        ]
-      }
-    ]
+    photoAlt: 'Foto de Jameson Henrique',
+    intro:
+      'Sou desenvolvedor de software e estudante de Tecnologia da Informação no IMD/UFRN. Gosto de transformar necessidades reais em soluções digitais úteis e fáceis de usar.',
+    detail:
+      'Meu foco está no desenvolvimento com Java, Spring Boot, Angular e TypeScript, com experiência também em automações e integrações entre sistemas.',
+    educationLabel: 'FORMAÇÃO',
+    education: 'Bacharelado em Tecnologia da Informação · UFRN',
+    workLabel: 'ATUAÇÃO ATUAL',
+    work: 'Desenvolvedor Full Stack e Responsável por Tecnologia · Wolfacilitates C&M',
+    cvLink: 'Baixar currículo'
   },
   skills: { title: 'STACK', systemsTitle: 'SISTEMAS QUE JÁ INTEGREI' },
   projects: {

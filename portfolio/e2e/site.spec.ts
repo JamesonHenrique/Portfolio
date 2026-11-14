@@ -73,7 +73,7 @@ test('prerendered HTML already contains the page text (SEO)', async ({ request }
     expect(html).toContain(text);
   }
   const en = await (await request.get('/en')).text();
-  expect(en).toContain('Automation &amp; Integrations Development Intern');
+  expect(en).toContain('CURRENT ROLE');
 });
 
 test('unknown path falls back to the home page', async ({ page }) => {
@@ -86,7 +86,7 @@ test('unknown path falls back to the home page', async ({ page }) => {
 test('below-the-fold sections animate when scrolled into view', async ({ page }) => {
   await page.goto('/');
   await scrollThrough(page);
-  await expect(page.locator('#sobre .paragraph-animated').first()).toBeAttached();
+  await expect(page.locator('#sobre .about-visible').first()).toBeAttached();
   await expect(page.locator('#skills .skills-animated').first()).toBeAttached();
   await expect(page.locator('#projetos.animate-section')).toBeAttached();
   await expect(page.locator('#contato.animate-section')).toBeAttached();
@@ -95,7 +95,7 @@ test('below-the-fold sections animate when scrolled into view', async ({ page })
   // Entrance animations start at opacity 0; make sure each animated group actually ends visible.
   await page.waitForTimeout(2500);
   for (const selector of [
-    '#sobre .paragraph-animated',
+    '#sobre .about-visible',
     '#skills .skill-card',
     '#skills .skill-item',
     '#projetos .project-card',

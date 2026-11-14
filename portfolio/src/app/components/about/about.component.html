@@ -2,91 +2,39 @@
   <div class="about-shape w-96 h-96 shape-blob -right-60 -top-40" aria-hidden="true"></div>
 
   <div class="container mx-auto max-w-6xl relative">
-    <h2 class="section-title" [class.title-reveal]="isVisible" [attr.aria-label]="c().about.title">
-      {{ c().about.title }}
-    </h2>
+    <h2 class="section-title">{{ c().about.title }}</h2>
 
-    <div class="mt-14 grid gap-12 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16 items-start">
-      <div class="about-photo-col">
-        <div class="about-photo" [class.photo-reveal]="isVisible">
-          <div class="about-photo-frame shape-hexagon" aria-hidden="true"></div>
-          <img
-            src="about-me.jpg"
-            [alt]="c().about.photoAlt"
-            width="320"
-            height="320"
-            class="about-photo-img shape-hexagon"
-          />
+    <div class="about-layout" [class.about-visible]="isVisible">
+      <div class="about-intro">
+        <div class="about-profile">
+          <img src="about-me.jpg" [alt]="c().about.photoAlt" width="112" height="112" class="about-photo" />
+          <div>
+            <span class="about-eyebrow">{{ c().hero.badge }}</span>
+            <p class="about-name">Jameson Henrique</p>
+          </div>
         </div>
+
+        <p class="about-lead">{{ c().about.intro }}</p>
+        <p class="about-detail">{{ c().about.detail }}</p>
+        <a class="about-link" href="/JAMESON_HENRIQUE_CV.pdf" download="JAMESON_HENRIQUE_CV.pdf">
+          {{ c().about.cvLink }} <span aria-hidden="true">↗</span>
+        </a>
       </div>
 
-      <div>
-        <div class="paragraph-group">
-          @for (paragraph of c().about.paragraphs; track $index) {
-            <p
-              class="about-paragraph"
-              [class.paragraph-animated]="isVisible"
-              [style.animation-delay]="0.2 * $index + 's'"
-            >
-              @for (seg of paragraph; track $index) {
-                <span
-                  [class.text-purple-300]="seg.hl"
-                  [class.font-bold]="seg.hl === 'strong'"
-                  [class.name-highlight]="seg.hl === 'strong'"
-                  [class.tech-bounce]="seg.hl === 'tech'"
-                  [class.underline-effect]="seg.hl === 'underline'"
-                  >{{ seg.text }}</span
-                >
-              }
-            </p>
-          }
+      <div class="about-highlights">
+        <div class="about-highlight">
+          <span class="highlight-number" aria-hidden="true">01</span>
+          <div>
+            <h3>{{ c().about.educationLabel }}</h3>
+            <p>{{ c().about.education }}</p>
+          </div>
         </div>
-
-        <div class="mt-10 grid gap-6">
-          @for (card of cards(); track card.title; let ci = $index) {
-            <div
-              class="card p-6 sm:p-8"
-              [class.animate-card]="isVisible"
-              [style.animation-delay]="0.5 + ci * 0.2 + 's'"
-            >
-              <h3 class="card-title mb-7">{{ card.title }}</h3>
-
-              <div class="timeline">
-                @for (item of card.items; track item.heading) {
-                  <div
-                    class="timeline-item"
-                    [class.animate-timeline-item]="isVisible"
-                    [style.animation-delay]="0.6 + ci * 0.2 + $index * 0.1 + 's'"
-                  >
-                    <span
-                      class="timeline-dot"
-                      [class.shape-diamond]="ci === 0"
-                      [class.shape-notch]="ci === 1"
-                      aria-hidden="true"
-                    ></span>
-                    <h4 class="timeline-heading">{{ item.heading }}</h4>
-                    @if (item.sub) {
-                      <div class="timeline-sub">{{ item.sub }}</div>
-                    }
-                    @if (item.text) {
-                      <p class="timeline-text">
-                        @for (seg of item.text; track $index) {
-                          <span [class.text-purple-300]="seg.hl">{{ seg.text }}</span>
-                        }
-                      </p>
-                    }
-                    @if (item.list) {
-                      <ul class="timeline-text space-y-1">
-                        @for (entry of item.list; track entry) {
-                          <li>{{ entry }}</li>
-                        }
-                      </ul>
-                    }
-                  </div>
-                }
-              </div>
-            </div>
-          }
+        <div class="about-highlight">
+          <span class="highlight-number" aria-hidden="true">02</span>
+          <div>
+            <h3>{{ c().about.workLabel }}</h3>
+            <p>{{ c().about.work }}</p>
+          </div>
         </div>
       </div>
     </div>

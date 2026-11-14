@@ -12,7 +12,7 @@ Desenvolvedor Full Stack e Responsável por Tecnologia na **Wolfacilitates C&M**
 
 | Seção | Conteúdo |
 |---|---|
-| Sobre | Formação e experiência, com o mesmo texto do currículo |
+| Sobre | Apresentação breve, formação e atuação atual, com acesso ao currículo |
 | Stack | Ferramentas com ícones (automação e IA, backend, frontend, infra), mais os sistemas que já integrei |
 | Projetos | OportunizaVaga, Painel de Máquinas, Newgram e outros; OportunizaVaga e Newgram têm página própria |
 | Inglês | Versão completa em `/en`, com hreflang entre os idiomas |
@@ -71,7 +71,7 @@ npm run lint && npm run format:check
 
 Ao trocar de domínio, atualize `SITE_ORIGIN` em `content/types.ts`, as URLs absolutas de `src/index.html`, `public/robots.txt` e `public/sitemap.xml`.
 
-Os textos seguem o currículo. Ao mudar um, atualize o outro.
+Os fatos da apresentação devem permanecer consistentes com o currículo.
 
 ## Contato
 

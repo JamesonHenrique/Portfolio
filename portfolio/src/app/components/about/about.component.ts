@@ -1,13 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  ViewChild,
-  AfterViewInit,
-  OnDestroy,
-  computed,
-  inject
-} from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { I18nService } from '../../services/i18n.service';
 import { onFirstView } from '../../utils/in-view';
 
@@ -23,11 +14,6 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
   @ViewChild('aboutSection') aboutSection!: ElementRef<HTMLElement>;
   isVisible = false;
   readonly c = inject(I18nService).content;
-  readonly titleLetters = computed(() => this.c().about.title.split(''));
-  readonly cards = computed(() => [
-    { title: this.c().about.educationTitle, items: this.c().about.education },
-    { title: this.c().about.careerTitle, items: this.c().about.career }
-  ]);
   private stopObserving?: () => void;
 
   ngAfterViewInit() {

@@ -9,13 +9,6 @@ export interface Segment {
   hl?: 'strong' | 'tech' | 'underline' | 'plain';
 }
 
-export interface TimelineItem {
-  heading: string;
-  sub?: string;
-  text?: Segment[];
-  list?: string[];
-}
-
 export interface ProjectCard {
   title: string;
   name: string;
@@ -74,11 +67,13 @@ export interface SiteContent {
   about: {
     title: string;
     photoAlt: string;
-    paragraphs: Segment[][];
-    educationTitle: string;
-    education: TimelineItem[];
-    careerTitle: string;
-    career: TimelineItem[];
+    intro: string;
+    detail: string;
+    educationLabel: string;
+    education: string;
+    workLabel: string;
+    work: string;
+    cvLink: string;
   };
   skills: { title: string; systemsTitle: string };
   projects: {

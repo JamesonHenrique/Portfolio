@@ -34,13 +34,13 @@ describe('AppComponent', () => {
         .not.toBeNull();
     }
     expect(el.querySelector('h1')?.getAttribute('aria-label')).toBe('Jameson Henrique');
-    expect(el.querySelector('#sobre h2')?.getAttribute('aria-label')).toBe('SOBRE MIM');
+    expect(el.querySelector('#sobre h2')?.textContent?.trim()).toBe('SOBRE MIM');
   });
 
   it('should render the English home at /en', async () => {
     const el = await renderAll(await RouterTestingHarness.create('/en'));
-    expect(el.textContent).toContain('Automation & Integrations Development Intern');
-    expect(el.querySelector('#sobre h2')?.getAttribute('aria-label')).toBe('ABOUT ME');
+    expect(el.textContent).toContain('CURRENT ROLE');
+    expect(el.querySelector('#sobre h2')?.textContent?.trim()).toBe('ABOUT ME');
   });
 
   it('should render a project page', async () => {
