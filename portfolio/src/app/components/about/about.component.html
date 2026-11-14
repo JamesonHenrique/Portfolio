@@ -7,7 +7,7 @@
     <div class="about-layout" [class.about-visible]="isVisible">
       <div class="about-intro">
         <div class="about-profile">
-          <img src="about-me.jpg" [alt]="c().about.photoAlt" width="112" height="112" class="about-photo" />
+          <img src="about-me.jpg" [alt]="c().about.photoAlt" width="128" height="128" class="about-photo" />
           <div>
             <span class="about-eyebrow">{{ c().hero.badge }}</span>
             <p class="about-name">Jameson Henrique</p>
@@ -34,7 +34,19 @@
           <div>
             <h3>{{ c().about.workLabel }}</h3>
             <p>{{ c().about.work }}</p>
+            <p class="work-detail">{{ c().about.workDetail }}</p>
           </div>
+        </div>
+      </div>
+      <div class="about-experience">
+        <h3>{{ c().about.experienceLabel }}</h3>
+        <div class="experience-list">
+          @for (role of c().about.pastRoles; track role.role) {
+            <div>
+              <h4>{{ role.role }}</h4>
+              <p>{{ role.detail }}</p>
+            </div>
+          }
         </div>
       </div>
     </div>

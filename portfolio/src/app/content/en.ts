@@ -48,7 +48,19 @@ export const EN: SiteContent = {
     educationLabel: 'EDUCATION',
     education: "Bachelor's in Information Technology · UFRN",
     workLabel: 'CURRENT ROLE',
-    work: 'Full Stack Developer and Technology Lead · Wolfacilitates C&M',
+    work: 'Full Stack Developer and Technology Lead · Wolfacilitates C&M · since Oct 2026',
+    workDetail: 'Planning web applications, internal systems, CRM and integrations.',
+    experienceLabel: 'EXPERIENCE',
+    pastRoles: [
+      {
+        role: 'Automation and integrations · Duarte e Almeida · Aug–Oct 2026',
+        detail: 'Production integrations and 30 workflows converted and validated.'
+      },
+      {
+        role: 'Freelance Full Stack · Machine Dashboard · Jun–Jul 2025',
+        detail: 'Machine monitoring system used by the client.'
+      }
+    ],
     cvLink: 'Download résumé'
   },
   skills: { title: 'STACK', systemsTitle: "SYSTEMS I'VE INTEGRATED" },

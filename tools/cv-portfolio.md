@@ -2,9 +2,6 @@
 @ Desenvolvedor Full Stack | TypeScript · Java · Spring Boot · Angular · APIs REST
 > Parazinho/RN • (84) 98822-4405 • jameson.henrique.dev@gmail.com • linkedin.com/in/jamesonhenrique • github.com/JamesonHenrique
 
-## RESUMO PROFISSIONAL
-Desenvolvedor Full Stack e Responsável por Tecnologia na Wolfacilitates Consulting & Management, com atuação no planejamento, desenvolvimento e evolução de soluções digitais. Estudante de BTI no IMD/UFRN, com base em Java/Spring Boot e Angular/TypeScript e experiência anterior em automações e integrações em LegalOps.
-
 ## EXPERIÊNCIA PROFISSIONAL
 ### Desenvolvedor Full Stack e Responsável por Tecnologia — Wolfacilitates C&M · out/2026 – atual
 _ Remoto · início em 13/10/2026
@@ -13,13 +10,14 @@ _ Remoto · início em 13/10/2026
 - Analiso a infraestrutura digital e os custos tecnológicos e planejo testes, segurança, versionamento, implantação e monitoramento.
 
 ### Estagiário em Desenvolvimento de Automações e Integrações — Duarte e Almeida Advogados · ago/2026 – out/2026
-- Contribuí para especificar e validar uma auditoria diária de tarefas jurídicas, refinando regras a partir de retornos da direção e da Controladoria.
-- Investiguei falhas de paginação, limites de requisições e incompatibilidade entre objeto JSON e texto em integrações.
-- Converti e validei 30 automações para n8n Cloud; a entrada em produção ficou pendente de credenciais e autorização.
+- Mantive integrações em produção via APIs REST e webhooks entre atendimento, assinatura e sistema jurídico.
+- Converti e validei **30 automações** do Make para n8n Cloud; o corte para produção ficou pendente de credenciais e autorização.
+- Especifiquei e validei com apoio de IA uma auditoria diária, refinando regras de protocolo e revisão com a direção e a Controladoria.
+- Investiguei consulta que retornou **100 de 828 tarefas**, conferi nove páginas e acompanhei erro 429; analisei também incompatibilidade entre JSON e texto.
 ^ Make · n8n · APIs REST · Webhooks · JSON · Python · Node.js
 
 ### Desenvolvedor Full Stack (Freelancer) — Painel de Máquinas · jun/2025 – jul/2025
-- Desenvolvi um painel web com Spring Boot, Angular e MongoDB para visualizar estados de máquinas.
+- Desenvolvi painel web em uso no chão de fábrica para acompanhar máquinas paradas, em operação, em manutenção ou sem operador, com Spring Boot, Angular e MongoDB.
 
 ## PROJETOS
 ### Newgram — rede social full stack · github.com/JamesonHenrique/Newgram

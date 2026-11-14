@@ -73,6 +73,9 @@ export interface SiteContent {
     education: string;
     workLabel: string;
     work: string;
+    workDetail: string;
+    experienceLabel: string;
+    pastRoles: { role: string; detail: string }[];
     cvLink: string;
   };
   skills: { title: string; systemsTitle: string };

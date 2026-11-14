@@ -155,13 +155,13 @@ if __name__ == "__main__":
                                                           "JAMESON_HENRIQUE_CV.pdf"))
     ap.add_argument("--md", default=os.path.join(BASE, "cv-portfolio.md"))
     a = ap.parse_args()
-    inicial = float(os.environ.get("CV_FONTE_PT") or 8.6)
-    for pt in [inicial - 0.15 * i for i in range(7)]:
+    inicial = float(os.environ.get("CV_FONTE_PT") or 10.0)
+    for pt in [inicial - 0.15 * i for i in range(7) if inicial - 0.15 * i >= 9.0]:
         construir(a.md, a.saida, round(pt, 2))
         n = paginas(a.saida)
         if n == 1:
             print("gerado %s — 1 página, corpo %.2fpt" % (a.saida, pt))
             break
     else:
-        print("ERRO: não caiu para 1 página nem em 7.7pt — corte texto", file=sys.stderr)
+        print("ERRO: não coube em uma página com fonte legível — corte texto", file=sys.stderr)
         sys.exit(1)

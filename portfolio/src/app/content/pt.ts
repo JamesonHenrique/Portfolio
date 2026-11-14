@@ -49,7 +49,19 @@ export const PT: SiteContent = {
     educationLabel: 'FORMAÇÃO',
     education: 'Bacharelado em Tecnologia da Informação · UFRN',
     workLabel: 'ATUAÇÃO ATUAL',
-    work: 'Desenvolvedor Full Stack e Responsável por Tecnologia · Wolfacilitates C&M',
+    work: 'Desenvolvedor Full Stack e Responsável por Tecnologia · Wolfacilitates C&M · desde out/2026',
+    workDetail: 'Planejamento de aplicações web, sistemas internos, CRM e integrações.',
+    experienceLabel: 'TRAJETÓRIA',
+    pastRoles: [
+      {
+        role: 'Automações e integrações · Duarte e Almeida · ago–out/2026',
+        detail: 'Integrações em produção e 30 automações convertidas e validadas.'
+      },
+      {
+        role: 'Full Stack freelancer · Painel de Máquinas · jun–jul/2025',
+        detail: 'Sistema de monitoramento de máquinas em uso pelo cliente.'
+      }
+    ],
     cvLink: 'Baixar currículo'
   },
   skills: { title: 'STACK', systemsTitle: 'SISTEMAS QUE JÁ INTEGREI' },
