@@ -1,34 +1,33 @@
 # Jameson Henrique Cruz Sabino
-@ Desenvolvedor de Software Júnior | Java · Spring Boot · Angular · TypeScript · APIs REST
-> Natal/RN • (84) 98822-4405 • jameson.henrique.dev@gmail.com • linkedin.com/in/jamesonhenrique • github.com/JamesonHenrique
+@ Desenvolvedor Full Stack | TypeScript · Java · Spring Boot · Angular · APIs REST
+> Parazinho/RN • (84) 98822-4405 • jameson.henrique.dev@gmail.com • linkedin.com/in/jamesonhenrique • github.com/JamesonHenrique
 
 ## RESUMO PROFISSIONAL
-Estudante de Bacharelado em Tecnologia da Informação no IMD/UFRN, com foco em desenvolvimento júnior usando Java/Spring Boot e Angular/TypeScript. No estágio em LegalOps (ago/2026 a out/2026), mantive integrações REST e webhooks em produção e converti 30 automações para o n8n Cloud; todas foram testadas e validadas. O corte para produção ficou pendente de credenciais e autorização. Como freelancer, desenvolvi sozinho um painel Spring Boot/Angular usado por um cliente. Tenho experiência com tratamento de erros, idempotência e segurança de credenciais.
+Desenvolvedor Full Stack e Responsável por Tecnologia na Wolfacilitates Consulting & Management, com atuação no planejamento, desenvolvimento e evolução de soluções digitais. Estudante de BTI no IMD/UFRN, com base em Java/Spring Boot e Angular/TypeScript e experiência anterior em automações e integrações em LegalOps.
 
 ## EXPERIÊNCIA PROFISSIONAL
+### Desenvolvedor Full Stack e Responsável por Tecnologia — Wolfacilitates C&M · out/2026 – atual
+_ Remoto · início em 13/10/2026
+- Atuo no planejamento, desenvolvimento e evolução de aplicações web, landing pages e sistemas internos da empresa.
+- Participo da estruturação de um CRM próprio e da definição de arquitetura, tecnologias, APIs e integrações.
+- Analiso a infraestrutura digital e os custos tecnológicos e planejo testes, segurança, versionamento, implantação e monitoramento.
+
 ### Estagiário em Desenvolvimento de Automações e Integrações — Duarte e Almeida Advogados · ago/2026 – out/2026
-_ LegalOps · Departamento de Tecnologia · atende o escritório, a PrecInvest (antecipação de precatórios) e a Deahub
-- Desenvolvi e mantive integrações via APIs REST e webhooks entre CRM, sistema jurídico, assinatura eletrônica, WhatsApp, Google Workspace e IA, que levam o cliente do primeiro contato ao contrato assinado e cadastrado sem digitação manual.
-- Converti para o n8n Cloud e testei **30 automações** (19 do escritório e 11 da PrecInvest), escolhidas após inventariar 57 cenários (~7.300 execuções/mês); todas foram validadas. O corte para produção ficou pendente de credenciais e autorização.
-- Substituí segredos embutidos nos workflows por credenciais dedicadas no n8n; projetei travas de idempotência para PIX, contratos e ligações e um Error Workflow central com dados pessoais mascarados.
-- Corrigi falhas de validação, consultas REST, processamento em lote e paginação em fluxos de contrato, pagamentos e extratos; as correções no fluxo de assinatura reduziram cerca de **5 retrabalhos manuais por semana**.
-- Desenvolvi em Python e Node.js ferramentas para inventário, conversão, validação via MCP e upload idempotente; testes automatizados validaram **197 Code nodes** sem falhas de sintaxe.
-- Criei uma auditoria diária que confere **30 a 40 petições** concluídas e sinaliza pendências; a Controladoria passou a acompanhar os alertas diariamente.
-- Reescrevi instruções de IA (Gemini) para cinco áreas jurídicas e documentei em BPMN o agente de WhatsApp, identificando problemas de roteamento e idempotência.
-^ Make · n8n · APIs REST · Webhooks · JSON · Python · Node.js · Gemini API · Google Workspace · ADVBOX · Coda · Octadesk · ZapSign · Banco Inter
+- Contribuí para especificar e validar uma auditoria diária de tarefas jurídicas, refinando regras a partir de retornos da direção e da Controladoria.
+- Investiguei falhas de paginação, limites de requisições e incompatibilidade entre objeto JSON e texto em integrações.
+- Converti e validei 30 automações para n8n Cloud; a entrada em produção ficou pendente de credenciais e autorização.
+^ Make · n8n · APIs REST · Webhooks · JSON · Python · Node.js
 
 ### Desenvolvedor Full Stack (Freelancer) — Painel de Máquinas · jun/2025 – jul/2025
-- **Desenvolvi sozinho** o sistema completo, backend e frontend, de monitoramento de equipamentos em tempo real, em uso pelo cliente no chão de fábrica: a equipe vê quais máquinas estão paradas, em operação, em manutenção ou sem operador. API REST em Spring Boot e MongoDB com endpoint de estatísticas consolidadas; frontend Angular reativo com RxJS.
-^ Java · Spring Boot · Angular · TypeScript · MongoDB · RxJS · Tailwind CSS
+- Desenvolvi um painel web com Spring Boot, Angular e MongoDB para visualizar estados de máquinas.
 
 ## PROJETOS
 ### Newgram — rede social full stack · github.com/JamesonHenrique/Newgram
-- Feed, stories, seguidores, comentários, notificações e busca paginada. Backend Spring Boot em camadas, com JWT (access e refresh token), mídia na AWS S3 por URLs pré-assinadas, schema versionado com Flyway e build Docker multi-stage. Frontend Angular 19 com cliente TypeScript gerado do contrato OpenAPI.
-^ Java 21 · Spring Boot 3.5.4 · Spring Security · PostgreSQL · Flyway · AWS S3 · Docker · Angular 19 · TypeScript
-
-### OportunizaVaga — agente open-source de candidatura a vagas · github.com/JamesonHenrique/OportunizaVaga
-- Projeto open-source que busca, filtra e automatiza candidaturas em portais brasileiros com IA e navegador real. Mantém o estado fora do modelo, aplica filtros configuráveis e tem testes e CI; a documentação destaca que os termos dos portais devem ser verificados e desaconselha candidaturas em massa.
-^ Python · Node.js · Shell · Chrome DevTools Protocol · LLMs · GitHub Actions · Docker
+- API Spring Boot e frontend Angular; JWT com refresh e testes de rotação, expiração e reuso. Upload pelo backend para S3 e URLs pré-assinadas para leitura.
+^ Java · Spring Boot · Angular · PostgreSQL · Flyway · AWS S3 · Docker
+### OportunizaVaga · github.com/JamesonHenrique/OportunizaVaga
+- Ferramenta de busca e organização de candidaturas, com persistência de estado, filtros configuráveis e integração com navegador.
+^ Python · Node.js · Shell · Chrome DevTools Protocol · LLMs
 
 ## COMPETÊNCIAS TÉCNICAS
 * **Linguagens:** Java, TypeScript, JavaScript, Python, SQL

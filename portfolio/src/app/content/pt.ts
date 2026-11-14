@@ -11,9 +11,9 @@ export const PT: SiteContent = {
   switchLabel: 'EN',
   switchAria: 'Read in English',
   meta: {
-    title: 'Jameson Henrique | Desenvolvedor Júnior Java, Spring Boot e Angular',
+    title: 'Jameson Henrique | Desenvolvedor Full Stack na Wolfacilitates',
     description:
-      'Estudante de BTI na UFRN e desenvolvedor júnior com foco em Java, Spring Boot, Angular e TypeScript. Experiência anterior em automações, integrações, APIs REST e webhooks.'
+      'Desenvolvedor Full Stack e Responsável por Tecnologia na Wolfacilitates C&M. Estudante de BTI na UFRN, com base em Java, Spring Boot, Angular e TypeScript.'
   },
   skipLink: 'Pular para o conteúdo',
   nav: {
@@ -26,8 +26,8 @@ export const PT: SiteContent = {
     rodape: 'Rodapé'
   },
   hero: {
-    availability: 'Disponível para oportunidades júnior em desenvolvimento e integração',
-    badge: 'desenvolvimento júnior · Java · Angular',
+    availability: 'Desenvolvedor Full Stack na Wolfacilitates C&M',
+    badge: 'full stack · TypeScript · Java · Angular',
     lines: [
       [{ text: 'Desenvolvimento de APIs com ' }, { text: 'Java e Spring Boot', hl: 'strong' }, { text: '.' }],
       [
@@ -48,7 +48,9 @@ export const PT: SiteContent = {
           text: 'Sou estudante de Bacharelado em Tecnologia da Informação no IMD/UFRN e desenvolvedor de software júnior, com foco em '
         },
         { text: 'Java/Spring Boot e Angular/TypeScript', hl: 'strong' },
-        { text: '. Também tenho experiência profissional anterior em automação e integração de sistemas.' }
+        {
+          text: '. Atuo como Desenvolvedor Full Stack e Responsável por Tecnologia na Wolfacilitates C&M desde outubro de 2026, em trabalho remoto, participando do planejamento e da evolução das soluções digitais da empresa.'
+        }
       ],
       [
         {
@@ -93,6 +95,15 @@ export const PT: SiteContent = {
     ],
     careerTitle: 'CARREIRA',
     career: [
+      {
+        heading: 'Desenvolvedor Full Stack e Responsável por Tecnologia',
+        sub: 'Wolfacilitates C&M (13/10/2026 - atual) · Remoto',
+        text: [
+          {
+            text: 'Planejamento, desenvolvimento e evolução de aplicações web, landing pages e sistemas internos; estruturação de CRM próprio, definição de arquitetura e integrações, análise de infraestrutura e custos e planejamento de qualidade e segurança.'
+          }
+        ]
+      },
       {
         heading: 'Estagiário em Desenvolvimento de Automações e Integrações — LegalOps',
         sub: 'Duarte e Almeida Advogados (08/2026 - 10/2026)',
@@ -203,7 +214,7 @@ export const PT: SiteContent = {
   contact: {
     title: 'VAMOS CONVERSAR',
     cardTitle: 'VAMOS CONVERSAR SOBRE O SEU PROCESSO',
-    text: 'Aberto a vagas de automação, integrações e desenvolvimento full stack, e a projetos freelance de integração de sistemas e automação de processos.',
+    text: 'Atualmente na Wolfacilitates C&M. Vamos conversar sobre desenvolvimento de software, integrações e tecnologia.',
     email: 'EMAIL',
     phone: 'TELEFONE',
     location: 'LOCALIZAÇÃO',

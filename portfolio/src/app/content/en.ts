@@ -10,9 +10,9 @@ export const EN: SiteContent = {
   switchLabel: 'PT',
   switchAria: 'Ler em português',
   meta: {
-    title: 'Jameson Henrique | Junior Java, Spring Boot & Angular Developer',
+    title: 'Jameson Henrique | Full Stack Developer at Wolfacilitates',
     description:
-      'BTI student at UFRN and junior developer focused on Java, Spring Boot, Angular and TypeScript. Previous experience with automation, integrations, REST APIs and webhooks.'
+      'Full Stack Developer and Technology Lead at Wolfacilitates C&M. IT student at UFRN with a background in Java, Spring Boot, Angular and TypeScript.'
   },
   skipLink: 'Skip to content',
   nav: {
@@ -25,8 +25,8 @@ export const EN: SiteContent = {
     rodape: 'Footer'
   },
   hero: {
-    availability: 'Open to junior development and integrations roles',
-    badge: 'junior development · Java · Angular',
+    availability: 'Full Stack Developer at Wolfacilitates C&M',
+    badge: 'full stack · TypeScript · Java · Angular',
     lines: [
       [{ text: 'API development with ' }, { text: 'Java and Spring Boot', hl: 'strong' }, { text: '.' }],
       [
@@ -47,7 +47,9 @@ export const EN: SiteContent = {
           text: "I'm an Information Technology bachelor's student at IMD/UFRN and a junior software developer focused on "
         },
         { text: 'Java/Spring Boot and Angular/TypeScript', hl: 'strong' },
-        { text: '. I also have previous professional experience in systems automation and integration.' }
+        {
+          text: '. Since October 2026, I have worked remotely as a Full Stack Developer and Technology Lead at Wolfacilitates C&M, contributing to the planning and evolution of its digital solutions.'
+        }
       ],
       [
         {
@@ -92,6 +94,15 @@ export const EN: SiteContent = {
     ],
     careerTitle: 'EXPERIENCE',
     career: [
+      {
+        heading: 'Full Stack Developer and Technology Lead',
+        sub: 'Wolfacilitates C&M (13 Oct 2026 - present) · Remote',
+        text: [
+          {
+            text: 'Planning, developing and evolving web applications, landing pages and internal systems; structuring a custom CRM, defining architecture and integrations, assessing infrastructure and costs, and planning quality and security.'
+          }
+        ]
+      },
       {
         heading: 'Automation & Integrations Development Intern — LegalOps',
         sub: 'Duarte e Almeida Advogados (08/2026 - 10/2026)',
@@ -202,7 +213,7 @@ export const EN: SiteContent = {
   contact: {
     title: "LET'S TALK",
     cardTitle: "LET'S TALK ABOUT YOUR PROCESS",
-    text: 'Open to automation, integrations and full stack development roles, and to freelance projects in systems integration and process automation.',
+    text: 'Currently at Wolfacilitates C&M. Let’s talk about software development, integrations and technology.',
     email: 'EMAIL',
     phone: 'PHONE',
     location: 'LOCATION',

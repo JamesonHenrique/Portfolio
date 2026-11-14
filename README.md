@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/JamesonHenrique/Portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/JamesonHenrique/Portfolio/actions/workflows/ci.yml)
 
-Estudante de BTI na UFRN e desenvolvedor júnior com foco em **Java/Spring Boot e Angular/TypeScript**. Tenho experiência anterior em automação e integração de sistemas. Este é o código do meu site pessoal.
+Desenvolvedor Full Stack e Responsável por Tecnologia na **Wolfacilitates C&M** desde outubro de 2026 e estudante de BTI na UFRN. Base em **Java/Spring Boot e Angular/TypeScript**, com experiência anterior em automação e integração de sistemas. Este é o código do meu site pessoal.
 
 **No ar:** https://jamesonhenrique-portfolio.vercel.app/
 
