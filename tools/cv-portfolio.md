@@ -5,34 +5,39 @@
 ## EXPERIÊNCIA PROFISSIONAL
 ### Desenvolvedor Full Stack e Responsável por Tecnologia — Wolfacilitates C&M · out/2026 – atual
 _ Remoto · início em 13/10/2026
-- Atuo no planejamento, desenvolvimento e evolução de aplicações web, landing pages e sistemas internos da empresa.
+- Planejo e desenvolvo aplicações web, landing pages e sistemas internos para as necessidades da empresa.
 - Participo da estruturação de um CRM próprio e da definição de arquitetura, tecnologias, APIs e integrações.
-- Analiso a infraestrutura digital e os custos tecnológicos e planejo testes, segurança, versionamento, implantação e monitoramento.
+- Avalio infraestrutura e custos e planejo testes, segurança, implantação e monitoramento.
 
 ### Estagiário em Desenvolvimento de Automações e Integrações — Duarte e Almeida Advogados · ago/2026 – out/2026
-- Mantive integrações em produção via APIs REST e webhooks entre atendimento, assinatura e sistema jurídico.
+_ LegalOps · Departamento de Tecnologia
+- Mantive integrações em produção no Make entre atendimento, CRM, assinatura eletrônica e sistema jurídico, usando APIs REST e webhooks.
 - Converti e validei **30 automações** do Make para n8n Cloud.
-- Especifiquei e validei com apoio de IA uma auditoria diária, refinando regras de protocolo e revisão com a direção e a Controladoria.
-- Investiguei consulta que retornou **100 de 828 tarefas**, conferi nove páginas e acompanhei erro 429; analisei também incompatibilidade entre JSON e texto.
-^ Make · n8n · APIs REST · Webhooks · JSON · Python · Node.js
+- Participei da construção assistida por IA de uma auditoria diária de tarefas jurídicas, desde os requisitos até a execução e validação das versões.
+- Refinei com a direção e a Controladoria as regras que distinguem peças em revisão de pendências de protocolo.
+- Investiguei falhas no atendimento com IA e acompanhei a revisão de instruções e contratos de dados entre sistemas.
+- Analisei falhas em fluxos de assinatura e pós-venda, compartilhando retornos de execução com as áreas envolvidas.
+- Acompanhei a documentação da auditoria e prestei suporte presencial em notebooks, contas OAuth e periféricos.
+^ Make · n8n · APIs REST · Webhooks · JSON · Google Workspace · CRM · IA aplicada
 
 ### Desenvolvedor Full Stack (Freelancer) — Painel de Máquinas · jun/2025 – jul/2025
-- Desenvolvi painel web em uso no chão de fábrica para acompanhar máquinas paradas, em operação, em manutenção ou sem operador, com Spring Boot, Angular e MongoDB.
+- Desenvolvi painel web em uso no chão de fábrica, com backend e frontend para acompanhar máquinas paradas, em operação, em manutenção ou sem operador.
+^ Java · Spring Boot · Angular · TypeScript · MongoDB
 
 ## PROJETOS
 ### Newgram — rede social full stack · github.com/JamesonHenrique/Newgram
-- API Spring Boot e frontend Angular; JWT com refresh e testes de rotação, expiração e reuso. Upload pelo backend para S3 e URLs pré-assinadas para leitura.
-^ Java · Spring Boot · Angular · PostgreSQL · Flyway · AWS S3 · Docker
+- API Spring Boot e frontend Angular; autenticação JWT com testes de refresh, upload para AWS S3 e banco PostgreSQL com Flyway.
 ### OportunizaVaga · github.com/JamesonHenrique/OportunizaVaga
-- Ferramenta de busca e organização de candidaturas, com persistência de estado, filtros configuráveis e integração com navegador.
-^ Python · Node.js · Shell · Chrome DevTools Protocol · LLMs
+- Busca e organização de oportunidades com filtros, persistência e navegador; evolução assistida por IA do gerador de currículos.
+### HelpMyDesk — aplicativo pessoal de suporte técnico
+- Defini escopo e acompanhei testes de aplicativo de diagnóstico desktop em Rust, Tauri e Angular, com desenvolvimento assistido por IA.
 
 ## COMPETÊNCIAS TÉCNICAS
 * **Linguagens:** Java, TypeScript, JavaScript, Python, SQL
 * **Backend:** Spring Boot, Spring Security, Spring Data JPA, APIs REST, JWT, OAuth2, OpenAPI/Swagger
 * **Frontend:** Angular, RxJS, Tailwind CSS
 * **Bancos de dados:** PostgreSQL, MySQL, MongoDB, Flyway
-* **Automação e integrações:** Make, n8n, webhooks, JSON, tratamento de erro, paginação, idempotência, segurança de credenciais, LGPD, Gemini API, Claude Code e MCP
+* **Automação e integrações:** Make, n8n, webhooks, JSON, tratamento de erro, paginação, segurança de credenciais e Gemini API
 * **Testes e infraestrutura:** JUnit, Mockito, Docker, Git, GitHub Actions (CI), AWS S3, Linux
 
 ## FORMAÇÃO ACADÊMICA E IDIOMAS

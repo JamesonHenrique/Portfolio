@@ -160,7 +160,7 @@ if __name__ == "__main__":
         construir(a.md, a.saida, round(pt, 2))
         n = paginas(a.saida)
         if n == 1:
-            print("gerado %s — 1 página, corpo %.2fpt" % (a.saida, pt))
+            print("gerado %s — %d página(s), corpo %.2fpt" % (a.saida, n, pt))
             break
     else:
         print("ERRO: não coube em uma página com fonte legível — corte texto", file=sys.stderr)
