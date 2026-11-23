@@ -18,12 +18,12 @@ describe('I18nService', () => {
   it('starts in Portuguese on Portuguese URLs', () => {
     const i18n = serviceAt('/projetos/newgram');
     expect(i18n.lang()).toBe('pt');
-    expect(i18n.content().contact.title).toBe('Vamos conversar');
+    expect(i18n.content().contact.title).toBe('Tem algo pra resolver?');
   });
 
   it('starts in English on /en URLs, before any navigation', () => {
     const i18n = serviceAt('/en/projects/newgram');
     expect(i18n.lang()).toBe('en');
-    expect(i18n.content().contact.title).toBe("Let's talk");
+    expect(i18n.content().contact.title).toBe('Got something to solve?');
   });
 });

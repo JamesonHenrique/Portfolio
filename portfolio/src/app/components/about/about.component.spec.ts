@@ -17,11 +17,11 @@ describe('AboutComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create and render the three documented roles', () => {
+  it('should create and render concise bio, portrait and profile links', () => {
     expect(component).toBeTruthy();
     const el = fixture.nativeElement as HTMLElement;
-    expect(el.querySelectorAll('.timeline-row').length).toBe(3);
-    expect(el.textContent).toContain('Wolfacilitates C&M');
-    expect(el.textContent).toContain('nov/2026 – atual');
+    expect(el.textContent).toContain('IMD/UFRN');
+    expect(el.querySelector('.polaroid img')?.getAttribute('src')).toBe('/about-me.jpg');
+    expect(el.querySelectorAll('.about-links a').length).toBe(3);
   });
 });

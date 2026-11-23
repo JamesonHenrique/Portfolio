@@ -28,20 +28,20 @@ describe('AppComponent', () => {
 
   it('should render every home section in Portuguese at /', async () => {
     const el = await renderAll(await RouterTestingHarness.create('/'));
-    for (const id of ['inicio', 'projetos', 'sobre', 'skills', 'contato']) {
+    for (const id of ['inicio', 'projetos', 'sobre', 'contato']) {
       expect(el.querySelector('#' + id))
         .withContext(id)
         .not.toBeNull();
     }
-    expect(el.querySelector('h1')?.getAttribute('aria-label')).toBe('Jameson Henrique');
-    expect(el.querySelector('#sobre h2')?.textContent?.trim()).toBe('Da arquitetura ao sistema em produção');
-    expect(el.textContent).toContain('nov/2026 – atual');
+    expect(el.querySelector('h1')?.getAttribute('aria-label')).toBe('Além do clique tem código.');
+    expect(el.querySelector('#sobre h2')?.textContent).toContain('software.');
+    expect(el.textContent).toContain('OportunizaVaga');
   });
 
   it('should render the English home at /en', async () => {
     const el = await renderAll(await RouterTestingHarness.create('/en'));
-    expect(el.textContent).toContain('Nov 2026 – present');
-    expect(el.querySelector('#sobre h2')?.textContent?.trim()).toBe('From architecture to production systems');
+    expect(el.querySelector('h1')?.getAttribute('aria-label')).toBe('Beyond the click lives code.');
+    expect(el.querySelector('#sobre h2')?.textContent).toContain('software.');
   });
 
   it('should render a project page', async () => {

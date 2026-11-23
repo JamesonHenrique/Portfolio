@@ -1,8 +1,8 @@
 <header class="site-header">
   <div class="ed-container header-inner">
     <a [routerLink]="c().home" class="brand" (click)="closeMenu()">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-name">Jameson Henrique</span>
+      <span class="brand-mark" aria-hidden="true">Jh</span>
+      <span class="brand-name">JAMESON<br />HENRIQUE</span>
     </a>
 
     <nav [attr.aria-label]="c().nav.aria" class="desktop-nav">
@@ -33,6 +33,16 @@
 
       <button
         type="button"
+        class="inspect-toggle desktop-inspect"
+        [attr.aria-pressed]="inspection.enabled()"
+        [attr.aria-label]="c().nav.inspectAria"
+        (click)="inspection.toggle()"
+      >
+        {{ inspection.enabled() ? c().nav.inspectClose : c().nav.inspectLabel }}
+      </button>
+
+      <button
+        type="button"
         class="menu-toggle"
         [attr.aria-expanded]="menuOpen()"
         aria-controls="mobile-nav-panel"
@@ -40,17 +50,28 @@
         (click)="toggleMenu()"
       >
         @if (menuOpen()) {
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         } @else {
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
           </svg>
         }
       </button>
     </div>
   </div>
+
+  @if (inspection.enabled()) {
+    <div class="inspect-bar" role="status" aria-live="polite">
+      <div class="ed-container inspect-bar-inner">
+        <span>{{ c().nav.inspectStatus }}</span>
+        <button type="button" class="inspect-bar-close" (click)="inspection.set(false)">
+          {{ c().nav.inspectClose }}
+        </button>
+      </div>
+    </div>
+  }
 
   <div class="reading-progress" [style.transform]="'scaleX(' + scrollProgress() + ')'" aria-hidden="true"></div>
 
@@ -69,6 +90,17 @@
             {{ c().nav[item.label] }}
           </a>
         }
+        <div class="mobile-inspect-row">
+          <button
+            type="button"
+            class="inspect-toggle mobile-inspect"
+            [attr.aria-pressed]="inspection.enabled()"
+            [attr.aria-label]="c().nav.inspectAria"
+            (click)="inspection.toggle(); closeMenu()"
+          >
+            {{ inspection.enabled() ? c().nav.inspectClose : c().nav.inspectLabel }}
+          </button>
+        </div>
       </div>
     </nav>
   }

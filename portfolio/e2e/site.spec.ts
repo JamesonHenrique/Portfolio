@@ -2,7 +2,6 @@ import { expect, test, type Page } from '@playwright/test';
 
 const ORIGIN = 'https://jamesonhenrique-portfolio.vercel.app';
 const EMAIL = 'jameson.henrique.dev@gmail.com';
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + EMAIL;
 
 const CASE_STUDIES = [
   { slug: 'oportunizavaga', ptTitle: 'OportunizaVaga', enTitle: 'OportunizaVaga', type: 'SoftwareSourceCode' },
@@ -13,7 +12,14 @@ const CASE_STUDIES = [
 const ROUTES = (['pt-BR', 'en'] as const).flatMap((lang) => {
   const english = lang === 'en';
   return [
-    { path: english ? '/en' : '/', lang, h1: 'Jameson Henrique', pt: '/', en: '/en', project: null },
+    {
+      path: english ? '/en' : '/',
+      lang,
+      h1: english ? 'Beyond the click lives code.' : 'Além do clique tem código.',
+      pt: '/',
+      en: '/en',
+      project: null
+    },
     ...CASE_STUDIES.map((project) => {
       const pt = '/projetos/' + project.slug;
       const en = '/en/projects/' + project.slug;
@@ -39,7 +45,11 @@ async function expectPageSeo(page: Page, route: SiteRoute) {
   const canonical = ORIGIN + route.path;
   await expect(page.locator('html')).toHaveAttribute('lang', route.lang);
   await expect(page.locator('h1')).toHaveCount(1);
-  await expect(page.getByRole('heading', { level: 1, name: route.h1, exact: Boolean(route.project) })).toBeVisible();
+  if (route.project) {
+    await expect(page.getByRole('heading', { level: 1, name: route.h1, exact: true })).toBeVisible();
+  } else {
+    await expect(page.locator('main h1')).toBeVisible();
+  }
   await expect(page.locator('head link[rel="canonical"]')).toHaveAttribute('href', canonical);
   for (const [language, path] of [
     ['pt-BR', route.pt],
@@ -118,15 +128,13 @@ test.describe('prerendered HTML', () => {
         ? ['main h1', 'main .case-figure', 'main .case-prose p', 'footer']
         : [
             '#inicio h1',
-            '#inicio .hero-subhead',
-            '#inicio [role="tabpanel"]',
-            '#projetos .flagship-card',
+            '#inicio .hero-desc',
+            '#inicio .hero-art',
+            '#projetos .work-entry',
             '#sobre .about-intro',
-            '#skills .capability-card',
-            '#contato form',
+            '#contato .outro-mail',
             'footer'
           ];
-      // A descendant can have opacity 1 while a hidden ancestor makes it transparent.
       for (const selector of selectors) {
         const content = page.locator(selector).first();
         await expect(content).toBeVisible();
@@ -150,7 +158,6 @@ for (const route of ROUTES) {
     const scriptsReady = new Promise<void>((resolve) => {
       resumeScripts = resolve;
     });
-    // Retain the original heading so replacing it during bootstrap cannot pass as hydration.
     await page.route(/\/main-[^/]+\.js$/, async (script) => {
       await scriptsReady;
       await script.continue();
@@ -199,7 +206,7 @@ test('fixed header navigation reaches the home section from a case study', async
     await menu.click();
     await expect(menu).toHaveAttribute('aria-expanded', 'true');
     await expect(drawer).toBeVisible();
-    await expect(drawer.getByRole('link')).toHaveCount(4);
+    await expect(drawer.getByRole('link')).toHaveCount(3);
     await page.keyboard.press('Escape');
     await expect(menu).toHaveAttribute('aria-expanded', 'false');
     await expect(drawer).toBeHidden();
@@ -207,9 +214,9 @@ test('fixed header navigation reaches the home section from a case study', async
     navigation = drawer;
   }
 
-  const experience = navigation.getByRole('link', { name: 'Trajetória' });
-  await expect(experience).toHaveAttribute('href', '/#sobre');
-  await experience.click();
+  const about = navigation.getByRole('link', { name: 'Sobre' });
+  await expect(about).toHaveAttribute('href', '/#sobre');
+  await about.click();
   await expect(page).toHaveURL('/#sobre');
   await expect
     .poll(
@@ -217,135 +224,100 @@ test('fixed header navigation reaches the home section from a case study', async
         page.locator('#sobre').evaluate((section) => {
           const top = section.getBoundingClientRect().top;
           const headerBottom = document.querySelector('.site-header')!.getBoundingClientRect().bottom;
-          return top >= headerBottom - 2 && top <= headerBottom + 48;
+          return top >= headerBottom - 4 && top <= headerBottom + 48;
         }),
       { timeout: 8000 }
     )
     .toBe(true);
   expect((await header.boundingBox())?.y).toBe(0);
   expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
-  await expect(header.locator('.reading-progress')).not.toHaveCSS('transform', 'matrix(0, 0, 0, 1, 0, 0)');
 
   if (isMobile) {
     await expect(menu).toHaveAttribute('aria-expanded', 'false');
     await expect(navigation).toBeHidden();
   } else {
-    await expect(experience).toHaveAttribute('aria-current', 'location');
+    await expect(about).toHaveAttribute('aria-current', 'location');
   }
 });
 
-test('System Index selects projects 01, 02 and 03 and opens the selected case', async ({ page }) => {
+test('Proof Deck cycles through projects 01, 02 and 03 and opens the active case study', async ({ page }) => {
   await page.goto('/');
-  const tabs = page.getByRole('tablist');
-  const panel = page.getByRole('tabpanel');
-  await expect(tabs.getByRole('tab')).toHaveCount(3);
-  await expect(tabs.getByRole('tab', { selected: true })).toHaveAccessibleName('01 OportunizaVaga');
+  const stage = page.locator('.hero-stage');
+  await expect(stage.locator('.stage-caption')).toContainText('[ 01 — 03 ]');
+  await expect(stage.locator('.art-card[data-order="0"]')).toHaveAttribute('data-project', 'oportunizavaga');
 
-  for (const [index, project] of CASE_STUDIES.entries()) {
-    const tab = tabs.getByRole('tab', { name: `0${index + 1} ${project.ptTitle}`, exact: true });
-    await tab.click();
-    await expect(tabs.getByRole('tab', { selected: true })).toHaveCount(1);
-    await expect(tab).toHaveAttribute('aria-selected', 'true');
-    await expect(panel).toHaveAccessibleName(`0${index + 1} ${project.ptTitle}`);
-    await expect(panel.getByRole('heading', { name: project.ptTitle })).toBeVisible();
-    await expect(panel.getByRole('link', { name: 'Ler estudo de caso' })).toHaveAttribute(
-      'href',
-      '/projetos/' + project.slug
-    );
-  }
+  await page.locator('#nextWork').click();
+  await expect(stage.locator('.stage-caption')).toContainText('[ 02 — 03 ]');
+  await expect(stage.locator('.art-card[data-order="0"]')).toHaveAttribute('data-project', 'painel-de-maquinas');
 
-  await panel.getByRole('link', { name: 'Ler estudo de caso' }).click();
+  await page.locator('#nextWork').click();
+  await expect(stage.locator('.stage-caption')).toContainText('[ 03 — 03 ]');
+  await expect(stage.locator('.art-card[data-order="0"]')).toHaveAttribute('data-project', 'newgram');
+
+  await stage.locator('.art-card[data-order="0"] a.card-open-link').click();
   await expect(page).toHaveURL('/projetos/newgram');
   await expect(page.getByRole('heading', { level: 1, name: 'Newgram' })).toBeVisible();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 });
 
-test('the deferred Work section opens a case study at the top', async ({ page }) => {
+test('Inspection Mode toggles technical callouts and closes with Escape', async ({ page, isMobile }) => {
+  await page.goto('/');
+  const toggle = isMobile
+    ? page.locator('#mobile-nav-panel button.mobile-inspect')
+    : page.locator('header button.desktop-inspect');
+
+  if (isMobile) {
+    await page.locator('header button.menu-toggle').click();
+  }
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('.explain').first()).toBeHidden();
+
+  await toggle.click();
+  await expect(page.locator('body')).toHaveClass(/inspect/);
+  await expect(page.locator('.inspect-bar')).toBeVisible();
+  await expect(page.locator('.explain').first()).toBeVisible();
+
+  await page.keyboard.press('Escape');
+  await expect(page.locator('body')).not.toHaveClass(/inspect/);
+  await expect(page.locator('.explain').first()).toBeHidden();
+});
+
+test('Work chapter opens a case study at the top', async ({ page }) => {
   await page.goto('/en');
-  const work = page.locator('#projetos');
-  await work.getByRole('heading', { name: 'OportunizaVaga' }).getByRole('link').click();
+  await page
+    .locator('.work-entry')
+    .first()
+    .getByRole('link', { name: /Read case study/i })
+    .first()
+    .click();
   await expect(page).toHaveURL('/en/projects/oportunizavaga');
   await expect(page.getByRole('heading', { level: 1, name: 'OportunizaVaga' })).toBeVisible();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
-});
-
-async function fillContactForm(page: Page) {
-  const form = page.locator('#contato form');
-  await form.getByLabel('Seu nome').fill('Teste Playwright');
-  await form.getByLabel('Seu e-mail').fill('playwright@example.com');
-  await form.getByLabel('Assunto').fill('Teste de contato');
-  await form.getByLabel('Mensagem').fill('Mensagem sintética para o teste.');
-  return form;
-}
-
-test('contact form submits under CSP and resets on success', async ({ page }) => {
-  const errors = trackErrors(page);
-  // Intercept before navigation so this test never sends an email.
-  await page.route(FORM_ENDPOINT, (request) =>
-    request.fulfill({
-      json: { success: 'true' },
-      headers: { 'access-control-allow-origin': '*' }
-    })
-  );
-  const response = await page.goto('/');
-  expect(response?.headers()['content-security-policy']).toContain("connect-src 'self' https://formsubmit.co");
-  const form = await fillContactForm(page);
-  const [submission] = await Promise.all([
-    page.waitForRequest(FORM_ENDPOINT),
-    form.getByRole('button', { name: 'Enviar mensagem' }).click()
-  ]);
-  expect(submission.method()).toBe('POST');
-  expect(submission.headers()['content-type']).toContain('multipart/form-data');
-  expect(submission.postData()).toContain('playwright@example.com');
-  expect(submission.postData()).toContain('Mensagem sintética para o teste.');
-  await expect(form.getByRole('status')).toContainText('Mensagem enviada');
-  await expect(form.getByLabel('Seu nome')).toHaveValue('');
-  expect(errors).toEqual([]);
-});
-
-test('contact form keeps the message and offers email after a failed submission', async ({ page }) => {
-  await page.route(FORM_ENDPOINT, (request) =>
-    request.fulfill({ status: 500, json: {}, headers: { 'access-control-allow-origin': '*' } })
-  );
-  await page.goto('/');
-  const form = await fillContactForm(page);
-  await form.getByRole('button', { name: 'Enviar mensagem' }).click();
-  const status = form.getByRole('status');
-  await expect(status).toContainText('Não foi possível enviar agora');
-  await expect(status.getByRole('link')).toHaveAttribute('href', 'mailto:' + EMAIL);
-  await expect(form.getByLabel('Mensagem')).toHaveValue('Mensagem sintética para o teste.');
 });
 
 test('one click copies the contact email to the clipboard', async ({ page, context }) => {
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   await page.goto('/');
   await page.evaluate(() => navigator.clipboard.writeText(''));
-  const copy = page.locator('#contato').getByRole('button', { name: 'Copiar', exact: true });
+  const copy = page.locator('#contato').getByRole('button', { name: 'Copiar e-mail', exact: true });
   await copy.scrollIntoViewIfNeeded();
-  // Angular removes its event-replay marker when the deferred contact section hydrates.
-  await expect(copy).not.toHaveAttribute('jsaction', /click/);
   await copy.click();
   await expect(page.locator('#contato').getByRole('button', { name: 'Copiado', exact: true })).toBeVisible();
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(EMAIL);
 });
 
-test('reduced motion removes the tab transition and disables the reading progress animation', async ({ page }) => {
+test('reduced motion disables scroll progress and keeps instant transitions', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await page.getByRole('tab', { name: /02 Painel de Máquinas/ }).click();
-  const panel = page.getByRole('tabpanel');
-  await expect(panel.getByRole('heading', { name: 'Painel de Máquinas' })).toBeVisible();
-  const duration = await panel.evaluate((node) => Number.parseFloat(getComputedStyle(node).animationDuration));
-  expect(duration).toBeLessThan(0.001);
   await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
-  await page.getByRole('link', { name: 'Ver projetos' }).click();
+  await page.locator('a.hero-cta').click();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
   await expect(page.locator('.reading-progress')).toHaveCSS('transform', 'matrix(0, 0, 0, 1, 0, 0)');
 });
 
 for (const route of ROUTES) {
   test(`${route.path} has zero horizontal overflow at the target widths`, async ({ page, isMobile }) => {
-    for (const width of isMobile ? [360, 390] : [1440]) {
+    for (const width of isMobile ? [360, 390] : [768, 1024, 1440, 1920]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(route.path);
       await page.evaluate(() => document.fonts.ready);

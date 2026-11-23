@@ -9,11 +9,18 @@ export interface FlagshipProject {
   index: string;
   slug: CaseSlug;
   title: string;
+  titlePre: string;
+  titleEm: string;
   subtitle: string;
   category: string;
   period: string;
   description: string;
+  shortSummary: string;
   decision: string;
+  focusLine: string;
+  frameTag: string;
+  chapterTone: 'gold' | 'green' | 'blue';
+  inspectNotes: { id: string; text: string }[];
   techs: string[];
   image: string;
   imageWidth: number;
@@ -107,26 +114,58 @@ export interface SiteContent {
     sobre: string;
     skills: string;
     contato: string;
+    inspectLabel: string;
+    inspectClose: string;
+    inspectAria: string;
+    inspectStatus: string;
   };
   hero: {
     context: string;
+    eyebrowLocation: string;
     name: string;
     headline: string;
+    titleLine1: string;
+    titleLine2: string;
+    titleLine3: string;
     subhead: string;
+    subheadPre: string;
+    subheadEm: string;
+    subheadPost: string;
     projectsButton: string;
     cvButton: string;
+    sign: string;
+    deckCaption: string;
+    deckBadge: string;
+    prevProject: string;
+    nextProject: string;
+    openCase: string;
     panelLabel: string;
     panelHint: string;
     panelCta: string;
     panelDecisionLabel: string;
   };
+  ribbon: string[];
+  intro: {
+    label: string;
+    headlinePre: string;
+    headlineEm: string;
+    headlinePost: string;
+    noteLabel: string;
+    noteText: string;
+  };
   projects: {
     index: string;
     kicker: string;
+    sectionLabel: string;
     title: string;
+    headingTop: string;
+    headingEm: string;
     lead: string;
     decisionLabel: string;
     readCase: string;
+    proofPrefix: string;
+    viewCode: string;
+    privateLabel: string;
     demo: string;
     code: string;
     techsAria: string;
@@ -139,9 +178,15 @@ export interface SiteContent {
   about: {
     index: string;
     kicker: string;
+    sectionLabel: string;
     title: string;
+    headingPre: string;
+    headingEm: string;
+    headingPost: string;
     lead: string;
     photoAlt: string;
+    photoCaption: string;
+    shortBio: string;
     intro: string;
     detail: string;
     locationLabel: string;
@@ -166,7 +211,10 @@ export interface SiteContent {
   contact: {
     index: string;
     kicker: string;
+    sectionLabel: string;
     title: string;
+    headingPre: string;
+    headingEm: string;
     lead: string;
     channelsHeading: string;
     text: string;
@@ -177,6 +225,7 @@ export interface SiteContent {
     location: string;
     locationValue: string;
     social: string;
+    backToTop: string;
     form: {
       name: string;
       namePlaceholder: string;

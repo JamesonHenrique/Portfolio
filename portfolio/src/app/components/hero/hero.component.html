@@ -1,111 +1,122 @@
-<section id="inicio" class="hero">
+<section id="inicio" class="hero" [attr.aria-label]="c().nav.inicio">
   <div class="ed-container hero-grid">
     <div class="hero-copy">
-      <p class="hero-context">{{ c().hero.context }}</p>
+      <div class="eyebrow">
+        <span class="eyebrow-left">
+          <i class="dot" aria-hidden="true"></i>
+          <span>{{ c().hero.name }}</span>
+        </span>
+        <span class="eyebrow-loc">{{ c().hero.eyebrowLocation }}</span>
+      </div>
 
-      <h1 class="hero-title" [attr.aria-label]="c().hero.name">
-        <span class="hero-name">{{ c().hero.name }}</span>
-        <span class="hero-statement">{{ c().hero.headline }}</span>
+      <h1 class="hero-title" [attr.aria-label]="c().hero.headline">
+        <span class="line-one">{{ c().hero.titleLine1 }}</span>
+        <span class="line-two">{{ c().hero.titleLine2 }}<span class="hero-asterisk" aria-hidden="true">*</span></span>
+        <span class="line-three">{{ c().hero.titleLine3 }}</span>
       </h1>
 
-      <p class="hero-subhead">{{ c().hero.subhead }}</p>
+      <p class="hero-desc">
+        {{ c().hero.subheadPre }}<span>{{ c().hero.subheadEm }}</span
+        >{{ c().hero.subheadPost }}
+      </p>
 
-      <div class="hero-actions">
-        <a href="#projetos" class="btn btn-primary">
+      <div class="hero-bottom">
+        <a [routerLink]="c().home" fragment="projetos" class="hero-cta">
           <span>{{ c().hero.projectsButton }}</span>
-          <svg
-            class="btn-icon btn-icon-shift"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            aria-hidden="true"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
-          </svg>
+          <span class="round-arrow" aria-hidden="true">↗</span>
         </a>
-        <a href="/JAMESON_HENRIQUE_CV.pdf" download="JAMESON_HENRIQUE_CV.pdf" class="btn btn-secondary">
-          <svg
-            class="btn-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            aria-hidden="true"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0-4-4m4 4 4-4M4 18h16" />
-          </svg>
-          <span>{{ c().hero.cvButton }}</span>
-        </a>
+        <div class="hero-meta-col">
+          <span class="hero-sign">{{ c().hero.sign }}</span>
+          <a href="/JAMESON_HENRIQUE_CV.pdf" target="_blank" rel="noopener noreferrer" class="hero-cv-link">
+            {{ c().hero.cvButton }} ↗
+          </a>
+        </div>
       </div>
     </div>
 
-    <aside class="hero-panel ed-surface" [attr.aria-label]="c().hero.panelLabel">
-      <div class="panel-header">
-        <span class="panel-title">{{ c().hero.panelLabel }}</span>
-        <span class="mono-meta">0{{ selectedIndex() + 1 }} / 0{{ c().projects.flagships.length }}</span>
+    <div class="hero-stage">
+      <div class="stage-grid" aria-hidden="true"></div>
+      <div class="stage-inspect-chip" aria-hidden="true">RENDER: CSS 3D + VIEW TRANSITIONS API</div>
+
+      <div class="stage-caption">
+        <span class="tiny">{{ c().hero.deckCaption }}</span>
+        <span class="tiny">[ 0{{ selectedIndex() + 1 }} — 0{{ c().projects.flagships.length }} ]</span>
       </div>
 
-      <div class="panel-tabs" role="tablist" [attr.aria-label]="c().hero.panelHint">
-        @for (item of c().projects.flagships; track item.slug; let i = $index) {
-          <button
-            type="button"
-            role="tab"
-            [id]="'hero-tab-' + item.slug"
-            [attr.aria-selected]="selectedIndex() === i"
-            [attr.aria-controls]="'hero-panel-body'"
-            [attr.tabindex]="selectedIndex() === i ? 0 : -1"
-            class="panel-tab"
-            [class.panel-tab-active]="selectedIndex() === i"
-            (click)="selectProject(i)"
-            (keydown)="onTabKeydown($event, i)"
+      <div
+        class="hero-art"
+        role="region"
+        tabindex="0"
+        [attr.aria-label]="c().hero.panelHint"
+        [style.--tiltx.px]="tiltX()"
+        [style.--tilty.px]="tiltY()"
+        [style.--rx.deg]="rotX()"
+        [style.--ry.deg]="rotY()"
+        (keydown)="onStageKeydown($event)"
+        (pointerdown)="onPointerDown($event)"
+        (pointerup)="onPointerUp($event)"
+        (pointermove)="onPointerMove($event)"
+        (pointerleave)="onPointerLeave()"
+      >
+        @for (project of c().projects.flagships; track project.slug; let i = $index) {
+          @let order = orderFor(i);
+          <article
+            class="art-card"
+            [attr.data-project]="project.slug"
+            [attr.data-order]="order"
+            [attr.aria-hidden]="order !== 0"
           >
-            <span class="ed-index">{{ item.index }}</span>
-            <span class="panel-tab-name">{{ item.title }}</span>
-          </button>
+            <div class="card-topline">
+              <span>WORK / 0{{ i + 1 }}</span>
+              <span>{{ project.category }}</span>
+            </div>
+
+            <div
+              class="card-visual"
+              [class.tone-gold]="project.chapterTone === 'gold'"
+              [class.tone-green]="project.chapterTone === 'green'"
+              [class.tone-blue]="project.chapterTone === 'blue'"
+              [style.view-transition-name]="order === 0 ? transition.frameName(project.slug, 'hero') : null"
+            >
+              <img
+                [src]="'/' + project.image"
+                [attr.srcset]="srcset(project)"
+                sizes="(min-width: 1024px) 460px, 82vw"
+                [alt]="project.imageAlt"
+                [attr.width]="project.imageWidth"
+                [attr.height]="project.imageHeight"
+                [attr.fetchpriority]="i === 0 ? 'high' : 'low'"
+              />
+            </div>
+
+            <div class="card-footer">
+              <a
+                [routerLink]="project.page"
+                class="card-open-link"
+                [attr.tabindex]="order === 0 ? 0 : -1"
+                (click)="prepareCase(project.slug)"
+              >
+                <span
+                  class="card-name"
+                  [style.view-transition-name]="order === 0 ? transition.titleName(project.slug, 'hero') : null"
+                >
+                  {{ project.title }}
+                </span>
+                <span class="card-open-cta">{{ c().hero.openCase }} ↗</span>
+              </a>
+              <span class="card-number">0{{ i + 1 }}/0{{ c().projects.flagships.length }}</span>
+            </div>
+          </article>
         }
       </div>
 
-      @if (activeProject(); as project) {
-        <div
-          id="hero-panel-body"
-          role="tabpanel"
-          [attr.aria-labelledby]="'hero-tab-' + project.slug"
-          class="panel-body"
-        >
-          <div class="panel-meta-row">
-            <span class="mono-meta">{{ project.category }}</span>
-            <span class="mono-meta">{{ project.period }}</span>
-          </div>
-
-          <h2 class="panel-project-title">{{ project.title }}</h2>
-          <p class="panel-project-sub">{{ project.subtitle }}</p>
-
-          <p class="ed-decision panel-decision">
-            <strong>{{ c().hero.panelDecisionLabel }}:</strong> {{ project.decision }}
-          </p>
-
-          <ul class="panel-tags" [attr.aria-label]="c().projects.techsAria">
-            @for (tech of project.techs.slice(0, 5); track $index) {
-              <li class="ed-tag">{{ tech }}</li>
-            }
-          </ul>
-
-          <div class="panel-footer">
-            <a [routerLink]="project.page" class="ed-link">
-              <span>{{ c().hero.panelCta }}</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
-              </svg>
-            </a>
-            @if (project.demo) {
-              <a [href]="project.demo" target="_blank" rel="noopener noreferrer" class="mono-meta panel-ext">
-                {{ c().projects.demo }} ↗
-              </a>
-            }
-          </div>
+      <div class="stage-hint">
+        <span class="stage-badge">↔ &nbsp; {{ c().hero.deckBadge }}</span>
+        <div class="stage-toolbar">
+          <button type="button" id="previousWork" [attr.aria-label]="c().hero.prevProject" (click)="prev()">←</button>
+          <button type="button" id="nextWork" [attr.aria-label]="c().hero.nextProject" (click)="next()">→</button>
         </div>
-      }
-    </aside>
+      </div>
+    </div>
   </div>
 </section>
