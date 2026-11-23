@@ -1,7 +1,7 @@
 import { SiteContent } from './types';
 
-// Source of truth for facts: the CV (public/JAMESON_HENRIQUE_CV.pdf) and each project's README.
-// Keep en.ts as a faithful translation of this file.
+// Source of truth: tools/cv-portfolio.md, OportunizaVaga/README.md, Newgram/README.md.
+// Keep en.ts strictly aligned in facts and structure.
 export const PT: SiteContent = {
   lang: 'pt',
   htmlLang: 'pt-BR',
@@ -13,256 +13,528 @@ export const PT: SiteContent = {
   meta: {
     title: 'Jameson Henrique | Desenvolvedor Full Stack na Wolfacilitates',
     description:
-      'Desenvolvedor Full Stack e Responsável por Tecnologia na Wolfacilitates C&M. Estudante de BTI na UFRN, com base em Java, Spring Boot, Angular e TypeScript.'
+      'Desenvolvedor Full Stack e Responsável por Tecnologia na Wolfacilitates C&M. Estudante de BTI no IMD/UFRN, com base em Java, Spring Boot, Angular, TypeScript e automações.'
   },
   skipLink: 'Pular para o conteúdo',
   nav: {
-    aria: 'Seções',
+    aria: 'Navegação principal',
+    menuOpen: 'Abrir menu',
+    menuClose: 'Fechar menu',
     inicio: 'Início',
-    sobre: 'Sobre',
-    skills: 'Stack',
     projetos: 'Projetos',
-    contato: 'Contato',
-    rodape: 'Rodapé'
+    sobre: 'Trajetória',
+    skills: 'Capacidades',
+    contato: 'Contato'
   },
   hero: {
-    availability: 'Desenvolvedor Full Stack na Wolfacilitates C&M',
-    badge: 'full stack · TypeScript · Java · Angular',
-    lines: [
-      [{ text: 'Desenvolvimento de APIs com ' }, { text: 'Java e Spring Boot', hl: 'strong' }, { text: '.' }],
-      [
-        { text: 'Interfaces com ' },
-        { text: 'Angular e TypeScript', hl: 'strong' },
-        { text: '; experiência também com automação e integrações.' }
-      ]
-    ],
-    projectsButton: 'VER PROJETOS',
-    cvButton: 'BAIXAR CV'
+    context: 'Wolfacilitates C&M · Natal, RN',
+    name: 'Jameson Henrique',
+    headline: 'Engenharia full stack e sistemas em produção',
+    subhead:
+      'Desenvolvedor Full Stack e Responsável por Tecnologia. Projeto APIs em Java e Spring Boot, interfaces em Angular e TypeScript e integrações resilientes entre sistemas.',
+    projectsButton: 'Ver projetos',
+    cvButton: 'Baixar currículo',
+    panelLabel: 'Sistemas em destaque',
+    panelHint: 'Selecione um projeto para inspecionar arquitetura e decisão técnica',
+    panelCta: 'Ler estudo de caso',
+    panelDecisionLabel: 'Decisão-chave'
   },
-  about: {
-    title: 'SOBRE MIM',
-    photoAlt: 'Foto de Jameson Henrique',
-    intro:
-      'Sou desenvolvedor de software e estudante de Tecnologia da Informação no IMD/UFRN. Gosto de transformar necessidades reais em soluções digitais úteis e fáceis de usar.',
-    detail:
-      'Meu foco está no desenvolvimento com Java, Spring Boot, Angular e TypeScript, com experiência também em automações e integrações entre sistemas.',
-    educationLabel: 'FORMAÇÃO',
-    education: 'Bacharelado em Tecnologia da Informação · UFRN',
-    workLabel: 'ATUAÇÃO ATUAL',
-    work: 'Desenvolvedor Full Stack e Responsável por Tecnologia · Wolfacilitates C&M · desde out/2026',
-    workDetail: 'Planejamento de aplicações web, sistemas internos, CRM e integrações.',
-    experienceLabel: 'TRAJETÓRIA',
-    pastRoles: [
-      {
-        role: 'Automações e integrações · Duarte e Almeida · ago–out/2026',
-        detail: 'Integrações em produção e 30 automações convertidas e validadas.'
-      },
-      {
-        role: 'Full Stack freelancer · Painel de Máquinas · jun–jul/2025',
-        detail: 'Sistema de monitoramento de máquinas em uso pelo cliente.'
-      }
-    ],
-    cvLink: 'Baixar currículo'
-  },
-  skills: { title: 'STACK', systemsTitle: 'SISTEMAS QUE JÁ INTEGREI' },
   projects: {
-    title: 'PROJETOS',
-    decisionLabel: 'Decisão técnica:',
+    index: '01',
+    kicker: 'Projetos selecionados',
+    title: 'Sistemas construídos para operação real',
+    lead: 'Três estudos de caso com arquitetura, decisões técnicas e contexto operacional, seguidos pelo arquivo de repositórios públicos.',
+    decisionLabel: 'Decisão técnica',
+    readCase: 'Ler estudo de caso',
     demo: 'Ver demo',
-    code: 'Ver código',
-    details: 'Detalhes',
-    more: 'VER MAIS PROJETOS',
-    techsAria: 'Tecnologias',
-    screenshotOf: 'Tela do',
-    cards: [
+    code: 'GitHub',
+    techsAria: 'Tecnologias utilizadas',
+    archiveTitle: 'Outros repositórios',
+    archiveLead: 'Projetos de estudo e experimentação full stack disponíveis no GitHub.',
+    archiveMore: 'Ver todos os repositórios no GitHub',
+    flagships: [
       {
-        title: 'OPORTUNIZAVAGA',
-        name: 'Agente open-source de candidatura a vagas',
+        index: '01',
+        slug: 'oportunizavaga',
+        title: 'OportunizaVaga',
+        subtitle: 'Agente open-source de busca e candidatura com estado durável',
+        category: 'Open-source · Automação & IA',
+        period: '2026',
         description:
-          'Projeto open-source que busca, filtra e automatiza candidaturas em portais brasileiros usando modelos de IA e um navegador real. Mantém o estado fora do modelo, usa filtros configuráveis e tem testes e CI; a documentação recomenda verificar os termos de cada portal e desaconselha candidaturas em massa.',
-        techs: ['Python', 'Shell', 'Node.js', 'Chrome (CDP)', 'LLMs', 'GitHub Actions', 'Docker'],
-        image: 'oportunizavaga_print.webp',
-        page: '/projetos/oportunizavaga',
+          'Ferramenta open-source que busca, filtra e organiza candidaturas em portais brasileiros usando modelos de IA e navegador real via Chrome DevTools Protocol, com painel opcional sem banco de dados.',
         decision:
-          'Um supervisor idempotente roda a cada 5 minutos e religa o loop e o Chrome se caírem; o estado fica em JSON durável, fora da IA.',
+          'Supervisor idempotente via cron a cada 5 minutos com trava exclusiva de arquivo e estado durável em JSON fora da sessão do modelo.',
+        techs: ['Python', 'Shell', 'Node.js', 'Chrome (CDP)', 'LLMs', 'GitHub Actions'],
+        image: 'oportunizavaga_print.webp',
+        imageWidth: 960,
+        imageHeight: 600,
+        imageAlt:
+          'Monitor do OportunizaVaga em demonstração com dados fictícios mostrando envios e cadência por portal',
+        page: '/projetos/oportunizavaga',
         url: 'https://github.com/JamesonHenrique/OportunizaVaga',
         demo: 'https://oportunizavaga-demo.vercel.app'
       },
       {
-        title: 'PAINEL DE MÁQUINAS',
-        name: 'Monitoramento de equipamentos em tempo real',
+        index: '02',
+        slug: 'painel-de-maquinas',
+        title: 'Painel de Máquinas',
+        subtitle: 'Monitoramento de equipamentos no chão de fábrica em tempo real',
+        category: 'Freelance · Produção industrial',
+        period: 'jun–jul/2025',
         description:
-          'Sistema completo (backend e frontend) em uso pelo cliente no chão de fábrica. Substituiu a conferência manual: a equipe vê em tempo real quais máquinas estão paradas, em operação, em manutenção ou sem operador.',
-        techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'MongoDB', 'RxJS', 'Tailwind CSS'],
+          'Aplicação web completa (backend e frontend) entregue para operação diária em chão de fábrica, substituindo a conferência manual pela leitura imediata do estado de cada equipamento.',
+        decision:
+          'Modelagem direta por estado operacional (em operação, parada, manutenção e sem operador) com atualização contínua para leitura rápida à distância.',
+        techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'MongoDB', 'RxJS'],
         image: 'painel-de-maquinas_print.webp',
-        note: 'Projeto freelance: código do cliente, não público.'
+        imageWidth: 1200,
+        imageHeight: 579,
+        imageAlt: 'Painel web de monitoramento mostrando contadores e cartões de estado operacional de máquinas',
+        page: '/projetos/painel-de-maquinas',
+        privateNote: 'Código proprietário do cliente; estudo de caso baseado apenas em informações autorizadas.'
       },
       {
-        title: 'NEWGRAM',
-        name: 'Rede social full stack',
+        index: '03',
+        slug: 'newgram',
+        title: 'Newgram',
+        subtitle: 'Rede social full stack orientada a contrato OpenAPI',
+        category: 'Full Stack · Java & Angular',
+        period: '2025–2026',
         description:
-          'Compartilhamento de fotos e stories com feed com descoberta, seguidores, favoritos e destaques. Autenticação JWT e upload de imagens no S3.',
-        techs: [
-          'Java',
-          'Spring Boot',
-          'Angular',
-          'TypeScript',
-          'PostgreSQL',
-          'JWT',
-          'AWS S3',
-          'Docker',
-          'Flyway',
-          'Tailwind CSS'
-        ],
-        image: 'newgram_print.webp',
-        page: '/projetos/newgram',
+          'Rede social completa com feed de descoberta, stories, destaques, coleções de salvos, notificações e grafo de seguidores — conectando API Spring Boot em camadas a cliente Angular gerado via OpenAPI.',
         decision:
-          'Mídia no AWS S3 entregue por presigned URLs com expiração configurável; schema versionado com Flyway.',
+          'Autenticação JWT com rotação de refresh token, mídia no AWS S3 via presigned URLs com expiração configurável e schema PostgreSQL versionado com Flyway.',
+        techs: ['Java 21', 'Spring Boot', 'Angular 19', 'PostgreSQL', 'AWS S3', 'Flyway'],
+        image: 'newgram_print.webp',
+        imageWidth: 1200,
+        imageHeight: 546,
+        imageAlt: 'Interface do feed do Newgram exibindo publicações, interações e sugestões de perfis',
+        page: '/projetos/newgram',
         url: 'https://github.com/JamesonHenrique/Newgram',
         demo: 'https://newgram-nine.vercel.app/'
-      },
+      }
+    ],
+    archive: [
       {
-        title: 'ALGAMONEY',
-        name: 'Gestão financeira pessoal',
-        description: 'Controle de receitas e despesas com dashboard e relatórios.',
-        techs: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'JWT', 'JasperReports', 'Chart.js'],
-        image: 'algamoney_print.webp',
+        title: 'Algamoney',
+        description: 'Gestão financeira pessoal com controle de lançamentos, dashboard analítico e relatórios.',
+        techs: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'JWT', 'JasperReports'],
         url: 'https://github.com/JamesonHenrique/Algamoney'
       },
       {
-        title: 'WAVECHAT',
-        name: 'Chat em tempo real',
-        description: 'Mensagens instantâneas via WebSocket, com autenticação pelo Keycloak.',
-        techs: ['Java', 'Spring Boot', 'Angular', 'WebSocket', 'PostgreSQL', 'Keycloak', 'Docker'],
-        image: 'wavechat_print.webp',
+        title: 'WaveChat',
+        description: 'Aplicação de mensagens instantâneas sobre WebSocket com gestão de identidade via Keycloak.',
+        techs: ['Java', 'Spring Boot', 'Angular', 'WebSocket', 'Keycloak', 'Docker'],
         url: 'https://github.com/JamesonHenrique/WaveChat'
       },
       {
-        title: 'BOOKLORE',
-        name: 'Biblioteca pessoal',
-        description: 'Coleção de livros com autenticação por e-mail e sistema de empréstimos.',
+        title: 'BookLore',
+        description: 'Catálogo pessoal de leitura com autenticação por e-mail e controle de empréstimos.',
         techs: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'JWT', 'Docker'],
-        image: 'booklore_print.webp',
         url: 'https://github.com/JamesonHenrique/BookLore'
       }
     ]
   },
+  about: {
+    index: '02',
+    kicker: 'Sobre e trajetória',
+    title: 'Da arquitetura ao sistema em produção',
+    lead: 'Formação acadêmica em Tecnologia da Informação combinada com entregas reais em desenvolvimento web, CRM e automação operacional.',
+    photoAlt: 'Retrato de Jameson Henrique',
+    intro:
+      'Sou desenvolvedor de software e estudante do Bacharelado em Tecnologia da Informação no IMD/UFRN. Meu trabalho gira em torno de transformar problemas operacionais concretos em sistemas legíveis, seguros e fáceis de manter.',
+    detail:
+      'Atuo principalmente com Java, Spring Boot, Angular e TypeScript no desenvolvimento full stack, somados à experiência prática com integrações via APIs REST, webhooks e automação de fluxos com Make, n8n e IA aplicada.',
+    locationLabel: 'Base',
+    location: 'Natal, RN · Brasil',
+    educationLabel: 'Formação',
+    education: 'Bacharelado em Tecnologia da Informação',
+    educationDetail: 'Instituto Metrópole Digital (IMD/UFRN) · 2026.1 – cursando',
+    languagesLabel: 'Idiomas',
+    languages: 'Português (nativo) · Inglês (intermediário) · Espanhol (básico)',
+    experienceHeading: 'Experiência profissional',
+    currentBadge: 'Atual',
+    cvLink: 'Baixar currículo em PDF',
+    experience: [
+      {
+        period: 'nov/2026 – atual',
+        role: 'Desenvolvedor Full Stack e Responsável por Tecnologia',
+        organization: 'Wolfacilitates C&M',
+        context: 'Remoto',
+        summary:
+          'Planejamento e desenvolvimento de aplicações web, landing pages e sistemas internos, além da estruturação de arquitetura, integrações e operação digital da empresa.',
+        highlights: [
+          'Estruturação de um CRM próprio e definição de arquitetura e tecnologias.',
+          'Planejamento de APIs, integrações entre sistemas e avaliação de infraestrutura e custos.',
+          'Definição de testes, segurança, versionamento, implantação e monitoramento.'
+        ],
+        stack: ['TypeScript', 'Angular', 'Java', 'Spring Boot', 'APIs REST', 'Docker'],
+        current: true
+      },
+      {
+        period: 'ago/2026 – out/2026',
+        role: 'Estagiário em Desenvolvimento de Automações e Integrações',
+        organization: 'Duarte e Almeida Advogados',
+        context: 'LegalOps · Departamento de Tecnologia',
+        summary:
+          'Manutenção de integrações críticas em produção entre atendimento, CRM, assinatura eletrônica e sistema jurídico via APIs REST e webhooks.',
+        highlights: [
+          'Conversão e validação de 30 automações do Make para n8n Cloud.',
+          'Construção de auditoria diária de tarefas jurídicas com regras refinadas junto à direção e Controladoria.',
+          'Investigação de falhas em atendimento com IA, contratos de dados e fluxos de assinatura e pós-venda.'
+        ],
+        stack: ['Make', 'n8n', 'APIs REST', 'Webhooks', 'JSON', 'Google Workspace', 'IA aplicada']
+      },
+      {
+        period: 'jun/2025 – jul/2025',
+        role: 'Desenvolvedor Full Stack (Freelancer)',
+        organization: 'Painel de Máquinas',
+        context: 'Projeto sob demanda · Chão de fábrica',
+        summary:
+          'Desenvolvimento ponta a ponta (backend e frontend) de painel web para acompanhamento operacional de equipamentos industriais.',
+        highlights: [
+          'Visualização em tempo real organizada por estado operacional das máquinas.',
+          'Sistema colocado em uso direto pelo cliente, eliminando a conferência manual.'
+        ],
+        stack: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'MongoDB']
+      }
+    ]
+  },
+  skills: {
+    index: '03',
+    kicker: 'Capacidades técnicas',
+    title: 'Stack aplicada em contexto',
+    lead: 'Tecnologias organizadas pelo papel que cumprem em arquitetura, entrega e manutenção — alinhadas à experiência documentada no currículo.',
+    groups: [
+      {
+        index: '01',
+        title: 'Backend, APIs e dados',
+        context:
+          'Serviços em camadas, contratos OpenAPI, autenticação JWT/OAuth2 com rotação de tokens e bancos relacionais e NoSQL com migrações versionadas.',
+        items: [
+          'Java',
+          'Spring Boot',
+          'Spring Security',
+          'Spring Data JPA',
+          'APIs REST',
+          'JWT',
+          'OAuth2',
+          'OpenAPI / Swagger',
+          'PostgreSQL',
+          'MySQL',
+          'MongoDB',
+          'Flyway',
+          'SQL'
+        ]
+      },
+      {
+        index: '02',
+        title: 'Frontend e interfaces',
+        context:
+          'Aplicações web tipadas com foco em clareza operacional, acessibilidade, consumo de clientes gerados por contrato e renderização otimizada.',
+        items: ['Angular', 'TypeScript', 'JavaScript', 'RxJS', 'Tailwind CSS', 'HTML semântico', 'SSR / Prerender']
+      },
+      {
+        index: '03',
+        title: 'Automação, integrações e IA aplicada',
+        context:
+          'Orquestração entre atendimento, CRM, assinatura eletrônica e sistemas internos com tratamento de erro, paginação, idempotência e proteção de credenciais.',
+        items: [
+          'Make',
+          'n8n',
+          'Python',
+          'Webhooks',
+          'JSON',
+          'Gemini API',
+          'Google Workspace',
+          'Tratamento de erro',
+          'Paginação',
+          'Segurança de credenciais'
+        ]
+      },
+      {
+        index: '04',
+        title: 'Testes, entrega e infraestrutura',
+        context:
+          'Testes unitários e automatizados, pipelines de CI com verificação de segredos, empacotamento em containers e entrega segura de mídia em nuvem.',
+        items: ['JUnit', 'Mockito', 'Docker', 'Git', 'GitHub Actions (CI)', 'AWS S3', 'Linux']
+      }
+    ]
+  },
   contact: {
-    title: 'VAMOS CONVERSAR',
-    cardTitle: 'VAMOS CONVERSAR SOBRE O SEU PROCESSO',
-    text: 'Atualmente na Wolfacilitates C&M. Vamos conversar sobre desenvolvimento de software, integrações e tecnologia.',
-    email: 'EMAIL',
-    phone: 'TELEFONE',
-    location: 'LOCALIZAÇÃO',
-    locationValue: 'Rio Grande do Norte, Brasil',
-    social: 'CONECTE-SE COMIGO',
+    index: '04',
+    kicker: 'Contato',
+    title: 'Vamos conversar',
+    lead: 'Aberto a conversas técnicas sobre engenharia de software, arquitetura web, integrações e tecnologia.',
+    channelsHeading: 'Canais diretos',
+    text: 'Atualmente na Wolfacilitates C&M. Se quiser discutir um projeto, trocar ideias sobre arquitetura ou falar sobre tecnologia, escreva por aqui ou direto pelo e-mail.',
+    email: 'E-mail',
+    copyEmail: 'Copiar',
+    copiedEmail: 'Copiado',
+    phone: 'Telefone',
+    location: 'Localização',
+    locationValue: 'Natal, RN · Brasil',
+    social: 'Perfis',
     form: {
-      name: 'Seu Nome',
-      namePlaceholder: 'Como posso te chamar?',
-      email: 'Seu Email',
-      emailPlaceholder: 'Seu melhor email',
+      name: 'Seu nome',
+      namePlaceholder: 'Como prefere ser chamado',
+      email: 'Seu e-mail',
+      emailPlaceholder: 'nome@empresa.com',
       subject: 'Assunto',
-      subjectPlaceholder: 'Sobre o que vamos conversar?',
-      message: 'Sua Mensagem',
-      messagePlaceholder: 'Conte-me sobre seu projeto...',
-      send: 'ENVIAR MENSAGEM',
-      sending: 'ENVIANDO...',
-      sent: 'Mensagem enviada. Respondo pelo e-mail que você informou.',
-      error: 'Não consegui enviar agora. Escreva direto para'
+      subjectPlaceholder: 'Sobre o que vamos conversar',
+      message: 'Mensagem',
+      messagePlaceholder: 'Contexto, objetivo ou dúvida técnica...',
+      send: 'Enviar mensagem',
+      sending: 'Enviando...',
+      sent: 'Mensagem enviada. Retorno pelo e-mail informado.',
+      error: 'Não foi possível enviar agora. Escreva diretamente para'
     }
   },
   footer: {
-    quote: '"Não é a linguagem de programação que define o programador, mas sim sua lógica."',
-    rights: 'Todos os direitos reservados.'
+    role: 'Desenvolvedor Full Stack · Natal, RN',
+    rights: 'Todos os direitos reservados.',
+    cv: 'Currículo (PDF)'
   },
-  projectPage: { back: '← Voltar aos projetos', stack: 'Stack', code: 'Ver código no GitHub', demo: 'Abrir a demo' },
+  projectPage: {
+    back: 'Voltar para projetos',
+    caseLabel: 'Estudo de caso',
+    problemHeading: 'Problema e contexto',
+    stack: 'Stack utilizada',
+    code: 'Ver código no GitHub',
+    demo: 'Abrir demo ao vivo',
+    nextCase: 'Próximo estudo de caso'
+  },
   pages: {
     oportunizavaga: {
+      index: '01',
       slug: 'oportunizavaga',
       title: 'OportunizaVaga',
-      name: 'Agente open-source de candidatura a vagas',
+      name: 'Agente open-source de busca e candidatura com estado durável e monitor zero-DB',
+      category: 'Open-source · Automação & IA',
+      period: '2026',
       metaDescription:
-        'OportunizaVaga: projeto open-source de automação de busca e candidaturas em portais brasileiros com IA e navegador real, com filtros configuráveis e documentação de uso responsável. Projeto de Jameson Henrique.',
-      image: 'oportunizavaga_print.webp',
-      imageAlt: 'Monitor do OportunizaVaga na demo com dados fictícios: candidaturas enviadas e cadência por fonte',
-      intro: [
-        'Projeto open-source que busca, filtra e automatiza candidaturas em portais brasileiros usando IA e navegador real. O escopo e os filtros vêm de uma configuração local; os dados do candidato não são inventados pelo modelo.',
-        'O README alerta que a automação pode violar os termos dos portais e recomenda conferir as regras antes de habilitar cada site. O projeto documenta limites de uso e desaconselha candidaturas em massa.'
+        'Estudo de caso do OportunizaVaga: automação open-source de busca e candidaturas com supervisor idempotente, estado durável fora da IA, Chrome CDP e monitor zero-DB.',
+      specs: [
+        { label: 'Papel', value: 'Autor e mantenedor' },
+        { label: 'Licença', value: 'Open-source (MIT)' },
+        { label: 'Plataformas', value: 'Linux · Windows (PS1 / WSL2)' },
+        { label: 'Status', value: 'Publicado com demo ativa' }
       ],
-      sections: [
+      image: 'oportunizavaga_print.webp',
+      imageWidth: 960,
+      imageHeight: 600,
+      imageAlt: 'Monitor do OportunizaVaga em demo com dados fictícios: candidaturas enviadas e cadência por portal',
+      imageCaption:
+        'Monitor opcional na Vercel exibindo dados fictícios de demonstração, cadência diária e distribuição por fonte.',
+      intro: [
+        'Buscar e filtrar vagas compatíveis em múltiplos portais brasileiros exige disciplina repetitiva: verificar critérios de perfil, evitar candidaturas duplicadas, adaptar currículo ao anúncio e acompanhar retornos sem perder o histórico.',
+        'O OportunizaVaga estrutura esse fluxo como um sistema determinístico assistido por IA rodando localmente a custo zero. A documentação destaca explicitamente que automações podem violar termos de uso de portais de vagas, exigindo conferência prévia das regras de cada site e desencorajando candidaturas em massa.'
+      ],
+      architectureHeading: 'Arquitetura do sistema',
+      architectureSummary:
+        'Separação estrita entre orquestração (cron + supervisor), execução em navegador real (Chrome CDP), persistência de estado em JSON fora da sessão do modelo e telemetria agregada no monitor.',
+      architectureAria:
+        'Diagrama de arquitetura do OportunizaVaga: Cron a cada 5 minutos aciona o Guardião idempotente com trava exclusiva, que coordena o Loop e cascata de modelos LLM, interage com o Chrome via CDP, grava estado durável em JSON fora da IA e envia snapshot agregado ao Monitor na Vercel.',
+      decisionsHeading: 'Decisões técnicas e trade-offs',
+      decisions: [
         {
-          heading: 'Como funciona',
-          items: [
-            'Um cron a cada 5 minutos chama um supervisor idempotente, que sobe o loop e o Chrome (via CDP) se algum deles tiver caído.',
-            'Cada rodada visita um site do rodízio configurado e respeita intervalo entre rodadas, com backoff quando não há vaga nova; confira os termos de uso do portal antes de habilitar a automação.',
-            'O estado fica em arquivos JSON por perfil, nunca na sessão do modelo de IA.',
-            'Os dados do candidato vêm de um arquivo próprio; o que falta vira um bloqueio com o motivo exato, em vez de ser inventado.',
-            'Um monitor opcional na Vercel mostra o funil e a operação, com telemetria agregada por padrão.'
-          ]
+          title: 'Estado durável fora da sessão do modelo',
+          rationale:
+            'Cada rodada inicia uma sessão limpa de LLM. Todo histórico (aplicadas, bloqueios, descartes e rodízio) vive em JSON gravado atomicamente com trava exclusiva (jsonlock.py), evitando contaminação de contexto.'
         },
         {
-          heading: 'Decisões técnicas',
-          items: [
-            'Supervisor idempotente em vez de processo único: qualquer falha é recuperada na próxima execução do cron.',
-            'Cascata configurável de provedores de IA: quando um atinge limite de uso, tenta o próximo e retorna ao preferido automaticamente.',
-            'Instância única garantida por lock de arquivo, para duas rodadas nunca disputarem o mesmo navegador.'
-          ]
+          title: 'Supervisor idempotente em vez de daemon frágil',
+          rationale:
+            'Um cron a cada 5 minutos verifica se o loop e o Chrome (CDP :9222) estão ativos e sobe o que tiver caído. Trava de instância única impede disputa pelo mesmo navegador.'
         },
         {
-          heading: 'Qualidade',
-          items: ['Testes automatizados, CI com varredura de segredos e versões para Linux e Windows.']
+          title: 'Nunca inventar dados do candidato',
+          rationale:
+            'Todo campo preenchido vem de arquivos locais configurados pelo usuário. Qualquer dado ausente interrompe a candidatura com registro explícito do motivo em bloqueios.'
+        },
+        {
+          title: 'Monitor sem banco e telemetria agregada',
+          rationale:
+            'O painel opcional na Vercel mantém apenas o último snapshot em memória (custo zero), publicando contadores agregados por padrão e mascarando dados sensíveis nos logs.'
         }
       ],
-      techs: ['Python', 'Shell', 'Node.js', 'Chrome (CDP)', 'LLMs', 'GitHub Actions', 'Docker'],
-      url: 'https://github.com/JamesonHenrique/OportunizaVaga',
-      demo: 'https://oportunizavaga-demo.vercel.app'
-    },
-    newgram: {
-      slug: 'newgram',
-      title: 'Newgram',
-      name: 'Rede social full stack',
-      metaDescription:
-        'Newgram: rede social full stack com Spring Boot e Angular, autenticação JWT, upload de mídia no AWS S3 e feed com descoberta. Projeto de Jameson Henrique.',
-      image: 'newgram_print.webp',
-      imageAlt: 'Feed do Newgram com posts e sugestões de criadores',
-      intro: [
-        'Rede social inspirada no Instagram, construída como um projeto full stack completo: back-end em Spring Boot com arquitetura em camadas e front-end Angular que consome uma API gerada a partir do contrato OpenAPI.',
-        'A ideia foi ir além do CRUD e modelar um domínio social real: posts, stories, destaques, seguidores, curtidas, comentários, hashtags, notificações e coleções de salvos.'
-      ],
       sections: [
         {
-          heading: 'Funcionalidades',
+          heading: 'Fluxo operacional',
           items: [
-            'Autenticação JWT com access token e refresh token, e filtros de segurança próprios.',
-            'Feed com descoberta: quem você segue, populares, em alta, recomendados e por localização.',
-            'Busca de posts por legenda e de usuários por nome, com paginação.',
-            'Stories e destaques, seguidores, sugestões de quem seguir, comentários, curtidas e notificações.',
-            'Documentação da API com Swagger (OpenAPI 3).'
+            'Visita um portal por rodada em rodízio configurável, respeitando intervalos e backoff automático quando não há vagas novas.',
+            'Cascata de provedores de IA com pontuação de saúde: ao atingir rate limit, alterna para o próximo provedor e retorna ao preferido quando disponível.',
+            'Geração de currículo em PDF de 1 página por vaga a partir de um currículo-base local, acompanhada de checagem de aderência ATS (meta >= 75%).',
+            'Rotina semanal somente leitura para acompanhamento de status e relatório de funil (vistas → aplicadas → respondidas → entrevistas).'
           ]
         },
         {
-          heading: 'Decisões técnicas',
+          heading: 'Qualidade e segurança',
           items: [
-            'Mídia no AWS S3, entregue por presigned URLs com expiração configurável.',
-            'Schema do PostgreSQL versionado com Flyway.',
-            'Back-end em camadas, isolando regra de negócio de framework e infraestrutura.'
+            'Testes automatizados em CI no GitHub Actions e script pré-commit de varredura de segredos e dados pessoais.',
+            'Paridade entre scripts Linux (Bash) e Windows (PowerShell nativo / WSL2), além de modo dry-run para simular uma rodada sem enviar candidaturas.'
           ]
         }
       ],
       techs: [
-        'Java',
-        'Spring Boot',
-        'Angular',
+        'Python',
+        'Shell',
+        'PowerShell',
+        'Node.js',
+        'Next.js',
+        'Chrome (CDP)',
+        'LLMs',
+        'GitHub Actions',
+        'Docker'
+      ],
+      url: 'https://github.com/JamesonHenrique/OportunizaVaga',
+      demo: 'https://oportunizavaga-demo.vercel.app',
+      nextSlug: 'painel-de-maquinas'
+    },
+    'painel-de-maquinas': {
+      index: '02',
+      slug: 'painel-de-maquinas',
+      title: 'Painel de Máquinas',
+      name: 'Monitoramento web de equipamentos em tempo real no chão de fábrica',
+      category: 'Freelance · Produção industrial',
+      period: 'jun–jul/2025',
+      metaDescription:
+        'Estudo de caso autorizado do Painel de Máquinas: sistema full stack em Java, Spring Boot, Angular e MongoDB para acompanhamento operacional de equipamentos no chão de fábrica.',
+      specs: [
+        { label: 'Papel', value: 'Full Stack (ponta a ponta)' },
+        { label: 'Formato', value: 'Projeto freelance' },
+        { label: 'Ambiente', value: 'Uso real em chão de fábrica' },
+        { label: 'Código', value: 'Proprietário do cliente' }
+      ],
+      image: 'painel-de-maquinas_print.webp',
+      imageWidth: 1200,
+      imageHeight: 579,
+      imageAlt: 'Painel web exibindo indicadores consolidados e cartões de status individual das máquinas',
+      imageCaption:
+        'Captura sanitizada do painel operacional mostrando totais por estado e grade individual de equipamentos.',
+      intro: [
+        'Antes do sistema, acompanhar quais equipamentos estavam operando, parados ou aguardando intervenção exigia conferência manual recorrente no chão de fábrica — um processo lento e propenso a atraso na resposta operacional.',
+        'O projeto foi desenvolvido de ponta a ponta como solução web dedicada, consolidando em uma única tela a visão geral da planta e o status individual de cada máquina para uso contínuo pela equipe do cliente.'
+      ],
+      architectureHeading: 'Arquitetura do sistema',
+      architectureSummary:
+        'Backend REST em Java e Spring Boot integrado ao MongoDB para persistência de estados dos equipamentos, consumido por uma interface Angular reativa construída com RxJS e Tailwind CSS.',
+      architectureAria:
+        'Diagrama de arquitetura do Painel de Máquinas: eventos de estado dos equipamentos alimentam a API Spring Boot em Java conectada ao MongoDB, que serve dados continuamente ao frontend Angular com RxJS para exibição em tempo real no chão de fábrica.',
+      decisionsHeading: 'Decisões técnicas e trade-offs',
+      decisions: [
+        {
+          title: 'Hierarquia visual orientada a quatro estados claros',
+          rationale:
+            'Os equipamentos são agrupados em quatro condições objetivas (em operação, parada, em manutenção e sem operador), com totalizadores no topo para leitura imediata à distância.'
+        },
+        {
+          title: 'Modelo documental flexível no MongoDB',
+          rationale:
+            'Representar o estado atual e os metadados de cada máquina em documentos simplificou leituras agregadas e atualizações frequentes sem rigidez excessiva de joins.'
+        },
+        {
+          title: 'Interface Angular reativa e direta',
+          rationale:
+            'Uso de RxJS para manter o painel sincronizado com a API Spring Boot sem recarregamento manual de página, priorizando estabilidade e baixa fricção para operadores.'
+        }
+      ],
+      sections: [
+        {
+          heading: 'Entregas principais',
+          items: [
+            'Desenvolvimento completo da API backend em Java com Spring Boot e persistência em MongoDB.',
+            'Construção do frontend web em Angular, TypeScript, RxJS e Tailwind CSS com indicadores consolidados e cartões individuais por equipamento.',
+            'Implantação e organização da visualização utilizada diretamente pelo cliente na rotina do chão de fábrica.'
+          ]
+        }
+      ],
+      techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'MongoDB', 'RxJS', 'Tailwind CSS'],
+      privateNotice:
+        'Projeto entregue sob contrato freelance: o código-fonte, os dados de produção e a identidade do cliente são confidenciais. Este estudo descreve apenas escopo e decisões técnicas autorizadas.',
+      nextSlug: 'newgram'
+    },
+    newgram: {
+      index: '03',
+      slug: 'newgram',
+      title: 'Newgram',
+      name: 'Rede social full stack com arquitetura em camadas, contrato OpenAPI e AWS S3',
+      category: 'Full Stack · Java & Angular',
+      period: '2025–2026',
+      metaDescription:
+        'Estudo de caso do Newgram: rede social full stack com Java 21, Spring Boot 3.5, Angular 19, cliente OpenAPI tipado, rotação de refresh token JWT, PostgreSQL com Flyway e AWS S3.',
+      specs: [
+        { label: 'Papel', value: 'Autor (Backend + Frontend)' },
+        { label: 'Backend', value: 'Java 21 · Spring Boot 3.5' },
+        { label: 'Frontend', value: 'Angular 19 · OpenAPI client' },
+        { label: 'Status', value: 'Open-source com demo ativa' }
+      ],
+      image: 'newgram_print.webp',
+      imageWidth: 1200,
+      imageHeight: 546,
+      imageAlt: 'Feed principal do Newgram com publicações, ações de interação e painel de criadores sugeridos',
+      imageCaption:
+        'Feed do Newgram com consumo tipado da API REST, mídia entregue via presigned URLs e sugestões de perfis.',
+      intro: [
+        'O objetivo do Newgram foi ir além de um CRUD tradicional e modelar um domínio social completo com restrições reais de segurança, armazenamento de mídia e evolução de schema.',
+        'A aplicação conecta um backend Spring Boot em camadas a um frontend Angular cujo cliente HTTP é gerado automaticamente a partir da especificação OpenAPI 3, eliminando divergências manuais de contrato.'
+      ],
+      architectureHeading: 'Arquitetura do sistema',
+      architectureSummary:
+        'Backend estruturado em quatro camadas (presentation, application, core.domain e infrastructure), isolando regras de negócio da borda HTTP, segurança JWT, banco PostgreSQL e storage S3.',
+      architectureAria:
+        'Diagrama de arquitetura do Newgram: frontend Angular 19 com cliente gerado via OpenAPI comunica-se via REST e JWT com o backend Spring Boot em camadas, que persiste dados no PostgreSQL versionado por Flyway e entrega mídias via presigned URLs do AWS S3.',
+      decisionsHeading: 'Decisões técnicas e trade-offs',
+      decisions: [
+        {
+          title: 'JWT com rotação de refresh token',
+          rationale:
+            'Access tokens curtos (15 min) combinados a refresh tokens de 7 dias com rotação e rejeição de reuso, acompanhados de testes dedicados para o fluxo de renovação.'
+        },
+        {
+          title: 'Entrega de mídia via presigned URLs no AWS S3',
+          rationale:
+            'Evita expor objetos diretamente como públicos ou sobrecarregar a API como proxy de binários, com expiração configurável (60 min) e suporte a storage S3-compatível como MinIO em ambiente local.'
+        },
+        {
+          title: 'Cliente frontend gerado do contrato OpenAPI',
+          rationale:
+            'O uso do ng-openapi-gen a partir do springdoc-openapi garante tipagem ponta a ponta entre DTOs Java e componentes Angular.'
+        },
+        {
+          title: 'Evolução controlada de schema e container enxuto',
+          rationale:
+            'Migrations versionadas com Flyway no PostgreSQL, ajuste de pool Hikari e batch inserts JPA, empacotados em build Docker multi-stage (Maven → Temurin JRE Alpine).'
+        }
+      ],
+      sections: [
+        {
+          heading: 'Domínio modelado',
+          items: [
+            'Feed com múltiplas estratégias de descoberta: perfis seguidos, populares, tendências, recomendados e por localização.',
+            'Publicações com mídia, curtidas, comentários, hashtags, arquivamento e organização em coleções de salvos.',
+            'Stories com expiração e destaques no perfil, grafo de seguidores com sugestões em comum e notificações de interação.',
+            'Busca paginada de publicações por legenda e de usuários por nome ou username, além de documentação interativa no Swagger UI.'
+          ]
+        }
+      ],
+      techs: [
+        'Java 21',
+        'Spring Boot 3.5',
+        'Spring Security',
+        'Angular 19',
         'TypeScript',
+        'RxJS',
         'PostgreSQL',
+        'Flyway',
         'JWT',
         'AWS S3',
-        'Docker',
-        'Flyway',
-        'Tailwind CSS'
+        'OpenAPI',
+        'Docker'
       ],
       url: 'https://github.com/JamesonHenrique/Newgram',
-      demo: 'https://newgram-nine.vercel.app/'
+      demo: 'https://newgram-nine.vercel.app/',
+      nextSlug: 'oportunizavaga'
     }
   }
 };

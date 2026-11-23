@@ -28,19 +28,20 @@ describe('AppComponent', () => {
 
   it('should render every home section in Portuguese at /', async () => {
     const el = await renderAll(await RouterTestingHarness.create('/'));
-    for (const id of ['inicio', 'sobre', 'skills', 'projetos', 'contato']) {
+    for (const id of ['inicio', 'projetos', 'sobre', 'skills', 'contato']) {
       expect(el.querySelector('#' + id))
         .withContext(id)
         .not.toBeNull();
     }
     expect(el.querySelector('h1')?.getAttribute('aria-label')).toBe('Jameson Henrique');
-    expect(el.querySelector('#sobre h2')?.textContent?.trim()).toBe('SOBRE MIM');
+    expect(el.querySelector('#sobre h2')?.textContent?.trim()).toBe('Da arquitetura ao sistema em produção');
+    expect(el.textContent).toContain('nov/2026 – atual');
   });
 
   it('should render the English home at /en', async () => {
     const el = await renderAll(await RouterTestingHarness.create('/en'));
-    expect(el.textContent).toContain('CURRENT ROLE');
-    expect(el.querySelector('#sobre h2')?.textContent?.trim()).toBe('ABOUT ME');
+    expect(el.textContent).toContain('Nov 2026 – present');
+    expect(el.querySelector('#sobre h2')?.textContent?.trim()).toBe('From architecture to production systems');
   });
 
   it('should render a project page', async () => {

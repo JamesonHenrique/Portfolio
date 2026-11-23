@@ -1,6 +1,5 @@
-import { provideRouter } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideRouter } from '@angular/router';
 import { ProjectsComponent } from './projects.component';
 
 describe('ProjectsComponent', () => {
@@ -18,7 +17,10 @@ describe('ProjectsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should render three flagship case studies and archive rows', () => {
     expect(component).toBeTruthy();
+    const el = fixture.nativeElement as HTMLElement;
+    expect(el.querySelectorAll('.flagship-card').length).toBe(3);
+    expect(el.querySelectorAll('.archive-row').length).toBe(3);
   });
 });

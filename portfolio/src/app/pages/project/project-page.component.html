@@ -1,57 +1,314 @@
-<article class="project-page container mx-auto px-4 py-24 relative z-10 max-w-4xl">
-  <a [routerLink]="c.home" fragment="projetos" class="back-link">{{ c.projectPage.back }}</a>
+<article class="case-page">
+  <div class="ed-container case-container">
+    <div class="case-topbar">
+      <a [routerLink]="c.home" fragment="projetos" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6 6-6-6 6-6" />
+        </svg>
+        <span>{{ c.projectPage.back }}</span>
+      </a>
 
-  <header class="mt-10 mb-10">
-    <h1
-      class="text-2xl sm:text-4xl md:text-5xl break-words font-press text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500 leading-relaxed"
-    >
-      {{ page.title }}
-    </h1>
-    <p class="text-xl text-purple-200 mt-4">{{ page.name }}</p>
-  </header>
+      <div class="case-top-actions">
+        @if (page.demo) {
+          <a [href]="page.demo" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <span>{{ c.projectPage.demo }}</span>
+            <svg
+              class="btn-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
+            </svg>
+          </a>
+        }
+        @if (page.url) {
+          <a [href]="page.url" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+            <span>{{ c.projectPage.code }}</span>
+            <svg
+              class="btn-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
+            </svg>
+          </a>
+        }
+      </div>
+    </div>
 
-  <img
-    [src]="'/' + page.image"
-    [attr.srcset]="'/' + page.image.replace('.webp', '-600.webp') + ' 600w, /' + page.image + ' 1200w'"
-    sizes="(min-width: 896px) 864px, 100vw"
-    [alt]="page.imageAlt"
-    width="1200"
-    height="600"
-    class="w-full h-auto rounded-xl border border-purple-900/50 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-  />
+    <header class="case-header">
+      <div class="case-kicker">
+        <span class="ed-index">{{ c.projectPage.caseLabel }} {{ page.index }}</span>
+        <span class="mono-meta">{{ page.category }}</span>
+        <span class="mono-meta">{{ page.period }}</span>
+      </div>
 
-  <div class="mt-10 space-y-5 text-lg text-purple-100 leading-relaxed">
-    @for (p of page.intro; track $index) {
-      <p>{{ p }}</p>
+      <h1 class="case-title">{{ page.title }}</h1>
+      <p class="case-subtitle">{{ page.name }}</p>
+
+      <dl class="spec-strip">
+        @for (spec of page.specs; track spec.label) {
+          <div class="spec-cell">
+            <dt class="mono-meta">{{ spec.label }}</dt>
+            <dd class="spec-value">{{ spec.value }}</dd>
+          </div>
+        }
+      </dl>
+    </header>
+
+    <figure class="case-figure">
+      <div class="case-frame">
+        <img
+          [src]="'/' + page.image"
+          [attr.srcset]="imageSrcset"
+          sizes="(min-width: 1024px) 1040px, 100vw"
+          [alt]="page.imageAlt"
+          [attr.width]="page.imageWidth"
+          [attr.height]="page.imageHeight"
+          decoding="async"
+          class="case-img"
+        />
+      </div>
+      <figcaption class="mono-meta case-caption">{{ page.imageCaption }}</figcaption>
+    </figure>
+
+    @if (page.privateNotice) {
+      <aside class="private-notice ed-surface">
+        <p>{{ page.privateNotice }}</p>
+      </aside>
     }
-  </div>
 
-  @for (section of page.sections; track section.heading) {
-    <section class="mt-12">
-      <h2 class="font-press text-base sm:text-lg text-purple-300 mb-6 leading-relaxed">{{ section.heading }}</h2>
-      <ul class="space-y-3">
-        @for (item of section.items; track $index) {
-          <li class="case-item">{{ item }}</li>
+    <section class="case-section">
+      <h2 class="case-h2"><span class="ed-index">01</span> {{ c.projectPage.problemHeading }}</h2>
+      <div class="case-prose">
+        @for (paragraph of page.intro; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2 class="case-h2"><span class="ed-index">02</span> {{ page.architectureHeading }}</h2>
+      <p class="case-lead">{{ page.architectureSummary }}</p>
+
+      <div class="diagram-box ed-surface">
+        @switch (page.slug) {
+          @case ('oportunizavaga') {
+            <svg viewBox="0 0 880 230" class="arch-svg" role="img" [attr.aria-label]="page.architectureAria">
+              <defs>
+                <marker
+                  id="arrow-ov"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 1 L 8 5 L 0 9 z" fill="#858a96" />
+                </marker>
+                <marker
+                  id="arrow-ov-a"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 1 L 8 5 L 0 9 z" fill="#e8a444" />
+                </marker>
+              </defs>
+              <!-- Top pipeline -->
+              <rect x="16" y="28" width="136" height="66" rx="8" class="node" />
+              <text x="84" y="55" text-anchor="middle" class="node-title">Cron (*/5m)</text>
+              <text x="84" y="75" text-anchor="middle" class="node-sub">guardiao.sh</text>
+
+              <line x1="152" y1="61" x2="196" y2="61" class="edge" marker-end="url(#arrow-ov)" />
+
+              <rect x="200" y="28" width="170" height="66" rx="8" class="node node-accent" />
+              <text x="285" y="55" text-anchor="middle" class="node-title">Loop + LLM Cascade</text>
+              <text x="285" y="75" text-anchor="middle" class="node-sub">1 site/round · flock</text>
+
+              <line x1="370" y1="61" x2="414" y2="61" class="edge" marker-end="url(#arrow-ov)" />
+
+              <rect x="418" y="28" width="194" height="66" rx="8" class="node" />
+              <text x="515" y="55" text-anchor="middle" class="node-title">Real Chrome (CDP)</text>
+              <text x="515" y="75" text-anchor="middle" class="node-sub">Persistent session :9222</text>
+
+              <line x1="612" y1="61" x2="656" y2="61" class="edge edge-accent" marker-end="url(#arrow-ov-a)" />
+
+              <rect x="660" y="28" width="204" height="66" rx="8" class="node" />
+              <text x="762" y="55" text-anchor="middle" class="node-title">Vercel Monitor</text>
+              <text x="762" y="75" text-anchor="middle" class="node-sub">Zero-DB · aggregated</text>
+
+              <!-- Durable State below -->
+              <line x1="285" y1="94" x2="285" y2="140" class="edge edge-accent" marker-end="url(#arrow-ov-a)" />
+              <rect x="172" y="144" width="268" height="64" rx="8" class="node node-accent" />
+              <text x="306" y="170" text-anchor="middle" class="node-title">Durable JSON State</text>
+              <text x="306" y="190" text-anchor="middle" class="node-sub">
+                aplicadas.json · atomic lock · outside LLM
+              </text>
+
+              <line x1="440" y1="176" x2="500" y2="176" class="edge" marker-end="url(#arrow-ov)" />
+              <rect x="504" y="144" width="248" height="64" rx="8" class="node" />
+              <text x="628" y="170" text-anchor="middle" class="node-title">CV PDF + ATS Check</text>
+              <text x="628" y="190" text-anchor="middle" class="node-sub">gerar_cv.py · check_ats.py</text>
+            </svg>
+          }
+
+          @case ('painel-de-maquinas') {
+            <svg viewBox="0 0 880 200" class="arch-svg" role="img" [attr.aria-label]="page.architectureAria">
+              <defs>
+                <marker
+                  id="arrow-pm"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 1 L 8 5 L 0 9 z" fill="#858a96" />
+                </marker>
+                <marker
+                  id="arrow-pm-a"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 1 L 8 5 L 0 9 z" fill="#e8a444" />
+                </marker>
+              </defs>
+              <rect x="20" y="64" width="184" height="72" rx="8" class="node" />
+              <text x="112" y="94" text-anchor="middle" class="node-title">Machine States</text>
+              <text x="112" y="114" text-anchor="middle" class="node-sub">4 operational statuses</text>
+
+              <line x1="204" y1="100" x2="252" y2="100" class="edge edge-accent" marker-end="url(#arrow-pm-a)" />
+
+              <rect x="256" y="64" width="186" height="72" rx="8" class="node node-accent" />
+              <text x="349" y="94" text-anchor="middle" class="node-title">Spring Boot API</text>
+              <text x="349" y="114" text-anchor="middle" class="node-sub">Java · REST endpoints</text>
+
+              <line x1="442" y1="100" x2="490" y2="100" class="edge" marker-end="url(#arrow-pm)" />
+
+              <rect x="494" y="64" width="152" height="72" rx="8" class="node" />
+              <text x="570" y="94" text-anchor="middle" class="node-title">MongoDB</text>
+              <text x="570" y="114" text-anchor="middle" class="node-sub">Equipment docs</text>
+
+              <line x1="646" y1="100" x2="690" y2="100" class="edge edge-accent" marker-end="url(#arrow-pm-a)" />
+
+              <rect x="694" y="64" width="166" height="72" rx="8" class="node node-accent" />
+              <text x="777" y="94" text-anchor="middle" class="node-title">Angular + RxJS</text>
+              <text x="777" y="114" text-anchor="middle" class="node-sub">Live floor dashboard</text>
+            </svg>
+          }
+
+          @case ('newgram') {
+            <svg viewBox="0 0 880 230" class="arch-svg" role="img" [attr.aria-label]="page.architectureAria">
+              <defs>
+                <marker
+                  id="arrow-ng"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 1 L 8 5 L 0 9 z" fill="#858a96" />
+                </marker>
+                <marker
+                  id="arrow-ng-a"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 1 L 8 5 L 0 9 z" fill="#e8a444" />
+                </marker>
+              </defs>
+              <rect x="18" y="76" width="196" height="72" rx="8" class="node" />
+              <text x="116" y="106" text-anchor="middle" class="node-title">Angular 19 UI</text>
+              <text x="116" y="126" text-anchor="middle" class="node-sub">ng-openapi-gen · RxJS</text>
+
+              <line x1="214" y1="112" x2="268" y2="112" class="edge edge-accent" marker-end="url(#arrow-ng-a)" />
+
+              <rect x="272" y="42" width="276" height="140" rx="10" class="node node-accent" />
+              <text x="410" y="74" text-anchor="middle" class="node-title">Spring Boot 3.5 (Java 21)</text>
+              <text x="410" y="98" text-anchor="middle" class="node-sub">presentation → application</text>
+              <text x="410" y="118" text-anchor="middle" class="node-sub">core.domain → infrastructure</text>
+              <text x="410" y="148" text-anchor="middle" class="node-sub">JWT 15m + rotating refresh 7d</text>
+
+              <line x1="548" y1="84" x2="626" y2="68" class="edge" marker-end="url(#arrow-ng)" />
+              <rect x="630" y="34" width="230" height="66" rx="8" class="node" />
+              <text x="745" y="62" text-anchor="middle" class="node-title">PostgreSQL + Flyway</text>
+              <text x="745" y="82" text-anchor="middle" class="node-sub">Versioned schema · HikariCP</text>
+
+              <line x1="548" y1="140" x2="626" y2="156" class="edge edge-accent" marker-end="url(#arrow-ng-a)" />
+              <rect x="630" y="126" width="230" height="66" rx="8" class="node" />
+              <text x="745" y="154" text-anchor="middle" class="node-title">AWS S3 Storage</text>
+              <text x="745" y="174" text-anchor="middle" class="node-sub">Presigned URLs (60m expiry)</text>
+            </svg>
+          }
+        }
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2 class="case-h2"><span class="ed-index">03</span> {{ page.decisionsHeading }}</h2>
+      <div class="decisions-grid">
+        @for (decision of page.decisions; track decision.title) {
+          <article class="decision-card ed-surface">
+            <h3 class="decision-title">{{ decision.title }}</h3>
+            <p class="decision-body">{{ decision.rationale }}</p>
+          </article>
+        }
+      </div>
+    </section>
+
+    @for (section of page.sections; track section.heading; let i = $index) {
+      <section class="case-section">
+        <h2 class="case-h2">
+          <span class="ed-index">0{{ i + 4 }}</span> {{ section.heading }}
+        </h2>
+        <ul class="case-bullets">
+          @for (item of section.items; track $index) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </section>
+    }
+
+    <section class="case-section">
+      <h2 class="case-h2">{{ c.projectPage.stack }}</h2>
+      <ul class="case-tags">
+        @for (tech of page.techs; track tech) {
+          <li class="ed-tag">{{ tech }}</li>
         }
       </ul>
     </section>
-  }
 
-  <section class="mt-12">
-    <h2 class="font-press text-base sm:text-lg text-purple-300 mb-6">{{ c.projectPage.stack }}</h2>
-    <ul class="flex flex-wrap gap-2">
-      @for (tech of page.techs; track tech) {
-        <li class="chip">{{ tech }}</li>
-      }
-    </ul>
-  </section>
-
-  <div class="mt-12 flex flex-wrap gap-4">
-    @if (page.demo) {
-      <a [href]="page.demo" target="_blank" rel="noopener noreferrer" class="action action-primary">{{
-        c.projectPage.demo
-      }}</a>
-    }
-    <a [href]="page.url" target="_blank" rel="noopener noreferrer" class="action">{{ c.projectPage.code }}</a>
+    <nav class="next-case ed-surface" [attr.aria-label]="c.projectPage.nextCase">
+      <a [routerLink]="nextPath" class="next-case-link">
+        <div>
+          <span class="mono-meta">{{ c.projectPage.nextCase }}</span>
+          <p class="next-case-title">{{ nextPage.index }} · {{ nextPage.title }}</p>
+          <p class="next-case-sub">{{ nextPage.name }}</p>
+        </div>
+        <span class="next-case-arrow" aria-hidden="true">→</span>
+      </a>
+    </nav>
   </div>
 </article>

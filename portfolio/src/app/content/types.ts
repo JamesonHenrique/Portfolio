@@ -1,47 +1,97 @@
 export type Lang = 'pt' | 'en';
 
-/** Public origin, used for canonical/hreflang/og:url. Change here (and in index.html, robots.txt, sitemap.xml) when moving to a custom domain. */
+/** Public origin, used for canonical/hreflang/og:url. */
 export const SITE_ORIGIN = 'https://jamesonhenrique-portfolio.vercel.app';
 
-/** A run of text; `hl` renders it highlighted (the purple words in the hero, about and career texts). */
-export interface Segment {
-  text: string;
-  hl?: 'strong' | 'tech' | 'underline' | 'plain';
-}
+export type CaseSlug = 'oportunizavaga' | 'painel-de-maquinas' | 'newgram';
 
-export interface ProjectCard {
+export interface FlagshipProject {
+  index: string;
+  slug: CaseSlug;
   title: string;
-  name: string;
+  subtitle: string;
+  category: string;
+  period: string;
   description: string;
+  decision: string;
   techs: string[];
   image: string;
-  /** Internal case-study page (only projects with enough public documentation). */
-  page?: string;
-  decision?: string;
+  imageWidth: number;
+  imageHeight: number;
+  imageAlt: string;
+  page: string;
   url?: string;
   demo?: string;
-  note?: string;
+  privateNote?: string;
+}
+
+export interface ArchiveProject {
+  title: string;
+  description: string;
+  techs: string[];
+  url: string;
+}
+
+export interface ExperienceItem {
+  period: string;
+  role: string;
+  organization: string;
+  context: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+  current?: boolean;
+}
+
+export interface CapabilityGroup {
+  index: string;
+  title: string;
+  context: string;
+  items: string[];
+}
+
+export interface CaseDecision {
+  title: string;
+  rationale: string;
+}
+
+export interface CaseSpec {
+  label: string;
+  value: string;
 }
 
 export interface ProjectPage {
-  slug: string;
+  index: string;
+  slug: CaseSlug;
   title: string;
   name: string;
+  category: string;
+  period: string;
   metaDescription: string;
+  specs: CaseSpec[];
   image: string;
+  imageWidth: number;
+  imageHeight: number;
   imageAlt: string;
+  imageCaption: string;
   intro: string[];
+  architectureHeading: string;
+  architectureSummary: string;
+  architectureAria: string;
+  decisionsHeading: string;
+  decisions: CaseDecision[];
   sections: { heading: string; items: string[] }[];
   techs: string[];
-  url: string;
+  url?: string;
   demo?: string;
+  privateNotice?: string;
+  nextSlug: CaseSlug;
 }
 
 export interface SiteContent {
   lang: Lang;
   htmlLang: string;
   ogLocale: string;
-  /** Home path of this language and of the other one (for the language switch). */
   home: string;
   otherHome: string;
   switchLabel: string;
@@ -50,51 +100,79 @@ export interface SiteContent {
   skipLink: string;
   nav: {
     aria: string;
+    menuOpen: string;
+    menuClose: string;
     inicio: string;
+    projetos: string;
     sobre: string;
     skills: string;
-    projetos: string;
     contato: string;
-    rodape: string;
   };
   hero: {
-    availability: string;
-    badge: string;
-    lines: Segment[][];
+    context: string;
+    name: string;
+    headline: string;
+    subhead: string;
     projectsButton: string;
     cvButton: string;
+    panelLabel: string;
+    panelHint: string;
+    panelCta: string;
+    panelDecisionLabel: string;
+  };
+  projects: {
+    index: string;
+    kicker: string;
+    title: string;
+    lead: string;
+    decisionLabel: string;
+    readCase: string;
+    demo: string;
+    code: string;
+    techsAria: string;
+    archiveTitle: string;
+    archiveLead: string;
+    archiveMore: string;
+    flagships: FlagshipProject[];
+    archive: ArchiveProject[];
   };
   about: {
+    index: string;
+    kicker: string;
     title: string;
+    lead: string;
     photoAlt: string;
     intro: string;
     detail: string;
+    locationLabel: string;
+    location: string;
     educationLabel: string;
     education: string;
-    workLabel: string;
-    work: string;
-    workDetail: string;
-    experienceLabel: string;
-    pastRoles: { role: string; detail: string }[];
+    educationDetail: string;
+    languagesLabel: string;
+    languages: string;
+    experienceHeading: string;
+    currentBadge: string;
     cvLink: string;
+    experience: ExperienceItem[];
   };
-  skills: { title: string; systemsTitle: string };
-  projects: {
+  skills: {
+    index: string;
+    kicker: string;
     title: string;
-    cards: ProjectCard[];
-    decisionLabel: string;
-    demo: string;
-    code: string;
-    details: string;
-    more: string;
-    techsAria: string;
-    screenshotOf: string;
+    lead: string;
+    groups: CapabilityGroup[];
   };
   contact: {
+    index: string;
+    kicker: string;
     title: string;
-    cardTitle: string;
+    lead: string;
+    channelsHeading: string;
     text: string;
     email: string;
+    copyEmail: string;
+    copiedEmail: string;
     phone: string;
     location: string;
     locationValue: string;
@@ -114,7 +192,19 @@ export interface SiteContent {
       error: string;
     };
   };
-  footer: { quote: string; rights: string };
-  projectPage: { back: string; stack: string; code: string; demo: string };
-  pages: Record<string, ProjectPage>;
+  footer: {
+    role: string;
+    rights: string;
+    cv: string;
+  };
+  projectPage: {
+    back: string;
+    caseLabel: string;
+    problemHeading: string;
+    stack: string;
+    code: string;
+    demo: string;
+    nextCase: string;
+  };
+  pages: Record<CaseSlug, ProjectPage>;
 }

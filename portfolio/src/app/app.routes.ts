@@ -8,9 +8,18 @@ export const routes: Routes = [
   { path: 'en', component: HomeComponent, data: { lang: 'en' } },
   { path: 'projetos/oportunizavaga', component: ProjectPageComponent, data: { lang: 'pt', slug: 'oportunizavaga' } },
   { path: 'projetos/newgram', component: ProjectPageComponent, data: { lang: 'pt', slug: 'newgram' } },
+  {
+    path: 'projetos/painel-de-maquinas',
+    component: ProjectPageComponent,
+    data: { lang: 'pt', slug: 'painel-de-maquinas' }
+  },
   { path: 'en/projects/oportunizavaga', component: ProjectPageComponent, data: { lang: 'en', slug: 'oportunizavaga' } },
   { path: 'en/projects/newgram', component: ProjectPageComponent, data: { lang: 'en', slug: 'newgram' } },
-  // Vercel answers unknown paths with the prerendered home, so redirect (a "not found" component
-  // would not match the served HTML and break hydration).
+  {
+    path: 'en/projects/painel-de-maquinas',
+    component: ProjectPageComponent,
+    data: { lang: 'en', slug: 'painel-de-maquinas' }
+  },
+  // Vercel handles direct requests to unknown URLs. This fallback is for client-side navigation.
   { path: '**', redirectTo: '' }
 ];

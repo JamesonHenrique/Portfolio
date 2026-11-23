@@ -1,94 +1,145 @@
-<section id="projetos" class="section overflow-hidden" [class.animate-section]="isVisible" #projectsSection>
-  <div class="container mx-auto max-w-6xl relative">
-    <h2 class="section-title title-text">{{ c().projects.title }}</h2>
+<section id="projetos" class="ed-section">
+  <div class="ed-container">
+    <header class="ed-section-header">
+      <div>
+        <div class="ed-section-kicker">
+          <span class="ed-index">{{ c().projects.index }}</span>
+          <span>{{ c().projects.kicker }}</span>
+        </div>
+        <h2 class="ed-section-title">{{ c().projects.title }}</h2>
+      </div>
+      <p class="ed-section-lead">{{ c().projects.lead }}</p>
+    </header>
 
-    <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      @for (project of c().projects.cards; track project.title; let i = $index) {
-        <article
-          class="project-card card card-hover overflow-hidden flex flex-col"
-          [style.animation-delay]="i * 0.08 + 's'"
-        >
-          <div class="project-image">
-            <img
-              [src]="project.image"
-              [attr.srcset]="srcset(project.image)"
-              sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
-              [alt]="c().projects.screenshotOf + ' ' + project.title"
-              class="project-img"
-              width="1200"
-              height="580"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="project-title">{{ project.title }}</div>
-          </div>
+    <div class="flagship-list">
+      @for (project of c().projects.flagships; track project.slug) {
+        <article class="flagship-card ed-surface">
+          <a [routerLink]="project.page" class="flagship-media-link" [attr.aria-label]="project.title">
+            <div class="flagship-media-frame">
+              <img
+                [src]="'/' + project.image"
+                [attr.srcset]="srcset(project)"
+                sizes="(min-width: 1024px) 620px, 100vw"
+                [alt]="project.imageAlt"
+                [attr.width]="project.imageWidth"
+                [attr.height]="project.imageHeight"
+                loading="lazy"
+                decoding="async"
+                class="flagship-img"
+              />
+            </div>
+          </a>
 
-          <div class="project-content flex-grow">
-            <h3 class="project-name">{{ project.name }}</h3>
-            <p class="project-description">{{ project.description }}</p>
-            @if (project.decision) {
-              <p class="project-decision">
-                <span>{{ c().projects.decisionLabel }}</span> {{ project.decision }}
-              </p>
-            }
+          <div class="flagship-body">
+            <div class="flagship-meta">
+              <span class="ed-index">{{ project.index }}</span>
+              <span class="mono-meta">{{ project.category }}</span>
+              <span class="mono-meta flagship-period">{{ project.period }}</span>
+            </div>
 
-            <ul class="flex flex-wrap gap-2" [attr.aria-label]="c().projects.techsAria">
+            <h3 class="flagship-title">
+              <a [routerLink]="project.page" class="flagship-title-link">{{ project.title }}</a>
+            </h3>
+            <p class="flagship-subtitle">{{ project.subtitle }}</p>
+            <p class="flagship-desc">{{ project.description }}</p>
+
+            <p class="ed-decision">
+              <strong>{{ c().projects.decisionLabel }}:</strong> {{ project.decision }}
+            </p>
+
+            <ul class="flagship-tags" [attr.aria-label]="c().projects.techsAria">
               @for (tech of project.techs; track tech) {
-                <li class="chip">{{ tech }}</li>
+                <li class="ed-tag">{{ tech }}</li>
               }
             </ul>
-          </div>
 
-          <div class="project-footer">
-            @if (project.page) {
-              <a [href]="project.page" class="btn btn-sm btn-primary shape-notch">{{ c().projects.details }}</a>
-            }
-            @if (project.demo) {
-              <a
-                [href]="project.demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-sm btn-ghost shape-notch"
-              >
-                {{ c().projects.demo }}
-                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                  />
-                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+            <div class="flagship-actions">
+              <a [routerLink]="project.page" class="btn btn-primary btn-sm">
+                <span>{{ c().projects.readCase }}</span>
+                <svg
+                  class="btn-icon btn-icon-shift"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
                 </svg>
               </a>
-            }
-            @if (project.url) {
-              <a
-                [href]="project.url"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-sm btn-ghost shape-notch"
-              >
-                {{ c().projects.code }}
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 007.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"
-                  />
-                </svg>
-              </a>
-            } @else if (project.note) {
-              <p class="project-note">{{ project.note }}</p>
+
+              @if (project.demo) {
+                <a [href]="project.demo" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                  <span>{{ c().projects.demo }}</span>
+                  <svg
+                    class="btn-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
+                  </svg>
+                </a>
+              }
+
+              @if (project.url) {
+                <a [href]="project.url" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                  <span>{{ c().projects.code }}</span>
+                  <svg
+                    class="btn-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
+                  </svg>
+                </a>
+              }
+            </div>
+
+            @if (project.privateNote) {
+              <p class="mono-meta flagship-note">{{ project.privateNote }}</p>
             }
           </div>
         </article>
       }
     </div>
 
-    <div class="mt-14 flex justify-center">
-      <a
-        class="btn btn-ghost shape-notch"
-        href="https://github.com/JamesonHenrique?tab=repositories"
-        target="_blank"
-        rel="noopener noreferrer"
-        >{{ c().projects.more }}</a
-      >
+    <div class="archive-block">
+      <div class="archive-header">
+        <div>
+          <h3 class="archive-title">{{ c().projects.archiveTitle }}</h3>
+          <p class="archive-lead">{{ c().projects.archiveLead }}</p>
+        </div>
+        <a
+          href="https://github.com/JamesonHenrique?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ed-link"
+        >
+          <span>{{ c().projects.archiveMore }}</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
+          </svg>
+        </a>
+      </div>
+
+      <ul class="archive-list">
+        @for (item of c().projects.archive; track item.title) {
+          <li>
+            <a [href]="item.url" target="_blank" rel="noopener noreferrer" class="archive-row">
+              <span class="archive-name">{{ item.title }}</span>
+              <span class="archive-desc">{{ item.description }}</span>
+              <span class="archive-stack">{{ item.techs.slice(0, 4).join(' · ') }}</span>
+              <span class="archive-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        }
+      </ul>
     </div>
   </div>
 </section>

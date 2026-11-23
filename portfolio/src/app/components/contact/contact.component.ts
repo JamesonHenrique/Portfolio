@@ -1,11 +1,9 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
-import { onFirstView } from '../../utils/in-view';
+import { ChangeDetectorRef, Component, DestroyRef, inject, signal } from '@angular/core';
 import { I18nService } from '../../services/i18n.service';
 
 // FormSubmit AJAX endpoint: answers with JSON instead of redirecting the visitor away.
-// The first submission sends an activation e-mail to this address; until it is confirmed,
-// messages are not delivered.
 const FORM_ENDPOINT = 'https://formsubmit.co/ajax/jameson.henrique.dev@gmail.com';
+const EMAIL_ADDRESS = 'jameson.henrique.dev@gmail.com';
 
 @Component({
   selector: 'app-contact',
@@ -13,21 +11,35 @@ const FORM_ENDPOINT = 'https://formsubmit.co/ajax/jameson.henrique.dev@gmail.com
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
-export class ContactComponent implements AfterViewInit, OnDestroy {
-  private cdr = inject(ChangeDetectorRef);
+export class ContactComponent {
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly destroyRef = inject(DestroyRef);
 
-  @ViewChild('contactSection') contactSection!: ElementRef<HTMLElement>;
-  isVisible = false;
   readonly c = inject(I18nService).content;
+  readonly emailAddress = EMAIL_ADDRESS;
+  readonly copied = signal(false);
   status: 'idle' | 'sending' | 'sent' | 'error' = 'idle';
-  private stopObserving?: () => void;
 
-  ngAfterViewInit() {
-    this.stopObserving = onFirstView(this.contactSection.nativeElement, this.cdr, () => (this.isVisible = true));
+  private copyTimer?: number;
+
+  constructor() {
+    this.destroyRef.onDestroy(() => {
+      if (this.copyTimer !== undefined && typeof window !== 'undefined') {
+        window.clearTimeout(this.copyTimer);
+      }
+    });
   }
 
-  ngOnDestroy() {
-    this.stopObserving?.();
+  async copyEmail() {
+    if (typeof navigator === 'undefined' || !navigator.clipboard?.writeText) return;
+    try {
+      await navigator.clipboard.writeText(EMAIL_ADDRESS);
+      this.copied.set(true);
+      if (this.copyTimer !== undefined) window.clearTimeout(this.copyTimer);
+      this.copyTimer = window.setTimeout(() => this.copied.set(false), 2000);
+    } catch {
+      this.copied.set(false);
+    }
   }
 
   async onSubmit(event: Event) {
@@ -36,6 +48,7 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
     if (!form.reportValidity()) return;
 
     this.status = 'sending';
+    this.cdr.detectChanges();
     try {
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -43,7 +56,6 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
         body: new FormData(form)
       });
       const body = await response.json().catch(() => ({}));
-      // FormSubmit returns success as the string "true" (or "false" with a message).
       if (!response.ok || String(body.success) !== 'true') throw new Error(body.message ?? response.statusText);
       this.status = 'sent';
       form.reset();
