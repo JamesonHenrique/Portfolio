@@ -3,8 +3,8 @@
   "short_name": "Jameson Henrique — Full Stack & Systems",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0B0C0E",
-  "theme_color": "#0B0C0E",
+  "background_color": "#EEEADD",
+  "theme_color": "#EEEADD",
   "lang": "pt-BR",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
