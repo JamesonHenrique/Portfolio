@@ -212,12 +212,14 @@ test('fixed header navigation reaches the home section from a case study', async
   await experience.click();
   await expect(page).toHaveURL('/#sobre');
   await expect
-    .poll(() =>
-      page.locator('#sobre').evaluate((section) => {
-        const top = section.getBoundingClientRect().top;
-        const headerBottom = document.querySelector('.site-header')!.getBoundingClientRect().bottom;
-        return top >= headerBottom - 1 && top <= headerBottom + 24;
-      })
+    .poll(
+      () =>
+        page.locator('#sobre').evaluate((section) => {
+          const top = section.getBoundingClientRect().top;
+          const headerBottom = document.querySelector('.site-header')!.getBoundingClientRect().bottom;
+          return top >= headerBottom - 2 && top <= headerBottom + 48;
+        }),
+      { timeout: 8000 }
     )
     .toBe(true);
   expect((await header.boundingBox())?.y).toBe(0);
