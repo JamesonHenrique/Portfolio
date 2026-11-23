@@ -1,10 +1,10 @@
 # Jameson Henrique Cruz Sabino
 @ Desenvolvedor Full Stack | TypeScript · Java · Spring Boot · Angular · APIs REST
-> Parazinho/RN • (84) 98822-4405 • jameson.henrique.dev@gmail.com • linkedin.com/in/jamesonhenrique • github.com/JamesonHenrique
+> Natal/RN • (84) 98822-4405 • jameson.henrique.dev@gmail.com • linkedin.com/in/jamesonhenrique • github.com/JamesonHenrique
 
 ## EXPERIÊNCIA PROFISSIONAL
-### Desenvolvedor Full Stack e Responsável por Tecnologia — Wolfacilitates C&M · out/2026 – atual
-_ Remoto · início em 13/10/2026
+### Desenvolvedor Full Stack e Responsável por Tecnologia — Wolfacilitates C&M · nov/2026 – atual
+_ Remoto · início em 13/11/2026
 - Planejo e desenvolvo aplicações web, landing pages e sistemas internos para as necessidades da empresa.
 - Participo da estruturação de um CRM próprio e da definição de arquitetura e tecnologias.
 - Planejo APIs e integrações entre sistemas e avalio infraestrutura digital e custos.

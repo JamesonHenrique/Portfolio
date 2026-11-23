@@ -1,6 +1,5 @@
-import { provideRouter } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideRouter } from '@angular/router';
 import { FooterComponent } from './footer.component';
 
 describe('FooterComponent', () => {
@@ -18,7 +17,8 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create and display current year', () => {
     expect(component).toBeTruthy();
+    expect(fixture.nativeElement.textContent).toContain(String(component.currentYear));
   });
 });

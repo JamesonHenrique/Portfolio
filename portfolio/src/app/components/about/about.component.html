@@ -1,54 +1,103 @@
-<section id="sobre" class="section overflow-hidden" #aboutSection>
-  <div class="about-shape w-96 h-96 shape-blob -right-60 -top-40" aria-hidden="true"></div>
+<section id="sobre" class="ed-section">
+  <div class="ed-container">
+    <header class="ed-section-header">
+      <div>
+        <div class="ed-section-kicker">
+          <span class="ed-index">{{ c().about.index }}</span>
+          <span>{{ c().about.kicker }}</span>
+        </div>
+        <h2 class="ed-section-title">{{ c().about.title }}</h2>
+      </div>
+      <p class="ed-section-lead">{{ c().about.lead }}</p>
+    </header>
 
-  <div class="container mx-auto max-w-6xl relative">
-    <h2 class="section-title">{{ c().about.title }}</h2>
-
-    <div class="about-layout" [class.about-visible]="isVisible">
-      <div class="about-intro">
-        <div class="about-profile">
-          <img src="about-me.jpg" [alt]="c().about.photoAlt" width="128" height="128" class="about-photo" />
+    <div class="about-grid">
+      <div class="about-sidebar ed-surface">
+        <div class="about-identity">
+          <img
+            src="/about-me.jpg"
+            [alt]="c().about.photoAlt"
+            width="200"
+            height="200"
+            loading="lazy"
+            decoding="async"
+            class="about-photo"
+          />
           <div>
-            <span class="about-eyebrow">{{ c().hero.badge }}</span>
             <p class="about-name">Jameson Henrique</p>
+            <p class="mono-meta">{{ c().about.location }}</p>
           </div>
         </div>
 
-        <p class="about-lead">{{ c().about.intro }}</p>
-        <p class="about-detail">{{ c().about.detail }}</p>
-        <a class="about-link" href="/JAMESON_HENRIQUE_CV.pdf" download="JAMESON_HENRIQUE_CV.pdf">
-          {{ c().about.cvLink }} <span aria-hidden="true">↗</span>
+        <dl class="about-facts">
+          <div class="fact-row">
+            <dt class="mono-meta">{{ c().about.educationLabel }}</dt>
+            <dd>
+              <span class="fact-primary">{{ c().about.education }}</span>
+              <span class="fact-sub">{{ c().about.educationDetail }}</span>
+            </dd>
+          </div>
+          <div class="fact-row">
+            <dt class="mono-meta">{{ c().about.languagesLabel }}</dt>
+            <dd class="fact-primary">{{ c().about.languages }}</dd>
+          </div>
+        </dl>
+
+        <a href="/JAMESON_HENRIQUE_CV.pdf" download="JAMESON_HENRIQUE_CV.pdf" class="btn btn-secondary btn-sm cv-btn">
+          <span>{{ c().about.cvLink }}</span>
+          <svg
+            class="btn-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0-4-4m4 4 4-4M4 18h16" />
+          </svg>
         </a>
       </div>
 
-      <div class="about-highlights">
-        <div class="about-highlight">
-          <span class="highlight-number" aria-hidden="true">01</span>
-          <div>
-            <h3>{{ c().about.educationLabel }}</h3>
-            <p>{{ c().about.education }}</p>
-          </div>
-        </div>
-        <div class="about-highlight">
-          <span class="highlight-number" aria-hidden="true">02</span>
-          <div>
-            <h3>{{ c().about.workLabel }}</h3>
-            <p>{{ c().about.work }}</p>
-            <p class="work-detail">{{ c().about.workDetail }}</p>
-          </div>
-        </div>
+      <div class="about-narrative">
+        <p class="about-intro">{{ c().about.intro }}</p>
+        <p class="about-detail">{{ c().about.detail }}</p>
       </div>
-      <div class="about-experience">
-        <h3>{{ c().about.experienceLabel }}</h3>
-        <div class="experience-list">
-          @for (role of c().about.pastRoles; track role.role) {
-            <div>
-              <h4>{{ role.role }}</h4>
-              <p>{{ role.detail }}</p>
+    </div>
+
+    <div class="timeline-block">
+      <h3 class="timeline-heading">{{ c().about.experienceHeading }}</h3>
+
+      <ol class="timeline-list">
+        @for (item of c().about.experience; track item.organization + item.period) {
+          <li class="timeline-row">
+            <div class="timeline-period-col">
+              <span class="mono-meta timeline-period">{{ item.period }}</span>
+              @if (item.current) {
+                <span class="current-pill">{{ c().about.currentBadge }}</span>
+              }
+              <span class="mono-meta timeline-context">{{ item.context }}</span>
             </div>
-          }
-        </div>
-      </div>
+
+            <div class="timeline-content">
+              <h4 class="timeline-role">{{ item.role }}</h4>
+              <p class="timeline-org">{{ item.organization }}</p>
+              <p class="timeline-summary">{{ item.summary }}</p>
+
+              <ul class="timeline-highlights">
+                @for (point of item.highlights; track point) {
+                  <li>{{ point }}</li>
+                }
+              </ul>
+
+              <ul class="timeline-stack" [attr.aria-label]="c().projects.techsAria">
+                @for (tech of item.stack; track tech) {
+                  <li class="ed-tag">{{ tech }}</li>
+                }
+              </ul>
+            </div>
+          </li>
+        }
+      </ol>
     </div>
   </div>
 </section>

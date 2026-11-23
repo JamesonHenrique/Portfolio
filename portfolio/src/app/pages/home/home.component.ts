@@ -11,20 +11,19 @@ import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-home',
-  imports: [HeroComponent, AboutComponent, SkillsComponent, ProjectsComponent, ContactComponent],
+  imports: [HeroComponent, ProjectsComponent, AboutComponent, SkillsComponent, ContactComponent],
   template: `
     <app-hero></app-hero>
-    <!-- Below the fold: the prerendered HTML stays in the page (SEO), but each section's JS is
-         loaded and hydrated only when it scrolls into view, so startup does not hydrate everything.
-         "on immediate" covers client-side navigation (e.g. coming back from a project page). -->
+    <!-- Below the fold: prerendered HTML stays immediately visible for SEO and zero-JS users,
+         while each section's JS hydrates incrementally on viewport or interaction. -->
+    @defer (on immediate; hydrate on viewport; hydrate on interaction) {
+      <app-projects></app-projects>
+    }
     @defer (on immediate; hydrate on viewport; hydrate on interaction) {
       <app-about></app-about>
     }
     @defer (on immediate; hydrate on viewport; hydrate on interaction) {
       <app-skills></app-skills>
-    }
-    @defer (on immediate; hydrate on viewport; hydrate on interaction) {
-      <app-projects></app-projects>
     }
     @defer (on immediate; hydrate on viewport; hydrate on interaction) {
       <app-contact></app-contact>
@@ -35,15 +34,14 @@ export class HomeComponent {
   constructor() {
     const route = inject(ActivatedRoute);
     const c = route.snapshot.data['lang'] === 'en' ? EN : PT;
-    // Coming from another page with a fragment (/#sobre): the section is inside a @defer block that
-    // may not exist yet when the router tries to scroll, so scroll once it is in the DOM.
     afterNextRender(() => {
       const id = route.snapshot.fragment;
       if (!id) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       let tries = 0;
       const scroll = () => {
         const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
         else if (++tries < 60) requestAnimationFrame(scroll);
       };
       scroll();

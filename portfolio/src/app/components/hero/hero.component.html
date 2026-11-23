@@ -1,98 +1,111 @@
-<section
-  id="inicio"
-  class="hero min-h-[100svh] flex items-center justify-center relative overflow-hidden px-4 pt-16 pb-24"
->
-  <div
-    class="hero-shape w-56 h-56 shape-hexagon -left-24 -top-20"
-    style="--float-duration: 9s"
-    aria-hidden="true"
-  ></div>
-  <div
-    class="hero-shape w-64 h-64 shape-parallelogram -right-32 bottom-10"
-    style="--float-duration: 11s"
-    aria-hidden="true"
-  ></div>
-  <div
-    class="hero-shape w-40 h-40 shape-starburst left-[12%] bottom-[8%]"
-    style="--float-duration: 13s"
-    aria-hidden="true"
-  ></div>
-  <div class="hero-glow" aria-hidden="true"></div>
+<section id="inicio" class="hero">
+  <div class="ed-container hero-grid">
+    <div class="hero-copy">
+      <p class="hero-context">{{ c().hero.context }}</p>
 
-  <div class="text-center relative z-10 w-full max-w-6xl">
-    <div class="flex flex-wrap items-center justify-center gap-3 mb-8 anim-enter-down">
-      <p class="availability">
-        <span class="availability-dot" aria-hidden="true"></span>
-        {{ c().hero.availability }}
-      </p>
-      <a
-        [routerLink]="c().otherHome"
-        class="lang-switch"
-        [attr.aria-label]="c().switchAria"
-        [attr.hreflang]="c().lang === 'pt' ? 'en' : 'pt-BR'"
-        >{{ c().switchLabel }}</a
-      >
+      <h1 class="hero-title" [attr.aria-label]="c().hero.name">
+        <span class="hero-name">{{ c().hero.name }}</span>
+        <span class="hero-statement">{{ c().hero.headline }}</span>
+      </h1>
+
+      <p class="hero-subhead">{{ c().hero.subhead }}</p>
+
+      <div class="hero-actions">
+        <a href="#projetos" class="btn btn-primary">
+          <span>{{ c().hero.projectsButton }}</span>
+          <svg
+            class="btn-icon btn-icon-shift"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
+          </svg>
+        </a>
+        <a href="/JAMESON_HENRIQUE_CV.pdf" download="JAMESON_HENRIQUE_CV.pdf" class="btn btn-secondary">
+          <svg
+            class="btn-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0-4-4m4 4 4-4M4 18h16" />
+          </svg>
+          <span>{{ c().hero.cvButton }}</span>
+        </a>
+      </div>
     </div>
 
-    <div class="mb-6">
-      <h1 class="text-4xl sm:text-6xl md:text-7xl 2xl:text-8xl font-press glow-purple" aria-label="Jameson Henrique">
-        <div aria-hidden="true">
-          <div class="flex flex-col lg:flex-row lg:justify-center lg:items-baseline">
-            <span class="whitespace-nowrap">
-              <span class="text-purple-400 animate-letter" style="--delay: 0.05s">J</span>
-              <span class="text-purple-300 animate-letter" style="--delay: 0.08s">A</span>
-              <span class="text-purple-200 animate-letter" style="--delay: 0.11s">M</span>
-              <span class="text-purple-100 animate-letter" style="--delay: 0.14s">E</span>
-              <span class="text-white animate-letter" style="--delay: 0.17s">S</span>
-              <span class="text-purple-100 animate-letter" style="--delay: 0.2s">O</span>
-              <span class="text-purple-200 animate-letter" style="--delay: 0.23s">N</span>
-            </span>
+    <aside class="hero-panel ed-surface" [attr.aria-label]="c().hero.panelLabel">
+      <div class="panel-header">
+        <span class="panel-title">{{ c().hero.panelLabel }}</span>
+        <span class="mono-meta">0{{ selectedIndex() + 1 }} / 0{{ c().projects.flagships.length }}</span>
+      </div>
 
-            <span class="hidden lg:inline lg:mx-10 xl:mx-10"></span>
+      <div class="panel-tabs" role="tablist" [attr.aria-label]="c().hero.panelHint">
+        @for (item of c().projects.flagships; track item.slug; let i = $index) {
+          <button
+            type="button"
+            role="tab"
+            [id]="'hero-tab-' + item.slug"
+            [attr.aria-selected]="selectedIndex() === i"
+            [attr.aria-controls]="'hero-panel-body'"
+            [attr.tabindex]="selectedIndex() === i ? 0 : -1"
+            class="panel-tab"
+            [class.panel-tab-active]="selectedIndex() === i"
+            (click)="selectProject(i)"
+            (keydown)="onTabKeydown($event, i)"
+          >
+            <span class="ed-index">{{ item.index }}</span>
+            <span class="panel-tab-name">{{ item.title }}</span>
+          </button>
+        }
+      </div>
 
-            <span class="whitespace-nowrap">
-              <span class="text-purple-300 animate-letter" style="--delay: 0.26s">H</span>
-              <span class="text-purple-400 animate-letter" style="--delay: 0.29s">E</span>
-              <span class="text-purple-300 animate-letter" style="--delay: 0.32s">N</span>
-              <span class="text-purple-200 animate-letter" style="--delay: 0.35s">R</span>
-              <span class="text-purple-100 animate-letter" style="--delay: 0.38s">I</span>
-              <span class="text-purple-200 animate-letter" style="--delay: 0.41s">Q</span>
-              <span class="text-purple-300 animate-letter" style="--delay: 0.44s">U</span>
-              <span class="text-purple-400 animate-letter" style="--delay: 0.47s">E</span>
-            </span>
+      @if (activeProject(); as project) {
+        <div
+          id="hero-panel-body"
+          role="tabpanel"
+          [attr.aria-labelledby]="'hero-tab-' + project.slug"
+          class="panel-body"
+        >
+          <div class="panel-meta-row">
+            <span class="mono-meta">{{ project.category }}</span>
+            <span class="mono-meta">{{ project.period }}</span>
+          </div>
+
+          <h2 class="panel-project-title">{{ project.title }}</h2>
+          <p class="panel-project-sub">{{ project.subtitle }}</p>
+
+          <p class="ed-decision panel-decision">
+            <strong>{{ c().hero.panelDecisionLabel }}:</strong> {{ project.decision }}
+          </p>
+
+          <ul class="panel-tags" [attr.aria-label]="c().projects.techsAria">
+            @for (tech of project.techs.slice(0, 5); track $index) {
+              <li class="ed-tag">{{ tech }}</li>
+            }
+          </ul>
+
+          <div class="panel-footer">
+            <a [routerLink]="project.page" class="ed-link">
+              <span>{{ c().hero.panelCta }}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
+              </svg>
+            </a>
+            @if (project.demo) {
+              <a [href]="project.demo" target="_blank" rel="noopener noreferrer" class="mono-meta panel-ext">
+                {{ c().projects.demo }} ↗
+              </a>
+            }
           </div>
         </div>
-      </h1>
-    </div>
-
-    <p class="hero-badge shape-notch font-major anim-enter-up anim-delay-1">
-      {{ c().hero.badge }}
-    </p>
-
-    <div class="hero-lines text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 line-reveal">
-      @for (line of c().hero.lines; track $index) {
-        <div class="line">
-          @for (seg of line; track $index) {
-            <span [class.text-purple-400]="seg.hl" [class.font-bold]="seg.hl">{{ seg.text }}</span>
-          }
-        </div>
       }
-    </div>
-
-    <div class="flex flex-wrap justify-center gap-3 sm:gap-4 anim-enter-up anim-delay-2">
-      <a href="#projetos" class="btn btn-primary shape-notch">
-        {{ c().hero.projectsButton }}
-        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path
-            fill-rule="evenodd"
-            d="M10 3a1 1 0 011 1v9.586l3.293-3.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L9 13.586V4a1 1 0 011-1z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </a>
-      <a href="/JAMESON_HENRIQUE_CV.pdf" download="JAMESON_HENRIQUE_CV.pdf" class="btn btn-ghost shape-notch">
-        {{ c().hero.cvButton }}
-      </a>
-    </div>
+    </aside>
   </div>
 </section>

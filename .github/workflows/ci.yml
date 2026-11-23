@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ['**']
+    branches: ["**"]
   pull_request:
 
 concurrency:
@@ -12,6 +12,8 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      NG_CLI_ANALYTICS: "false"
     defaults:
       run:
         working-directory: portfolio
@@ -32,7 +34,14 @@ jobs:
       - name: Format
         run: npm run format:check
       - name: Unit tests
-        run: npm run test:ci
+        run: |
+          chrome_bin="$(command -v google-chrome || command -v google-chrome-stable)"
+          chrome_root="$(mktemp -d "$RUNNER_TEMP/karma-chrome.XXXXXX")"
+          mkdir -p "$chrome_root/config" "$chrome_root/cache" "$chrome_root/data"
+          env -u CHROME_CONFIG_HOME -u CHROME_USER_DATA_DIR \
+            CHROME_BIN="$chrome_bin" XDG_CONFIG_HOME="$chrome_root/config" \
+            XDG_CACHE_HOME="$chrome_root/cache" XDG_DATA_HOME="$chrome_root/data" \
+            npm run test:ci
       - name: Build (prerender)
         run: npm run build
       - name: Install Playwright Chromium

@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { onFirstView } from '../../utils/in-view';
+import { PlatformLocation } from '@angular/common';
+import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 
 @Component({
@@ -9,27 +9,35 @@ import { I18nService } from '../../services/i18n.service';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
-export class FooterComponent implements AfterViewInit, OnDestroy {
-  private cdr = inject(ChangeDetectorRef);
-
-  @ViewChild('footerEl') footerEl!: ElementRef<HTMLElement>;
-  isVisible = false;
-  currentYear = new Date().getFullYear();
+export class FooterComponent {
+  private readonly router = inject(Router);
+  readonly currentYear = new Date().getFullYear();
   readonly c = inject(I18nService).content;
+  readonly currentPath = signal<string>(inject(PlatformLocation).pathname || '/');
+
   readonly links = [
-    { id: 'inicio', label: 'inicio' },
+    { id: 'projetos', label: 'projetos' },
     { id: 'sobre', label: 'sobre' },
     { id: 'skills', label: 'skills' },
-    { id: 'projetos', label: 'projetos' },
     { id: 'contato', label: 'contato' }
   ] as const;
-  private stopObserving?: () => void;
 
-  ngAfterViewInit() {
-    this.stopObserving = onFirstView(this.footerEl.nativeElement, this.cdr, () => (this.isVisible = true));
-  }
+  readonly otherLangPath = computed(() => {
+    const clean = this.currentPath().split(/[?#]/)[0];
+    const ptCase = /^\/projetos\/([^/]+)$/.exec(clean);
+    if (ptCase) return `/en/projects/${ptCase[1]}`;
+    const enCase = /^\/en\/projects\/([^/]+)$/.exec(clean);
+    if (enCase) return `/projetos/${enCase[1]}`;
+    return this.c().otherHome;
+  });
 
-  ngOnDestroy() {
-    this.stopObserving?.();
+  constructor() {
+    const destroyRef = inject(DestroyRef);
+    const sub = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentPath.set(event.urlAfterRedirects);
+      }
+    });
+    destroyRef.onDestroy(() => sub.unsubscribe());
   }
 }

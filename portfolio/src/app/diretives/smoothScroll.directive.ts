@@ -12,10 +12,10 @@ export class SmoothScrollDirective {
     const href = target?.getAttribute('href');
     if (!href?.startsWith('#') || href.length < 2) return;
 
-    // Only take over when the anchor exists on this page; otherwise let the browser/router handle it.
     const element = this.document.querySelector(href);
     if (!element) return;
     event.preventDefault();
-    element.scrollIntoView({ behavior: 'smooth' });
+    const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    element.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
   }
 }

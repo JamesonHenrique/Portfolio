@@ -1,10 +1,8 @@
 <a href="#conteudo" class="skip-link">{{ i18n.content().skipLink }}</a>
-<div appSmoothScroll class="bg-black text-white font-syne overflow-x-hidden bg-grid overflow-y-auto">
-  <app-cursor></app-cursor>
-  <app-particles></app-particles>
+<div appSmoothScroll class="site-shell">
   <app-navigation></app-navigation>
 
-  <main id="conteudo">
+  <main id="conteudo" class="site-main">
     <router-outlet></router-outlet>
   </main>
 

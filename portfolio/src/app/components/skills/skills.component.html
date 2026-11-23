@@ -1,48 +1,33 @@
-<section id="skills" class="section overflow-hidden" #skillsSection>
-  <div class="skills-glow" aria-hidden="true"></div>
+<section id="skills" class="ed-section">
+  <div class="ed-container">
+    <header class="ed-section-header">
+      <div>
+        <div class="ed-section-kicker">
+          <span class="ed-index">{{ c().skills.index }}</span>
+          <span>{{ c().skills.kicker }}</span>
+        </div>
+        <h2 class="ed-section-title">{{ c().skills.title }}</h2>
+      </div>
+      <p class="ed-section-lead">{{ c().skills.lead }}</p>
+    </header>
 
-  <div class="container mx-auto max-w-6xl relative" [class.skills-animated]="isVisible">
-    <h2 class="section-title title-text">{{ c().skills.title }}</h2>
+    <div class="capabilities-grid">
+      @for (group of c().skills.groups; track group.index) {
+        <article class="capability-card ed-surface">
+          <div class="capability-head">
+            <span class="ed-index">{{ group.index }}</span>
+            <h3 class="capability-title">{{ group.title }}</h3>
+          </div>
 
-    <div class="mt-14 grid md:grid-cols-2 gap-6">
-      @for (group of groups; track group.title.pt; let i = $index) {
-        <div class="card card-hover skill-card p-6 sm:p-8" [style.animation-delay]="0.15 + i * 0.12 + 's'">
-          <h3 class="card-title text-center mb-8">{{ group.title[c().lang] }}</h3>
-          <ul class="grid grid-cols-3 sm:grid-cols-4 gap-x-3 gap-y-7">
-            @for (skill of group.skills; track skill.name) {
-              <li class="flex flex-col items-center gap-3 text-center skill-item">
-                <span class="skill-icon-wrap">
-                  <img
-                    [src]="'icons/' + skill.icon + '.svg'"
-                    alt=""
-                    width="40"
-                    height="40"
-                    loading="lazy"
-                    class="w-10 h-10 object-contain skill-icon"
-                  />
-                </span>
-                <span class="text-xs sm:text-sm text-purple-100">{{ skill.name }}</span>
-              </li>
+          <p class="capability-context">{{ group.context }}</p>
+
+          <ul class="capability-tags" [attr.aria-label]="group.title">
+            @for (item of group.items; track item) {
+              <li class="ed-tag">{{ item }}</li>
             }
           </ul>
-          @if (group.extras) {
-            <ul class="flex flex-wrap justify-center gap-2 mt-8 pt-6 border-t border-purple-900/40">
-              @for (extra of group.extras[c().lang]; track extra) {
-                <li class="chip">{{ extra }}</li>
-              }
-            </ul>
-          }
-        </div>
+        </article>
       }
-
-      <div class="md:col-span-2 card tools-card p-6 sm:p-8" [style.animation-delay]="'0.7s'">
-        <h3 class="card-title text-center mb-6">{{ c().skills.systemsTitle }}</h3>
-        <ul class="flex flex-wrap justify-center gap-2 sm:gap-3">
-          @for (system of integratedSystems; track system) {
-            <li class="chip">{{ system }}</li>
-          }
-        </ul>
-      </div>
     </div>
   </div>
 </section>

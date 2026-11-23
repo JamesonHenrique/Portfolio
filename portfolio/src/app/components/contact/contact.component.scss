@@ -1,160 +1,209 @@
-.contact-section {
-  background: linear-gradient(to bottom, transparent, rgba(59, 7, 100, 0.12) 40%, transparent);
-}
-
-.contact-text {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: var(--c-muted);
-}
-
-.contact-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-accent-soft);
-  margin-bottom: 0.15rem;
-}
-
-.contact-icon,
-.social-icon {
-  flex: none;
-  width: 2.75rem;
-  height: 2.75rem;
+.contact-grid {
   display: grid;
-  place-items: center;
-  color: #f3e8ff;
-  background: linear-gradient(135deg, #7e22ce, #4c1d95);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+    gap: 2rem;
+  }
+}
+
+.contact-channels,
+.contact-form-wrap {
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .contact-channels,
+  .contact-form-wrap {
+    padding: 2rem;
+  }
+}
+
+.channels-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.channels-text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.channel-list {
+  margin: 1.75rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.channel-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  dd {
+    margin: 0;
+  }
+}
+
+.channel-email-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.channel-value {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.channel-link {
+  transition: color var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 1.75rem;
+  padding: 0 0.625rem;
+  border-radius: var(--radius-tag);
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-raised);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
   transition:
-    background var(--dur-fast) ease,
-    color var(--dur-fast) ease,
-    transform var(--dur-fast) var(--ease-out);
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    background-color: var(--bg-subtle);
+    color: var(--text-primary);
+  }
 }
 
-.contact-item:hover .contact-icon,
-.social-icon:hover {
-  background: linear-gradient(135deg, #f3e8ff, #d8b4fe);
-  color: #3b0764;
-  transform: translateY(-2px);
+.social-block {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.social-icon-svg {
-  width: 1.35rem;
-  height: 1.35rem;
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 /* Form */
-.form-group {
-  position: relative;
-  margin-bottom: 1.25rem;
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row-2 {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .form-row-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4375rem;
 }
 
 .form-label {
-  display: block;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-accent-soft);
-  margin-bottom: 0.5rem;
-}
-
-.form-input-container {
-  position: relative;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .form-input {
   width: 100%;
-  padding: 0.8rem 1rem;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.45);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius-sm);
-  outline: none;
+  padding: 0.6875rem 0.875rem;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-raised);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
   transition:
-    border-color var(--dur-fast) ease,
-    box-shadow var(--dur-fast) ease;
-}
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
 
-.form-input::placeholder {
-  color: rgba(216, 180, 254, 0.45);
-}
-
-.form-input:hover {
-  border-color: rgba(168, 85, 247, 0.5);
-}
-
-.form-input:focus {
-  border-color: var(--c-accent);
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
-}
-
-.form-input-highlight {
-  display: none;
-}
-
-/* Entrance animations, triggered when the section scrolls into view. */
-.title-text,
-.contact-info-card,
-.form-container {
-  opacity: 0;
-}
-
-.animate-section {
-  .title-text {
-    animation: rise-in 0.7s var(--ease-out) forwards;
+  &::placeholder {
+    color: var(--text-muted);
   }
 
-  .contact-info-card {
-    animation: fade-in-left 0.7s var(--ease-out) forwards;
+  &:hover {
+    border-color: var(--border-strong);
   }
 
-  .form-container {
-    animation: fade-in-right 0.7s var(--ease-out) forwards;
-  }
-
-  .contact-item,
-  .social-title,
-  .social-links a,
-  .animate-field,
-  .animate-button {
-    opacity: 0;
-    animation: rise-in 0.55s var(--ease-out) forwards;
-  }
-
-  .social-title {
-    animation-delay: 0.35s;
+  &:focus {
+    border-color: var(--accent);
+    background-color: var(--bg-canvas);
   }
 }
 
-@keyframes fade-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.form-textarea {
+  resize: vertical;
+  min-height: 7.5rem;
 }
 
-@keyframes fade-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.875rem;
+  margin-top: 0.25rem;
 }
 
-.font-major {
-  font-size: 1rem;
-  overflow-wrap: anywhere;
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }
 
-@media (max-width: 440px) {
-  .font-major {
-    font-size: 0.85rem;
-  }
+.form-status {
+  min-height: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.status-ok {
+  color: var(--status-ok);
+}
+
+.status-err {
+  color: var(--status-err);
+}
+
+.status-link {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
