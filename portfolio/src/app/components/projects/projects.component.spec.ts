@@ -17,10 +17,11 @@ describe('ProjectsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should render three flagship case studies and archive rows', () => {
+  it('should render three visual project chapters and inspection callouts', () => {
     expect(component).toBeTruthy();
     const el = fixture.nativeElement as HTMLElement;
-    expect(el.querySelectorAll('.flagship-card').length).toBe(3);
-    expect(el.querySelectorAll('.archive-row').length).toBe(3);
+    expect(el.querySelectorAll('.work-entry').length).toBe(3);
+    expect(el.querySelectorAll('.display-frame').length).toBe(3);
+    expect(el.querySelectorAll('.explain').length).toBe(6);
   });
 });

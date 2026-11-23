@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
@@ -13,4 +14,8 @@ import { I18nService } from './services/i18n.service';
 })
 export class AppComponent {
   readonly i18n = inject(I18nService);
+
+  constructor() {
+    inject(ViewportScroller).setOffset([0, 92]);
+  }
 }

@@ -2,8 +2,9 @@ import { PlatformLocation } from '@angular/common';
 import { Component, DestroyRef, afterNextRender, computed, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
+import { InspectionService } from '../../services/inspection.service';
 
-type NavKey = 'projetos' | 'sobre' | 'skills' | 'contato';
+type NavKey = 'projetos' | 'sobre' | 'contato';
 
 @Component({
   selector: 'app-navigation',
@@ -14,11 +15,11 @@ type NavKey = 'projetos' | 'sobre' | 'skills' | 'contato';
 export class NavigationComponent {
   private readonly router = inject(Router);
   readonly c = inject(I18nService).content;
+  readonly inspection = inject(InspectionService);
 
   readonly links: { id: NavKey; label: NavKey }[] = [
     { id: 'projetos', label: 'projetos' },
     { id: 'sobre', label: 'sobre' },
-    { id: 'skills', label: 'skills' },
     { id: 'contato', label: 'contato' }
   ];
 
@@ -59,7 +60,7 @@ export class NavigationComponent {
         const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
         this.scrollProgress.set(reduced ? 0 : ratio);
 
-        const sections = ['inicio', 'projetos', 'sobre', 'skills', 'contato'];
+        const sections = ['inicio', 'projetos', 'sobre', 'contato'];
         const offset = 120;
         let current = 'inicio';
         for (const id of sections) {
@@ -76,7 +77,10 @@ export class NavigationComponent {
       };
 
       const onKeydown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape' && this.menuOpen()) this.menuOpen.set(false);
+        if (e.key === 'Escape') {
+          if (this.menuOpen()) this.menuOpen.set(false);
+          else if (this.inspection.enabled()) this.inspection.set(false);
+        }
       };
 
       updateScroll();

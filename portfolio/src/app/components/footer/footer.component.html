@@ -1,27 +1,19 @@
-<footer id="footer" class="site-footer">
+<footer class="site-footer">
   <div class="ed-container footer-inner">
     <div class="footer-brand">
-      <a [routerLink]="c().home" class="footer-name">Jameson Henrique</a>
-      <p class="mono-meta">{{ c().footer.role }}</p>
+      <strong>Jameson Henrique</strong>
+      <span class="mono-meta">{{ c().footer.role }}</span>
     </div>
 
-    <nav class="footer-nav" [attr.aria-label]="c().nav.aria">
-      @for (link of links; track link.id) {
-        <a [routerLink]="c().home" [fragment]="link.id" class="footer-link">{{ c().nav[link.label] }}</a>
-      }
-      <a href="/JAMESON_HENRIQUE_CV.pdf" download="JAMESON_HENRIQUE_CV.pdf" class="footer-link">{{ c().footer.cv }}</a>
-      <a
-        [routerLink]="otherLangPath()"
-        class="footer-link footer-lang"
-        [attr.aria-label]="c().switchAria"
-        [attr.hreflang]="c().lang === 'pt' ? 'en' : 'pt-BR'"
-      >
+    <div class="footer-links">
+      <a href="/JAMESON_HENRIQUE_CV.pdf" target="_blank" rel="noopener noreferrer">{{ c().footer.cv }}</a>
+      <a href="https://github.com/JamesonHenrique" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/jamesonhenrique/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a [routerLink]="otherLangPath()" class="lang-link" [attr.hreflang]="c().lang === 'pt' ? 'en' : 'pt-BR'">
         {{ c().switchLabel }}
       </a>
-    </nav>
-
-    <div class="footer-meta">
-      <p class="mono-meta">© {{ currentYear }} Jameson Henrique. {{ c().footer.rights }}</p>
     </div>
+
+    <p class="mono-meta footer-copy">© {{ currentYear }} Jameson Henrique · {{ c().footer.rights }}</p>
   </div>
 </footer>

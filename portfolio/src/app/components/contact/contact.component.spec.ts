@@ -16,43 +16,21 @@ describe('ContactComponent', () => {
     el = fixture.nativeElement;
   });
 
-  function fillAndSubmit() {
-    const set = (id: string, value: string) => ((el.querySelector('#' + id) as HTMLInputElement).value = value);
-    set('name', 'Teste');
-    set('email', 'teste@example.com');
-    set('subject', 'Assunto');
-    set('message', 'Mensagem');
-    const form = el.querySelector('form')!;
-    return fixture.componentInstance.onSubmit({ preventDefault: () => undefined, target: form } as unknown as Event);
-  }
-
-  it('posts to the FormSubmit AJAX endpoint and shows the success message', async () => {
-    const fetchSpy = spyOn(window, 'fetch').and.resolveTo(new Response('{"success":"true"}', { status: 200 }));
-    await fillAndSubmit();
-    expect(fetchSpy.calls.mostRecent().args[0]).toBe('https://formsubmit.co/ajax/jameson.henrique.dev@gmail.com');
-    expect(el.querySelector('[role=status]')?.textContent).toContain('Mensagem enviada');
-    expect((el.querySelector('#name') as HTMLInputElement).value).toBe('');
+  it('renders the direct mailto link and copy button', () => {
+    const link = el.querySelector<HTMLAnchorElement>('a.outro-mail');
+    expect(link?.getAttribute('href')).toBe('mailto:jameson.henrique.dev@gmail.com');
+    expect(el.querySelector('button.outro-copy')?.textContent?.trim()).toBe('Copiar e-mail');
   });
 
-  it('shows the direct e-mail when FormSubmit rejects the message', async () => {
-    spyOn(window, 'fetch').and.resolveTo(
-      new Response('{"success":"false","message":"needs activation"}', { status: 200 })
-    );
-    await fillAndSubmit();
-    expect(el.querySelector('[role=status]')?.textContent).toContain('jameson.henrique.dev@gmail.com');
-  });
+  it('copies the email to the clipboard and updates button state', async () => {
+    const writeText = jasmine.createSpy('writeText').and.resolveTo();
+    Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
 
-  it('shows the direct e-mail on network errors', async () => {
-    spyOn(window, 'fetch').and.rejectWith(new TypeError('offline'));
-    await fillAndSubmit();
-    expect(el.querySelector('[role=status]')?.textContent).toContain('jameson.henrique.dev@gmail.com');
-  });
+    await fixture.componentInstance.copyEmail();
+    fixture.detectChanges();
 
-  it('does not send an incomplete form', async () => {
-    const fetchSpy = spyOn(window, 'fetch');
-    const form = el.querySelector('form')!;
-    spyOn(form, 'reportValidity').and.returnValue(false);
-    await fixture.componentInstance.onSubmit({ preventDefault: () => undefined, target: form } as unknown as Event);
-    expect(fetchSpy).not.toHaveBeenCalled();
+    expect(writeText).toHaveBeenCalledWith('jameson.henrique.dev@gmail.com');
+    expect(fixture.componentInstance.copied()).toBeTrue();
+    expect(el.querySelector('button.outro-copy')?.textContent?.trim()).toBe('Copiado');
   });
 });

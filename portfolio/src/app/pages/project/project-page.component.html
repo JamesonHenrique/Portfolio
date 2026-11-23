@@ -49,7 +49,7 @@
         <span class="mono-meta">{{ page.period }}</span>
       </div>
 
-      <h1 class="case-title">{{ page.title }}</h1>
+      <h1 class="case-title" [style.view-transition-name]="'case-title-' + page.slug">{{ page.title }}</h1>
       <p class="case-subtitle">{{ page.name }}</p>
 
       <dl class="spec-strip">
@@ -63,17 +63,29 @@
     </header>
 
     <figure class="case-figure">
-      <div class="case-frame">
-        <img
-          [src]="'/' + page.image"
-          [attr.srcset]="imageSrcset"
-          sizes="(min-width: 1024px) 1040px, 100vw"
-          [alt]="page.imageAlt"
-          [attr.width]="page.imageWidth"
-          [attr.height]="page.imageHeight"
-          decoding="async"
-          class="case-img"
-        />
+      <div
+        class="case-frame"
+        [class.tone-gold]="page.slug === 'oportunizavaga'"
+        [class.tone-green]="page.slug === 'painel-de-maquinas'"
+        [class.tone-blue]="page.slug === 'newgram'"
+        [style.view-transition-name]="'case-frame-' + page.slug"
+      >
+        <div class="case-frame-top">
+          <span>{{ c.projects.proofPrefix }} {{ page.index }}</span>
+          <span>{{ page.title }}</span>
+        </div>
+        <div class="case-frame-body">
+          <img
+            [src]="'/' + page.image"
+            [attr.srcset]="imageSrcset"
+            sizes="(min-width: 1024px) 1040px, 100vw"
+            [alt]="page.imageAlt"
+            [attr.width]="page.imageWidth"
+            [attr.height]="page.imageHeight"
+            decoding="async"
+            class="case-img"
+          />
+        </div>
       </div>
       <figcaption class="mono-meta case-caption">{{ page.imageCaption }}</figcaption>
     </figure>

@@ -1,145 +1,103 @@
-<section id="projetos" class="ed-section">
-  <div class="ed-container">
-    <header class="ed-section-header">
+<div id="projetos">
+  <section class="work-head" [attr.aria-label]="c().projects.kicker">
+    <div class="ed-container work-head-grid">
       <div>
-        <div class="ed-section-kicker">
-          <span class="ed-index">{{ c().projects.index }}</span>
-          <span>{{ c().projects.kicker }}</span>
-        </div>
-        <h2 class="ed-section-title">{{ c().projects.title }}</h2>
+        <div class="ed-section-label">{{ c().projects.sectionLabel }}</div>
+        <h2>
+          {{ c().projects.headingTop }}<br /><em>{{ c().projects.headingEm }}</em>
+        </h2>
       </div>
-      <p class="ed-section-lead">{{ c().projects.lead }}</p>
-    </header>
+      <p>{{ c().projects.lead }}</p>
+    </div>
+  </section>
 
-    <div class="flagship-list">
-      @for (project of c().projects.flagships; track project.slug) {
-        <article class="flagship-card ed-surface">
-          <a [routerLink]="project.page" class="flagship-media-link" [attr.aria-label]="project.title">
-            <div class="flagship-media-frame">
+  @for (project of c().projects.flagships; track project.slug; let i = $index) {
+    <section
+      class="work-entry"
+      [class.work-gold]="project.chapterTone === 'gold'"
+      [class.work-green]="project.chapterTone === 'green'"
+      [class.work-blue]="project.chapterTone === 'blue'"
+      [attr.aria-labelledby]="'work-title-' + project.slug"
+    >
+      <div class="ed-container work-entry-grid">
+        <div class="project-note">
+          <div class="project-index">
+            <span>{{ c().projectPage.caseLabel | uppercase }} / 0{{ i + 1 }}</span>
+            <span>{{ project.category }}</span>
+          </div>
+
+          <h3
+            [id]="'work-title-' + project.slug"
+            [style.view-transition-name]="transition.titleName(project.slug, 'chapter')"
+          >
+            {{ project.titlePre }}
+            @if (project.titleEm) {
+              <br /><em>{{ project.titleEm }}</em>
+            }
+          </h3>
+
+          <p class="project-summary">{{ project.shortSummary }}</p>
+
+          <div class="project-actions">
+            <a [routerLink]="project.page" class="project-link" (click)="prepareCase(project.slug)">
+              <span>{{ c().projects.readCase }}</span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+
+            @if (project.url) {
+              <a
+                [href]="project.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-link project-link-secondary"
+              >
+                <span>{{ c().projects.viewCode }}</span>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            }
+          </div>
+
+          <div class="project-proof">{{ project.focusLine }}</div>
+        </div>
+
+        <div class="project-display">
+          <a
+            [routerLink]="project.page"
+            class="display-frame"
+            [attr.aria-label]="c().projects.readCase + ': ' + project.title"
+            [style.view-transition-name]="transition.frameName(project.slug, 'chapter')"
+            (click)="prepareCase(project.slug)"
+          >
+            <div class="frame-top">
+              <span>{{ c().projects.proofPrefix }} 0{{ i + 1 }}</span>
+              <span>{{ project.title }} · {{ project.frameTag }}</span>
+            </div>
+            <div class="frame-body">
               <img
+                loading="lazy"
                 [src]="'/' + project.image"
                 [attr.srcset]="srcset(project)"
-                sizes="(min-width: 1024px) 620px, 100vw"
+                sizes="(min-width: 1024px) 680px, 92vw"
                 [alt]="project.imageAlt"
                 [attr.width]="project.imageWidth"
                 [attr.height]="project.imageHeight"
-                loading="lazy"
-                decoding="async"
-                class="flagship-img"
               />
             </div>
           </a>
 
-          <div class="flagship-body">
-            <div class="flagship-meta">
-              <span class="ed-index">{{ project.index }}</span>
-              <span class="mono-meta">{{ project.category }}</span>
-              <span class="mono-meta flagship-period">{{ project.period }}</span>
-            </div>
-
-            <h3 class="flagship-title">
-              <a [routerLink]="project.page" class="flagship-title-link">{{ project.title }}</a>
-            </h3>
-            <p class="flagship-subtitle">{{ project.subtitle }}</p>
-            <p class="flagship-desc">{{ project.description }}</p>
-
-            <p class="ed-decision">
-              <strong>{{ c().projects.decisionLabel }}:</strong> {{ project.decision }}
-            </p>
-
-            <ul class="flagship-tags" [attr.aria-label]="c().projects.techsAria">
-              @for (tech of project.techs; track tech) {
-                <li class="ed-tag">{{ tech }}</li>
-              }
-            </ul>
-
-            <div class="flagship-actions">
-              <a [routerLink]="project.page" class="btn btn-primary btn-sm">
-                <span>{{ c().projects.readCase }}</span>
-                <svg
-                  class="btn-icon btn-icon-shift"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  aria-hidden="true"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
+          <div class="explain-strip">
+            @for (note of project.inspectNotes; track note.id) {
+              <div class="explain">
+                <svg class="explain-pin" viewBox="0 0 28 18" aria-hidden="true">
+                  <path d="M1 17 L14 4 L27 4" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <circle cx="2" cy="16" r="2.2" fill="currentColor" />
                 </svg>
-              </a>
-
-              @if (project.demo) {
-                <a [href]="project.demo" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                  <span>{{ c().projects.demo }}</span>
-                  <svg
-                    class="btn-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    aria-hidden="true"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
-                  </svg>
-                </a>
-              }
-
-              @if (project.url) {
-                <a [href]="project.url" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                  <span>{{ c().projects.code }}</span>
-                  <svg
-                    class="btn-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    aria-hidden="true"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
-                  </svg>
-                </a>
-              }
-            </div>
-
-            @if (project.privateNote) {
-              <p class="mono-meta flagship-note">{{ project.privateNote }}</p>
+                <span>{{ note.text }}</span>
+              </div>
             }
           </div>
-        </article>
-      }
-    </div>
-
-    <div class="archive-block">
-      <div class="archive-header">
-        <div>
-          <h3 class="archive-title">{{ c().projects.archiveTitle }}</h3>
-          <p class="archive-lead">{{ c().projects.archiveLead }}</p>
         </div>
-        <a
-          href="https://github.com/JamesonHenrique?tab=repositories"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="ed-link"
-        >
-          <span>{{ c().projects.archiveMore }}</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
-          </svg>
-        </a>
       </div>
-
-      <ul class="archive-list">
-        @for (item of c().projects.archive; track item.title) {
-          <li>
-            <a [href]="item.url" target="_blank" rel="noopener noreferrer" class="archive-row">
-              <span class="archive-name">{{ item.title }}</span>
-              <span class="archive-desc">{{ item.description }}</span>
-              <span class="archive-stack">{{ item.techs.slice(0, 4).join(' · ') }}</span>
-              <span class="archive-arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-        }
-      </ul>
-    </div>
-  </div>
-</section>
+    </section>
+  }
+</div>

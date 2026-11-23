@@ -1,176 +1,25 @@
-<section id="contato" class="ed-section">
+<section id="contato" class="outro-band" [attr.aria-labelledby]="'contact-heading'">
   <div class="ed-container">
-    <header class="ed-section-header">
-      <div>
-        <div class="ed-section-kicker">
-          <span class="ed-index">{{ c().contact.index }}</span>
-          <span>{{ c().contact.kicker }}</span>
-        </div>
-        <h2 class="ed-section-title">{{ c().contact.title }}</h2>
-      </div>
-      <p class="ed-section-lead">{{ c().contact.lead }}</p>
-    </header>
+    <div class="ed-section-label">{{ c().contact.sectionLabel }}</div>
 
-    <div class="contact-grid">
-      <div class="contact-channels ed-surface">
-        <h3 class="channels-title">{{ c().contact.channelsHeading }}</h3>
-        <p class="channels-text">{{ c().contact.text }}</p>
+    <h2 id="contact-heading">
+      {{ c().contact.headingPre }}<br /><em>{{ c().contact.headingEm }}</em>
+    </h2>
 
-        <dl class="channel-list">
-          <div class="channel-row">
-            <dt class="mono-meta">{{ c().contact.email }}</dt>
-            <dd class="channel-email-row">
-              <a href="mailto:jameson.henrique.dev@gmail.com" class="channel-value channel-link">
-                jameson.henrique.dev&#64;gmail.com
-              </a>
-              <button type="button" class="copy-btn" (click)="copyEmail()">
-                {{ copied() ? c().contact.copiedEmail : c().contact.copyEmail }}
-              </button>
-            </dd>
-          </div>
+    <div class="outro-bar">
+      <a class="outro-mail" [href]="'mailto:' + emailAddress">
+        <strong>{{ emailAddress }}</strong>
+        <span aria-hidden="true">↗</span>
+      </a>
 
-          <div class="channel-row">
-            <dt class="mono-meta">{{ c().contact.phone }}</dt>
-            <dd>
-              <a href="tel:+5584988224405" class="channel-value channel-link">+55 (84) 98822-4405</a>
-            </dd>
-          </div>
+      <button type="button" class="outro-copy" (click)="copyEmail()">
+        {{ copied() ? c().contact.copiedEmail : c().contact.copyEmail }}
+      </button>
+    </div>
 
-          <div class="channel-row">
-            <dt class="mono-meta">{{ c().contact.location }}</dt>
-            <dd class="channel-value">{{ c().contact.locationValue }}</dd>
-          </div>
-        </dl>
-
-        <div class="social-block">
-          <p class="mono-meta">{{ c().contact.social }}</p>
-          <div class="social-links">
-            <a
-              href="https://github.com/JamesonHenrique"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-secondary btn-sm"
-            >
-              <span>GitHub</span>
-              <svg
-                class="btn-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                aria-hidden="true"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
-              </svg>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/jamesonhenrique/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-secondary btn-sm"
-            >
-              <span>LinkedIn</span>
-              <svg
-                class="btn-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                aria-hidden="true"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="contact-form-wrap ed-surface">
-        <form (submit)="onSubmit($event)" ngNoForm class="contact-form">
-          <!-- Honeypot: humans never see this field; FormSubmit drops submissions that fill it. -->
-          <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <input type="hidden" name="_template" value="table" />
-
-          <div class="form-row-2">
-            <div class="form-field">
-              <label for="name" class="form-label">{{ c().contact.form.name }}</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="form-input"
-                [placeholder]="c().contact.form.namePlaceholder"
-                required
-              />
-            </div>
-
-            <div class="form-field">
-              <label for="email" class="form-label">{{ c().contact.form.email }}</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="form-input"
-                [placeholder]="c().contact.form.emailPlaceholder"
-                required
-              />
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label for="subject" class="form-label">{{ c().contact.form.subject }}</label>
-            <input
-              type="text"
-              id="subject"
-              name="_subject"
-              class="form-input"
-              [placeholder]="c().contact.form.subjectPlaceholder"
-              required
-            />
-          </div>
-
-          <div class="form-field">
-            <label for="message" class="form-label">{{ c().contact.form.message }}</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              class="form-input form-textarea"
-              [placeholder]="c().contact.form.messagePlaceholder"
-              required
-            ></textarea>
-          </div>
-
-          <div class="form-footer">
-            <button type="submit" [disabled]="status === 'sending'" class="btn btn-primary submit-btn">
-              <span>{{ status === 'sending' ? c().contact.form.sending : c().contact.form.send }}</span>
-              <svg
-                class="btn-icon btn-icon-shift"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                aria-hidden="true"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
-              </svg>
-            </button>
-
-            <p class="form-status" role="status" aria-live="polite">
-              @if (status === 'sent') {
-                <span class="status-ok">{{ c().contact.form.sent }}</span>
-              } @else if (status === 'error') {
-                <span class="status-err">
-                  {{ c().contact.form.error }}
-                  <a href="mailto:jameson.henrique.dev@gmail.com" class="status-link">
-                    jameson.henrique.dev&#64;gmail.com</a
-                  >.
-                </span>
-              }
-            </p>
-          </div>
-        </form>
-      </div>
+    <div class="outro-meta">
+      <span>{{ c().contact.locationValue }}</span>
+      <a [routerLink]="c().home" fragment="inicio" class="back-top">{{ c().contact.backToTop }}</a>
     </div>
   </div>
 </section>
