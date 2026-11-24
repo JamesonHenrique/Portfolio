@@ -1,33 +1,27 @@
 #!/usr/bin/env python3
-"""Gerador do CV principal do portfólio (1 página, A4).
+"""Generate the one-page A4 portfolio résumé from tools/cv-portfolio.md.
 
-Layout reproduzido do CV que estava no ar até 27/10 (Carlito, nome em navy com régua azul,
-seções em caixa alta com régua cinza, bullets com destaque em negrito) — o dono preferiu este
-formato ao do gerador de candidaturas (bot/gerar_cv.py), que é mais enxuto.
+    # name          @ tagline           > contact
+    ## section      ### heading (optional date after |)
+    - bullet        _ context           ^ project stack
+    * detail line   <!-- pagebreak -->  explicit page break
 
-Uso:
-    python3 tools/gerar-cv-portfolio.py [-o portfolio/public/JAMESON_HENRIQUE_CV.pdf]
-
-Texto: tools/cv-portfolio.md (markup mínimo):
-    #  nome            @  tagline            >  contato
-    ## seção           ### título de vaga/projeto
-    -  bullet          _  contexto em cinza itálico
-    ^  stack da vaga em cinza itálico        *  linha "Rótulo: valor"
-    **negrito** inline
+Inline **bold**, backticks, and contact and project links are supported.
 """
 import argparse
 import os
+from pathlib import Path
 import re
 import sys
 
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_LEFT
+from reportlab.lib.enums import TA_LEFT, TA_RIGHT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import HRFlowable, Paragraph, SimpleDocTemplate
+from reportlab.platypus import HRFlowable, PageBreak, Paragraph, SimpleDocTemplate, Table
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 FONTE_DIR = "/usr/share/fonts/truetype/crosextra"
@@ -37,10 +31,11 @@ GRAFITE = colors.HexColor("#1F1F1F")
 CINZA = colors.HexColor("#595959")
 LINHA = colors.HexColor("#BFBFBF")
 
-MARGEM_L = 15 * mm
-MARGEM_R = 15 * mm
-MARGEM_T = 11 * mm
-MARGEM_B = 10 * mm
+FRAME_PADDING = 6
+MARGEM_L = 12 * mm - FRAME_PADDING
+MARGEM_R = MARGEM_L
+MARGEM_T = 12 * mm - FRAME_PADDING
+MARGEM_B = 12 * mm - FRAME_PADDING
 
 
 def registrar_fontes():
@@ -62,60 +57,101 @@ FONTE = registrar_fontes()
 
 def estilos(pt):
     return {
-        "nome": ParagraphStyle("nome", fontName=FONTE + "-Bold", fontSize=20, leading=22, textColor=NAVY),
-        "tagline": ParagraphStyle("tagline", fontName=FONTE + "-Bold", fontSize=9.6, leading=11.5,
+        "nome": ParagraphStyle("nome", fontName=FONTE + "-Bold", fontSize=17, leading=18, textColor=NAVY),
+        "tagline": ParagraphStyle("tagline", fontName=FONTE + "-Bold", fontSize=9.0, leading=9.8,
                                   textColor=GRAFITE),
-        "contato": ParagraphStyle("contato", fontName=FONTE + "-Bold", fontSize=8.2, leading=12, textColor=CINZA,
-                                  spaceAfter=0.6 * mm),
-        "secao": ParagraphStyle("secao", fontName=FONTE + "-Bold", fontSize=10.2, leading=11.6, textColor=NAVY,
-                                spaceBefore=2.6 * mm),
-        "cargo": ParagraphStyle("cargo", fontName=FONTE + "-Bold", fontSize=9.4, leading=11.4, textColor=GRAFITE,
-                                spaceBefore=0.9 * mm),
-        "sub": ParagraphStyle("sub", fontName=FONTE + "-Italic", fontSize=pt - 0.3, leading=pt + 1.4,
+        "contato": ParagraphStyle("contato", fontName=FONTE + "-Bold", fontSize=8.3, leading=9.1, textColor=CINZA,
+                                  spaceAfter=0.15 * mm),
+        "secao": ParagraphStyle("secao", fontName=FONTE + "-Bold", fontSize=9.5, leading=10.2, textColor=NAVY,
+                                spaceBefore=1.7 * mm, keepWithNext=True),
+        "cargo": ParagraphStyle("cargo", fontName=FONTE + "-Bold", fontSize=9.0, leading=9.7, textColor=GRAFITE,
+                                spaceBefore=0.95 * mm, keepWithNext=True),
+        "date": ParagraphStyle("date", fontName=FONTE + "-Bold", fontSize=8.2, leading=9.0,
+                               alignment=TA_RIGHT, textColor=CINZA),
+        "sub": ParagraphStyle("sub", fontName=FONTE + "-Italic", fontSize=pt - 0.3, leading=pt + 0.7,
                               textColor=CINZA),
-        "corpo": ParagraphStyle("corpo", fontName=FONTE, fontSize=pt, leading=pt + 1.55, textColor=GRAFITE,
-                                alignment=TA_LEFT, spaceBefore=0.6 * mm),
-        "bullet": ParagraphStyle("bullet", fontName=FONTE, fontSize=pt, leading=pt + 1.55, textColor=GRAFITE,
-                                 leftIndent=3.6 * mm, firstLineIndent=-3.6 * mm, bulletIndent=0,
-                                 spaceBefore=0.5 * mm),
-        "tech": ParagraphStyle("tech", fontName=FONTE + "-Italic", fontSize=pt - 0.3, leading=pt + 1.4,
-                               textColor=CINZA, spaceBefore=0.4 * mm, spaceAfter=1.2 * mm),
+        "corpo": ParagraphStyle("corpo", fontName=FONTE, fontSize=pt, leading=pt + 0.85, textColor=GRAFITE,
+                                alignment=TA_LEFT, spaceBefore=0.28 * mm),
+        "bullet": ParagraphStyle("bullet", fontName=FONTE, fontSize=pt, leading=pt + 0.85, textColor=GRAFITE,
+                                 leftIndent=3.3 * mm, bulletIndent=0,
+                                 spaceBefore=0.28 * mm),
+        "tech": ParagraphStyle("tech", fontName=FONTE + "-Italic", fontSize=pt - 0.3, leading=pt + 0.7,
+                               textColor=CINZA, spaceBefore=0.15 * mm, spaceAfter=0.35 * mm, keepWithNext=True),
     }
 
 
+LINK_PATTERN = re.compile(
+    r"(?P<email>[\w.+-]+@[\w.-]+\.[A-Za-z]{2,})"
+    r"|(?P<web>(?:linkedin\.com/in|github\.com)/[\w./-]+)"
+    r"|(?P<phone>\(\d{2}\) \d{5}-\d{4})"
+)
+
+
+def link_markup(match):
+    label = match.group()
+    if match.lastgroup == "email":
+        url = f"mailto:{label}"
+    elif match.lastgroup == "phone":
+        digits = re.sub(r"\D", "", label)
+        url = f"tel:+55{digits}"
+    else:
+        url = f"https://{label}"
+    return f'<link href="{url}" color="{AZUL.hexval()}">{label}</link>'
+
+
 def markup(t):
-    """`**texto**` vira <b>; o resto é escapado para o ReportLab."""
+    """Escape source text before rendering inline styles and known links."""
     t = t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
+    t = re.sub(r"`([^`]+)`", r"\1", t)
+    t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
+    return LINK_PATTERN.sub(link_markup, t)
 
 
 def ler(caminho):
-    out = []
-    for bruta in open(caminho, encoding="utf-8"):
-        l = bruta.rstrip("\n")
-        if l.strip() and not l.lstrip().startswith("<!--"):
-            out.append(l)
-    return out
-
+    return [
+        line for line in Path(caminho).read_text(encoding="utf-8").splitlines()
+        if line.strip() and (line == "<!-- pagebreak -->" or not line.lstrip().startswith("<!--"))
+    ]
 
 def montar(linhas, pt):
     st = estilos(pt)
     flow = []
     for l in linhas:
-        if l.startswith("# "):
+        if l == "<!-- pagebreak -->":
+            flow.append(PageBreak())
+        elif l.startswith("# "):
             flow.append(Paragraph(markup(l[2:]), st["nome"]))
             flow.append(HRFlowable(width="100%", thickness=0.9, color=AZUL, spaceBefore=0.4 * mm,
-                                   spaceAfter=1.6 * mm))
+                                   spaceAfter=0.75 * mm))
         elif l.startswith("@ "):
             flow.append(Paragraph(markup(l[2:]), st["tagline"]))
         elif l.startswith("> "):
             flow.append(Paragraph(markup(l[2:]), st["contato"]))
         elif l.startswith("## "):
             flow.append(Paragraph(markup(l[3:].upper()), st["secao"]))
-            flow.append(HRFlowable(width="100%", thickness=0.5, color=LINHA, spaceBefore=0.1 * mm,
-                                   spaceAfter=0.6 * mm))
+            rule = HRFlowable(width="100%", thickness=0.5, color=LINHA, spaceBefore=0.35 * mm,
+                              spaceAfter=0.5 * mm)
+            rule.keepWithNext = True
+            flow.append(rule)
         elif l.startswith("### "):
-            flow.append(Paragraph(markup(l[4:]), st["cargo"]))
+            title, separator, date = l[4:].partition(" | ")
+            heading = Paragraph(markup(title), st["cargo"])
+            if separator:
+                date_width = 68 * mm if len(date) > 30 else 36 * mm
+                content_width = A4[0] - MARGEM_L - MARGEM_R - 2 * FRAME_PADDING
+                row = Table([[heading, Paragraph(markup(date), st["date"])]],
+                            colWidths=[content_width - date_width, date_width],
+                            spaceBefore=st["cargo"].spaceBefore,
+                            style=[("VALIGN", (0, 0), (-1, -1), "TOP"),
+                                   ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                                   ("RIGHTPADDING", (0, 0), (0, 0), 3 * mm),
+                                   ("RIGHTPADDING", (1, 0), (1, 0), 0),
+                                   ("TOPPADDING", (0, 0), (-1, -1), 0),
+                                   ("BOTTOMPADDING", (0, 0), (-1, -1), 0)])
+                row.keepWithNext = True
+                flow.append(row)
+            else:
+                flow.append(heading)
         elif l.startswith("_ "):
             flow.append(Paragraph(markup(l[2:]), st["sub"]))
         elif l.startswith("^ "):
@@ -134,7 +170,7 @@ def construir(md, saida, pt):
                             topMargin=MARGEM_T, bottomMargin=MARGEM_B,
                             title="Jameson Henrique Cruz Sabino — Currículo",
                             author="Jameson Henrique Cruz Sabino",
-                            subject="Desenvolvedor de Software Júnior — Java, Spring Boot e Angular")
+                            subject="Desenvolvedor Full Stack — TypeScript, Java, Spring Boot e Angular")
     doc.build(montar(ler(md), pt))
 
 
@@ -155,13 +191,11 @@ if __name__ == "__main__":
                                                           "JAMESON_HENRIQUE_CV.pdf"))
     ap.add_argument("--md", default=os.path.join(BASE, "cv-portfolio.md"))
     a = ap.parse_args()
-    inicial = float(os.environ.get("CV_FONTE_PT") or 10.0)
-    for pt in [inicial - 0.15 * i for i in range(7) if inicial - 0.15 * i >= 9.0]:
-        construir(a.md, a.saida, round(pt, 2))
-        n = paginas(a.saida)
-        if n == 1:
-            print("gerado %s — %d página(s), corpo %.2fpt" % (a.saida, n, pt))
-            break
-    else:
-        print("ERRO: não coube em uma página com fonte legível — corte texto", file=sys.stderr)
+    pt = float(os.environ.get("CV_FONTE_PT") or 8.85)
+    construir(a.md, a.saida, pt)
+    n = paginas(a.saida)
+    if n != 1:
+        print(f"ERRO: o currículo ocupou {n} página(s). O currículo deve ocupar exatamente uma página A4.",
+              file=sys.stderr)
         sys.exit(1)
+    print(f"gerado {a.saida} — {n} página A4, corpo {pt:.2f} pt")
