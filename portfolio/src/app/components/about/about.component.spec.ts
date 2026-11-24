@@ -23,5 +23,10 @@ describe('AboutComponent', () => {
     expect(el.textContent).toContain('IMD/UFRN');
     expect(el.querySelector('.polaroid img')?.getAttribute('src')).toBe('/about-me.jpg');
     expect(el.querySelectorAll('.about-links a').length).toBe(3);
+    expect(el.querySelector('.about-intro')?.textContent).toContain('Curso Bacharelado em Tecnologia da Informação');
+    const experience = el.querySelector('#experiencia');
+    expect(experience?.querySelectorAll('li').length).toBe(3);
+    expect(experience?.textContent).toContain('Wolfacilitates C&M');
+    expect(experience?.textContent).toContain('Duarte e Almeida Advogados');
   });
 });

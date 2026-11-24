@@ -1,14 +1,6 @@
 <section id="inicio" class="hero" [attr.aria-label]="c().nav.inicio">
   <div class="ed-container hero-grid">
     <div class="hero-copy">
-      <div class="eyebrow">
-        <span class="eyebrow-left">
-          <i class="dot" aria-hidden="true"></i>
-          <span>{{ c().hero.name }}</span>
-        </span>
-        <span class="eyebrow-loc">{{ c().hero.eyebrowLocation }}</span>
-      </div>
-
       <h1 class="hero-title" [attr.aria-label]="c().hero.headline">
         <span class="line-one">{{ c().hero.titleLine1 }}</span>
         <span class="line-two">{{ c().hero.titleLine2 }}<span class="hero-asterisk" aria-hidden="true">*</span></span>
@@ -25,18 +17,14 @@
           <span>{{ c().hero.projectsButton }}</span>
           <span class="round-arrow" aria-hidden="true">↗</span>
         </a>
-        <div class="hero-meta-col">
-          <span class="hero-sign">{{ c().hero.sign }}</span>
-          <a href="/JAMESON_HENRIQUE_CV.pdf" target="_blank" rel="noopener noreferrer" class="hero-cv-link">
-            {{ c().hero.cvButton }} ↗
-          </a>
-        </div>
+        <a href="/JAMESON_HENRIQUE_CV.pdf" target="_blank" rel="noopener noreferrer" class="hero-cv-link">
+          {{ c().hero.cvButton }} ↗
+        </a>
       </div>
     </div>
 
     <div class="hero-stage">
       <div class="stage-grid" aria-hidden="true"></div>
-      <div class="stage-inspect-chip" aria-hidden="true">RENDER: CSS 3D + VIEW TRANSITIONS API</div>
 
       <div class="stage-caption">
         <span class="tiny">{{ c().hero.deckCaption }}</span>

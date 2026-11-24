@@ -132,6 +132,7 @@ test.describe('prerendered HTML', () => {
             '#inicio .hero-art',
             '#projetos .work-entry',
             '#sobre .about-intro',
+            '#experiencia li',
             '#contato .outro-mail',
             'footer'
           ];
@@ -206,7 +207,7 @@ test('fixed header navigation reaches the home section from a case study', async
     await menu.click();
     await expect(menu).toHaveAttribute('aria-expanded', 'true');
     await expect(drawer).toBeVisible();
-    await expect(drawer.getByRole('link')).toHaveCount(3);
+    await expect(drawer.getByRole('link')).toHaveText(['Trabalhos', 'Sobre', 'Experiência', 'Contato']);
     await page.keyboard.press('Escape');
     await expect(menu).toHaveAttribute('aria-expanded', 'false');
     await expect(drawer).toBeHidden();
@@ -260,26 +261,32 @@ test('Proof Deck cycles through projects 01, 02 and 03 and opens the active case
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 });
 
-test('Inspection Mode toggles technical callouts and closes with Escape', async ({ page, isMobile }) => {
+test('The homepage shows professional experience and removes inspection controls', async ({ page, isMobile }) => {
   await page.goto('/');
-  const toggle = isMobile
-    ? page.locator('#mobile-nav-panel button.mobile-inspect')
-    : page.locator('header button.desktop-inspect');
-
   if (isMobile) {
-    await page.locator('header button.menu-toggle').click();
+    await page.getByRole('button', { name: 'Abrir menu' }).click();
   }
-  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.locator('.explain').first()).toBeHidden();
+  await expect(page.getByRole('button', { name: /inspecionar/i })).toHaveCount(0);
+  await expect(page.locator('.hero-copy')).not.toContainText(/Natal|arquivo de sistemas/i);
+  const navigation = isMobile ? page.locator('#mobile-nav-panel') : page.locator('.desktop-nav');
+  await navigation.getByRole('link', { name: 'Experiência' }).click();
+  await expect(page).toHaveURL('/#experiencia');
+  const experience = page.getByRole('region', { name: 'Experiência profissional' });
+  await expect(experience.getByRole('listitem')).toHaveCount(3);
+  await expect(experience.getByRole('heading', { name: 'Wolfacilitates C&M' })).toBeVisible();
+  await expect(experience.getByRole('heading', { name: 'Duarte e Almeida Advogados' })).toBeVisible();
+});
 
-  await toggle.click();
-  await expect(page.locator('body')).toHaveClass(/inspect/);
-  await expect(page.locator('.inspect-bar')).toBeVisible();
-  await expect(page.locator('.explain').first()).toBeVisible();
-
-  await page.keyboard.press('Escape');
-  await expect(page.locator('body')).not.toHaveClass(/inspect/);
-  await expect(page.locator('.explain').first()).toBeHidden();
+test('Project images animate on scroll and honor reduced motion', async ({ page }) => {
+  await page.goto('/');
+  const image = page.locator('.frame-body img').first();
+  await expect(image).toHaveCSS('animation-name', /project-image-in$/);
+  const progress = () => image.evaluate((element) => element.getAnimations()[0]?.effect?.getComputedTiming().progress);
+  await expect.poll(progress).toBe(0);
+  await image.evaluate((element) => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+  await expect.poll(progress).toBe(1);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(image).toHaveCSS('animation-name', 'none');
 });
 
 test('Work chapter opens a case study at the top', async ({ page }) => {

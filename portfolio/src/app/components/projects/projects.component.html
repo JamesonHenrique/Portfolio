@@ -84,18 +84,6 @@
               />
             </div>
           </a>
-
-          <div class="explain-strip">
-            @for (note of project.inspectNotes; track note.id) {
-              <div class="explain">
-                <svg class="explain-pin" viewBox="0 0 28 18" aria-hidden="true">
-                  <path d="M1 17 L14 4 L27 4" fill="none" stroke="currentColor" stroke-width="1.5" />
-                  <circle cx="2" cy="16" r="2.2" fill="currentColor" />
-                </svg>
-                <span>{{ note.text }}</span>
-              </div>
-            }
-          </div>
         </div>
       </div>
     </section>

@@ -13,7 +13,7 @@ export const PT: SiteContent = {
   meta: {
     title: 'Jameson Henrique | Desenvolvedor Full Stack na Wolfacilitates',
     description:
-      'Desenvolvedor Full Stack e Responsável por Tecnologia na Wolfacilitates C&M. Estudante de BTI no IMD/UFRN, com base em Java, Spring Boot, Angular, TypeScript e automações.'
+      'Desenvolvedor Full Stack e Responsável por Tecnologia na Wolfacilitates C&M. Cursa Bacharelado em Tecnologia da Informação no IMD/UFRN, com base em Java, Spring Boot, Angular, TypeScript e automações.'
   },
   skipLink: 'Pular para o conteúdo',
   nav: {
@@ -23,17 +23,11 @@ export const PT: SiteContent = {
     inicio: 'Início',
     projetos: 'Trabalhos',
     sobre: 'Sobre',
+    experiencia: 'Experiência',
     skills: 'Capacidades',
-    contato: 'Contato',
-    inspectLabel: 'Inspecionar ↗',
-    inspectClose: 'Fechar modo ×',
-    inspectAria: 'Ativar modo de inspeção técnica da interface',
-    inspectStatus: 'MODO INSPEÇÃO / ATIVO · CLIQUE NOVAMENTE OU PRESSIONE ESC PARA DESATIVAR'
+    contato: 'Contato'
   },
   hero: {
-    context: 'Wolfacilitates C&M · Natal, RN',
-    eyebrowLocation: 'Natal · Brasil',
-    name: 'Jameson Henrique',
     headline: 'Além do clique tem código.',
     titleLine1: 'Além',
     titleLine2: 'do clique',
@@ -44,14 +38,13 @@ export const PT: SiteContent = {
     subheadPost: ' — APIs, automações e produtos digitais.',
     projectsButton: 'Ver trabalhos selecionados',
     cvButton: 'Currículo PDF',
-    sign: 'PORTFÓLIO / 2026\nARQUIVO DE SISTEMAS',
     deckCaption: 'Portfólio em três provas',
     deckBadge: 'Troque o trabalho',
     prevProject: 'Projeto anterior',
     nextProject: 'Próximo projeto',
     openCase: 'Abrir estudo de caso',
     panelLabel: 'Sistemas em destaque',
-    panelHint: 'Selecione um projeto para inspecionar arquitetura e decisão técnica',
+    panelHint: 'Selecione um projeto para abrir o estudo de caso',
     panelCta: 'Ler estudo de caso',
     panelDecisionLabel: 'Decisão-chave'
   },
@@ -102,10 +95,6 @@ export const PT: SiteContent = {
         focusLine: 'FOCO DO PROJETO / ESTADO DURÁVEL · RETENTATIVAS · MONITORAMENTO',
         frameTag: 'NÃO É MOCKUP',
         chapterTone: 'gold',
-        inspectNotes: [
-          { id: '01', text: '[ 01 ] UI de monitoramento zero-DB' },
-          { id: '02', text: '[ 02 ] estado JSON + flock fora da LLM' }
-        ],
         techs: ['Python', 'Shell', 'Node.js', 'Chrome (CDP)', 'LLMs', 'GitHub Actions'],
         image: 'oportunizavaga_print.webp',
         imageWidth: 960,
@@ -133,10 +122,6 @@ export const PT: SiteContent = {
         focusLine: 'FREELANCE / DETALHES PÚBLICOS LIMITADOS · CÓDIGO PRIVADO',
         frameTag: 'EXEMPLO DE TELA',
         chapterTone: 'green',
-        inspectNotes: [
-          { id: '01', text: '[ 01 ] 4 estados operacionais' },
-          { id: '02', text: '[ 02 ] leitura contínua à distância' }
-        ],
         techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'MongoDB', 'RxJS'],
         image: 'painel-de-maquinas_print.webp',
         imageWidth: 1200,
@@ -162,10 +147,6 @@ export const PT: SiteContent = {
         focusLine: 'FOCO DO PROJETO / JAVA · ANGULAR · POSTGRESQL · S3',
         frameTag: 'PROJETO PESSOAL',
         chapterTone: 'blue',
-        inspectNotes: [
-          { id: '01', text: '[ 01 ] cliente Angular via OpenAPI' },
-          { id: '02', text: '[ 02 ] JWT + AWS S3 presigned URLs' }
-        ],
         techs: ['Java 21', 'Spring Boot', 'Angular 19', 'PostgreSQL', 'AWS S3', 'Flyway'],
         image: 'newgram_print.webp',
         imageWidth: 1200,
@@ -209,9 +190,9 @@ export const PT: SiteContent = {
     photoAlt: 'Retrato de Jameson Henrique',
     photoCaption: 'JAMESON, 2026.',
     shortBio:
-      'Sou Jameson Henrique, desenvolvedor full stack e estudante de TI no IMD/UFRN. Trabalho com aplicações web, integrações e automações.',
+      'Sou Jameson Henrique, desenvolvedor full stack. Curso Bacharelado em Tecnologia da Informação no IMD/UFRN e trabalho com aplicações web, integrações e automações.',
     intro:
-      'Sou desenvolvedor de software e estudante do Bacharelado em Tecnologia da Informação no IMD/UFRN. Meu trabalho gira em torno de transformar problemas operacionais concretos em sistemas legíveis, seguros e fáceis de manter.',
+      'Sou desenvolvedor de software e curso Bacharelado em Tecnologia da Informação no IMD/UFRN. Meu trabalho gira em torno de transformar problemas operacionais concretos em sistemas legíveis, seguros e fáceis de manter.',
     detail:
       'Atuo principalmente com Java, Spring Boot, Angular e TypeScript no desenvolvimento full stack, somados à experiência prática com integrações via APIs REST, webhooks e automação de fluxos com Make, n8n e IA aplicada.',
     locationLabel: 'Base',
@@ -345,7 +326,6 @@ export const PT: SiteContent = {
     copiedEmail: 'Copiado',
     phone: 'Telefone',
     location: 'Localização',
-    locationValue: 'Natal, RN · Brasil',
     social: 'Perfis',
     backToTop: 'VOLTAR AO INÍCIO ↑',
     form: {
@@ -364,7 +344,7 @@ export const PT: SiteContent = {
     }
   },
   footer: {
-    role: 'Desenvolvedor Full Stack · Natal, RN',
+    role: 'Desenvolvedor Full Stack',
     rights: 'Todos os direitos reservados.',
     cv: 'Currículo (PDF)'
   },

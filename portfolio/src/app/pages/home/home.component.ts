@@ -82,11 +82,6 @@ import { SeoService } from '../../services/seo.service';
     .intro-band {
       background: var(--paper);
       padding-block: clamp(4.5rem, 8vw, 7.5rem);
-      transition: background-image 200ms var(--ease-out);
-    }
-
-    :host-context(body.inspect) .intro-band {
-      background-image: repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(212, 79, 53, 0.18) 30px);
     }
 
     .intro-layout {

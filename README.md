@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/JamesonHenrique/Portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/JamesonHenrique/Portfolio/actions/workflows/ci.yml)
 
-**Além do clique tem código.** Meu portfólio reúne interfaces e os sistemas por trás delas. Sou desenvolvedor full stack e responsável por tecnologia na Wolfacilitates C&M, estudante de BTI na UFRN e trabalho com Java, Spring Boot, Angular e TypeScript.
+**Além do clique tem código.** Meu portfólio reúne interfaces e os sistemas por trás delas. Sou desenvolvedor full stack e responsável por tecnologia na Wolfacilitates C&M, curso Bacharelado em Tecnologia da Informação no IMD/UFRN e trabalho com Java, Spring Boot, Angular e TypeScript.
 
 [Portfólio em português](https://jamesonhenrique-portfolio.vercel.app/) · [Portfolio in English](https://jamesonhenrique-portfolio.vercel.app/en)
 
@@ -11,8 +11,8 @@
 ## O que tem no site
 
 - **Seletor de projetos** com capturas dos produtos, navegação por botões, teclado e gesto horizontal.
-- **Modo Inspecionar** com notas sobre decisões técnicas dos projetos. A transição para os estudos de caso usa a View Transitions API quando disponível e respeita a preferência por movimento reduzido.
-- **Apresentação e contato** com uma bio curta, currículo em PDF, links profissionais e cópia de e-mail.
+- **Animações** na entrada do título, nas capturas conforme a rolagem e na transição para os estudos de caso. Os efeitos respeitam a preferência por movimento reduzido.
+- **Apresentação e contato** com bio, três experiências profissionais, currículo em PDF, links profissionais e cópia de e-mail.
 
 <p>
   <img src="docs/preview-mobile.webp" alt="Página inicial do portfólio em um celular" width="260">

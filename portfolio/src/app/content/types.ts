@@ -20,7 +20,6 @@ export interface FlagshipProject {
   focusLine: string;
   frameTag: string;
   chapterTone: 'gold' | 'green' | 'blue';
-  inspectNotes: { id: string; text: string }[];
   techs: string[];
   image: string;
   imageWidth: number;
@@ -112,17 +111,11 @@ export interface SiteContent {
     inicio: string;
     projetos: string;
     sobre: string;
+    experiencia: string;
     skills: string;
     contato: string;
-    inspectLabel: string;
-    inspectClose: string;
-    inspectAria: string;
-    inspectStatus: string;
   };
   hero: {
-    context: string;
-    eyebrowLocation: string;
-    name: string;
     headline: string;
     titleLine1: string;
     titleLine2: string;
@@ -133,7 +126,6 @@ export interface SiteContent {
     subheadPost: string;
     projectsButton: string;
     cvButton: string;
-    sign: string;
     deckCaption: string;
     deckBadge: string;
     prevProject: string;
@@ -223,7 +215,6 @@ export interface SiteContent {
     copiedEmail: string;
     phone: string;
     location: string;
-    locationValue: string;
     social: string;
     backToTop: string;
     form: {

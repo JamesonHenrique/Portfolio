@@ -102,3 +102,53 @@
     margin-top: 0.75rem;
   }
 }
+
+.experience {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+
+  h3 {
+    font-size: clamp(1.75rem, 3.2vw, 3rem);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  ol {
+    border-bottom: 1px solid var(--line);
+  }
+
+  li {
+    display: grid;
+    gap: 0.65rem 2rem;
+    border-top: 1px solid var(--line);
+    padding-block: 1.35rem;
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    font-weight: 750;
+    letter-spacing: -0.025em;
+  }
+}
+
+.experience-period {
+  font: 500 0.75rem / 1.5 var(--font-mono);
+  color: var(--text-muted);
+}
+
+.experience-role {
+  font-weight: 650;
+}
+
+.experience-summary {
+  max-width: 65ch;
+  margin-top: 0.45rem;
+  color: var(--text-secondary);
+}
+
+@media (min-width: 900px) {
+  .experience li {
+    grid-template-columns: minmax(10rem, 0.28fr) 1fr;
+  }
+}

@@ -33,16 +33,6 @@
 
       <button
         type="button"
-        class="inspect-toggle desktop-inspect"
-        [attr.aria-pressed]="inspection.enabled()"
-        [attr.aria-label]="c().nav.inspectAria"
-        (click)="inspection.toggle()"
-      >
-        {{ inspection.enabled() ? c().nav.inspectClose : c().nav.inspectLabel }}
-      </button>
-
-      <button
-        type="button"
         class="menu-toggle"
         [attr.aria-expanded]="menuOpen()"
         aria-controls="mobile-nav-panel"
@@ -62,17 +52,6 @@
     </div>
   </div>
 
-  @if (inspection.enabled()) {
-    <div class="inspect-bar" role="status" aria-live="polite">
-      <div class="ed-container inspect-bar-inner">
-        <span>{{ c().nav.inspectStatus }}</span>
-        <button type="button" class="inspect-bar-close" (click)="inspection.set(false)">
-          {{ c().nav.inspectClose }}
-        </button>
-      </div>
-    </div>
-  }
-
   <div class="reading-progress" [style.transform]="'scaleX(' + scrollProgress() + ')'" aria-hidden="true"></div>
 
   @if (menuOpen()) {
@@ -90,17 +69,6 @@
             {{ c().nav[item.label] }}
           </a>
         }
-        <div class="mobile-inspect-row">
-          <button
-            type="button"
-            class="inspect-toggle mobile-inspect"
-            [attr.aria-pressed]="inspection.enabled()"
-            [attr.aria-label]="c().nav.inspectAria"
-            (click)="inspection.toggle(); closeMenu()"
-          >
-            {{ inspection.enabled() ? c().nav.inspectClose : c().nav.inspectLabel }}
-          </button>
-        </div>
       </div>
     </nav>
   }

@@ -12,7 +12,7 @@ export const EN: SiteContent = {
   meta: {
     title: 'Jameson Henrique | Full Stack Developer at Wolfacilitates',
     description:
-      'Full Stack Developer and Technology Lead at Wolfacilitates C&M. IT undergraduate at IMD/UFRN with a background in Java, Spring Boot, Angular, TypeScript and systems automation.'
+      'Full Stack Developer and Technology Lead at Wolfacilitates C&M. Pursuing a bachelor’s degree in Information Technology at IMD/UFRN, with a background in Java, Spring Boot, Angular, TypeScript and systems automation.'
   },
   skipLink: 'Skip to content',
   nav: {
@@ -22,17 +22,11 @@ export const EN: SiteContent = {
     inicio: 'Home',
     projetos: 'Work',
     sobre: 'About',
+    experiencia: 'Experience',
     skills: 'Capabilities',
-    contato: 'Contact',
-    inspectLabel: 'Inspect ↗',
-    inspectClose: 'Close mode ×',
-    inspectAria: 'Toggle technical inspection mode',
-    inspectStatus: 'INSPECTION MODE / ACTIVE · CLICK AGAIN OR PRESS ESC TO EXIT'
+    contato: 'Contact'
   },
   hero: {
-    context: 'Wolfacilitates C&M · Natal, BR',
-    eyebrowLocation: 'Natal · Brazil',
-    name: 'Jameson Henrique',
     headline: 'Beyond the click lives code.',
     titleLine1: 'Beyond',
     titleLine2: 'the click',
@@ -43,14 +37,13 @@ export const EN: SiteContent = {
     subheadPost: ' — APIs, automations and digital products.',
     projectsButton: 'View selected work',
     cvButton: 'Resume (PDF · PT)',
-    sign: 'PORTFOLIO / 2026\nSYSTEMS ARCHIVE',
     deckCaption: 'Portfolio in three proofs',
     deckBadge: 'Switch work',
     prevProject: 'Previous project',
     nextProject: 'Next project',
     openCase: 'Open case study',
     panelLabel: 'Selected systems',
-    panelHint: 'Pick a project to inspect its architecture and key technical decision',
+    panelHint: 'Choose a project to open its case study',
     panelCta: 'Read case study',
     panelDecisionLabel: 'Key decision'
   },
@@ -101,10 +94,6 @@ export const EN: SiteContent = {
         focusLine: 'PROJECT FOCUS / DURABLE STATE · RETRIES · MONITORING',
         frameTag: 'NOT A MOCKUP',
         chapterTone: 'gold',
-        inspectNotes: [
-          { id: '01', text: '[ 01 ] zero-DB monitoring UI' },
-          { id: '02', text: '[ 02 ] JSON state + flock outside LLM' }
-        ],
         techs: ['Python', 'Shell', 'Node.js', 'Chrome (CDP)', 'LLMs', 'GitHub Actions'],
         image: 'oportunizavaga_print.webp',
         imageWidth: 960,
@@ -132,10 +121,6 @@ export const EN: SiteContent = {
         focusLine: 'FREELANCE / LIMITED PUBLIC DETAILS · PRIVATE CODE',
         frameTag: 'SCREEN SAMPLE',
         chapterTone: 'green',
-        inspectNotes: [
-          { id: '01', text: '[ 01 ] 4 operational states' },
-          { id: '02', text: '[ 02 ] continuous floor-level scan' }
-        ],
         techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'MongoDB', 'RxJS'],
         image: 'painel-de-maquinas_print.webp',
         imageWidth: 1200,
@@ -161,10 +146,6 @@ export const EN: SiteContent = {
         focusLine: 'PROJECT FOCUS / JAVA · ANGULAR · POSTGRESQL · S3',
         frameTag: 'PERSONAL PROJECT',
         chapterTone: 'blue',
-        inspectNotes: [
-          { id: '01', text: '[ 01 ] OpenAPI-generated Angular client' },
-          { id: '02', text: '[ 02 ] JWT + AWS S3 presigned URLs' }
-        ],
         techs: ['Java 21', 'Spring Boot', 'Angular 19', 'PostgreSQL', 'AWS S3', 'Flyway'],
         image: 'newgram_print.webp',
         imageWidth: 1200,
@@ -208,9 +189,9 @@ export const EN: SiteContent = {
     photoAlt: 'Portrait of Jameson Henrique',
     photoCaption: 'JAMESON, 2026.',
     shortBio:
-      'I am Jameson Henrique, a full stack developer and IT undergraduate at IMD/UFRN. I work on web applications, integrations and automation systems.',
+      'I am Jameson Henrique, a full stack developer. I’m pursuing a bachelor’s degree in Information Technology at IMD/UFRN and work on web applications, integrations and automation systems.',
     intro:
-      'I am a software developer and Information Technology undergraduate at IMD/UFRN. My focus is turning concrete operational needs into readable, secure and maintainable software.',
+      'I am a software developer pursuing a bachelor’s degree in Information Technology at IMD/UFRN. My focus is turning concrete operational needs into readable, secure and maintainable software.',
     detail:
       'My core stack centers on Java, Spring Boot, Angular and TypeScript for full stack delivery, complemented by production experience building REST API integrations, webhooks and automated workflows with Make, n8n and applied AI.',
     locationLabel: 'Base',
@@ -343,7 +324,6 @@ export const EN: SiteContent = {
     copiedEmail: 'Copied',
     phone: 'Phone',
     location: 'Location',
-    locationValue: 'Natal, RN · Brazil',
     social: 'Profiles',
     backToTop: 'BACK TO TOP ↑',
     form: {
@@ -362,7 +342,7 @@ export const EN: SiteContent = {
     }
   },
   footer: {
-    role: 'Full Stack Developer · Natal, BR',
+    role: 'Full Stack Developer',
     rights: 'All rights reserved.',
     cv: 'Résumé (PDF · PT)'
   },

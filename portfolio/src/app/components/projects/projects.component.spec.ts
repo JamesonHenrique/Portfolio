@@ -17,11 +17,10 @@ describe('ProjectsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should render three visual project chapters and inspection callouts', () => {
+  it('should render three visual project chapters', () => {
     expect(component).toBeTruthy();
     const el = fixture.nativeElement as HTMLElement;
     expect(el.querySelectorAll('.work-entry').length).toBe(3);
     expect(el.querySelectorAll('.display-frame').length).toBe(3);
-    expect(el.querySelectorAll('.explain').length).toBe(6);
   });
 });
